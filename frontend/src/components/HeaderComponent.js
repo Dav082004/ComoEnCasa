@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../styles/Header.css";
 
 export const HeaderComponent = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   return (
     <header className="header-pastel">
       <div className="container">
@@ -31,6 +29,9 @@ export const HeaderComponent = () => {
             </li>
             <li>
               <NavLink to="/nosotros">Nosotros</NavLink>
+            </li>
+            <li>
+              <NavLink to="/Checkout">checkout</NavLink>
             </li>
           </ul>
 

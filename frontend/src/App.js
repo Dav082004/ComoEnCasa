@@ -10,6 +10,7 @@ import Nosotros from "./pages/Nosotros";
 import Contacto from "./pages/Contacto";
 import CrearCuenta from "./pages/CrearCuenta";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 import "./styles/fonts.css";
 import "./styles/layout.css";
 import "./App.css";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/eventos" element={<Eventos />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
         <FooterComponent />
