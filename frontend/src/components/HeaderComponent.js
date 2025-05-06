@@ -5,10 +5,6 @@ import "../styles/Header.css";
 export const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
-
   return (
     <header className="header-pastel">
       <div className="container">
@@ -39,9 +35,9 @@ export const HeaderComponent = () => {
           </ul>
 
           <div className="nav-actions">
-            <button onClick={handleLogin} className="login-button">
-              {isLoggedIn ? "👤" : "Iniciar Sesión"}
-            </button>
+            <Link to="/login" className="login-button">
+              Iniciar Sesión
+            </Link>
             <Link to="/carrito" className="cart-icon">
               🛒
             </Link>
