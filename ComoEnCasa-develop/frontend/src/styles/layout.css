@@ -1,0 +1,217 @@
+/* Estructura principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff9fb;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+/* Tipografía general */
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+}
+
+/* Transiciones suaves */
+a,
+button {
+  transition: all 0.3s ease;
+}
+
+/*Categorias */
+
+.top-categories {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin-bottom: 3rem;
+}
+
+.container-categories {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3rem;
+}
+
+.card-category {
+	height: 20rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 2rem;
+	gap: 2rem;
+}
+
+.category-Pasteles {
+	background-image: linear-gradient(#00000080, #00000080),
+		url('../assets/banner_tortas.webp');
+	background-size: cover;
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+
+.category-Postres {
+	background-image: linear-gradient(#00000080, #00000080),
+		url('../assets/banner_postres.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.category-Eventos {
+	background-image: linear-gradient(#00000080, #00000080),
+		url('../assets/banner_eventos.webp');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.card-category p {
+	font-size: 2.5rem;
+	color: #fff;
+	text-transform: capitalize;
+	position: relative;
+}
+
+.card-category p::after {
+	content: '';
+	width: 2.5rem;
+	height: 2px;
+	background-color: #fff;
+	position: absolute;
+	bottom: -1rem;
+	left: 50%;
+	transform: translate(-50%, 50%);
+}
+
+.card-category span {
+	font-size: 1.6rem;
+	color: #fff;
+	cursor: pointer;
+}
+
+.card-category span:hover {
+	color: var(--primary-color);
+}
+
+/* Blogs */
+
+.blogs {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.container-blogs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3rem;
+}
+
+.card-blog {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.card-blog .container-img {
+	border-radius: 2rem;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.button-group-blog {
+	position: absolute;
+	bottom: 1.5rem;
+	right: -2.5rem;
+
+	display: flex;
+	gap: 0.7rem;
+	z-index: -1;
+	transition: all 0.3s ease;
+}
+
+.card-blog:hover .button-group-blog {
+	z-index: 0;
+	right: 1.5rem;
+}
+
+.button-group-blog span {
+	background-color: #fff;
+	padding: 1rem;
+	border-radius: 50%;
+	transition: all 0.4s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-group-blog span i {
+	font-size: 1.3rem;
+}
+
+.button-group-blog span:hover {
+	background-color: var(--primary-color);
+}
+
+.button-group-blog span:hover i {
+	color: #fff;
+}
+
+.content-blog h3 {
+	font-size: 1.8rem;
+	margin-bottom: 1.7rem;
+	color: var(--dark-color);
+	font-weight: 500;
+}
+
+.content-blog h3:hover {
+	color: var(--primary-color);
+	cursor: pointer;
+}
+
+.content-blog p {
+	margin-top: 1rem;
+	font-size: 1.4rem;
+	color: #777;
+}
+
+.content-blog span {
+	color: var(--primary-color);
+	font-size: 1.3rem;
+}
+
+.btn-read-more {
+	padding: 1rem 3rem;
+	background-color: var(--primary-color);
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.4rem;
+	border-radius: 2rem;
+	margin: 3rem 0 5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.btn-read-more:hover {
+	background-color: var(--dark-color);
+}
