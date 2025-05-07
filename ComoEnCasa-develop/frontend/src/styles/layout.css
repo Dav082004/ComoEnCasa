@@ -1,0 +1,35 @@
+/* Estructura principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff9fb;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+/* Tipografía general */
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+}
+
+/* Transiciones suaves */
+a,
+button {
+  transition: all 0.3s ease;
+}
