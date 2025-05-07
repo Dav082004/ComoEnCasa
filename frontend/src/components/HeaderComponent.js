@@ -5,6 +5,11 @@ import "../styles/Header.css";
 export const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+
+  const handleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+  };
+
   return (
     <header className="header-pastel">
       <div className="container">
@@ -35,6 +40,7 @@ export const HeaderComponent = () => {
           </ul>
 
           <div className="nav-actions">
+
             <Link to="/login" className="login-button">
               Iniciar Sesión
             </Link>
