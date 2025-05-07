@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import pasteleriaImg from '../assets/pasteleria.jpg';
 
 const Nosotros = () => {

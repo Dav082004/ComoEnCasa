@@ -1,4 +1,5 @@
 import React from "react";
+
 import evento1 from "../assets/eventos/eventos_1.webp";
 import evento2 from "../assets/eventos/eventos_2.webp";
 import evento3 from "../assets/eventos/eventos_3.webp";
