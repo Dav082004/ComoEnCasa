@@ -1,32 +1,32 @@
 
-# 🍰 Sistema Web para Gestión de Pedidos y Clientes - Como en Casa
+# Sistema Web para Gestión de Pedidos y Clientes - Como en Casa
 
-## 🧾 Descripción del Proyecto
+##  Descripción del Proyecto
 
 Este proyecto consiste en el desarrollo de un **sistema web** para mejorar la gestión de pedidos y clientes de la empresa *Como en Casa*, una pastelería artesanal familiar. El objetivo es digitalizar procesos clave como la toma de pedidos, la gestión de productos y la atención al cliente.
 
 ---
 
-## 🏢 Sobre la Empresa
+##  Sobre la Empresa
 
 **Como en Casa** es una pastelería casera con más de 10 años de experiencia, enfocada en brindar productos con sabor tradicional, atención cercana y personalización total en cada pedido.
 
 ---
 
-## 🎯 Misión y Visión
+##  Misión y Visión
 
 - **Misión:** Ofrecer postres artesanales preparados con ingredientes frescos y amor del hogar.
 - **Visión:** Ser un emprendimiento familiar reconocido por su dulzura, calidad y atención cálida.
 
 ---
 
-## 📌 Problema Detectado
+##  Problema Detectado
 
 Actualmente, la gestión de pedidos es manual (vía redes sociales y WhatsApp), lo que genera errores, demoras, y limita el crecimiento del negocio. No existe un canal digital eficiente ni automatizado.
 
 ---
 
-## 💡 Solución Propuesta
+##  Solución Propuesta
 
 Desarrollo de un **sistema web** que permitirá:
 
@@ -50,7 +50,7 @@ Desarrollo de un **sistema web** que permitirá:
 
 ---
 
-## 🛡️ Requerimientos No Funcionales
+##  Requerimientos No Funcionales
 
 - Seguridad de datos (encriptación).
 - Compatibilidad con múltiples dispositivos.
@@ -60,13 +60,13 @@ Desarrollo de un **sistema web** que permitirá:
 
 ---
 
-## 🧠 Lean Canvas
+##  Lean Canvas
 
 Modelo estratégico utilizado para visualizar la propuesta de valor, segmentos de clientes, ventajas competitivas, entre otros.
 
 ---
 
-## 🔧 Estructura Técnica
+##  Estructura Técnica
 
 - **Diagrama de Capas**: Organización del backend, frontend y servicios.
 - **Diagrama ER y de Clases**: Modelado físico de la base de datos y estructuras del sistema.
@@ -75,7 +75,7 @@ Modelo estratégico utilizado para visualizar la propuesta de valor, segmentos d
 
 ---
 
-## 🎨 Mockups
+##  Mockups
 
 Diseños visuales del sistema propuesto creados en Balsamiq:
 
@@ -85,7 +85,7 @@ Diseños visuales del sistema propuesto creados en Balsamiq:
 
 ---
 
-## 👥 Equipo de Trabajo
+##  Equipo de Trabajo
 
 - Correa Acosta, Benjamin Emanuel  
 - Contreras Palacios, David Angel  
@@ -95,6 +95,6 @@ Diseños visuales del sistema propuesto creados en Balsamiq:
 
 ---
 
-## 📍 Ubicación y Fecha
+##  Ubicación y Fecha
 
 Lima, Perú - 2025
