@@ -38,7 +38,7 @@ Desarrollo de un **sistema web** que permitirá:
 
 ---
 
-## 🔍 Requerimientos Funcionales
+##  Requerimientos Funcionales
 
 | Código | Requerimiento |
 |--------|---------------|
