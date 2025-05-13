@@ -1,5 +1,4 @@
 import React from "react";
-
 import postre1 from "../assets/postres/postre_1.webp";
 import postre2 from "../assets/postres/postre_2.webp";
 import postre3 from "../assets/postres/postre_3.webp";
@@ -7,50 +6,38 @@ import postre4 from "../assets/postres/postre_4.webp";
 
 const Postres = () => {
   return (
-    <div className="container">
-
-      <div className="content">
-
-        <h1 className="title">POSTRES</h1>
-
-        <div className="productos">
-          {[
-            { img: postre1, nombre: "Pye de Manzana", precio: "S/. 50.00" },
-            { img: postre2, nombre: "Mousse de Lúcuma", precio: "S/. 43.00" },
-            { img: postre3, nombre: "Mousse de Maracuyá", precio: "S/. 50.00" },
-            { img: postre4, nombre: "Delirium", precio: "S/. 45.00" },
-          ].map((postre, index) => (
-            <div className="text-center" key={index}>
-              <img src={postre.img} alt={postre.nombre} />
-              <h2>{postre.nombre}</h2>
-              <h3>{postre.precio}</h3>
-            </div>
-          ))}
-        </div>
+    <div className="container py-5 pastel-bg">
+      <div className="text-center mb-5">
+        <h1 className="pastel-title">Nuestros Postres</h1>
+        <p className="pastel-subtitle">Delicias dulces para endulzar tu día</p>
       </div>
 
-
-
-      <a
-        className="whatsapp"
-        href="https://wa.me/123456789?text=Hola,%20¿cómo%20estás?"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
-          fill="currentColor"
-          className="bi bi-whatsapp"
-          viewBox="0 0 16 16"
-        >
-          <path d="M13.601 2.326A7.85 7.85..." />
-        </svg>
-      </a>
+      <div className="row g-4">
+        {[
+          { img: postre1, nombre: "Pye de Manzana", precio: "S/. 50.00" },
+          { img: postre2, nombre: "Mousse de Lúcuma", precio: "S/. 43.00" },
+          { img: postre3, nombre: "Mousse de Maracuyá", precio: "S/. 50.00" },
+          { img: postre4, nombre: "Delirium", precio: "S/. 45.00" },
+        ].map((postre, index) => (
+          <div className="col-md-3 col-sm-6" key={index}>
+            <div className="card h-100 pastel-card">
+              <img
+                src={postre.img}
+                alt={postre.nombre}
+                className="card-img-top pastel-img"
+              />
+              <div className="card-body text-center">
+                <h5 className="card-title pastel-product-title">
+                  {postre.nombre}
+                </h5>
+                <p className="card-text pastel-price">{postre.precio}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
-
 };
 
 export default Postres;
