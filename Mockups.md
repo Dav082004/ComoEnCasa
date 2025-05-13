@@ -71,7 +71,7 @@ Sirve para emitir comprobantes de pago a los clientes que realizan compras. Es Ã
     - Cancelar
 
 **Mockup:**  
-![Boleta](./ruta/a/imagen2.jpg)
+![Boleta](imagen2.jpg)
 
 ---
 
@@ -116,5 +116,5 @@ Se usa para registrar ventas formales a clientes con RUC, permitiendo un control
   - Cancelar
 
 **Mockup:**  
-![Factura](./ruta/a/Imagen3.jpg)
+![Factura](Imagen3.jpg)
 
