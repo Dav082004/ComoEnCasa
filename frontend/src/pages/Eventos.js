@@ -7,48 +7,38 @@ import evento4 from "../assets/eventos/eventos_4.webp";
 
 const Eventos = () => {
   return (
-    <div className="container">
-
-
-      <div className="content">
-
-        <h1 className="title">Eventos</h1>
-
-        <div className="productos">
-          <div className="text-center">
-            <img src={evento1} alt="Torta Cumpleañera" />
-            <h2>Torta Cumpleañera</h2>
-            <h3>S/. 45.00</h3>
-          </div>
-          <div className="text-center">
-            <img src={evento2} alt="Torta Rosa Vainilla" />
-            <h2>Torta Rosa Vainilla</h2>
-            <h3>S/. 45.00</h3>
-          </div>
-          <div className="text-center">
-            <img src={evento3} alt="Torta Graduación" />
-            <h2>Torta Graduación</h2>
-            <h3>S/. 45.00</h3>
-          </div>
-          <div className="text-center">
-            <img src={evento4} alt="Torta San Valentín" />
-            <h2>Torta San Valentín</h2>
-            <h3>S/. 45.00</h3>
-          </div>
-        </div>
+    <div className="container py-5 pastel-bg-events">
+      <div className="text-center mb-5">
+        <h1 className="pastel-title-events">Pasteles para Eventos</h1>
+        <p className="pastel-subtitle">
+          Celebra tus momentos especiales con nosotros
+        </p>
       </div>
 
-
-      <a
-        className="whatsapp"
-        href="https://wa.me/123456789?text=Hola,%20¿cómo%20estás?"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" className="bi bi-whatsapp" viewBox="0 0 16 16">
-          <path d="M13.601 2.326A7.85... (cortar para brevedad)" />
-        </svg>
-      </a>
+      <div className="row g-4">
+        {[
+          { img: evento1, nombre: "Torta Cumpleañera", precio: "S/. 45.00" },
+          { img: evento2, nombre: "Torta Rosa Vainilla", precio: "S/. 45.00" },
+          { img: evento3, nombre: "Torta Graduación", precio: "S/. 45.00" },
+          { img: evento4, nombre: "Torta San Valentín", precio: "S/. 45.00" },
+        ].map((evento, index) => (
+          <div className="col-md-3 col-sm-6" key={index}>
+            <div className="card h-100 pastel-card">
+              <img
+                src={evento.img}
+                alt={evento.nombre}
+                className="card-img-top pastel-img"
+              />
+              <div className="card-body text-center">
+                <h5 className="card-title pastel-product-title">
+                  {evento.nombre}
+                </h5>
+                <p className="card-text pastel-price">{evento.precio}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
