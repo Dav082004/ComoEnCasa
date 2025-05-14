@@ -4,7 +4,7 @@ import slide from "../assets/slide.jpg";
 import PastelDeChocolate from "../assets/tortas/torta_1.webp";
 import PiedeMazana from "../assets/postres/postre_1.webp";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import "../styles/home.css";
+import "../styles/Home.css";
 
 const Home = () => {
   // Eliminamos el estado del índice ya que ahora está manejado por TestimonialCarousel

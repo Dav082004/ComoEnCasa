@@ -3,7 +3,7 @@
 @import "./styles/variables.css";
 @import "./styles/layout.css";
 @import "./styles/productos.css";
-@import "./styles/carrito.css";
+@import "./styles/Carrito.css";
 
 body {
   font-family: var(--font-primary);
