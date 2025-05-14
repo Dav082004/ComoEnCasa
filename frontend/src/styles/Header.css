@@ -131,3 +131,35 @@
   font-weight: bold;
   line-height: 1;
 }
+
+/* src/styles/Header.css */
+.user-icon {
+  color: #6c757d;
+  transition: color 0.3s;
+}
+
+.user-icon:hover {
+  color: #0d6efd;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-header {
+  font-weight: 600;
+  color: #495057;
+}

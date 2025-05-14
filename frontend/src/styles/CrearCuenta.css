@@ -35,3 +35,17 @@
   margin-top: 15px;
   text-align: center;
 }
+
+.login-redirect {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-redirect a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-redirect a:hover {
+  text-decoration: underline;
+}

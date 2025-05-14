@@ -1,6 +1,8 @@
+// src/pages/Login.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../services/userServices";
+import { useAuth } from "../context/AuthContext";
 import "../styles/Login.css";
 
 function Login() {
@@ -9,6 +11,7 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login: authLogin } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,15 +20,9 @@ function Login() {
 
     try {
       const data = await login(email, password);
-      console.log("Login exitoso:", data);
-
-      // Guardar el token/usuario en el estado global o localStorage
-      localStorage.setItem("user", JSON.stringify(data.usuario));
-
-      // Redirigir al home
+      authLogin(data.usuario); // Usar el contexto para login
       navigate("/");
     } catch (err) {
-      // El error ya está formateado correctamente
       setError(err.message || "Error al iniciar sesión");
     } finally {
       setIsLoading(false);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../services/userServices";
 import "../styles/CrearCuenta.css";
+import { Link } from "react-router-dom";
 
 function CrearCuenta() {
   const [nombreCompleto, setNombreCompleto] = useState("");
@@ -62,6 +63,10 @@ function CrearCuenta() {
           {isLoading ? "Registrando..." : "Registrarme"}
         </button>
       </form>
+
+      <div className="login-redirect">
+        ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
+      </div>
     </div>
   );
 }
