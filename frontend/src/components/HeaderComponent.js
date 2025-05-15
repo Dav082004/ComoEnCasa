@@ -1,18 +1,18 @@
 // src/components/HeaderComponent.js
-
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+import { Dropdown } from "react-bootstrap";
+import { PersonCircle } from "react-bootstrap-icons";
 import "../styles/Header.css";
 
 export const HeaderComponent = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout } = useAuth();
   const { cart } = useCart();
-  const totalItems = Object.values(cart).reduce((sum, item) => sum + item.cantidad, 0);
-
-  const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  const totalItems = Object.values(cart).reduce(
+    (sum, item) => sum + item.cantidad,
+    0
+  );
 
   return (
     <header className="header-pastel">
@@ -38,13 +38,31 @@ export const HeaderComponent = () => {
           </ul>
 
           <div className="nav-actions">
-            <Link
-              to="/login"
-              className="login-button"
-              onClick={handleLogin}
-            >
-              {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"}
-            </Link>
+            {user ? (
+              <Dropdown align="end">
+                <Dropdown.Toggle variant="link" id="dropdown-user">
+                  <PersonCircle size={24} className="user-icon" />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Header>
+                    Hola, {user.nombreCompleto.split(" ")[0]}
+                  </Dropdown.Header>
+                  <Dropdown.Item as={Link} to="/perfil">
+                    Perfil
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/pedidos">
+                    Mis Pedidos
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={logout}>Cerrar sesión</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <Link to="/login" className="login-button">
+                Iniciar Sesión
+              </Link>
+            )}
             <Link to="/carrito" className="cart-icon">
               🛒
               {totalItems > 0 && (
