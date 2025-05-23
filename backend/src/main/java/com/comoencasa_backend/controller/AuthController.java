@@ -5,62 +5,107 @@ import com.comoencasa_backend.dto.RegistroRequest;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
+    // Usa inyección por constructor (recomendado)
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    public AuthController(UsuarioRepository usuarioRepository,
+                          BCryptPasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) { // Elimina BindingResult
-        if (loginRequest.getEmail() == null || loginRequest.getPassword() == null) {
-            return ResponseEntity.badRequest().body(createErrorResponse("Email y contraseña son requeridos"));
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        System.out.println("=== INTENTO DE LOGIN ===");
+        System.out.println("Email recibido: " + loginRequest.getEmail());
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(loginRequest.getEmail());
+
+        if (usuarioOpt.isEmpty()) {
+            System.out.println("⚠️ Usuario no encontrado en la BD");
+            return ResponseEntity.status(401).body("Credenciales inválidas");
         }
 
-        Usuario usuario = usuarioRepository.findByEmail(loginRequest.getEmail());
+        Usuario usuario = usuarioOpt.get();
+        System.out.println("Usuario encontrado: " + usuario.getEmail());
+        System.out.println("Nombre completo: " + usuario.getNombreCompleto()); // ← Nuevo log
+        System.out.println("Hash almacenado: " + usuario.getPassword());
+        System.out.println("Activo?: " + usuario.getActivo());
 
-        if (usuario == null || !passwordEncoder.matches(loginRequest.getPassword(), usuario.getPassword())) {
-            return ResponseEntity.status(401).body(createErrorResponse("Email o contraseña incorrectos"));
+        boolean coincide = passwordEncoder.matches(
+                loginRequest.getPassword(),
+                usuario.getPassword()
+        );
+        System.out.println("🔑 ¿Contraseña coincide?: " + coincide);
+
+        if (!coincide) {
+            System.out.println("❌ Contraseña incorrecta");
+            System.out.println("Contraseña recibida: " + loginRequest.getPassword());
+            return ResponseEntity.status(401).body("Credenciales inválidas");
         }
 
-        if (!usuario.getActivo()) {
-            return ResponseEntity.status(403).body(createErrorResponse("Cuenta desactivada"));
-        }
-
-        return ResponseEntity.ok(createSuccessResponse(usuario, "Inicio de sesión exitoso"));
+        System.out.println("✅ Login exitoso");
+        return ResponseEntity.ok(Map.of(
+                "usuario", Map.of(
+                        "id", usuario.getId(),
+                        "nombreCompleto", usuario.getNombreCompleto(), // ← Añade esto
+                        "email", usuario.getEmail(),
+                        "rol", usuario.getRol().name()
+                )
+        ));
     }
 
     @PostMapping("/registro")
     public ResponseEntity<?> registrar(@RequestBody RegistroRequest registroRequest) {
-        if (usuarioRepository.existsByEmail(registroRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(createErrorResponse("El email ya está registrado"));
+        try {
+            System.out.println("Solicitud de registro recibida: " + registroRequest.getEmail());
+
+            if (usuarioRepository.existsByEmail(registroRequest.getEmail())) {
+                System.out.println("Email ya registrado: " + registroRequest.getEmail());
+                return ResponseEntity.badRequest().body(createErrorResponse("El email ya está registrado"));
+            }
+
+            Usuario nuevoUsuario = new Usuario();
+            nuevoUsuario.setNombreCompleto(registroRequest.getNombreCompleto());
+            nuevoUsuario.setEmail(registroRequest.getEmail());
+            nuevoUsuario.setPassword(passwordEncoder.encode(registroRequest.getPassword()));
+            nuevoUsuario.setFechaRegistro(LocalDateTime.now());
+            nuevoUsuario.setTelefono("");
+            nuevoUsuario.setDireccion("");
+            nuevoUsuario.setRol(Usuario.Rol.CLIENTE);
+            nuevoUsuario.setActivo(true); // Asegúrate que esté activo
+
+            usuarioRepository.save(nuevoUsuario);
+            System.out.println("Usuario registrado con ID: " + nuevoUsuario.getId());
+
+            return ResponseEntity.ok(createSuccessResponse(nuevoUsuario, "Usuario registrado con éxito"));
+        } catch (Exception e) {
+            System.out.println("Error en registro: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(createErrorResponse("Error interno al registrar usuario"));
         }
-
-        Usuario nuevoUsuario = new Usuario();
-        nuevoUsuario.setNombreCompleto(registroRequest.getNombreCompleto());
-        nuevoUsuario.setEmail(registroRequest.getEmail());
-        nuevoUsuario.setPassword(passwordEncoder.encode(registroRequest.getPassword()));
-        nuevoUsuario.setFechaRegistro(LocalDateTime.now());
-
-        usuarioRepository.save(nuevoUsuario);
-
-        return ResponseEntity.ok(createSuccessResponse(nuevoUsuario, "Usuario registrado con éxito"));
     }
 
-    // Métodos auxiliares
+
+    // Métodos auxiliares (sin cambios)
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
@@ -82,6 +127,7 @@ public class AuthController {
         userData.put("nombreCompleto", usuario.getNombreCompleto());
         userData.put("email", usuario.getEmail());
         userData.put("fechaRegistro", usuario.getFechaRegistro());
+        userData.put("rol", usuario.getRol().name());
         return userData;
     }
 }

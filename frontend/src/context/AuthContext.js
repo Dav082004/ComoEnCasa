@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -6,7 +5,6 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // Verificar si hay usuario en localStorage al cargar
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -15,8 +13,15 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);
+    const userWithRole = {
+      id: userData.id,
+      email: userData.email || "",
+      nombreCompleto: userData.nombreCompleto || "Usuario", // Asegura que siempre tenga valor
+      rol: userData.rol || "CLIENTE",
+      isAdmin: userData.rol === "ADMIN",
+    };
+    localStorage.setItem("user", JSON.stringify(userWithRole));
+    setUser(userWithRole);
   };
 
   const logout = () => {

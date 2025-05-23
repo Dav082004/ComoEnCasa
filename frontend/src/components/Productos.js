@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import "../styles/productos.css";
+import "../styles/Productos.css";
 
 export default function Productos({ productos, onAgregarAlCarrito }) {
   const [activo, setActivo] = useState(null);
   const [cantidad, setCantidad] = useState(1);
 
-  const abrir = prod => {
+  const abrir = (prod) => {
     setActivo(prod);
     setCantidad(1);
   };
   const cerrar = () => setActivo(null);
 
-  const inc = () => setCantidad(c => c + 1);
-  const dec = () => setCantidad(c => Math.max(1, c - 1));
+  const inc = () => setCantidad((c) => c + 1);
+  const dec = () => setCantidad((c) => Math.max(1, c - 1));
 
   const agregar = () => {
     onAgregarAlCarrito(activo, cantidad);
@@ -22,7 +22,7 @@ export default function Productos({ productos, onAgregarAlCarrito }) {
   return (
     <>
       <div className="productos-grid">
-        {productos.map(p => (
+        {productos.map((p) => (
           <div key={p.id} className="producto-card">
             <img src={p.img} alt={p.nombre} />
             <h3 className="producto-nombre" onClick={() => abrir(p)}>
@@ -35,7 +35,7 @@ export default function Productos({ productos, onAgregarAlCarrito }) {
 
       {activo && (
         <div className="modal-overlay" onClick={cerrar}>
-          <div className="modal" onClick={e => e.stopPropagation()}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <img
               src={activo.imgGrande}
               alt={activo.nombre}

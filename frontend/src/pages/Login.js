@@ -20,10 +20,14 @@ function Login() {
 
     try {
       const data = await login(email, password);
-      authLogin(data.usuario); // Usar el contexto para login
+      authLogin(data.usuario);
       navigate("/");
     } catch (err) {
-      setError(err.message || "Error al iniciar sesión");
+      console.error("Error completo:", {
+        message: err.message,
+        stack: err.stack,
+      });
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
