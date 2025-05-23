@@ -175,49 +175,6 @@ comoencasa-backend/
 │   └── test/
 └── pom.xml
 
-## Frontend (React)
-
-comoticasa/
-├── public/
-├── src/
-│ ├── admin/
-│ │ ├── AdminDashboard.js
-│ │ ├── AdminProducts.js
-│ │ ├── AdminOrders.js
-│ │ ├── AdminReports.js
-│ │ └── AdminUsers.js
-│ ├── components/
-│ │ ├── common/
-│ │ │ ├── LoadingSpinner.js
-│ │ │ ├── Modal.js
-│ │ │ └── Notification.js
-│ │ ├── product/
-│ │ │ ├── ProductCard.js
-│ │ │ ├── ProductDetail.js
-│ │ │ └── ProductForm.js
-│ │ └── checkout/
-│ │ ├── CheckoutForm.js
-│ │ ├── OrderSummary.js
-│ │ └── PaymentMethods.js
-│ ├── hooks/
-│ │ ├── useAuth.js
-│ │ ├── useCart.js
-│ │ ├── useProducts.js
-│ │ └── useOrders.js
-│ ├── services/
-│ │ ├── api.js
-│ │ ├── authService.js
-│ │ ├── cartService.js
-│ │ ├── orderService.js
-│ │ ├── productService.js
-│ │ └── reportService.js
-│ ├── utils/
-│ │ ├── auth.js
-│ │ ├── formatters.js
-│ │ └── validators.js
-│ └── ... (existing files)
-└── package.json
-
 ### FRONTEND (React)
 comoencasa/
 ├── public/
