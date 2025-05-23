@@ -117,62 +117,62 @@ _Ejemplo:_ Cuando un usuario hace login, el frontend envía credenciales al endp
 - JWT se almacena en frontend (localStorage o cookies) y se envía en cada request
 - Validación tanto en frontend (mejor UX) como backend (seguridad)
 
-# Estructura Completa del Proyecto Pastelería
+## Estructura Completa del Proyecto Pastelería
 
-## Backend (Spring Boot)
-
+### Backend (Spring Boot)
+```plaintext
 comoencasa-backend/
 ├── src/
-│ ├── main/
-│ │ ├── java/
-│ │ │ └── com/
-│ │ │ └── comoencasa_backend/
-│ │ │ ├── config/
-│ │ │ │ ├── JwtAuthenticationFilter.java
-│ │ │ │ ├── JwtTokenProvider.java
-│ │ │ │ ├── SwaggerConfig.java
-│ │ │ │ └── WebMvcConfig.java
-│ │ │ ├── controller/
-│ │ │ │ ├── AdminController.java
-│ │ │ │ ├── CartController.java
-│ │ │ │ ├── OrderController.java
-│ │ │ │ ├── ProductController.java
-│ │ │ │ └── ReportController.java
-│ │ │ ├── dto/
-│ │ │ │ ├── CartItemDTO.java
-│ │ │ │ ├── OrderDTO.java
-│ │ │ │ ├── ProductDTO.java
-│ │ │ │ ├── ReportDTO.java
-│ │ │ │ └── UserDTO.java
-│ │ │ ├── exception/
-│ │ │ │ ├── GlobalExceptionHandler.java
-│ │ │ │ ├── ResourceNotFoundException.java
-│ │ │ │ └── UnauthorizedException.java
-│ │ │ ├── model/
-│ │ │ │ ├── CartItem.java
-│ │ │ │ ├── Order.java
-│ │ │ │ ├── OrderDetail.java
-│ │ │ │ ├── Product.java
-│ │ │ │ └── Rol.java
-│ │ │ ├── repository/
-│ │ │ │ ├── CartItemRepository.java
-│ │ │ │ ├── OrderRepository.java
-│ │ │ │ └── ProductRepository.java
-│ │ │ ├── service/
-│ │ │ │ ├── CartService.java
-│ │ │ │ ├── OrderService.java
-│ │ │ │ ├── ProductService.java
-│ │ │ │ ├── ReportService.java
-│ │ │ │ └── UserService.java
-│ │ │ ├── util/
-│ │ │ │ ├── Constants.java
-│ │ │ │ └── ExcelGenerator.java
-│ │ │ └── ComoencasaBackendApplication.java
-│ │ └── resources/
-│ │ ├── static/
-│ │ ├── templates/
-│ │ └── application.properties
-│ └── test/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── comoencasa_backend/
+│   │   │           ├── config/
+│   │   │           │   ├── JwtAuthenticationFilter.java
+│   │   │           │   ├── JwtTokenProvider.java
+│   │   │           │   ├── SwaggerConfig.java
+│   │   │           │   └── WebMvcConfig.java
+│   │   │           ├── controller/
+│   │   │           │   ├── AdminController.java
+│   │   │           │   ├── CartController.java
+│   │   │           │   ├── OrderController.java
+│   │   │           │   ├── ProductController.java
+│   │   │           │   └── ReportController.java
+│   │   │           ├── dto/
+│   │   │           │   ├── CartItemDTO.java
+│   │   │           │   ├── OrderDTO.java
+│   │   │           │   ├── ProductDTO.java
+│   │   │           │   ├── ReportDTO.java
+│   │   │           │   └── UserDTO.java
+│   │   │           ├── exception/
+│   │   │           │   ├── GlobalExceptionHandler.java
+│   │   │           │   ├── ResourceNotFoundException.java
+│   │   │           │   └── UnauthorizedException.java
+│   │   │           ├── model/
+│   │   │           │   ├── CartItem.java
+│   │   │           │   ├── Order.java
+│   │   │           │   ├── OrderDetail.java
+│   │   │           │   ├── Product.java
+│   │   │           │   └── Rol.java
+│   │   │           ├── repository/
+│   │   │           │   ├── CartItemRepository.java
+│   │   │           │   ├── OrderRepository.java
+│   │   │           │   └── ProductRepository.java
+│   │   │           ├── service/
+│   │   │           │   ├── CartService.java
+│   │   │           │   ├── OrderService.java
+│   │   │           │   ├── ProductService.java
+│   │   │           │   ├── ReportService.java
+│   │   │           │   └── UserService.java
+│   │   │           ├── util/
+│   │   │           │   ├── Constants.java
+│   │   │           │   └── ExcelGenerator.java
+│   │   │           └── ComoencasaBackendApplication.java
+│   │   └── resources/
+│   │       ├── static/
+│   │       ├── templates/
+│   │       └── application.properties
+│   └── test/
 └── pom.xml
 
 ## Frontend (React)
@@ -217,3 +217,46 @@ comoticasa/
 │ │ └── validators.js
 │ └── ... (existing files)
 └── package.json
+
+### FRONTEND (React)
+comoencasa/
+├── public/
+├── src/
+│   ├── admin/
+│   │   ├── AdminDashboard.js
+│   │   ├── AdminProducts.js
+│   │   ├── AdminOrders.js
+│   │   ├── AdminReports.js
+│   │   └── AdminUsers.js
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── LoadingSpinner.js
+│   │   │   ├── Modal.js
+│   │   │   └── Notification.js
+│   │   ├── product/
+│   │   │   ├── ProductCard.js
+│   │   │   ├── ProductDetail.js
+│   │   │   └── ProductForm.js
+│   │   └── checkout/
+│   │       ├── CheckoutForm.js
+│   │       ├── OrderSummary.js
+│   │       └── PaymentMethods.js
+│   ├── hooks/
+│   │   ├── useAuth.js
+│   │   ├── useCart.js
+│   │   ├── useProducts.js
+│   │   └── useOrders.js
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── authService.js
+│   │   ├── cartService.js
+│   │   ├── orderService.js
+│   │   ├── productService.js
+│   │   └── reportService.js
+│   ├── utils/
+│   │   ├── auth.js
+│   │   ├── formatters.js
+│   │   └── validators.js
+│   └── ... (existing files)
+└── package.json
+
