@@ -14,6 +14,31 @@ export const HeaderComponent = () => {
     0
   );
 
+  const getNombreUsuario = () => {
+    if (!user) return "Usuario";
+
+    // Si tenemos nombre completo, devolvemos el primer nombre
+    if (user.nombreCompleto && user.nombreCompleto.trim() !== "") {
+      return user.nombreCompleto.trim().split(" ")[0];
+    }
+
+    return user.email?.split("@")[0] || "Usuario";
+  };
+
+  // Función para mostrar el rol de forma legible
+  const getRolUsuario = () => {
+    if (!user?.rol) return "";
+
+    switch (user.rol) {
+      case "ADMIN":
+        return "Administrador";
+      case "CLIENTE":
+        return "Cliente";
+      default:
+        return user.rol;
+    }
+  };
+
   return (
     <header className="header-pastel">
       <div className="container">
@@ -46,7 +71,10 @@ export const HeaderComponent = () => {
 
                 <Dropdown.Menu>
                   <Dropdown.Header>
-                    Hola, {user.nombreCompleto.split(" ")[0]}
+                    <div>
+                      Hola, <strong>{getNombreUsuario()}</strong>
+                    </div>
+                    <small className="text-muted">{getRolUsuario()}</small>
                   </Dropdown.Header>
                   <Dropdown.Item as={Link} to="/perfil">
                     Perfil
@@ -54,6 +82,11 @@ export const HeaderComponent = () => {
                   <Dropdown.Item as={Link} to="/pedidos">
                     Mis Pedidos
                   </Dropdown.Item>
+                  {user.isAdmin && (
+                    <Dropdown.Item as={Link} to="/admin">
+                      Panel Admin
+                    </Dropdown.Item>
+                  )}
                   <Dropdown.Divider />
                   <Dropdown.Item onClick={logout}>Cerrar sesión</Dropdown.Item>
                 </Dropdown.Menu>

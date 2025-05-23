@@ -1,19 +1,22 @@
 package com.comoencasa_backend.model;
 
+import com.comoencasa_backend.converter.RolConverter;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "usuarios")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "nombre_completo", nullable = false, length = 100)
     private String nombreCompleto;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(name = "correo", nullable = false, unique = true, length = 100)
     private String email;
 
     @Column(nullable = false, length = 255)
@@ -22,55 +25,53 @@ public class Usuario {
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;
 
+    @Column(name = "telefono", nullable = false, length = 20)
+    private String telefono = ""; // Valor por defecto
+
+    @Column(name = "direccion", nullable = false, length = 200)
+    private String direccion = ""; // Valor por defecto
+
+    @Column(name = "tipo_documento")
+    @Enumerated(EnumType.STRING)
+    private TipoDocumento tipoDocumento = TipoDocumento.DNI;
+
+    @Column(name = "numero_documento", length = 20)
+    private String numeroDocumento;
+
+    @Column(nullable = false)
+    @Convert(converter = RolConverter.class)
+    private Rol rol = Rol.CLIENTE;
+
     @Column(nullable = false)
     private Boolean activo = true;
 
-    // Getters y Setters
-    public Integer getId() {
-        return id;
+    public enum TipoDocumento {
+        DNI, RUC, CE
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public enum Rol {
+        CLIENTE("CLIENTE"),  // Valor que espera Java
+        ADMIN("ADMIN");
+
+        private final String dbValue;
+
+        Rol(String dbValue) {
+            this.dbValue = dbValue;
+        }
+
+        public String getDbValue() {
+            return dbValue;
+        }
+
+        // Método para convertir desde la BD
+        public static Rol fromDbValue(String dbValue) {
+            for (Rol rol : values()) {
+                if (rol.dbValue.equalsIgnoreCase(dbValue)) {
+                    return rol;
+                }
+            }
+            throw new IllegalArgumentException("Rol no válido: " + dbValue);
+        }
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public Boolean getActivo() {
-        return activo;
-    }
-
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
 }

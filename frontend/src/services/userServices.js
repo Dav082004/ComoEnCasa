@@ -5,26 +5,55 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: false, // Añade esto para manejar cookies si las usas
 });
 
-// Interceptor para manejar errores globalmente
+// Interceptor mejorado para manejo de errores
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      // El servidor respondió con un status code fuera de 2xx
+      const { status, data } = error.response;
+      let message = "Error en la solicitud";
+
+      if (status === 403) {
+        message = data?.error || "Acceso denegado. Verifica tus permisos.";
+      } else if (status === 401) {
+        message = data?.error || "Credenciales inválidas.";
+      } else if (status === 400) {
+        message = data?.error || "Datos de solicitud incorrectos.";
+      } else if (status === 404) {
+        message = data?.error || "Recurso no encontrado.";
+      } else if (status === 500) {
+        // Muestra el mensaje real del servidor para errores 500
+        message = data?.error || data?.message || "Error interno del servidor";
+      }
+
+      console.error(`Error ${status}:`, {
+        message,
+        details: data,
+        url: error.config.url,
+      });
+
       return Promise.reject({
-        message: error.response.data?.error || "Error en la solicitud",
-        status: error.response.status,
+        status,
+        message,
+        details: data || null,
       });
     } else if (error.request) {
-      // La petición fue hecha pero no se recibió respuesta
+      // La solicitud fue hecha pero no se recibió respuesta
       return Promise.reject({
-        message: "No se recibió respuesta del servidor",
+        message: "No se recibió respuesta del servidor. Verifica tu conexión.",
+        status: null,
+        data: null,
       });
     } else {
-      // Error al configurar la petición
-      return Promise.reject({ message: error.message });
+      // Error al configurar la solicitud
+      return Promise.reject({
+        message: error.message || "Error al configurar la solicitud",
+        status: null,
+        data: null,
+      });
     }
   }
 );
@@ -32,9 +61,14 @@ api.interceptors.response.use(
 export const login = async (email, password) => {
   try {
     const response = await api.post("/login", { email, password });
+    if (!response.data.usuario) {
+      throw new Error("Respuesta inválida del servidor");
+    }
     return response.data;
   } catch (error) {
-    throw error; // El error ya está formateado por el interceptor
+    const errorMessage =
+      error.response?.data?.error || error.message || "Error al iniciar sesión";
+    throw new Error(errorMessage);
   }
 };
 
@@ -47,7 +81,7 @@ export const register = async (nombreCompleto, email, password) => {
     });
     return response.data;
   } catch (error) {
-    throw error;
+    throw new Error(error.message || "Error al registrar usuario");
   }
 };
 
