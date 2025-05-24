@@ -8,7 +8,6 @@ import Eventos from "../pages/Eventos";
 import Nosotros from "../pages/Nosotros";
 import CrearCuenta from "../pages/CrearCuenta";
 import Login from "../pages/Login";
-import Tienda from "../pages/Tienda";
 import Productos from "../pages/Productos";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
@@ -30,9 +29,9 @@ export const AppRouter = () => {
               <Route path="eventos" element={<Eventos />} />
               <Route path="nosotros" element={<Nosotros />} />
               <Route path="productos" element={<Productos />} />
+
               <Route path="checkout" element={<Checkout />} />
               <Route path="carrito" element={<Carrito />} />
-              <Route path="*" element={<Tienda />} />
             </Route>
           </Routes>
         </Router>

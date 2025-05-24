@@ -1,7 +1,6 @@
 /* Importar estilos base */
 @import "./styles/Variables.css";
 @import "./styles/Layout.css";
-@import "./styles/Productos.css";
 @import "./styles/Carrito.css";
 
 body {
