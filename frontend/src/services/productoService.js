@@ -1,21 +1,18 @@
 import axios from "axios";
 
-// Para desarrollo local
 const API_URL = "http://localhost:8080/api/productos";
 
-// Si usas un proxy en package.json, puedes usar:
-// const API_URL = '/api/productos';
+export const getProductos = async () => {
+  const response = await axios.get(API_URL);
+  return response.data;
+};
 
-export const obtenerProductos = async () => {
-  try {
-    const response = await axios.get(API_URL, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error obteniendo productos:", error);
-    return [];
-  }
+export const getProductoById = async (id) => {
+  const response = await axios.get(`${API_URL}/${id}`);
+  return response.data;
+};
+
+export const getProductosByCategoria = async (categoriaId) => {
+  const response = await axios.get(`${API_URL}/categoria/${categoriaId}`);
+  return response.data;
 };

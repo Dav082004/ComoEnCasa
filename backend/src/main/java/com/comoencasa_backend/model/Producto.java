@@ -1,19 +1,17 @@
 package com.comoencasa_backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Data;
 import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
 @Data
+@Entity
 @Table(name = "producto")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "categoria_id")
+    @Column(name = "categoria_id", nullable = false)
     private Long categoriaId;
 
     @Column(nullable = false)

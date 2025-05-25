@@ -1,27 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./styles/ProductCard.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ producto }) => {
+  const includesText = producto.descripcion?.match(/Incluye.*/)?.[0];
+
   return (
-    <div className="product-card">
-      <Link to={`/products/${product.id}`}>
-        <img src={product.imageUrl} alt={product.name} />
-        <h3>{product.name}</h3>
-        <div className="price">
-          {product.discountedPrice ? (
-            <>
-              <span className="original-price">S/. {product.price}</span>
-              <span className="current-price">
-                S/. {product.discountedPrice}
-              </span>
-            </>
-          ) : (
-            <span>S/. {product.price}</span>
-          )}
+    <Link to={`/productos/${producto.id}`} className="cardLink">
+      <div className="card">
+        <div className="image-container">
+          <img
+            src={producto.imagenUrl}
+            alt={producto.nombre}
+            className="image"
+          />
         </div>
-        {product.includes && <p className="includes">{product.includes}</p>}
-      </Link>
-    </div>
+        <div className="info">
+          <h3 className="name">{producto.nombre}</h3>
+          <p className="price">S/. {producto.precioVenta}</p>
+          {includesText && <p className="includes">{includesText}</p>}
+        </div>
+      </div>
+    </Link>
   );
 };
 
