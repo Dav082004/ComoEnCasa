@@ -1,0 +1,26 @@
+.card-category {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.card-category p {
+  text-decoration: none;
+  margin: 0;
+}
+
+.card-category:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.separator {
+  height: 1px;
+  background-color: #f1cfdc;
+  margin: 50px 0;
+  border: none;
+}
+
+.container-blogs {
+  margin-bottom: 160px; /* Aumenta la separación con la sección de productos */
+}
