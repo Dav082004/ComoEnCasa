@@ -1,100 +1,138 @@
+# 🍰 Web System for Order and Customer Management - Como en Casa
 
-# Sistema Web para Gestión de Pedidos y Clientes - Como en Casa
+## 📖 Project Description
 
-##  Descripción del Proyecto
-
-Este proyecto consiste en el desarrollo de un **sistema web** para mejorar la gestión de pedidos y clientes de la empresa *Como en Casa*, una pastelería artesanal familiar. El objetivo es digitalizar procesos clave como la toma de pedidos, la gestión de productos y la atención al cliente.
-
----
-
-##  Sobre la Empresa
-
-**Como en Casa** es una pastelería casera con más de 10 años de experiencia, enfocada en brindar productos con sabor tradicional, atención cercana y personalización total en cada pedido.
+This project consists of developing a **web system** to improve order and customer management for _Como en Casa_, an artisan family bakery. The objective is to digitize key processes such as order taking, product management, and customer service.
 
 ---
 
-##  Misión y Visión
+## 🛠️ Technology Stack
 
-- **Misión:** Ofrecer postres artesanales preparados con ingredientes frescos y amor del hogar.
-- **Visión:** Ser un emprendimiento familiar reconocido por su dulzura, calidad y atención cálida.
+### Frontend
 
----
+- **React** ⚛️ - Modern UI library for building interactive user interfaces
+- **Bootstrap** 🎨 - CSS framework for responsive design
+- **Axios** 📡 - HTTP client for API communication
+- **React Router** 🚦 - Navigation and routing for single-page applications
 
-##  Problema Detectado
+### Backend
 
-Actualmente, la gestión de pedidos es manual (vía redes sociales y WhatsApp), lo que genera errores, demoras, y limita el crecimiento del negocio. No existe un canal digital eficiente ni automatizado.
+- **Spring Boot** 🍃 - Java framework for rapid application development
+- **Spring Boot JPA** 🗄️ - Data persistence and ORM
+- **Spring Security** 🔐 - Authentication and authorization
 
----
+### Database
 
-##  Solución Propuesta
+- **MySQL** 🐬 - Relational database management system
+- **XAMPP** 🔧 - Local development environment
 
-Desarrollo de un **sistema web** que permitirá:
+### Architecture & Design Patterns
 
-- Registro de usuarios y autenticación segura.
-- Gestión automatizada de pedidos personalizados.
-- Pasarela de pagos integrada.
-- Panel administrativo con control de inventario, ventas y reportes.
-- Experiencia adaptada para móviles y escritorio.
+- **MVC (Model-View-Controller)** 🏗️ - Architectural pattern for separation of concerns
+- **TDD (Test-Driven Development)** 🧪 - Development methodology
+- **DAO (Data Access Object)** 📊 - Data access pattern
+- **SOLID Principles** 💎 - Object-oriented design principles
 
----
+### Support Libraries
 
-##  Requerimientos Funcionales
+- **Google Guava** 📚 - Core libraries for Java
+- **Apache POI** 📄 - Library for Microsoft documents
+- **Apache Commons** 🔧 - Reusable Java components
+- **Logback** 📝 - Logging framework
 
-| Código | Requerimiento |
-|--------|---------------|
-| RF1 | Registro y login de usuarios |
-| RF2 | Formulario de pedidos personalizados |
-| RF3 | Generación y envío de boletas/facturas |
-| RF4 | Gestión de productos (tortas, cupcakes, etc.) |
-| RF5 | Búsqueda y filtrado por categoría, sabor, etc. |
+### Security Features 🛡️
 
----
-
-##  Requerimientos No Funcionales
-
-- Seguridad de datos (encriptación).
-- Compatibilidad con múltiples dispositivos.
-- Interfaz amigable e intuitiva.
-- Disponibilidad 24/7.
-- Escalabilidad y rendimiento garantizado.
+- Data encryption and secure authentication
+- Protection against common web vulnerabilities
+- Secure session management
 
 ---
 
-##  Lean Canvas
+## 🏢 About the Company
 
-Modelo estratégico utilizado para visualizar la propuesta de valor, segmentos de clientes, ventajas competitivas, entre otros.
-
----
-
-##  Estructura Técnica
-
-- **Diagrama de Capas**: Organización del backend, frontend y servicios.
-- **Diagrama ER y de Clases**: Modelado físico de la base de datos y estructuras del sistema.
-- **WBS y Diagrama de Gantt**: Planificación y división del proyecto.
-- **Diagramas de Procesos**: Flujo antes y después de la implementación.
+**Como en Casa** is a home bakery with over 10 years of experience, focused on providing products with traditional flavor, close attention, and complete personalization in each order.
 
 ---
 
-##  Mockups
+## 🎯 Mission and Vision
 
-Diseños visuales del sistema propuesto creados en Balsamiq:
-
-- [Opción 1](https://balsamiq.cloud/sagiann/p75tct)
-- [Opción 2](https://balsamiq.cloud/sagiann/pyg1j4x)
-- [Opción 3](https://balsamiq.cloud/suwyr74/pb0usuu)
+- **Mission:** 🧁 To offer artisan desserts prepared with fresh ingredients and love from home.
+- **Vision:** ⭐ To be a family business recognized for its sweetness, quality, and warm attention.
 
 ---
 
-##  Equipo de Trabajo
+## ⚠️ Problem Identified
 
-- Correa Acosta, Benjamin Emanuel  
-- Contreras Palacios, David Angel  
-- Barboza Ataco, Mijhael Hamed  
-- Meléndez Torre, José Martín  
+Currently, order management is manual (via social media and WhatsApp), which generates errors, delays, and limits business growth. There is no efficient or automated digital channel.
+
+---
+
+## 💡 Proposed Solution
+
+Development of a **web system** that will allow:
+
+- 👤 User registration and secure authentication
+- 🤖 Automated management of personalized orders
+- 💳 Integrated payment gateway
+- 📊 Administrative panel with inventory control, sales, and reports
+- 📱 Experience adapted for mobile and desktop
+
+---
+
+## ⚙️ Functional Requirements
+
+| Code | Requirement                                       |
+| ---- | ------------------------------------------------- |
+| RF1  | 👤 User registration and login                    |
+| RF2  | 📝 Personalized order form                        |
+| RF3  | 🧾 Receipt/invoice generation and sending         |
+| RF4  | 🍰 Product management (cakes, cupcakes, etc.)     |
+| RF5  | 🔍 Search and filtering by category, flavor, etc. |
+
+---
+
+## 🚀 Non-Functional Requirements
+
+- 🔒 Data security (encryption)
+- 📱 Compatibility with multiple devices
+- 🎨 User-friendly and intuitive interface
+- ⏰ 24/7 availability
+- 📈 Guaranteed scalability and performance
+
+---
+
+## 📋 Lean Canvas
+
+Strategic model used to visualize the value proposition, customer segments, competitive advantages, among others.
+
+---
+
+## 🏗️ Technical Structure
+
+- **📊 Layer Diagram**: Organization of backend, frontend and services.
+  [View Diagram](imgRepo/Diagrama%20de%20capas.png)
+- **🗃️ ER and Class Diagrams**: Physical modeling of the database and system structures.
+  [View ER Diagram](imgRepo/DiagramaER.png) | [View Class Diagram](imgRepo/Diagrama%20de%20clases.png)
+- **📅 WBS and Gantt Chart**: Project planning and breakdown
+- **🔄 Process Diagrams**: Flow before and after implementation.
+  [View Process Diagram](imgRepo/Procesosfinal.png)
+
+---
+
+## 🎨 Mockups
+
+Visual designs of the proposed system created in Balsamiq:
+
+- 🖥️ [Option 1](https://balsamiq.cloud/sagiann/p75tct)
+- 🖥️ [Option 2](https://balsamiq.cloud/sagiann/pyg1j4x)
+- 🖥️ [Option 3](https://balsamiq.cloud/suwyr74/pb0usuu)
+
+---
+
+## 👥 Development Team
+
+- Correa Acosta, Benjamin Emanuel
+- Contreras Palacios, David Angel
+- Barboza Ataco, Mijhael Hamed
+- Meléndez Torre, José Martín
 - Llacctas Pereyra, Marco A.
-
----
-
-##  Ubicación y Fecha
-
-Lima, Perú - 2025
