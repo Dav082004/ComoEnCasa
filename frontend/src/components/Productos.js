@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Productos.css";
+import "../styles/productos.css";
 
 export default function Productos({ productos, onAgregarAlCarrito }) {
   const [activo, setActivo] = useState(null);

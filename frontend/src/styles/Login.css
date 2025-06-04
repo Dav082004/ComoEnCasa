@@ -35,3 +35,27 @@
   margin-top: 15px;
   text-align: center;
 }
+
+.olvide-contrasena {
+  text-align: center;
+  margin-top: 1.5rem;
+  background-color: #fff0f3;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.link-recuperar {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #d94c64;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link-recuperar:hover {
+  color: #aa3a4b;
+  text-decoration: underline;
+}

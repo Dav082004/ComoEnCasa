@@ -1,4 +1,3 @@
-// src/pages/Login.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../services/userServices";
@@ -64,6 +63,13 @@ function Login() {
       <p className="register-link">
         ¿No tienes una cuenta? <Link to="/crear-cuenta">Regístrate aquí</Link>
       </p>
+
+      <div className="olvide-contrasena">
+        <p>¿Olvidaste tu contraseña?</p>
+        <Link to="/recuperar" className="link-recuperar">
+          Recupera tu cuenta aquí
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Layout.css";
+import "../styles/layout.css";
 import TortadeChocolate from "../assets/tortas/torta_1.webp";
 import TortadeVainilla from "../assets/tortas/torta_2.webp";
 import TortadeLucuma from "../assets/tortas/torta_3.webp";
