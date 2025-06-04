@@ -1,0 +1,35 @@
+.price-sort-filter {
+  display: flex;
+  align-items: center;
+}
+
+.sort-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 200px;
+}
+
+.sort-select:hover {
+  border-color: #bbb;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #5a3e2a;
+  box-shadow: 0 0 0 2px rgba(90, 62, 42, 0.1);
+}
+
+@media (max-width: 768px) {
+  .price-sort-filter {
+    width: 100%;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+}
