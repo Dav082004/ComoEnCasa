@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/recuperarCuenta.css";
+import "../styles/RecuperarCuenta.css";
 
 const RecuperarCuenta = () => {
   const [email, setEmail] = useState("");
@@ -15,9 +15,9 @@ const RecuperarCuenta = () => {
       const response = await fetch("http://localhost:8080/api/auth/recuperar", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email }),
       });
 
       if (response.ok) {
@@ -47,7 +47,11 @@ const RecuperarCuenta = () => {
         />
         <button type="submit">Enviar enlace de recuperación</button>
         {mensaje && <p className="recuperar-mensaje">{mensaje}</p>}
-        {error && <p className="recuperar-mensaje" style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <p className="recuperar-mensaje" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}
       </form>
     </div>
   );

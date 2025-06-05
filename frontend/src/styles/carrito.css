@@ -2,7 +2,7 @@
   display: flex;
   gap: 2rem;
   padding: 2rem;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   flex-wrap: wrap;
 }
 
@@ -160,5 +160,3 @@
 .btn-finalizar:hover {
   background-color: #a93f66;
 }
-
-  
