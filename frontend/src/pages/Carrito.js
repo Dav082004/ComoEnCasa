@@ -1,7 +1,7 @@
-// src/pages/Carrito.js
+// src/pages/carrito.js
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import "../styles/Carrito.css";
+import "../styles/carrito.css";
 
 const Carrito = () => {
   const { cart, setCart } = useCart();

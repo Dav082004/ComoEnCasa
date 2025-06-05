@@ -12,6 +12,7 @@ import Productos from "../pages/Productos";
 import ProductDetail from "../pages/ProductDetail";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
+import RecuperarCuenta from "../pages/RecuperarCuenta";
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ProductProvider } from "../context/ProductContext";
@@ -35,6 +36,7 @@ export const AppRouter = () => {
                 <Route path="productos/:id" element={<ProductDetail />} />
                 <Route path="checkout" element={<Checkout />} />
                 <Route path="carrito" element={<Carrito />} />
+                <Route path="/recuperar" element={<RecuperarCuenta />} />
               </Route>
             </Routes>
           </Router>

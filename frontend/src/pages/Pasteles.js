@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Layout.css";
+
 import Cumpleaños from "../assets/eventos/eventos_1.webp";
 import Graduacion from "../assets/eventos/eventos_3.webp";
 import SanValentin from "../assets/eventos/eventos_4.webp";

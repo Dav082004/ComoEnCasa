@@ -1,7 +1,14 @@
 /* Importar estilos base */
+<<<<<<< HEAD
+@import "./styles/variables.css";
+@import "./styles/layout.css";
+@import "./styles/productos.css";
+@import "./styles/carrito.css";
+=======
 @import "./styles/Variables.css";
 @import "./styles/Layout.css";
 @import "./styles/Carrito.css";
+>>>>>>> develop
 
 body {
   font-family: var(--font-primary);

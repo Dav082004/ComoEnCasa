@@ -1,7 +1,7 @@
 import AppRouter from "./routes/AppRouter";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/Fonts.css";
-import "./styles/Layout.css";
+import "./styles/fonts.css";
+import "./styles/layout.css";
 import "./App.css";
 
 function App() {
