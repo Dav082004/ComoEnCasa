@@ -15,7 +15,7 @@ const RecuperarCuenta = () => {
     setError("");
 
     try {
-      const data = await recuperarCuenta(email);
+      await recuperarCuenta(email);
       setMensaje("Hemos enviado tu nueva contraseña al correo proporcionado.");
       setEmail("");
     } catch (err) {

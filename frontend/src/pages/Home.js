@@ -4,7 +4,7 @@ import slide from "../assets/slide.jpg";
 import TortaRosa from "../assets/imgReales/TortaRosa.png";
 import TortaSherk from "../assets/imgReales/TortaSherk.png";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import "../styles/home.css";
+import "../styles/Home.css";
 
 const Home = () => {
   return (

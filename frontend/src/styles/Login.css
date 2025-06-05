@@ -1,0 +1,84 @@
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f57c00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-container p {
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Estilos para la sección de recuperar contraseña */
+.olvide-contrasena {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #ffe4e9 0%, #fff0f2 100%);
+  border: 1px solid #d63384;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.olvide-contrasena:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.12);
+  border-color: #e91e63;
+}
+
+.olvide-contrasena p {
+  margin: 0 0 8px 0;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.link-recuperar {
+  display: inline-block;
+  color: #d63384;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  background: rgba(214, 51, 132, 0.1);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.link-recuperar:hover {
+  color: #fff;
+  background: #d63384;
+  text-decoration: none;
+  transform: scale(1.02);
+  border-color: #d63384;
+  box-shadow: 0 2px 6px rgba(214, 51, 132, 0.25);
+}
