@@ -1,5 +1,11 @@
+// src/pages/RecuperarCuenta.js
 import React, { useState } from "react";
+<<<<<<< HEAD
 import "../styles/RecuperarCuenta.css";
+=======
+import { recuperarCuenta } from "../services/userServices";
+import "../styles/recuperarCuenta.css";
+>>>>>>> cf7a9a81189303d3cb48829273d52c8f669bb89e
 
 const RecuperarCuenta = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +18,7 @@ const RecuperarCuenta = () => {
     setError("");
 
     try {
+<<<<<<< HEAD
       const response = await fetch("http://localhost:8080/api/auth/recuperar", {
         method: "POST",
         headers: {
@@ -27,8 +34,13 @@ const RecuperarCuenta = () => {
         const data = await response.json();
         setError(data.message || "No se pudo enviar el correo.");
       }
+=======
+      const data = await recuperarCuenta(email);
+      setMensaje("Hemos enviado tu nueva contraseña al correo proporcionado.");
+      setEmail("");
+>>>>>>> cf7a9a81189303d3cb48829273d52c8f669bb89e
     } catch (err) {
-      setError("Error de conexión con el servidor.");
+      setError(err.message || "Error al recuperar la cuenta.");
     }
   };
 
@@ -45,7 +57,7 @@ const RecuperarCuenta = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit">Enviar enlace de recuperación</button>
+        <button type="submit">Recuperar contraseña</button>
         {mensaje && <p className="recuperar-mensaje">{mensaje}</p>}
         {error && (
           <p className="recuperar-mensaje" style={{ color: "red" }}>

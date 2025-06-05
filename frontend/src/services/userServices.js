@@ -1,3 +1,4 @@
+// src/services/userServices.js
 import axios from "axios";
 
 const api = axios.create({
@@ -5,10 +6,9 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: false, // Añade esto para manejar cookies si las usas
+  withCredentials: false,
 });
 
-// Interceptor mejorado para manejo de errores
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -25,7 +25,6 @@ api.interceptors.response.use(
       } else if (status === 404) {
         message = data?.error || "Recurso no encontrado.";
       } else if (status === 500) {
-        // Muestra el mensaje real del servidor para errores 500
         message = data?.error || data?.message || "Error interno del servidor";
       }
 
@@ -41,14 +40,12 @@ api.interceptors.response.use(
         details: data || null,
       });
     } else if (error.request) {
-      // La solicitud fue hecha pero no se recibió respuesta
       return Promise.reject({
         message: "No se recibió respuesta del servidor. Verifica tu conexión.",
         status: null,
         data: null,
       });
     } else {
-      // Error al configurar la solicitud
       return Promise.reject({
         message: error.message || "Error al configurar la solicitud",
         status: null,
@@ -82,6 +79,16 @@ export const register = async (nombreCompleto, email, password) => {
     return response.data;
   } catch (error) {
     throw new Error(error.message || "Error al registrar usuario");
+  }
+};
+
+//  Servicio de recuperación de contraseña
+export const recuperarCuenta = async (email) => {
+  try {
+    const response = await api.post("/recuperar", { email });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message || "Error al recuperar la cuenta");
   }
 };
 
