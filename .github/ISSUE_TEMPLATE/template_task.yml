@@ -1,10 +1,21 @@
-### 🧾 Título:
-[Nombre de la tarea]
----
-### 📌 Descripción:
-[
-  Descripción clara y concisa de lo que debe hacerse,
-  incluyendo objetivos funcionales y técnicos,
-]
----
-### 📚 Librerías involucradas o como se involucra:
+name: Kanban Task
+description: Create a task for the Kanban board
+title: "[TASK] "
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: 📌 Task Details
+      description: Use the checklist format to list subtasks or steps.
+      
+    validations:
+      required: false
+      
+  - type: textarea
+    id: libraries
+    attributes:
+      label: 📌 Librearies Details
+      
+    validations:
+      required: false
+  
