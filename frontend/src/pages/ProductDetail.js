@@ -5,14 +5,14 @@ import {
   getProductoById,
   getProductosByCategoria,
 } from "../services/productoService";
-import { useProductContext } from "../context/ProductContext";
+import { useCart } from "../context/CartContext"; 
 import "../styles/ProductDetail.css";
 import RelatedProducts from "../components/products/RelatedProducts";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useProductContext();
+  const { addToCart } = useCart();
   // Estados
   const [producto, setProducto] = useState(null);
   const [quantity, setQuantity] = useState(1);

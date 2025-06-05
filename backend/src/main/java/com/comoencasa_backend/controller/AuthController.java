@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,13 +17,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:3000")
-
 public class AuthController {
 
     private final UsuarioRepository usuarioRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    // Usa inyección por constructor (recomendado)
     @Autowired
     public AuthController(UsuarioRepository usuarioRepository,
                           BCryptPasswordEncoder passwordEncoder) {
@@ -44,7 +43,7 @@ public class AuthController {
 
         Usuario usuario = usuarioOpt.get();
         System.out.println("Usuario encontrado: " + usuario.getEmail());
-        System.out.println("Nombre completo: " + usuario.getNombreCompleto()); // ← Nuevo log
+        System.out.println("Nombre completo: " + usuario.getNombreCompleto());
         System.out.println("Hash almacenado: " + usuario.getPassword());
         System.out.println("Activo?: " + usuario.getActivo());
 
@@ -56,7 +55,6 @@ public class AuthController {
 
         if (!coincide) {
             System.out.println("❌ Contraseña incorrecta");
-            System.out.println("Contraseña recibida: " + loginRequest.getPassword());
             return ResponseEntity.status(401).body("Credenciales inválidas");
         }
 
@@ -64,7 +62,7 @@ public class AuthController {
         return ResponseEntity.ok(Map.of(
                 "usuario", Map.of(
                         "id", usuario.getId(),
-                        "nombreCompleto", usuario.getNombreCompleto(), // ← Añade esto
+                        "nombreCompleto", usuario.getNombreCompleto(),
                         "email", usuario.getEmail(),
                         "rol", usuario.getRol().name()
                 )
@@ -77,7 +75,6 @@ public class AuthController {
             System.out.println("Solicitud de registro recibida: " + registroRequest.getEmail());
 
             if (usuarioRepository.existsByEmail(registroRequest.getEmail())) {
-                System.out.println("Email ya registrado: " + registroRequest.getEmail());
                 return ResponseEntity.badRequest().body(createErrorResponse("El email ya está registrado"));
             }
 
@@ -89,21 +86,57 @@ public class AuthController {
             nuevoUsuario.setTelefono("");
             nuevoUsuario.setDireccion("");
             nuevoUsuario.setRol(Usuario.Rol.CLIENTE);
-            nuevoUsuario.setActivo(true); // Asegúrate que esté activo
+            nuevoUsuario.setActivo(true);
 
             usuarioRepository.save(nuevoUsuario);
-            System.out.println("Usuario registrado con ID: " + nuevoUsuario.getId());
-
             return ResponseEntity.ok(createSuccessResponse(nuevoUsuario, "Usuario registrado con éxito"));
         } catch (Exception e) {
-            System.out.println("Error en registro: " + e.getMessage());
-            e.printStackTrace();
             return ResponseEntity.status(500).body(createErrorResponse("Error interno al registrar usuario"));
         }
     }
 
+    @GetMapping("/perfil/{id}")
+    public ResponseEntity<?> obtenerPerfil(@PathVariable Long id) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
 
-    // Métodos auxiliares (sin cambios)
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("Usuario no encontrado");
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        Map<String, Object> perfil = new HashMap<>();
+        perfil.put("nombreCompleto", usuario.getNombreCompleto());
+        perfil.put("email", usuario.getEmail());
+        perfil.put("telefono", usuario.getTelefono());
+        perfil.put("direccion", usuario.getDireccion());
+        perfil.put("fechaRegistro", usuario.getFechaRegistro());
+
+        return ResponseEntity.ok(perfil);
+    }
+
+    @PutMapping("/perfil/{id}")
+    public ResponseEntity<?> actualizarPerfil(@PathVariable Long id, @RequestBody Map<String, String> datos) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("Usuario no encontrado");
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        usuario.setNombreCompleto(datos.get("nombreCompleto"));
+        usuario.setEmail(datos.get("email"));
+        usuario.setTelefono(datos.get("telefono"));
+        usuario.setDireccion(datos.get("direccion"));
+
+        if (datos.containsKey("nuevaContraseña") && !datos.get("nuevaContraseña").isEmpty()) {
+            usuario.setPassword(passwordEncoder.encode(datos.get("nuevaContraseña")));
+        }
+
+        usuarioRepository.save(usuario);
+        return ResponseEntity.ok("Perfil actualizado correctamente");
+    }
+
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
@@ -128,5 +161,4 @@ public class AuthController {
         userData.put("rol", usuario.getRol().name());
         return userData;
     }
-    
 }

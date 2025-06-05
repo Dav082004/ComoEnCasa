@@ -1,47 +1,52 @@
 // src/pages/Carrito.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useProductContext } from "../context/ProductContext";
+import { useCart } from "../context/CartContext";
 import "../styles/Carrito.css";
 
 const Carrito = () => {
-  const { cart, addToCart, removeFromCart } = useProductContext();
+  const { cart, addToCart, removeFromCart } = useCart();
   const navigate = useNavigate();
+
+  // Convierte el objeto cart a array
+  const productos = Object.values(cart);
 
   // Modificar cantidad suma o resta la cantidad, si llega a 0 elimina el producto
   const modificarCantidad = (id, delta) => {
-    const producto = cart.find((item) => item.id === id);
+    const producto = productos.find((item) => item.id === id);
     if (!producto) return;
 
-    const nuevaCantidad = producto.quantity + delta;
+    const nuevaCantidad = producto.cantidad + delta;
     if (nuevaCantidad <= 0) {
       removeFromCart(id);
     } else {
-      addToCart(producto, delta); // Suma o resta cantidad
+      addToCart(producto, delta);
     }
   };
 
   // Calcular subtotal, IGV y total
-  const subtotal = cart.reduce(
-    (acc, item) => acc + item.precioVenta * item.quantity,
+  const subtotal = productos.reduce(
+    (acc, item) => acc + item.precioVenta * item.cantidad,
     0
   );
   const igv = subtotal * 0.18;
   const total = subtotal + igv;
 
+  if (productos.length === 0) {
+    return <p>Tu carrito está vacío.</p>;
+  }
+
   return (
     <div className="carrito-container">
       <div className="carrito-lista">
-        {cart.length === 0 && <p>Tu carrito está vacío.</p>}
-
-        {cart.map((prod) => (
+        {productos.map((prod) => (
           <div className="carrito-item" key={prod.id}>
             <img src={prod.imagenUrl} alt={prod.nombre} className="carrito-img" />
             <div className="carrito-detalles">
               <h3>{prod.nombre}</h3>
               <div className="cantidad-controles">
                 <button onClick={() => modificarCantidad(prod.id, -1)}>-</button>
-                <span>{prod.quantity}</span>
+                <span>{prod.cantidad}</span>
                 <button onClick={() => modificarCantidad(prod.id, 1)}>+</button>
                 <button
                   className="btn-eliminar"
@@ -51,21 +56,21 @@ const Carrito = () => {
                 </button>
               </div>
               <div className="carrito-precio">
-                S/. {(prod.precioVenta * prod.quantity).toFixed(2)}
+                S/. {(prod.precioVenta * prod.cantidad).toFixed(2)}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {cart.length > 0 && (
+      {productos.length > 0 && (
         <div className="carrito-resumen">
           <h2>Resumen</h2>
-          {cart.map((prod) => (
+          {productos.map((prod) => (
             <div key={prod.id} className="resumen-linea">
               <span>{prod.nombre}</span>
               <span>
-                {prod.quantity} x S/. {prod.precioVenta.toFixed(2)}
+                {prod.cantidad} x S/. {prod.precioVenta.toFixed(2)}
               </span>
             </div>
           ))}
