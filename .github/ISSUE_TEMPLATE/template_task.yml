@@ -13,7 +13,7 @@ body:
   - type: textarea
     id: libraries
     attributes:
-      label: 📌 Librearies Details
+      label: 📌 Libraries Details
       
     validations:
       required: false
