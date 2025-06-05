@@ -1,23 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import slide from "../assets/slide.jpg";
-import PastelDeChocolate from "../assets/tortas/torta_1.webp";
-import PiedeMazana from "../assets/postres/postre_1.webp";
+import TortaRosa from "../assets/imgReales/TortaRosa.png";
+import TortaSherk from "../assets/imgReales/TortaSherk.png";
 import TestimonialCarousel from "../components/TestimonialCarousel";
 import "../styles/home.css";
 
 const Home = () => {
-  // Eliminamos el estado del índice ya que ahora está manejado por TestimonialCarousel
   return (
     <div className="container">
       {/* Hero Section */}
       <div className="content">
-        <img
-          src={slide}
-          alt="Pastelería Como en Casa"
-          className="w-100"
-          style={{ maxHeight: "70vh", objectFit: "cover" }}
-        />
+        <img src={slide} alt="Pastelería Como en Casa" className="hero-image" />
         <h1 className="text-center slogan">
           Tortas y pasteles que recuerden al hogar
         </h1>
@@ -49,39 +43,36 @@ const Home = () => {
       <section className="container blogs mb-5">
         <div className="row g-4">
           <div className="col-md-6">
-            <div className="card-blog h-100">
-              <div className="container-img">
-                <img
-                  src={PastelDeChocolate}
-                  alt="Pastel de Chocolate"
-                  className="img-fluid"
-                />
+            <div className="card-blog">
+              <div className="blog-image-container">
+                <img src={TortaRosa} alt="Torta Rosa" className="blog-image" />
               </div>
-              <div className="content-blog">
-                <h3>Pastel de Chocolate</h3>
-                <span>02 Mayo 2025</span>
+              <div className="blog-content">
+                <h3>Torta Rosa</h3>
+                <span className="blog-date">02 Mayo 2025</span>
                 <p>
-                  Un postre delicioso y esponjoso, hecho con capas de bizcocho
-                  de cacao y cubierto con una rica crema o ganache de chocolate.
+                  Torta de vainilla con relleno de crema de fresa y decorada con
+                  rosas. Ideal para cualquier celebración.
                 </p>
               </div>
             </div>
           </div>
           <div className="col-md-6">
-            <div className="card-blog h-100">
-              <div className="container-img">
+            <div className="card-blog">
+              <div className="blog-image-container">
                 <img
-                  src={PiedeMazana}
-                  alt="Pie de Manzana"
-                  className="img-fluid"
+                  src={TortaSherk}
+                  alt="Torta Sherk"
+                  className="blog-image"
                 />
               </div>
-              <div className="content-blog">
-                <h3>Pie de Manzana</h3>
-                <span>25 Abril 2025</span>
+              <div className="blog-content">
+                <h3>Torta Sherk</h3>
+                <span className="blog-date">25 Abril 2025</span>
                 <p>
-                  Clásico postre con relleno de manzanas caramelizadas y
-                  especias, envuelto en una crujiente masa dorada.
+                  Torta de chocolate con relleno de crema de avellanas y
+                  decorada con el personaje Sherk. Perfecta para los más
+                  pequeños.
                 </p>
               </div>
             </div>

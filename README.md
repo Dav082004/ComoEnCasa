@@ -1,219 +1,138 @@
-# ComoEnCasa
+# 🍰 Web System for Order and Customer Management - Como en Casa
 
-# Arquitectura General
+## 📖 Project Description
 
-Tu aplicación sigue el patrón MVC (Modelo-Vista-Controlador):
+This project consists of developing a **web system** to improve order and customer management for _Como en Casa_, an artisan family bakery. The objective is to digitize key processes such as order taking, product management, and customer service.
 
-**Frontend (React):** Se encarga de la Vista (UI) y parte del Controlador (gestión de estado)
+---
 
-**Backend (Spring Boot):** Maneja el Modelo (datos), lógica de negocio y parte del Controlador (API REST)
+## 🛠️ Technology Stack
 
-# Comunicación Frontend-Backend
+### Frontend
 
-**Axios:** Librería que usas en React para hacer llamadas HTTP a tu API REST de Spring Boot  
-_Ejemplo:_ Cuando un usuario hace login, el frontend envía credenciales al endpoint `/api/auth/login` del backend
+- **React** ⚛️ - Modern UI library for building interactive user interfaces
+- **Bootstrap** 🎨 - CSS framework for responsive design
+- **Axios** 📡 - HTTP client for API communication
+- **React Router** 🚦 - Navigation and routing for single-page applications
 
-**React Router DOM:** Maneja la navegación entre componentes/páginas en el frontend sin recargar la página
+### Backend
 
-**API REST:** Los endpoints que expone tu backend Spring Boot son consumidos por el frontend:
+- **Spring Boot** 🍃 - Java framework for rapid application development
+- **Spring Boot JPA** 🗄️ - Data persistence and ORM
+- **Spring Security** 🔐 - Authentication and authorization
 
-- Autenticación (`/api/auth/**`)
-- Productos (`/api/products/**`)
-- Carrito (`/api/cart/**`)
-- Pedidos (`/api/orders/**`)
+### Database
 
-# Librerías y su uso
+- **MySQL** 🐬 - Relational database management system
+- **XAMPP** 🔧 - Local development environment
 
-## Backend (Spring Boot)
+### Architecture & Design Patterns
 
-- **Spring Security:** Para autenticación y autorización (JWT)
-- **Lombok:** Para reducir código boilerplate (getters, setters, constructores)
-- **Spring Data JPA:** Para interactuar con MySQL
-- **Logback:** Para logging de la aplicación
-- **Apache Commons:** Utilidades generales (ej: validación de campos)
-- **Google Guava:** Utilidades para colecciones, caching, etc.
+- **MVC (Model-View-Controller)** 🏗️ - Architectural pattern for separation of concerns
+- **TDD (Test-Driven Development)** 🧪 - Development methodology
+- **DAO (Data Access Object)** 📊 - Data access pattern
+- **SOLID Principles** 💎 - Object-oriented design principles
 
-## Frontend (React)
+### Support Libraries
 
-- **Bootstrap:** Para estilos y componentes UI responsivos
-- **React Context API:** Para manejo de estado global (carrito, autenticación)
-- **Axios:** Para llamadas HTTP al backend
+- **Google Guava** 📚 - Core libraries for Java
+- **Apache POI** 📄 - Library for Microsoft documents
+- **Apache Commons** 🔧 - Reusable Java components
+- **Logback** 📝 - Logging framework
 
-# Archivos Faltantes
+### Security Features 🛡️
 
-## Backend
+- Data encryption and secure authentication
+- Protection against common web vulnerabilities
+- Secure session management
 
-**Configuración JWT:**
+---
 
-- `JwtTokenProvider.java` - Para generar/validar tokens JWT
-- `JwtAuthenticationFilter.java` - Filtro para validar tokens en requests
+## 🏢 About the Company
 
-**Servicios:**
+**Como en Casa** is a home bakery with over 10 years of experience, focused on providing products with traditional flavor, close attention, and complete personalization in each order.
 
-- `ProductService.java` - Lógica de negocio para productos
-- `OrderService.java` - Para manejar pedidos
-- `ReportService.java` - Para generar reportes (Apache POI para Excel)
+---
 
-**DTOs adicionales:**
+## 🎯 Mission and Vision
 
-- `ProductDTO.java` - Para transferencia de datos de productos
-- `OrderDTO.java` - Para información de pedidos
+- **Mission:** 🧁 To offer artisan desserts prepared with fresh ingredients and love from home.
+- **Vision:** ⭐ To be a family business recognized for its sweetness, quality, and warm attention.
 
-**Controladores adicionales:**
+---
 
-- `ProductController.java` - Endpoints para CRUD de productos
-- `OrderController.java` - Para manejar pedidos
-- `ReportController.java` - Para generar reportes
+## ⚠️ Problem Identified
 
-**Excepciones:**
+Currently, order management is manual (via social media and WhatsApp), which generates errors, delays, and limits business growth. There is no efficient or automated digital channel.
 
-- `GlobalExceptionHandler.java` - Manejo centralizado de excepciones
+---
 
-## Frontend
+## 💡 Proposed Solution
 
-**Componentes faltantes:**
+Development of a **web system** that will allow:
 
-- `AdminPanel.js` - Vista de administrador
-- `OrderHistory.js` - Historial de pedidos
-- `ProductForm.js` - Formulario para añadir/editar productos (admin)
-- `Reports.js` - Visualización de reportes
+- 👤 User registration and secure authentication
+- 🤖 Automated management of personalized orders
+- 💳 Integrated payment gateway
+- 📊 Administrative panel with inventory control, sales, and reports
+- 📱 Experience adapted for mobile and desktop
 
-**Servicios:**
+---
 
-- `api.js` - Configuración base de Axios (headers, interceptores)
-- `productService.js` - Funciones para llamadas API de productos
-- `orderService.js` - Funciones para pedidos
+## ⚙️ Functional Requirements
 
-**Hooks personalizados:**
+| Code | Requirement                                       |
+| ---- | ------------------------------------------------- |
+| RF1  | 👤 User registration and login                    |
+| RF2  | 📝 Personalized order form                        |
+| RF3  | 🧾 Receipt/invoice generation and sending         |
+| RF4  | 🍰 Product management (cakes, cupcakes, etc.)     |
+| RF5  | 🔍 Search and filtering by category, flavor, etc. |
 
-- `useAuth.js` - Para manejar lógica de autenticación
-- `useCart.js` - Para manejar el carrito
+---
 
-# Flujo de Funcionalidades Clave
+## 🚀 Non-Functional Requirements
 
-**Login:**
+- 🔒 Data security (encryption)
+- 📱 Compatibility with multiple devices
+- 🎨 User-friendly and intuitive interface
+- ⏰ 24/7 availability
+- 📈 Guaranteed scalability and performance
 
-1. Frontend: Formulario en `Login.js` → Axios POST a `/api/auth/login`
-2. Backend: `AuthController` valida credenciales → genera JWT → devuelve token
+---
 
-**Gestión de Productos:**
+## 📋 Lean Canvas
 
-1. Frontend: `Products.js` hace GET a `/api/products` → muestra datos
-2. Admin: `ProductForm.js` hace POST/PUT/DELETE a `/api/products`
+Strategic model used to visualize the value proposition, customer segments, competitive advantages, among others.
 
-**Carrito de Compras:**
+---
 
-1. Frontend: `CartContext.js` maneja estado local del carrito
-2. Checkout: `Checkout.js` envía pedido a `/api/orders`
+## 🏗️ Technical Structure
 
-**Reportes:**
+- **📊 Layer Diagram**: Organization of backend, frontend and services.
+  [View Diagram](imgRepo/Diagrama%20de%20capas.png)
+- **🗃️ ER and Class Diagrams**: Physical modeling of the database and system structures.
+  [View ER Diagram](imgRepo/DiagramaER.png) | [View Class Diagram](imgRepo/Diagrama%20de%20clases.png)
+- **📅 WBS and Gantt Chart**: Project planning and breakdown
+- **🔄 Process Diagrams**: Flow before and after implementation.
+  [View Process Diagram](imgRepo/Procesosfinal.png)
 
-1. Backend: `ReportController` usa Apache POI para generar Excel
-2. Frontend: `Reports.js` descarga el archivo generado
+---
 
-# Seguridad
+## 🎨 Mockups
 
-- Spring Security en backend protege endpoints según roles (USER, ADMIN)
-- JWT se almacena en frontend (localStorage o cookies) y se envía en cada request
-- Validación tanto en frontend (mejor UX) como backend (seguridad)
+Visual designs of the proposed system created in Balsamiq:
 
-## Estructura Completa del Proyecto Pastelería
+- 🖥️ [Option 1](https://balsamiq.cloud/sagiann/p75tct)
+- 🖥️ [Option 2](https://balsamiq.cloud/sagiann/pyg1j4x)
+- 🖥️ [Option 3](https://balsamiq.cloud/suwyr74/pb0usuu)
 
-### Backend (Spring Boot)
-```plaintext
-comoencasa-backend/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── comoencasa_backend/
-│   │   │           ├── config/
-│   │   │           │   ├── JwtAuthenticationFilter.java
-│   │   │           │   ├── JwtTokenProvider.java
-│   │   │           │   ├── SwaggerConfig.java
-│   │   │           │   └── WebMvcConfig.java
-│   │   │           ├── controller/
-│   │   │           │   ├── AdminController.java
-│   │   │           │   ├── CartController.java
-│   │   │           │   ├── OrderController.java
-│   │   │           │   ├── ProductController.java
-│   │   │           │   └── ReportController.java
-│   │   │           ├── dto/
-│   │   │           │   ├── CartItemDTO.java
-│   │   │           │   ├── OrderDTO.java
-│   │   │           │   ├── ProductDTO.java
-│   │   │           │   ├── ReportDTO.java
-│   │   │           │   └── UserDTO.java
-│   │   │           ├── exception/
-│   │   │           │   ├── GlobalExceptionHandler.java
-│   │   │           │   ├── ResourceNotFoundException.java
-│   │   │           │   └── UnauthorizedException.java
-│   │   │           ├── model/
-│   │   │           │   ├── CartItem.java
-│   │   │           │   ├── Order.java
-│   │   │           │   ├── OrderDetail.java
-│   │   │           │   ├── Product.java
-│   │   │           │   └── Rol.java
-│   │   │           ├── repository/
-│   │   │           │   ├── CartItemRepository.java
-│   │   │           │   ├── OrderRepository.java
-│   │   │           │   └── ProductRepository.java
-│   │   │           ├── service/
-│   │   │           │   ├── CartService.java
-│   │   │           │   ├── OrderService.java
-│   │   │           │   ├── ProductService.java
-│   │   │           │   ├── ReportService.java
-│   │   │           │   └── UserService.java
-│   │   │           ├── util/
-│   │   │           │   ├── Constants.java
-│   │   │           │   └── ExcelGenerator.java
-│   │   │           └── ComoencasaBackendApplication.java
-│   │   └── resources/
-│   │       ├── static/
-│   │       ├── templates/
-│   │       └── application.properties
-│   └── test/
-└── pom.xml
+---
 
-### FRONTEND (React)
-comoencasa/
-├── public/
-├── src/
-│   ├── admin/
-│   │   ├── AdminDashboard.js
-│   │   ├── AdminProducts.js
-│   │   ├── AdminOrders.js
-│   │   ├── AdminReports.js
-│   │   └── AdminUsers.js
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── LoadingSpinner.js
-│   │   │   ├── Modal.js
-│   │   │   └── Notification.js
-│   │   ├── product/
-│   │   │   ├── ProductCard.js
-│   │   │   ├── ProductDetail.js
-│   │   │   └── ProductForm.js
-│   │   └── checkout/
-│   │       ├── CheckoutForm.js
-│   │       ├── OrderSummary.js
-│   │       └── PaymentMethods.js
-│   ├── hooks/
-│   │   ├── useAuth.js
-│   │   ├── useCart.js
-│   │   ├── useProducts.js
-│   │   └── useOrders.js
-│   ├── services/
-│   │   ├── api.js
-│   │   ├── authService.js
-│   │   ├── cartService.js
-│   │   ├── orderService.js
-│   │   ├── productService.js
-│   │   └── reportService.js
-│   ├── utils/
-│   │   ├── auth.js
-│   │   ├── formatters.js
-│   │   └── validators.js
-│   └── ... (existing files)
-└── package.json
+## 👥 Development Team
 
+- Correa Acosta, Benjamin Emanuel
+- Contreras Palacios, David Angel
+- Barboza Ataco, Mijhael Hamed
+- Meléndez Torre, José Martín
+- Llacctas Pereyra, Marco A.

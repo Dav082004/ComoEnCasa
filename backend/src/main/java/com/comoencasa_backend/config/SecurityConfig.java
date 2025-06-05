@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/productos/**").permitAll() // Añade esta línea
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
@@ -39,6 +40,7 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

@@ -1,11 +1,8 @@
 // src/pages/RecuperarCuenta.js
 import React, { useState } from "react";
-<<<<<<< HEAD
-import "../styles/RecuperarCuenta.css";
-=======
+
 import { recuperarCuenta } from "../services/userServices";
-import "../styles/recuperarCuenta.css";
->>>>>>> cf7a9a81189303d3cb48829273d52c8f669bb89e
+import "../styles/RecuperarCuenta.css";
 
 const RecuperarCuenta = () => {
   const [email, setEmail] = useState("");
@@ -18,27 +15,9 @@ const RecuperarCuenta = () => {
     setError("");
 
     try {
-<<<<<<< HEAD
-      const response = await fetch("http://localhost:8080/api/auth/recuperar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        setMensaje("Hemos enviado un enlace de recuperación a tu correo.");
-        setEmail("");
-      } else {
-        const data = await response.json();
-        setError(data.message || "No se pudo enviar el correo.");
-      }
-=======
       const data = await recuperarCuenta(email);
       setMensaje("Hemos enviado tu nueva contraseña al correo proporcionado.");
       setEmail("");
->>>>>>> cf7a9a81189303d3cb48829273d52c8f669bb89e
     } catch (err) {
       setError(err.message || "Error al recuperar la cuenta.");
     }

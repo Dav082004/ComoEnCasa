@@ -1,9 +1,6 @@
 import React from "react";
-import "../styles/layout.css";
-import TortadeChocolate from "../assets/tortas/torta_1.webp";
-import TortadeVainilla from "../assets/tortas/torta_2.webp";
-import TortadeLucuma from "../assets/tortas/torta_3.webp";
-import TortadeFresa from "../assets/tortas/torta_4.webp";
+import "../styles/Layout.css";
+
 import Cumpleaños from "../assets/eventos/eventos_1.webp";
 import Graduacion from "../assets/eventos/eventos_3.webp";
 import SanValentin from "../assets/eventos/eventos_4.webp";
@@ -50,36 +47,7 @@ const Pasteles = () => {
         </div>
 
         <div className="container-products">
-          {[
-            {
-              img: TortadeChocolate,
-              name: "Torta de Chocolate",
-              price: "S/.58.00",
-              oldPrice: "S/.70.00",
-              discount: "-13%",
-              stars: 4,
-            },
-            {
-              img: TortadeVainilla,
-              name: "Torta de Vainilla",
-              price: "S/.45.00",
-              oldPrice: "S/.60.00",
-              discount: "-22%",
-              stars: 3,
-            },
-            {
-              img: TortadeLucuma,
-              name: "Torta de Lucuma",
-              price: "S/.60.00",
-              stars: 5,
-            },
-            {
-              img: TortadeFresa,
-              name: "Torta de Fresa",
-              price: "S/.42.00",
-              stars: 4,
-            },
-          ].map((product, index) => (
+          {[].map((product, index) => (
             <div className="card-product" key={index}>
               <div className="container-img">
                 <img src={product.img} alt={product.name} />
