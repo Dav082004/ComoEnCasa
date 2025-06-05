@@ -6,7 +6,6 @@ body:
     id: details
     attributes:
       label: 📌 Task Details
-      description: Use the checklist format to list subtasks or steps.
       
     validations:
       required: false
