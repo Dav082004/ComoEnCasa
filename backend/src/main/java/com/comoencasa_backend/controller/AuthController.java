@@ -43,9 +43,9 @@ public class AuthController {
 
         Usuario usuario = usuarioOpt.get();
         System.out.println("Usuario encontrado: " + usuario.getEmail());
-        System.out.println("Nombre completo: " + usuario.getNombreCompleto());
+        System.out.println("Nombre completo: " + usuario.getNombre() + " " + usuario.getApellido()); // Modificado
         System.out.println("Hash almacenado: " + usuario.getPassword());
-        System.out.println("Activo?: " + usuario.getActivo());
+        System.out.println("Activado?: " + usuario.getActivado());
 
         boolean coincide = passwordEncoder.matches(
                 loginRequest.getPassword(),
@@ -62,7 +62,7 @@ public class AuthController {
         return ResponseEntity.ok(Map.of(
                 "usuario", Map.of(
                         "id", usuario.getId(),
-                        "nombreCompleto", usuario.getNombreCompleto(),
+                        "nombreCompleto", usuario.getNombre() + " " + usuario.getApellido(), // Modificado
                         "email", usuario.getEmail(),
                         "rol", usuario.getRol().name()
                 )
@@ -79,14 +79,15 @@ public class AuthController {
             }
 
             Usuario nuevoUsuario = new Usuario();
-            nuevoUsuario.setNombreCompleto(registroRequest.getNombreCompleto());
+            nuevoUsuario.setNombre(registroRequest.getNombre());
+            nuevoUsuario.setApellido(registroRequest.getApellido());
             nuevoUsuario.setEmail(registroRequest.getEmail());
             nuevoUsuario.setPassword(passwordEncoder.encode(registroRequest.getPassword()));
             nuevoUsuario.setFechaRegistro(LocalDateTime.now());
             nuevoUsuario.setTelefono("");
             nuevoUsuario.setDireccion("");
             nuevoUsuario.setRol(Usuario.Rol.CLIENTE);
-            nuevoUsuario.setActivo(true);
+            nuevoUsuario.setActivado(true); // Asegúrate que esté activo
 
             usuarioRepository.save(nuevoUsuario);
             return ResponseEntity.ok(createSuccessResponse(nuevoUsuario, "Usuario registrado con éxito"));
@@ -95,48 +96,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/perfil/{id}")
-    public ResponseEntity<?> obtenerPerfil(@PathVariable Long id) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
-
-        if (usuarioOpt.isEmpty()) {
-            return ResponseEntity.status(404).body("Usuario no encontrado");
-        }
-
-        Usuario usuario = usuarioOpt.get();
-
-        Map<String, Object> perfil = new HashMap<>();
-        perfil.put("nombreCompleto", usuario.getNombreCompleto());
-        perfil.put("email", usuario.getEmail());
-        perfil.put("telefono", usuario.getTelefono());
-        perfil.put("direccion", usuario.getDireccion());
-        perfil.put("fechaRegistro", usuario.getFechaRegistro());
-
-        return ResponseEntity.ok(perfil);
-    }
-
-    @PutMapping("/perfil/{id}")
-    public ResponseEntity<?> actualizarPerfil(@PathVariable Long id, @RequestBody Map<String, String> datos) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
-        if (usuarioOpt.isEmpty()) {
-            return ResponseEntity.status(404).body("Usuario no encontrado");
-        }
-
-        Usuario usuario = usuarioOpt.get();
-
-        usuario.setNombreCompleto(datos.get("nombreCompleto"));
-        usuario.setEmail(datos.get("email"));
-        usuario.setTelefono(datos.get("telefono"));
-        usuario.setDireccion(datos.get("direccion"));
-
-        if (datos.containsKey("nuevaContraseña") && !datos.get("nuevaContraseña").isEmpty()) {
-            usuario.setPassword(passwordEncoder.encode(datos.get("nuevaContraseña")));
-        }
-
-        usuarioRepository.save(usuario);
-        return ResponseEntity.ok("Perfil actualizado correctamente");
-    }
-
+    // Métodos auxiliares (sin cambios)
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
@@ -155,7 +115,7 @@ public class AuthController {
     private Map<String, Object> createUserData(Usuario usuario) {
         Map<String, Object> userData = new HashMap<>();
         userData.put("id", usuario.getId());
-        userData.put("nombreCompleto", usuario.getNombreCompleto());
+        userData.put("nombreCompleto", usuario.getNombre() + " " + usuario.getApellido()); // Modificado
         userData.put("email", usuario.getEmail());
         userData.put("fechaRegistro", usuario.getFechaRegistro());
         userData.put("rol", usuario.getRol().name());

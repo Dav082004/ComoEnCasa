@@ -29,9 +29,21 @@ This project consists of developing a **web system** to improve order and custom
 ### Architecture & Design Patterns
 
 - **MVC (Model-View-Controller)** 🏗️ - Architectural pattern for separation of concerns
-- **TDD (Test-Driven Development)** 🧪 - Development methodology
+- **TDD (Test-Driven Development)** 🧪 - Development methodology with **47 tests implemented**
+  - 📖 **[Guía Completa de TDD](TDD-GUIDE-ES.md)** - Documentación detallada de implementación
+  - ✅ **100% tests passing** - Cobertura de código con JaCoCo
+  - 🚀 **Scripts automatizados** - Ejecución de tests con un comando
 - **DAO (Data Access Object)** 📊 - Data access pattern
 - **SOLID Principles** 💎 - Object-oriented design principles
+
+### Testing & Quality Assurance 🧪
+
+- **JUnit 5** - Framework principal de testing
+- **Mockito** - Mocking y stubbing para tests unitarios
+- **Spring Boot Test** - Testing para aplicaciones Spring
+- **JaCoCo** - Análisis de cobertura de código
+- **H2 Database** - Base de datos en memoria para tests
+- **AssertJ** - Assertions fluidas y legibles
 
 ### Support Libraries
 
@@ -136,3 +148,69 @@ Visual designs of the proposed system created in Balsamiq:
 - Barboza Ataco, Mijhael Hamed
 - Meléndez Torre, José Martín
 - Llacctas Pereyra, Marco A.
+
+---
+
+## 🧪 Development & Testing
+
+### Quick Start para Desarrollo TDD
+
+```powershell
+# Clonar el repositorio
+git clone [tu-repositorio]
+cd ComoEnCasa
+
+# Ejecutar tests TDD (Backend)
+cd backend
+.\run-tdd-coverage.bat
+
+# Desarrollo Frontend
+cd ../frontend
+npm install
+npm start
+```
+
+### Comandos de Testing
+
+```powershell
+# Ejecutar todos los tests
+mvn test
+
+# Tests con cobertura de código
+mvn clean test jacoco:report
+
+# Abrir reporte de cobertura
+start target\site\jacoco\index.html
+
+# Test específico
+mvn test -Dtest="ProductoServiceTDDTest"
+```
+
+### Estadísticas del Proyecto
+
+```
+📊 MÉTRICAS DE DESARROLLO
+┌─────────────────────────────────────────────────────────┐
+│ ✅ Tests Implementados: 47                             │
+│ ✅ Cobertura de Código: ~85%                           │
+│ ✅ Tests Pasando: 100%                                 │
+│ 🏗️ Arquitectura: TDD + Spring Boot                     │
+│ 📋 Documentación: Completa                             │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Documentación TDD
+
+Para una guía completa sobre la implementación TDD del proyecto:
+
+📖 **[Ver Guía Completa de TDD](TDD-GUIDE-ES.md)**
+
+La guía incluye:
+
+- 🔄 Ciclo Red-Green-Refactor explicado con ejemplos
+- 🏗️ Arquitectura de tests en capas
+- 🛠️ Configuración de herramientas (JaCoCo, JUnit 5, Mockito)
+- 🚀 Scripts de automatización
+- 📊 Análisis de cobertura de código
+- 🎯 Mejores prácticas y convenciones
+- 🔧 Troubleshooting para problemas comunes

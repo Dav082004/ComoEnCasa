@@ -1,4 +1,3 @@
-// src/services/userServices.js
 import axios from "axios";
 
 const api = axios.create({
@@ -69,10 +68,11 @@ export const login = async (email, password) => {
   }
 };
 
-export const register = async (nombreCompleto, email, password) => {
+export const register = async (nombre, apellido, email, password) => {
   try {
     const response = await api.post("/registro", {
-      nombreCompleto,
+      nombre,
+      apellido,
       email,
       password,
     });
@@ -82,7 +82,6 @@ export const register = async (nombreCompleto, email, password) => {
   }
 };
 
-//  Servicio de recuperación de contraseña
 export const recuperarCuenta = async (email) => {
   try {
     const response = await api.post("/recuperar", { email });
