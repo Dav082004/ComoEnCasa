@@ -5,11 +5,9 @@ import com.comoencasa_backend.dto.RegistroRequest;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -46,9 +44,9 @@ public class AuthController {
 
         Usuario usuario = usuarioOpt.get();
         System.out.println("Usuario encontrado: " + usuario.getEmail());
-        System.out.println("Nombre completo: " + usuario.getNombreCompleto()); // ← Nuevo log
+        System.out.println("Nombre completo: " + usuario.getNombre() + " " + usuario.getApellido()); // Modificado
         System.out.println("Hash almacenado: " + usuario.getPassword());
-        System.out.println("Activo?: " + usuario.getActivo());
+        System.out.println("Activado?: " + usuario.getActivado());
 
         boolean coincide = passwordEncoder.matches(
                 loginRequest.getPassword(),
@@ -66,7 +64,7 @@ public class AuthController {
         return ResponseEntity.ok(Map.of(
                 "usuario", Map.of(
                         "id", usuario.getId(),
-                        "nombreCompleto", usuario.getNombreCompleto(), // ← Añade esto
+                        "nombreCompleto", usuario.getNombre() + " " + usuario.getApellido(), // Modificado
                         "email", usuario.getEmail(),
                         "rol", usuario.getRol().name()
                 )
@@ -84,14 +82,15 @@ public class AuthController {
             }
 
             Usuario nuevoUsuario = new Usuario();
-            nuevoUsuario.setNombreCompleto(registroRequest.getNombreCompleto());
+            nuevoUsuario.setNombre(registroRequest.getNombre());
+            nuevoUsuario.setApellido(registroRequest.getApellido());
             nuevoUsuario.setEmail(registroRequest.getEmail());
             nuevoUsuario.setPassword(passwordEncoder.encode(registroRequest.getPassword()));
             nuevoUsuario.setFechaRegistro(LocalDateTime.now());
             nuevoUsuario.setTelefono("");
             nuevoUsuario.setDireccion("");
             nuevoUsuario.setRol(Usuario.Rol.CLIENTE);
-            nuevoUsuario.setActivo(true); // Asegúrate que esté activo
+            nuevoUsuario.setActivado(true); // Asegúrate que esté activo
 
             usuarioRepository.save(nuevoUsuario);
             System.out.println("Usuario registrado con ID: " + nuevoUsuario.getId());
@@ -103,7 +102,6 @@ public class AuthController {
             return ResponseEntity.status(500).body(createErrorResponse("Error interno al registrar usuario"));
         }
     }
-
 
     // Métodos auxiliares (sin cambios)
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
@@ -124,7 +122,7 @@ public class AuthController {
     private Map<String, Object> createUserData(Usuario usuario) {
         Map<String, Object> userData = new HashMap<>();
         userData.put("id", usuario.getId());
-        userData.put("nombreCompleto", usuario.getNombreCompleto());
+        userData.put("nombreCompleto", usuario.getNombre() + " " + usuario.getApellido()); // Modificado
         userData.put("email", usuario.getEmail());
         userData.put("fechaRegistro", usuario.getFechaRegistro());
         userData.put("rol", usuario.getRol().name());
