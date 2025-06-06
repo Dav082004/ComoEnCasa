@@ -13,25 +13,35 @@ function Login() {
   const navigate = useNavigate();
   const { login: authLogin } = useAuth();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setIsLoading(true);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setIsLoading(true);
 
-    try {
-      const data = await login(email, password);
-      authLogin(data.usuario);
-      navigate("/");
-    } catch (err) {
-      console.error("Error completo:", {
-        message: err.message,
-        stack: err.stack,
-      });
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  try {
+    const data = await login(email, password);
+
+  
+    localStorage.setItem("userId", data.usuario.id);
+    localStorage.setItem("nombre", data.usuario.nombreCompleto);
+    localStorage.setItem("email", data.usuario.email);
+    localStorage.setItem("rol", data.usuario.rol);
+
+   
+    authLogin(data.usuario);
+
+    navigate("/");
+  } catch (err) {
+    console.error("Error completo:", {
+      message: err.message,
+      stack: err.stack,
+    });
+    setError(err.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="login-container">
