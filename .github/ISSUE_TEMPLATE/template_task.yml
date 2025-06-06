@@ -1,0 +1,20 @@
+name: Kanban Task
+description: Create a task for the Kanban board
+title: "[TASK] "
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: 📌 Task Details
+      
+    validations:
+      required: false
+      
+  - type: textarea
+    id: libraries
+    attributes:
+      label: 📌 Libraries Details
+      
+    validations:
+      required: false
+  

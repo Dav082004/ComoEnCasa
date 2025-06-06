@@ -1,0 +1,57 @@
+/* recuperarCuenta.css */
+
+.recuperar-container {
+  max-width: 500px;
+  margin: 3rem auto;
+  background-color: #fff6f9;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-primary);
+}
+
+.recuperar-container h2 {
+  text-align: center;
+  color: var(--color-primary-dark);
+  margin-bottom: 1.5rem;
+}
+
+.recuperar-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.recuperar-form input[type="email"] {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.recuperar-form button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recuperar-form button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.recuperar-mensaje {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+}

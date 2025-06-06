@@ -12,7 +12,7 @@ import RelatedProducts from "../components/products/RelatedProducts";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addToCart } = useProductContext();
   // Estados
   const [producto, setProducto] = useState(null);
   const [quantity, setQuantity] = useState(1);
