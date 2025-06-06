@@ -5,7 +5,8 @@ import "../styles/CrearCuenta.css";
 import { Link } from "react-router-dom";
 
 function CrearCuenta() {
-  const [nombreCompleto, setNombreCompleto] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +19,7 @@ function CrearCuenta() {
     setIsLoading(true);
 
     try {
-      await register(nombreCompleto, email, password);
+      await register(nombre, apellido, email, password);
       alert("¡Cuenta creada con éxito! Por favor inicia sesión.");
       navigate("/login");
     } catch (err) {
@@ -37,9 +38,17 @@ function CrearCuenta() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Nombre completo"
-          value={nombreCompleto}
-          onChange={(e) => setNombreCompleto(e.target.value)}
+          placeholder="Nombre"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Apellido"
+          value={apellido}
+          onChange={(e) => setApellido(e.target.value)}
           required
         />
 

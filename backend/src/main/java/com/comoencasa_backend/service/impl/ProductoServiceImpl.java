@@ -21,11 +21,17 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Optional<Producto> findById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("El ID del producto no puede ser nulo");
+        }
         return productoRepository.findById(id);
     }
 
     @Override
     public List<Producto> findByCategoriaId(Long categoriaId) {
+        if (categoriaId == null) {
+            throw new IllegalArgumentException("El ID de la categoría no puede ser nulo");
+        }
         return productoRepository.findByCategoriaIdAndDisponibleTrue(categoriaId);
     }
 }
