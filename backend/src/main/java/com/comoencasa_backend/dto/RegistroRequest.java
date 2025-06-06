@@ -1,17 +1,26 @@
 package com.comoencasa_backend.dto;
 
 public class RegistroRequest {
-    private String nombreCompleto;
+    private String nombre;
+    private String apellido;
     private String email;
     private String password;
 
     // Getters y Setters
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getEmail() {

@@ -13,8 +13,11 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_completo", nullable = false, length = 100)
-    private String nombreCompleto;
+    @Column(nullable = false, length = 50)
+    private String nombre;
+
+    @Column(nullable = false, length = 50)
+    private String apellido;
 
     @Column(name = "correo", nullable = false, unique = true, length = 100)
     private String email;
@@ -43,7 +46,7 @@ public class Usuario {
     private Rol rol = Rol.CLIENTE;
 
     @Column(nullable = false)
-    private Boolean activo = true;
+    private Boolean activado = true;
 
     public enum TipoDocumento {
         DNI, RUC, CE
@@ -73,5 +76,4 @@ public class Usuario {
             throw new IllegalArgumentException("Rol no válido: " + dbValue);
         }
     }
-
 }
