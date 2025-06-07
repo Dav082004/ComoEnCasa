@@ -64,6 +64,7 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
+
     setCart((prevCart) => {
       const nuevoCarrito = { ...prevCart };
       const productKey = `${productId}`;
@@ -76,6 +77,7 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+
   const removeFromCart = (productId) => {
     setCart((prevCart) => {
       const nuevoCarrito = { ...prevCart };
@@ -83,6 +85,7 @@ export const CartProvider = ({ children }) => {
       return nuevoCarrito;
     });
   };
+
 
   const clearCart = () => {
     setCart({});

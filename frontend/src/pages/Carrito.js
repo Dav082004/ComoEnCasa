@@ -1,12 +1,15 @@
+
 // src/pages/carrito.js
 import React, { useState, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { getProductoById } from "../services/productoService";
 import "../styles/Carrito.css";
 
-const Carrito = () => {
+
   const { cart, updateQuantity, removeFromCart, getTotalPrice } = useCart();
+
   const navigate = useNavigate();
   const [productosConStock, setProductosConStock] = useState({});
   const [loading, setLoading] = useState(true);
@@ -181,11 +184,13 @@ const Carrito = () => {
                     2
                   )}
                 </div>
+
               </div>
             );
           })}
         </div>
       </div>
+
 
       <div className="carrito-resumen">
         <h2>Resumen del Pedido</h2>
@@ -208,6 +213,7 @@ const Carrito = () => {
           Finalizar Compra
         </button>
       </div>
+
     </div>
   );
 };
