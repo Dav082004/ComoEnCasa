@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/productos/**").permitAll() // Añade esta línea
+                        .requestMatchers("/api/carrito/**").permitAll() // Nuevos endpoints del carrito
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
