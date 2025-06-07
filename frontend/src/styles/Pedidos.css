@@ -1,0 +1,18 @@
+/* src/styles/Pedidos.css */
+
+.pedidos-container {
+  padding: 2rem;
+}
+
+.pedido-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+.pedido-header {
+  font-weight: bold;
+  color: #d63384;
+}
