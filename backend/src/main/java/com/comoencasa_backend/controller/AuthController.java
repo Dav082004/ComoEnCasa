@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -121,4 +124,63 @@ public class AuthController {
         userData.put("rol", usuario.getRol().name());
         return userData;
     }
+    @GetMapping("/perfil/{id}")
+    public ResponseEntity<?> obtenerPerfil(@PathVariable Long id) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("Usuario no encontrado");
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("id", usuario.getId());
+        userData.put("nombre", usuario.getNombre());
+        userData.put("apellido", usuario.getApellido());
+        userData.put("email", usuario.getEmail());
+        userData.put("telefono", usuario.getTelefono());
+        userData.put("direccion", usuario.getDireccion());
+
+        return ResponseEntity.ok(userData);
+    }
+    @PutMapping("/perfil/{id}")
+    public ResponseEntity<?> actualizarPerfil(@PathVariable Long id, @RequestBody Map<String, Object> datos) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(404).body(Map.of("error", "Usuario no encontrado"));
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        // Verificar si el nuevo correo ya existe para otro usuario
+        String nuevoEmail = (String) datos.get("email");
+        if (nuevoEmail != null && !nuevoEmail.equals(usuario.getEmail())) {
+            Optional<Usuario> emailExistente = usuarioRepository.findByEmail(nuevoEmail);
+            if (emailExistente.isPresent() && !emailExistente.get().getId().equals(usuario.getId())) {
+                return ResponseEntity.badRequest().body(Map.of("error", "El correo ya está en uso por otro usuario"));
+            }
+            usuario.setEmail(nuevoEmail);
+        }
+
+        // Actualizar otros datos
+        usuario.setNombre((String) datos.get("nombre"));
+        usuario.setApellido((String) datos.get("apellido"));
+        usuario.setTelefono((String) datos.get("telefono"));
+        usuario.setDireccion((String) datos.get("direccion"));
+
+        // Actualizar contraseña si se envió
+        if (datos.containsKey("nuevaContrasena") && datos.get("nuevaContrasena") != null) {
+            String nuevaPass = datos.get("nuevaContrasena").toString().trim();
+            if (!nuevaPass.isEmpty()) {
+                usuario.setPassword(passwordEncoder.encode(nuevaPass));
+            }
+        }
+
+        usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok(Map.of("message", "Perfil actualizado correctamente"));
+    }
+
 }

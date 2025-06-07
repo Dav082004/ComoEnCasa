@@ -4,30 +4,34 @@ import '../styles/Perfil.css';
 
 const Perfil = () => {
   const [perfil, setPerfil] = useState({
-    nombreCompleto: '',
-    Email: '',
+    nombre: '',
+    apellido: '',
+    email: '',
     telefono: '',
     direccion: '',
-    nuevaContraseña: ''
+    nuevaContrasena: ''
   });
 
-  const userId = localStorage.getItem('userId'); // Asegúrate de guardar esto en login
+  const userId = localStorage.getItem('userId');
 
-  useEffect(() => {
-    if (userId) {
-      axios.get(`http://localhost:8081/api/auth/perfil/${userId}`)
-        .then(res => {
-          setPerfil(prev => ({
-            ...prev,
-            nombreCompleto: res.data.nombreCompleto || '',
-            Email: res.data.Email || '',
-            telefono: res.data.telefono || '',
-            direccion: res.data.direccion || ''
-          }));
-        })
-        .catch(err => console.error('Error al obtener perfil:', err));
-    }
-  }, [userId]);
+useEffect(() => {
+  if (userId) {
+    axios.get(`http://localhost:8081/api/auth/perfil/${userId}`)
+      .then(res => {
+        const data = res.data;
+        setPerfil(prev => ({
+          ...prev,
+          nombre: data.nombre || '',
+          apellido: data.apellido || '',
+          email: data.email || '',
+          telefono: data.telefono || '',
+          direccion: data.direccion || ''
+        }));
+      })
+      .catch(err => console.error('Error al obtener perfil:', err));
+  }
+}, [userId]);
+
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -40,19 +44,23 @@ const Perfil = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const datosActualizados = {
-      nombreCompleto: perfil.nombreCompleto,
-      Email: perfil.Email,
+      nombre: perfil.nombre,
+      apellido: perfil.apellido,
+      email: perfil.email,
       telefono: perfil.telefono,
       direccion: perfil.direccion,
-      nuevaContraseña: perfil.nuevaContraseña
+      nuevaContrasena: perfil.nuevaContrasena
     };
 
     axios.put(`http://localhost:8081/api/auth/perfil/${userId}`, datosActualizados)
       .then(() => {
         alert('Perfil actualizado correctamente');
-        setPerfil(prev => ({ ...prev, nuevaContraseña: '' }));
+        setPerfil(prev => ({ ...prev, nuevaContrasena: '' }));
       })
-      .catch(err => console.error('Error al actualizar perfil:', err));
+      .catch(err => {
+        console.error('Error al actualizar perfil:', err);
+        alert('Hubo un error al actualizar el perfil');
+      });
   };
 
   return (
@@ -70,17 +78,26 @@ const Perfil = () => {
               <label>Nombre</label>
               <input
                 type="text"
-                name="nombreCompleto"
-                value={perfil.nombreCompleto}
+                name="nombre"
+                value={perfil.nombre}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="perfil-formulario-group">
+              <label>Apellido</label>
+              <input
+                type="text"
+                name="apellido"
+                value={perfil.apellido}
                 onChange={handleChange}
               />
             </div>
             <div className="perfil-formulario-group">
               <label>Email</label>
               <input
-                type="Email"
-                name="Email"
-                value={perfil.Email}
+                type="email"
+                name="email"
+                value={perfil.email}
                 onChange={handleChange}
               />
             </div>
@@ -107,8 +124,8 @@ const Perfil = () => {
               <label>Nueva Contraseña</label>
               <input
                 type="password"
-                name="nuevaContraseña"
-                value={perfil.nuevaContraseña}
+                name="nuevaContrasena"
+                value={perfil.nuevaContrasena}
                 onChange={handleChange}
               />
             </div>

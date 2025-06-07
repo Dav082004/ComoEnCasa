@@ -12,14 +12,11 @@ import Productos from "../pages/Productos";
 import ProductDetail from "../pages/ProductDetail";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
-<<<<<<< HEAD
 import Perfil from "../pages/Perfil";
-=======
-import RecuperarCuenta from "../pages/RecuperarCuenta";
->>>>>>> origin/develop
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ProductProvider } from "../context/ProductContext";
+import RecuperarCuenta from '../pages/RecuperarCuenta';
 
 export const AppRouter = () => {
   return (
@@ -40,11 +37,8 @@ export const AppRouter = () => {
                 <Route path="productos/:id" element={<ProductDetail />} />
                 <Route path="checkout" element={<Checkout />} />
                 <Route path="carrito" element={<Carrito />} />
-<<<<<<< HEAD
                 <Route path="perfil" element={<Perfil />} />
-=======
                 <Route path="/recuperar" element={<RecuperarCuenta />} />
->>>>>>> origin/develop
               </Route>
             </Routes>
           </Router>

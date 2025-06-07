@@ -2,8 +2,6 @@ package com.comoencasa_backend.repository;
 
 import com.comoencasa_backend.BaseIntegrationTest;
 import com.comoencasa_backend.model.Producto;
-import com.comoencasa_backend.testutil.TestDataFactory;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
