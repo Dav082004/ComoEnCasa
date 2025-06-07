@@ -13,9 +13,6 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { addToCart } = useCart();
-
-
   const { addToCart, isAdding } = useCart();
 
   // Estados
