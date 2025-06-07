@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Layout from "../components/Layout";
 import Home from "../pages/Home";
 import Pasteles from "../pages/Pasteles";
@@ -12,10 +14,11 @@ import Productos from "../pages/Productos";
 import ProductDetail from "../pages/ProductDetail";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
-import RecuperarCuenta from "../pages/RecuperarCuenta";
+import Perfil from "../pages/Perfil";
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ProductProvider } from "../context/ProductContext";
+import RecuperarCuenta from '../pages/RecuperarCuenta';
 
 export const AppRouter = () => {
   return (
@@ -36,9 +39,23 @@ export const AppRouter = () => {
                 <Route path="productos/:id" element={<ProductDetail />} />
                 <Route path="checkout" element={<Checkout />} />
                 <Route path="carrito" element={<Carrito />} />
+                <Route path="perfil" element={<Perfil />} />
                 <Route path="/recuperar" element={<RecuperarCuenta />} />
               </Route>
             </Routes>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={true}
+              closeOnClick={true}
+              rtl={false}
+              pauseOnFocusLoss={false}
+              draggable={true}
+              pauseOnHover={false}
+              theme="light"
+              limit={3}
+            />
           </Router>
         </ProductProvider>
       </CartProvider>

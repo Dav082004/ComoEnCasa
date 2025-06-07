@@ -3,12 +3,26 @@
   gap: 2rem;
   padding: 2rem;
   font-family: "Comfortaa", cursive;
-  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* Sección izquierda con título y lista */
+.carrito-seccion-izquierda {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.carrito-titulo {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #c94f7c;
 }
 
 /* Lista de productos */
 .carrito-lista {
-  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -69,21 +83,30 @@
   cursor: not-allowed;
 }
 
-/* Botón eliminar */
-.btn-eliminar {
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #c94f7c;
-  margin-left: auto;
+/* Botón eliminar dentro de controles */
+.cantidad-controles .btn-eliminar {
+  background: #ff4757;
+  color: white;
+  border: 1px solid #ff4757;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin-left: 1rem;
+  font-size: 1rem;
+  min-width: 30px;
+}
+
+.cantidad-controles .btn-eliminar:hover {
+  background: #ff3742;
+  border-color: #ff3742;
 }
 
 /* Precio del producto */
 .carrito-precio {
-  text-align: right;
   font-weight: bold;
-  margin-top: auto;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: right;
+  margin-left: auto;
 }
 
 /* Resumen de compra */
@@ -93,7 +116,9 @@
   padding: 1rem;
   border-radius: 1rem;
   height: fit-content;
-  min-width: 280px;
+  min-width: 300px;
+  position: sticky;
+  top: 2rem;
 }
 
 .carrito-resumen h2 {

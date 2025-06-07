@@ -27,10 +27,12 @@ class ProductoServiceIntegrationTest {
     void deberiaGuardarYRecuperarProductos() {
         Producto producto = new Producto();
         producto.setNombre("Test Producto");
+        producto.setDescripcion("Descripción de prueba");
+        producto.setPrecioVenta(25.99);
+        producto.setCostoProduccion(15.00);
         producto.setCategoriaId(1L);
-        producto.setPrecioVenta(10.0);
-        producto.setCostoProduccion(5.0);
         producto.setDisponible(true);
+        producto.setCantidad(10);
         productoRepository.save(producto);
 
         List<Producto> productos = productoRepository.findByDisponibleTrue();

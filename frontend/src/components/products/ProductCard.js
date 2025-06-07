@@ -6,8 +6,8 @@ const ProductCard = ({ producto }) => {
   const includesText = producto.descripcion?.match(/Incluye.*/)?.[0];
 
   return (
-    <Link to={`/productos/${producto.id}`} className="cardLink">
-      <div className="card">
+    <div className="card">
+      <Link to={`/productos/${producto.id}`} className="cardLink">
         <div className="image-container">
           <img
             src={producto.imagenUrl}
@@ -20,8 +20,8 @@ const ProductCard = ({ producto }) => {
           <p className="price">S/. {producto.precioVenta}</p>
           {includesText && <p className="includes">{includesText}</p>}
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

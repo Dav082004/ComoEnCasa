@@ -3,9 +3,6 @@ package com.comoencasa_backend.service;
 import com.comoencasa_backend.model.Producto;
 import com.comoencasa_backend.repository.ProductoRepository;
 import com.comoencasa_backend.service.impl.ProductoServiceImpl;
-import com.comoencasa_backend.testutil.TestDataFactory;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
@@ -20,7 +17,6 @@ import java.util.Optional;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static com.comoencasa_backend.testutil.TestDataFactory.*;
 

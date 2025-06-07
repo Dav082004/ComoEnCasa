@@ -26,7 +26,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/productos/**").permitAll() // Permite acceso público a productos
+                        .requestMatchers("/api/productos/**").permitAll() // Añade esta línea
+                        .requestMatchers("/api/carrito/**").permitAll() // Nuevos endpoints del carrito
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
@@ -44,11 +45,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        //  Estamos usando CORS para permitir acceso desde el frontend
-        // Agregamos el puerto 3001 a la lista de orígenes permitidos
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:3001", "http://localhost:3002"));
-
+        
+        // Permitimos acceso desde múltiples puertos para desarrollo
+        configuration.setAllowedOrigins(List.of(
+            "http://localhost:3000", 
+            "http://localhost:3001", 
+            "http://localhost:3002"
+        ));
+        
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
@@ -56,8 +60,8 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
-        // (Opcional) Confirmación en consola
-        System.out.println(" CORS habilitado para: " + configuration.getAllowedOrigins());
+        // Confirmación en consola para desarrollo
+        System.out.println("✅ CORS habilitado para: " + configuration.getAllowedOrigins());
 
         return source;
     }

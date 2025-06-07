@@ -3,10 +3,6 @@ package com.comoencasa_backend.service;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.impl.UsuarioServiceImpl;
-import com.comoencasa_backend.service.EmailService;
-import com.comoencasa_backend.testutil.TestDataFactory;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;

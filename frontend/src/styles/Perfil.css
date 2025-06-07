@@ -1,0 +1,115 @@
+.perfil-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  background-color: #fff5f7; 
+}
+
+.perfil-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 950px; 
+  background-color: #ffe4ec;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  padding: 30px;
+  gap: 30px;
+  justify-content: center;
+}
+
+.perfil-menu {
+  flex: 0 0 200px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.perfil-menu button {
+  background-color: #ff8fab
+
+;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.perfil-form-section {
+  flex: 1;
+  max-width: 500px;
+}
+
+.perfil-titulo {
+  color: #ff8fab
+;
+  font-family: 'Comic Sans MS', cursive;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.perfil-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.perfil-formulario-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-formulario-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.perfil-formulario-group input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.perfil-boton {
+  grid-column: 1 / -1;
+  padding: 10px;
+  border: none;
+  background-color: #ff8fab
+
+;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.perfil-boton:hover {
+  background-color: #f76c6c;
+}
+
+@media (max-width: 768px) {
+  .perfil-wrapper {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .perfil-formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-menu {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .perfil-form-section {
+    max-width: 100%;
+  }
+}

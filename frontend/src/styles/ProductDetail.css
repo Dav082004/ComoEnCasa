@@ -175,10 +175,10 @@
 }
 
 .product-detail-btn:disabled {
-  opacity: 0.6;
+  background: #6c757d !important;
+  border-color: #6c757d !important;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: 0 4px 15px rgba(248, 180, 203, 0.3);
+  opacity: 0.6;
 }
 
 /* Textarea para comentarios */
@@ -214,6 +214,49 @@
 .product-additional-info small {
   font-weight: 500;
   color: #495057;
+}
+
+/* Stock info styles */
+.stock-info {
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border-left: 4px solid #d63384;
+}
+
+.stock-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.stock-quantity {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.stock-available {
+  color: #28a745;
+}
+
+.stock-low {
+  color: #fd7e14;
+}
+
+.stock-quantity.stock-low {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Estados de carga */
