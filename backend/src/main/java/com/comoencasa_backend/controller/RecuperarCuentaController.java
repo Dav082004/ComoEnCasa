@@ -1,58 +1,91 @@
-package com.comoencasa_backend.controller;
+ package com.comoencasa_backend.controller;
 
 import com.comoencasa_backend.service.UsuarioService;
-import com.comoencasa_backend.service.EmailService;
-import com.comoencasa_backend.model.Usuario;
+import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*") // Permite llamadas desde el frontend
 public class RecuperarCuentaController {
 
+    private static final Logger logger = LoggerFactory.getLogger(RecuperarCuentaController.class);
+    
     @Autowired
     private UsuarioService usuarioService;
 
-    @Autowired
-    private EmailService emailService;
-
     @PostMapping("/recuperar")
     public ResponseEntity<?> recuperarCuenta(@RequestBody Map<String, String> body) {
-        String email = body.get("email");
+        String email = StringUtils.trimToNull(body.get("email"));
 
-        if (email == null || email.isEmpty()) {
-            return ResponseEntity.badRequest().body("El correo es requerido.");
+        logger.info("Intento de recuperación de cuenta para email: {}", maskEmail(email));
+
+        // Validar que se proporcione email
+        if (email == null) {
+            logger.warn("Recuperación fallida: email no proporcionado");
+            return ResponseEntity.badRequest().body(createErrorResponse("El correo es requerido"));
         }
 
-        Optional<Usuario> usuarioOpt = usuarioService.buscarPorEmail(email);
-
-        if (usuarioOpt.isEmpty()) {
-            return ResponseEntity.badRequest().body("Correo no registrado.");
+        // Validar formato de email con Apache Commons
+        if (!EmailValidator.getInstance().isValid(email)) {
+            logger.warn("Recuperación fallida: email inválido: {}", maskEmail(email));
+            return ResponseEntity.badRequest().body(createErrorResponse("Formato de email inválido"));
         }
 
-        Usuario usuario = usuarioOpt.get();
-
-        String nuevaContrasena = generarPasswordAleatoria();
-        usuarioService.actualizarContrasena(usuario, nuevaContrasena);
-        emailService.enviarNuevaContrasena(email, nuevaContrasena);
-
-        return ResponseEntity.ok("Se envió la nueva contraseña al correo.");
+        try {
+            // Usar el servicio que ya tiene la lógica mejorada
+            usuarioService.recuperarCuenta(email);
+            
+            logger.info("Recuperación de cuenta exitosa para email: {}", maskEmail(email));
+            return ResponseEntity.ok(createSuccessResponse("Se envió la nueva contraseña al correo"));
+            
+        } catch (IllegalArgumentException e) {
+            logger.warn("Recuperación fallida por validación: {} para email: {}", e.getMessage(), maskEmail(email));
+            return ResponseEntity.badRequest().body(createErrorResponse(e.getMessage()));
+        } catch (RuntimeException e) {
+            logger.warn("Recuperación fallida: {} para email: {}", e.getMessage(), maskEmail(email));
+            return ResponseEntity.badRequest().body(createErrorResponse(e.getMessage()));
+        } catch (Exception e) {
+            logger.error("Error interno durante recuperación para email {}: {}", maskEmail(email), e.getMessage(), e);
+            return ResponseEntity.status(500).body(createErrorResponse("Error interno del servidor"));
+        }
     }
 
+    // Métodos auxiliares
+    private String maskEmail(String email) {
+        if (email == null) return "unknown";
+        return email.replaceAll("(.{3}).*(@.*)", "$1***$2");
+    }
+
+    private Map<String, Object> createSuccessResponse(String message) {
+        return Map.of("success", true, "message", message);
+    }
+
+    private Map<String, Object> createErrorResponse(String error) {
+        return Map.of("success", false, "error", error);
+    }
+
+    /**
+     * Genera una contraseña aleatoria segura usando SecureRandom
+     * @return contraseña aleatoria de 12 caracteres
+     */
     private String generarPasswordAleatoria() {
-        int length = 10;
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        int length = 12; // Aumentamos la longitud para mayor seguridad
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
         StringBuilder sb = new StringBuilder();
-        Random random = new Random();
+        SecureRandom random = new SecureRandom(); // Más seguro que Random
+        
         for (int i = 0; i < length; i++) {
             sb.append(chars.charAt(random.nextInt(chars.length())));
         }
+        
         return sb.toString();
     }
 }

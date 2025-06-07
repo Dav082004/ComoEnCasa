@@ -65,6 +65,20 @@
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
 			<version>1.7</version>
+			<exclusions>
+				<!-- Excluir Commons Logging para evitar conflictos con Spring Boot -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- ✅ Apache Commons Lang para comparación segura de strings -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.14.0</version>
 		</dependency>
 
 		<!-- Tests -->
@@ -163,6 +177,7 @@
 				<version>0.8.12</version>
 				<executions>
 					<execution>
+						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
@@ -175,12 +190,6 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<!-- Suprimir warnings para versiones futuras de Java -->
-					<excludes>
-						<exclude>**/*Test*</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 
 			<!-- Plugin Surefire para tests más limpios -->
@@ -189,6 +198,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>
+						@{argLine}
 						-Dmockito.verboseLogging=false
 						--add-opens java.base/java.lang=ALL-UNNAMED
 						--add-opens java.base/java.util=ALL-UNNAMED

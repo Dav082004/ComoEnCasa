@@ -28,7 +28,21 @@ echo Coverage HTML: target/site/jacoco/index.html
 echo Coverage CSV: target/site/jacoco/jacoco.csv
 echo.
 
-echo Abriendo reporte de coverage en el navegador...
-start target\site\jacoco\index.html
+echo Verificando si el reporte existe...
+if exist "target\site\jacoco\index.html" (
+    echo Reporte encontrado. Abriendo en el navegador...
+    start "" "target\site\jacoco\index.html"
+) else (
+    echo ERROR: No se pudo generar el reporte de coverage.
+    echo Intentando generar con comando alternativo...
+    call mvn clean test jacoco:report
+    if exist "target\site\jacoco\index.html" (
+        echo Reporte generado exitosamente. Abriendo...
+        start "" "target\site\jacoco\index.html"
+    ) else (
+        echo No se pudo generar el reporte. Revise la configuracion de Jacoco.
+        echo Puede acceder manualmente a: target\site\jacoco\index.html
+    )
+)
 
 pause

@@ -19,14 +19,16 @@
 ### 🔐 Apache Commons Validator
 
 - **Función**: Validación robusta de datos de entrada
-- **Uso específico**: Validación de formatos de email en recuperación de cuentas
-- **Ventaja**: Cumple estándares RFC y previene inyecciones
+- **Uso específico**: Validación de formatos de email en recuperación de cuentas y registro
+- **Ventaja**: Cumple estándares RFC 5322 y previene inyecciones
+- **Estado**: ✅ **IMPLEMENTADO Y FUNCIONANDO**
 
 ### 🎲 Apache Commons Lang3
 
-- **Función**: Utilidades para manipulación de cadenas y generación aleatoria
-- **Uso específico**: Generación segura de contraseñas temporales
-- **Ventaja**: Algoritmos criptográficamente seguros
+- **Función**: Utilidades para manipulación de cadenas (StringUtils)
+- **Uso específico**: Validación de campos nulos/vacíos en controladores
+- **Ventaja**: Métodos seguros que manejan valores null automáticamente
+- **Estado**: ✅ **IMPLEMENTADO Y FUNCIONANDO**
 
 ---
 
@@ -80,8 +82,11 @@ Agregamos las siguientes dependencias en nuestro `pom.xml`:
 ### 🎯 Imports Necesarios
 
 ```java
+// Apache Commons Validator para validación de emails
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.commons.lang3.RandomStringUtils;
+
+// Apache Commons Lang3 para manejo seguro de strings
+import org.apache.commons.lang3.StringUtils;
 ```
 
 ---
@@ -90,56 +95,58 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 ### 🔍 Validación de Email
 
-**Ubicación**: `UsuarioServiceImpl.java` - Método `recuperarCuenta()`
+**Ubicación**: `RecuperarCuentaController.java` - Método `recuperarCuenta()`
 
 ```java
-@Override
-public void recuperarCuenta(String email) {
+@PostMapping("/recuperar")
+public ResponseEntity<?> recuperarCuenta(@RequestBody Map<String, String> body) {
+    String email = StringUtils.trimToNull(body.get("email"));
+
     // === Validación del correo con Apache Commons Validator ===
     if (!EmailValidator.getInstance().isValid(email)) {
-        logger.warn("Intento de recuperación con email inválido: {}", email);
-        throw new IllegalArgumentException("Formato de correo electrónico inválido.");
+        logger.warn("Recuperación fallida: email inválido: {}", maskEmail(email));
+        return ResponseEntity.badRequest().body(createErrorResponse("Formato de email inválido"));
     }
 
     // Continúa con la lógica solo si el email es válido...
+    usuarioService.recuperarCuenta(email);
 }
 ```
 
 #### 📈 Beneficios de esta implementación:
 
-1. **🛡️ Validación Temprana**: Se valida el formato antes de consultar la base de datos
-2. **📏 Estándar RFC**: Cumple con los estándares internacionales de email
-3. **⚡ Performance**: Evita consultas innecesarias a la BD con emails inválidos
+1. **🛡️ Validación Temprana**: Se valida el formato antes de procesar la solicitud
+2. **📏 Estándar RFC 5322**: Cumple con los estándares internacionales de email
+3. **⚡ Performance**: Evita procesamiento innecesario con emails inválidos
 4. **🔒 Seguridad**: Previene intentos de inyección a través del parámetro email
+5. **🔧 CORS Fix**: Funciona correctamente con la configuración CORS global
 
-### 🎲 Generación de Contraseñas
+### 🎲 Manejo de Strings Seguros
 
-**Ubicación**: `UsuarioServiceImpl.java` - Método `recuperarCuenta()`
+**Ubicación**: `RecuperarCuentaController.java` - Múltiples métodos
 
 ```java
-@Override
-public void recuperarCuenta(String email) {
-    // ... validaciones previas ...
+@PostMapping("/recuperar")
+public ResponseEntity<?> recuperarCuenta(@RequestBody Map<String, String> body) {
+    // === Uso de StringUtils para manejo seguro de strings ===
+    String email = StringUtils.trimToNull(body.get("email"));
 
-    // === Generación de contraseña segura con Apache Commons Lang ===
-    String nuevaContrasena = RandomStringUtils.randomAlphanumeric(10);
+    // Validar que se proporcione email (StringUtils maneja null automáticamente)
+    if (email == null) {
+        logger.warn("Recuperación fallida: email no proporcionado");
+        return ResponseEntity.badRequest().body(createErrorResponse("El correo es requerido"));
+    }
 
-    // === Encriptación y guardado ===
-    String hashedPassword = passwordEncoder.encode(nuevaContrasena);
-    usuario.setContrasena(hashedPassword);
-    usuarioRepository.save(usuario);
-
-    // === Envío por email ===
-    emailService.enviarNuevaContrasena(email, nuevaContrasena);
+    // ... resto de la lógica
 }
 ```
 
-#### 🔐 Características de la contraseña generada:
+#### 🔐 Características del manejo de strings:
 
-- **Longitud**: 10 caracteres
-- **Caracteres**: Alfanuméricos (a-z, A-Z, 0-9)
-- **Entropía**: ~59 bits (muy segura)
-- **Aleatoriedad**: Criptográficamente segura
+- **Método**: `StringUtils.trimToNull()` - Elimina espacios y convierte strings vacíos a null
+- **Seguridad**: Maneja automáticamente valores null sin NullPointerException
+- **Limpieza**: Elimina espacios en blanco al inicio y final
+- **Consistencia**: Convierte strings vacíos ("") y solo espacios (" ") a null
 
 ---
 

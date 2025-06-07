@@ -13,7 +13,6 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/carrito")
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3002"})
 public class CarritoController {
 
     private final CarritoService carritoService;
