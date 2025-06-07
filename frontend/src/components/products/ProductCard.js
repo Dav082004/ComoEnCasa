@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
 import "./styles/ProductCard.css";
 
 const ProductCard = ({ producto }) => {
-  const { addToCart } = useCart();
   const includesText = producto.descripcion?.match(/Incluye.*/)?.[0];
 
   return (
     <div className="card">
-
       <Link to={`/productos/${producto.id}`} className="cardLink">
         <div className="image-container">
           <img
@@ -24,7 +21,6 @@ const ProductCard = ({ producto }) => {
           {includesText && <p className="includes">{includesText}</p>}
         </div>
       </Link>
-
     </div>
   );
 };

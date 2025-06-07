@@ -10,7 +10,6 @@ import { useCart } from "../context/CartContext";
 import "../styles/ProductDetail.css";
 import RelatedProducts from "../components/products/RelatedProducts";
 
-
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -68,7 +67,7 @@ const ProductDetail = () => {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, quantity]);
 
   useEffect(() => {
     loadProduct();

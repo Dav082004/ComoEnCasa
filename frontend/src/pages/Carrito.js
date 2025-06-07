@@ -1,4 +1,3 @@
-
 // src/pages/carrito.js
 import React, { useState, useEffect } from "react";
 
@@ -7,7 +6,7 @@ import { useCart } from "../context/CartContext";
 import { getProductoById } from "../services/productoService";
 import "../styles/Carrito.css";
 
-
+const Carrito = () => {
   const { cart, updateQuantity, removeFromCart, getTotalPrice } = useCart();
 
   const navigate = useNavigate();
@@ -184,13 +183,11 @@ import "../styles/Carrito.css";
                     2
                   )}
                 </div>
-
               </div>
             );
           })}
         </div>
       </div>
-
 
       <div className="carrito-resumen">
         <h2>Resumen del Pedido</h2>
@@ -213,7 +210,6 @@ import "../styles/Carrito.css";
           Finalizar Compra
         </button>
       </div>
-
     </div>
   );
 };

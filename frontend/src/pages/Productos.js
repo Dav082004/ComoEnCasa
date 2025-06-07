@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  getProductos,
-  getProductosByCategoria,
-} from "../services/productoService";
+import { getProductos } from "../services/productoService";
 import ProductCard from "../components/products/ProductCard";
 import CategoryFilter from "../components/products/CategoryFilter";
 import PriceSortFilter from "../components/products/PriceSortFilter";
@@ -40,6 +37,14 @@ const Productos = () => {
     loadProducts();
   }, []);
 
+  // Actualizar URL con los filtros
+  const updateURL = useCallback(() => {
+    const params = new URLSearchParams();
+    if (filters.category) params.set("category", filters.category);
+    if (filters.priceSort) params.set("sort", filters.priceSort);
+    navigate(`?${params.toString()}`, { replace: true });
+  }, [filters, navigate]);
+
   // Aplicar filtros cuando cambian
   useEffect(() => {
     const applyFilters = () => {
@@ -66,15 +71,7 @@ const Productos = () => {
     if (productos.length > 0) {
       applyFilters();
     }
-  }, [filters, productos]);
-
-  // Actualizar URL con los filtros
-  const updateURL = () => {
-    const params = new URLSearchParams();
-    if (filters.category) params.set("category", filters.category);
-    if (filters.priceSort) params.set("sort", filters.priceSort);
-    navigate(`?${params.toString()}`, { replace: true });
-  };
+  }, [filters, productos, updateURL]);
 
   // Cargar filtros iniciales desde URL
   useEffect(() => {
