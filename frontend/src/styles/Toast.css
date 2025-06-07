@@ -1,0 +1,228 @@
+/* Estilos personalizados para notificaciones de pastelería */
+
+/* Contenedor principal de las notificaciones */
+.Toastify__toast-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 9999;
+  width: 380px;
+}
+
+/* Estilo base de las notificaciones */
+.Toastify__toast {
+  background: linear-gradient(135deg, #fff8f3 0%, #fef7ed 100%);
+  border: none;
+  border-left: 4px solid #f97316;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+  font-size: 14px;
+  min-height: 90px;
+  padding: 16px 40px 16px 20px; /* Más espacio a la derecha para el botón de cerrar */
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  margin-bottom: 12px;
+  transform: translateX(0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efecto de brillo sutil en hover */
+.Toastify__toast::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.Toastify__toast:hover::before {
+  left: 100%;
+}
+
+/* Notificación de éxito (agregar al carrito) */
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-left: 4px solid #22c55e;
+  color: #14532d;
+  padding: 16px 40px 16px 20px; /* Espacio adicional para el botón de cerrar */
+}
+
+.Toastify__toast--success .Toastify__toast-icon {
+  color: #22c55e;
+}
+
+/* Iconos personalizados */
+.Toastify__toast-icon {
+  display: none; /* Ocultamos el icono por defecto para usar nuestro diseño personalizado */
+}
+
+/* Contenido del mensaje */
+.Toastify__toast-body {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Botón de cerrar mejorado */
+.Toastify__close-button {
+  color: #6b7280 !important;
+  opacity: 0.8 !important;
+  transition: all 0.2s ease !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(156, 163, 175, 0.3) !important;
+  font-size: 16px !important;
+  padding: 2px !important;
+  border-radius: 50% !important;
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1 !important;
+  color: #dc2626 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2) !important;
+}
+
+.Toastify__close-button:active {
+  transform: scale(0.95) !important;
+}
+
+/* Barra de progreso */
+.Toastify__progress-bar {
+  background: linear-gradient(90deg, #f97316, #ea580c, #dc2626) !important;
+  height: 4px !important;
+  border-radius: 0 0 8px 8px !important;
+  animation: progress-animation 4s linear !important;
+}
+
+.Toastify__progress-bar--success {
+  background: linear-gradient(90deg, #22c55e, #16a34a, #15803d) !important;
+}
+
+@keyframes progress-animation {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 0%;
+    opacity: 0.8;
+  }
+}
+
+/* Animaciones de entrada y salida mejoradas */
+.Toastify__toast--success {
+  animation: slideInRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Animación de salida */
+.Toastify__toast--close {
+  animation: slideOutRight 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Hover effects mejorados */
+.Toastify__toast:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(249, 115, 22, 0.2),
+    0 6px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .Toastify__toast-container {
+    padding: 0 16px;
+    width: calc(100vw - 32px);
+    max-width: 360px;
+  }
+
+  .Toastify__toast {
+    margin-bottom: 10px;
+    font-size: 13px;
+    min-height: 80px;
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
+}
+
+/* Mejora para accesibilidad */
+.Toastify__toast:focus,
+.Toastify__toast:focus-within {
+  outline: 2px solid #f97316;
+  outline-offset: 2px;
+}
+
+/* Configuración adicional para auto-close */
+.Toastify__toast-container .Toastify__toast {
+  cursor: pointer;
+}
+
+/* Prevenir interferencia con el auto-close */
+.Toastify__toast:not(:hover) .Toastify__progress-bar {
+  animation-duration: inherit !important;
+}
+
+/* Asegurar que el botón de cerrar sea clickeable */
+.Toastify__close-button {
+  pointer-events: all !important;
+}
+
+/* Espaciado para dispositivos móviles */
+@media (max-width: 768px) {
+  .Toastify__toast {
+    padding: 14px 36px 14px 16px !important;
+  }
+
+  .Toastify__close-button {
+    top: 6px !important;
+    right: 6px !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 14px !important;
+  }
+}

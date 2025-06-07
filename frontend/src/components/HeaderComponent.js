@@ -10,7 +10,7 @@ export const HeaderComponent = () => {
   const { user, logout } = useAuth();
   const { cart } = useCart();
   const totalItems = Object.values(cart).reduce(
-    (sum, item) => sum + item.cantidad,
+    (sum, item) => sum + (item.quantity || item.cantidad || 0),
     0
   );
 
