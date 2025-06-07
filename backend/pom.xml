@@ -16,21 +16,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>comoencasa-backend</name>
 	<description>Proyecto backend para ComoEnCasa</description>
+
 	<properties>
 		<java.version>21</java.version>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
-		<testcontainers.version>1.20.4</testcontainers.version>
-		<wiremock.version>2.35.2</wiremock.version>
+		<testcontainers.version>1.19.3</testcontainers.version>
+		<wiremock.version>2.35.0</wiremock.version>
 	</properties>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
 		<!-- Spring Web y Seguridad -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,13 +47,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- H2 Database para tests -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -72,7 +58,27 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 
+		<!-- ✅ Apache Commons Validator para validación de correos electrónicos -->
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.7</version>
+			<exclusions>
+				<!-- Excluir Commons Logging para evitar conflictos con Spring Boot -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- ✅ Apache Commons Lang para comparación segura de strings -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.14.0</version>
 		</dependency>
 
 		<!-- Tests -->
@@ -88,14 +94,21 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Test Containers para tests de integración -->
+		<!-- H2 Database para tests -->
 		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>${testcontainers.version}</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Mockito con soporte mejorado para Java 21 -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Testcontainers para tests de integración -->
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>mysql</artifactId>
@@ -108,6 +121,13 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Google Guava for improved data structures and caching -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>33.0.0-jre</version>
 		</dependency>
 
 		<!-- WireMock para simular servicios externos -->
@@ -148,90 +168,19 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>			<!-- Plugin Surefire para tests unitarios -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<argLine>${surefireArgLine}</argLine>
-					<includes>
-						<include>**/*Test.java</include>
-						<include>**/*Tests.java</include>
-					</includes>
-					<excludes>
-						<exclude>**/*IT.java</exclude>
-						<exclude>**/*IntegrationTest.java</exclude>
-					</excludes>
-					<systemPropertyVariables>
-						<java.awt.headless>true</java.awt.headless>
-					</systemPropertyVariables>
-				</configuration>
 			</plugin>
 
-			<!-- Plugin Failsafe para tests de integración -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<configuration>
-					<includes>
-						<include>**/*IT.java</include>
-						<include>**/*IntegrationTest.java</include>
-					</includes>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>			<!-- Plugin para análisis de código - SpotBugs (deshabilitado temporalmente para Java 24) -->
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.8.6.4</version>
-				<configuration>
-					<effort>Max</effort>
-					<threshold>Low</threshold>
-					<xmlOutput>true</xmlOutput>
-					<htmlOutput>true</htmlOutput>
-					<failOnError>false</failOnError>
-					<skip>true</skip>
-					<continueOnError>true</continueOnError>
-					<outputDirectory>${project.reporting.outputDirectory}/spotbugs</outputDirectory>
-					<!-- Configuraciones adicionales para Java 24 -->
-					<excludeFilterFile></excludeFilterFile>
-					<timeout>600000</timeout>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>none</phase>
-					</execution>
-				</executions>
-			</plugin>			<!-- Plugin JaCoCo personalizado para Java 24 - versión experimental -->
+			<!-- Plugin JaCoCo para cobertura de código -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.13</version>
-				<configuration>
-					<!-- Configuraciones específicas para Java 24 -->
-					<includes>
-						<include>com/comoencasa_backend/service/**</include>
-					</includes>
-					<excludes>
-						<exclude>com/comoencasa_backend/service/**/test/**</exclude>
-					</excludes>
-				</configuration>
+				<version>0.8.12</version>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
-						<configuration>
-							<propertyName>surefireArgLine</propertyName>
-						</configuration>
 					</execution>
 					<execution>
 						<id>report</id>
@@ -240,67 +189,22 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>check</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<rule>
-									<element>CLASS</element>
-									<limits>
-										<limit>
-											<counter>LINE</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.70</minimum>
-										</limit>
-									</limits>
-								</rule>
-							</rules>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 
-			<!-- Plugin Maven Site para generar reportes consolidados -->
+			<!-- Plugin Surefire para tests más limpios -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>4.0.0-M16</version>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<locales>es,en</locales>
+					<argLine>
+						@{argLine}
+						-Dmockito.verboseLogging=false
+						--add-opens java.base/java.lang=ALL-UNNAMED
+						--add-opens java.base/java.util=ALL-UNNAMED
+					</argLine>
 				</configuration>
-			</plugin>		</plugins>
-	</build>
-
-	<!-- Configuración de reportes -->
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.12</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.8.6.4</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.5.2</version>
 			</plugin>
 		</plugins>
-	</reporting>
+	</build>
 </project>

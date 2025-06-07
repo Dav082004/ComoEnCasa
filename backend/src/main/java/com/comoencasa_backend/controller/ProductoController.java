@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = {"http://localhost:3000"})
 public class ProductoController {
 
     @Autowired
@@ -24,12 +23,84 @@ public class ProductoController {
     @GetMapping("/{id}")
     public ResponseEntity<Producto> getProductoById(@PathVariable Long id) {
         return productoService.findById(id)
-                .map(ResponseEntity::ok)
+                .map(producto -> {
+                    // Si el stock es 0, marcar como no disponible
+                    if (producto.getCantidad() != null && producto.getCantidad() <= 0) {
+                        producto.setDisponible(false);
+                        // Aquí podrías actualizar en la base de datos si es necesario
+                    }
+                    return ResponseEntity.ok(producto);
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/categoria/{categoriaId}")
     public ResponseEntity<List<Producto>> getProductosByCategoria(@PathVariable Long categoriaId) {
         return ResponseEntity.ok(productoService.findByCategoriaId(categoriaId));
+    }
+
+    // ENDPOINTS DE ADMINISTRACIÓN - Para uso futuro del panel de admin
+    
+    /**
+     * Obtener todos los productos (incluyendo no disponibles) - Solo para administradores
+     */
+    @GetMapping("/admin/all")
+    public ResponseEntity<List<Producto>> getAllProductosAdmin() {
+        return ResponseEntity.ok(productoService.findAll());
+    }
+    
+    /**
+     * Actualizar stock de un producto - Solo para administradores
+     */
+    @PutMapping("/{id}/stock")
+    public ResponseEntity<Producto> actualizarStock(
+            @PathVariable Long id, 
+            @RequestBody StockUpdateRequest request) {
+        try {
+            Producto productoActualizado = productoService.actualizarStock(id, request.getCantidad());
+            return ResponseEntity.ok(productoActualizado);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    /**
+     * Cambiar disponibilidad de un producto - Solo para administradores
+     */
+    @PutMapping("/{id}/disponibilidad")
+    public ResponseEntity<Producto> cambiarDisponibilidad(
+            @PathVariable Long id, 
+            @RequestBody DisponibilidadUpdateRequest request) {
+        try {
+            Producto productoActualizado = productoService.cambiarDisponibilidad(id, request.getDisponible());
+            return ResponseEntity.ok(productoActualizado);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    // Clases DTO para las peticiones
+    public static class StockUpdateRequest {
+        private Integer cantidad;
+
+        public Integer getCantidad() {
+            return cantidad;
+        }
+
+        public void setCantidad(Integer cantidad) {
+            this.cantidad = cantidad;
+        }
+    }
+
+    public static class DisponibilidadUpdateRequest {
+        private Boolean disponible;
+
+        public Boolean getDisponible() {
+            return disponible;
+        }
+
+        public void setDisponible(Boolean disponible) {
+            this.disponible = disponible;
+        }
     }
 }

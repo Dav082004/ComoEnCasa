@@ -12,15 +12,16 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/productos/**")
-                        .allowedOrigins("http://localhost:3000")
-                        .allowedMethods("GET", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(false);
+                registry.addMapping("/**") // Aplica CORS a todas las rutas
+                        .allowedOrigins("http://localhost:3000", "http://localhost:3001") // Asegura ambos orígenes
+                        .allowedMethods("*") // Permite todos los métodos (GET, POST, etc.)
+                        .allowedHeaders("*") // Permite todos los encabezados
+                        .allowCredentials(true); // Necesario si usas cookies o auth con tokens
             }
             
         };
 
     }
-    
+
 }
+

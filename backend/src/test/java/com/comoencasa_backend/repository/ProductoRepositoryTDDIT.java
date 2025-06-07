@@ -1,6 +1,5 @@
 package com.comoencasa_backend.repository;
 
-import com.comoencasa_backend.BaseIntegrationTest;
 import com.comoencasa_backend.model.Producto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,15 +23,16 @@ import static com.comoencasa_backend.testutil.TestDataFactory.*;
 @DataJpaTest
 @ActiveProfiles("test")
 @DisplayName("ProductoRepository Integration Tests")
-class ProductoRepositoryTDDIT extends BaseIntegrationTest {
+class ProductoRepositoryTDDIT {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private ProductoRepository productoRepository;    @BeforeEach
-    protected void setUp() {
-        super.setUp();
+    private ProductoRepository productoRepository;
+
+    @BeforeEach
+    void setUp() {
         // Limpiar datos antes de cada test
         entityManager.clear();
     }

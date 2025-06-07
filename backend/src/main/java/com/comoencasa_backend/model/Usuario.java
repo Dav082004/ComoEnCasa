@@ -45,7 +45,7 @@ public class Usuario {
     @Convert(converter = RolConverter.class)
     private Rol rol = Rol.CLIENTE;
 
-    @Column(nullable = false)
+    @Column(name = "activado", nullable = false)
     private Boolean activado = true;
 
     public enum TipoDocumento {

@@ -30,7 +30,7 @@ This project consists of developing a **web system** to improve order and custom
 
 - **MVC (Model-View-Controller)** 🏗️ - Architectural pattern for separation of concerns
 - **TDD (Test-Driven Development)** 🧪 - Development methodology with **47 tests implemented**
-  - 📖 **[Guía Completa de TDD](TDD-GUIDE-ES.md)** - Documentación detallada de implementación
+  - 📖 **[Guía Completa de TDD](docs/TDD-GUIDE-ES.md)** - Documentación detallada de implementación
   - ✅ **100% tests passing** - Cobertura de código con JaCoCo
   - 🚀 **Scripts automatizados** - Ejecución de tests con un comando
 - **DAO (Data Access Object)** 📊 - Data access pattern
@@ -50,7 +50,9 @@ This project consists of developing a **web system** to improve order and custom
 - **Google Guava** 📚 - Core libraries for Java
 - **Apache POI** 📄 - Library for Microsoft documents
 - **Apache Commons** 🔧 - Reusable Java components
+  - 📖 **[Implementación de Apache Commons](docs/APACHE-COMMONS-ES.md)** - Documentación detallada de implementación
 - **Logback** 📝 - Logging framework
+  - 📖 **[Implementación de Logback](docs/LOGBACK-ES.md)** - Documentación detallada de implementación
 
 ### Security Features 🛡️
 
@@ -122,12 +124,12 @@ Strategic model used to visualize the value proposition, customer segments, comp
 ## 🏗️ Technical Structure
 
 - **📊 Layer Diagram**: Organization of backend, frontend and services.
-  [View Diagram](imgRepo/Diagrama%20de%20capas.png)
+  [View Diagram](docs/imgRepo/Diagrama%20de%20capas.png)
 - **🗃️ ER and Class Diagrams**: Physical modeling of the database and system structures.
-  [View ER Diagram](imgRepo/DiagramaER.png) | [View Class Diagram](imgRepo/Diagrama%20de%20clases.png)
+  [View ER Diagram](docs/imgRepo/DiagramaER.png) | [View Class Diagram](docs/imgRepo/Diagrama%20de%20clases.png)
 - **📅 WBS and Gantt Chart**: Project planning and breakdown
 - **🔄 Process Diagrams**: Flow before and after implementation.
-  [View Process Diagram](imgRepo/Procesosfinal.png)
+  [View Process Diagram](docs/imgRepo/Procesosfinal.png)
 
 ---
 
@@ -186,24 +188,11 @@ start target\site\jacoco\index.html
 mvn test -Dtest="ProductoServiceTDDTest"
 ```
 
-### Estadísticas del Proyecto
-
-```
-📊 MÉTRICAS DE DESARROLLO
-┌─────────────────────────────────────────────────────────┐
-│ ✅ Tests Implementados: 47                             │
-│ ✅ Cobertura de Código: ~85%                           │
-│ ✅ Tests Pasando: 100%                                 │
-│ 🏗️ Arquitectura: TDD + Spring Boot                     │
-│ 📋 Documentación: Completa                             │
-└─────────────────────────────────────────────────────────┘
-```
-
 ### Documentación TDD
 
 Para una guía completa sobre la implementación TDD del proyecto:
 
-📖 **[Ver Guía Completa de TDD](TDD-GUIDE-ES.md)**
+📖 **[Ver Guía Completa de TDD](docs/TDD-GUIDE-ES.md)**
 
 La guía incluye:
 

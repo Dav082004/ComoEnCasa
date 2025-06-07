@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Cart, Truck, Shield, Clock } from "react-bootstrap-icons";
 import {
@@ -12,12 +12,15 @@ import RelatedProducts from "../components/products/RelatedProducts";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const { addToCart } = useCart();
+
+
+  const { addToCart, isAdding } = useCart();
 
   // Estados
   const [producto, setProducto] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState("");
   const [comentarios, setComentarios] = useState("");
   const [relacionados, setRelacionados] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,6 +40,13 @@ const ProductDetail = () => {
       }
 
       setProducto(data);
+
+      // Resetear cantidad si es mayor al stock disponible
+      if (data.cantidad && quantity > data.cantidad) {
+        setQuantity(Math.min(1, data.cantidad));
+      } else if (!data.cantidad || data.cantidad === 0) {
+        setQuantity(1); // Resetear aunque no haya stock
+      }
 
       // Cargar productos relacionados
       if (data.categoriaId) {
@@ -59,50 +69,20 @@ const ProductDetail = () => {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, quantity]);
 
   useEffect(() => {
     loadProduct();
   }, [loadProduct]);
   // Manejar adición al carrito
   const handleAddToCart = useCallback(() => {
-    if (!selectedSize) {
-      alert("Por favor selecciona un tamaño");
-      return;
-    }
-
-    const productWithSize = {
+    const productToAdd = {
       ...producto,
-      selectedSize,
-      quantity,
       comentarios,
     };
 
-    addToCart(productWithSize, quantity);
-
-    // Feedback visual opcional
-    // toast.success(`${producto.nombre} agregado al carrito`);
-  }, [producto, quantity, selectedSize, comentarios, addToCart]);
-
-  // Opciones de tamaño
-  const sizeOptions = useMemo(
-    () => [
-      { value: "pequeño", label: "Pequeño", priceMultiplier: 0.8 },
-      { value: "mediano", label: "Mediano", priceMultiplier: 1.0 },
-      { value: "grande", label: "Grande", priceMultiplier: 1.3 },
-    ],
-    []
-  );
-
-  // Calcular precio con tamaño
-  const finalPrice = useMemo(() => {
-    if (!producto || !selectedSize) return producto?.precioVenta || 0;
-
-    const selectedOption = sizeOptions.find(
-      (option) => option.value === selectedSize
-    );
-    return producto.precioVenta * (selectedOption?.priceMultiplier || 1);
-  }, [producto, selectedSize, sizeOptions]);
+    addToCart(productToAdd, quantity);
+  }, [producto, quantity, comentarios, addToCart]);
 
   // Manejar error de imagen
   const handleImageError = useCallback((e) => {
@@ -171,49 +151,38 @@ const ProductDetail = () => {
               <header className="product-detail-header mb-3">
                 <h1 className="product-detail-title">{producto.nombre}</h1>
                 <div className="product-detail-price">
-                  S/. {finalPrice.toFixed(2)}
-                  {selectedSize && producto.precioVenta !== finalPrice && (
-                    <small className="text-muted ms-2">
-                      (Precio base: S/. {producto.precioVenta.toFixed(2)})
-                    </small>
-                  )}
+                  S/. {producto.precioVenta.toFixed(2)}
                 </div>
               </header>
               {/* Descripción */}
               <div className="product-detail-desc mb-4">
                 <p>{producto.descripcion}</p>
               </div>
+              {/* Stock disponible */}
+              <div className="stock-info mb-3">
+                <span className="stock-label">Stock disponible: </span>
+                <span
+                  className={`stock-quantity ${
+                    producto.cantidad <= 5 ? "stock-low" : "stock-available"
+                  }`}>
+                  {producto.cantidad || 0} unidades
+                </span>
+                {producto.cantidad <= 5 && producto.cantidad > 0 && (
+                  <small className="text-warning d-block">
+                    ¡Pocas unidades disponibles!
+                  </small>
+                )}
+                {producto.cantidad === 0 && (
+                  <small className="text-danger d-block">
+                    Producto agotado
+                  </small>
+                )}
+              </div>
               <hr className="my-4" /> {/* Formulario de opciones */}
               <form
                 className="product-detail-form"
                 onSubmit={(e) => e.preventDefault()}>
                 <div className="row g-3">
-                  {/* Selector de tamaño */}
-                  <div className="col-md-6">
-                    <label
-                      htmlFor="size-select"
-                      className="form-label product-detail-label">
-                      Tamaño
-                    </label>
-                    <select
-                      id="size-select"
-                      className="form-select product-detail-select"
-                      value={selectedSize}
-                      onChange={(e) => setSelectedSize(e.target.value)}
-                      required>
-                      <option value="">Selecciona Tamaño</option>
-                      {sizeOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                          {option.priceMultiplier !== 1 &&
-                            ` (+${Math.round(
-                              (option.priceMultiplier - 1) * 100
-                            )}%)`}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
                   {/* Selector de cantidad */}
                   <div className="col-md-6">
                     <label
@@ -225,13 +194,22 @@ const ProductDetail = () => {
                       id="quantity-select"
                       className="form-select product-detail-select"
                       value={quantity}
-                      onChange={(e) => setQuantity(Number(e.target.value))}>
-                      {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                      onChange={(e) => setQuantity(Number(e.target.value))}
+                      disabled={!producto.cantidad || producto.cantidad === 0}>
+                      {Array.from(
+                        { length: Math.min(producto.cantidad || 0, 10) },
+                        (_, i) => i + 1
+                      ).map((n) => (
                         <option key={n} value={n}>
                           {n}
                         </option>
                       ))}
                     </select>
+                    {(!producto.cantidad || producto.cantidad === 0) && (
+                      <small className="text-danger">
+                        Producto no disponible
+                      </small>
+                    )}
                   </div>
 
                   {/* Campo de comentarios */}
@@ -258,19 +236,20 @@ const ProductDetail = () => {
 
                 {/* Botón de agregar al carrito */}
                 <div className="d-grid gap-2 mt-4">
-                  {" "}
                   <button
                     type="button"
                     className="btn product-detail-btn btn-lg"
                     onClick={handleAddToCart}
-                    disabled={!selectedSize}>
+                    disabled={
+                      isAdding || !producto.cantidad || producto.cantidad === 0
+                    }>
                     <Cart className="me-2" size={18} />
-                    Agregar al Carrito
-                  </button>{" "}
-                  {/* Información adicional */}
-                  <small className="text-muted text-center mt-2">
-                    El tamaño seleccionado puede afectar el precio final
-                  </small>
+                    {isAdding
+                      ? "Agregando..."
+                      : !producto.cantidad || producto.cantidad === 0
+                      ? "Sin Stock"
+                      : "Agregar al Carrito"}
+                  </button>
                 </div>
               </form>
               {/* Información adicional del producto */}{" "}

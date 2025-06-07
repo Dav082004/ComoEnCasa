@@ -148,7 +148,7 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio_venta`, `costo_produccion`, `disponible`, `imagen_url`, `cantidad`) VALUES
 (1, 1, 'Torta de Chocolate', 'Torta de tres pisos con relleno de chocolate', 120.00, 80.00, 1, 'https://cdn0.recetasgratis.net/es/posts/1/9/6/torta_de_chocolate_esponjosa_10691_600.jpg', 3),
-(2, 1, 'Torta de Vainilla', 'Torta esponjosa con relleno de crema chantilly', 100.00, 65.00, 1, 'https://peopleenespanol.com/thmb/195yL5HKvkX-V5hK4Xtdt7jvbaU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/pastel-de-vainilla-bc3a1sico-2000-d5538c31da3b4b6dba9940393128f2b2.jpg', 4),
+(2, 1, 'Torta de Vainilla', 'Torta esponjosa con relleno de crema chantilly', 100.00, 65.00, 1, 'https://peopleenespanol.com/thmb/195yL5HKvkX-V5hK4Xtdt7jvbaU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/pastel-de-vainilla-bc3a1sico-2000-d5538c31da3b4b6dba9940393128f2b2.jpg', 0),
 (3, 1, 'Red Velvet', 'Clásica torta roja con cubierta de queso crema', 150.00, 95.00, 1, 'https://i.ytimg.com/vi/aQOJEu77Pxs/maxresdefault.jpg', 3),
 (4, 2, 'Pack Cupcakes', 'Set de 24 cupcakes decorados', 80.00, 45.00, 1, 'https://lithdechocolat.pe/wp-content/uploads/2024/08/y8oI8EWV.jpeg', 2),
 (5, 2, 'Pack alfajorcitos', 'Perfecto para regalar a alguien especial', 20.00, 14.00, 1, 'https://res.cloudinary.com/riqra/image/upload/w_656,h_656,c_limit,q_auto,f_auto/v1742914440/sellers/tortas-gaby/products/yghr1jqwsb9yybwzo1vy.png', 3),
