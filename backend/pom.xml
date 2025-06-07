@@ -110,6 +110,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Google Guava for improved data structures and caching -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>33.0.0-jre</version>
+		</dependency>
+
 		<!-- WireMock para simular servicios externos -->
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
