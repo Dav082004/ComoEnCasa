@@ -1,0 +1,20 @@
+.verificacion-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #fffdfb;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+.verificacion-container h2 {
+  margin-bottom: 16px;
+}
+
+.verificacion-container p {
+  margin: 12px 0;
+  font-size: 1rem;
+  color: #444;
+}

@@ -13,6 +13,7 @@ import ProductDetail from "../pages/ProductDetail";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
 import RecuperarCuenta from "../pages/RecuperarCuenta";
+import VerificarCuenta from "../pages/VerificarCuenta"; // ✅ Ruta corregida
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ProductProvider } from "../context/ProductContext";
@@ -24,6 +25,9 @@ export const AppRouter = () => {
         <ProductProvider>
           <Router>
             <Routes>
+              {/* ✅ Alternativa temporal (si Layout está causando el error) */}
+              {/* <Route path="/verificar" element={<VerificarCuenta />} /> */}
+
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="login" element={<Login />} />
@@ -36,7 +40,8 @@ export const AppRouter = () => {
                 <Route path="productos/:id" element={<ProductDetail />} />
                 <Route path="checkout" element={<Checkout />} />
                 <Route path="carrito" element={<Carrito />} />
-                <Route path="/recuperar" element={<RecuperarCuenta />} />
+                <Route path="recuperar" element={<RecuperarCuenta />} />
+                <Route path="verificar" element={<VerificarCuenta />} /> {/* ✅ CORRECTO */}
               </Route>
             </Routes>
           </Router>

@@ -8,6 +8,12 @@ public interface UsuarioService {
     Optional<Usuario> buscarPorEmail(String email);
     void actualizarContrasena(Usuario usuario, String nuevaContrasena);
 
-    // NUEVO MÉTODO
+    // Recuperar cuenta por email
     void recuperarCuenta(String email);
+
+    // ✅ Nuevo método para generar token de verificación
+    String generarTokenVerificacion(String email);
+
+    // ✅ Nuevo método para activar cuenta
+    boolean activarCuenta(String token);
 }

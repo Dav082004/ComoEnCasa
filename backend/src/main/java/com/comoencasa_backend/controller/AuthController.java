@@ -4,6 +4,8 @@ import com.comoencasa_backend.dto.LoginRequest;
 import com.comoencasa_backend.dto.RegistroRequest;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
+import com.comoencasa_backend.service.EmailService;
+import com.comoencasa_backend.service.VerificationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,12 +24,19 @@ public class AuthController {
     private final UsuarioRepository usuarioRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    // Usa inyección por constructor (recomendado)
+    // ✅ NUEVO: servicios para enviar correo y manejar tokens de verificación
+    private final EmailService emailService;
+    private final VerificationTokenService verificationTokenService;
+
     @Autowired
     public AuthController(UsuarioRepository usuarioRepository,
-                          BCryptPasswordEncoder passwordEncoder) {
+                          BCryptPasswordEncoder passwordEncoder,
+                          EmailService emailService,
+                          VerificationTokenService verificationTokenService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
+        this.verificationTokenService = verificationTokenService;
     }
 
     @PostMapping("/login")
@@ -44,19 +53,21 @@ public class AuthController {
 
         Usuario usuario = usuarioOpt.get();
         System.out.println("Usuario encontrado: " + usuario.getEmail());
-        System.out.println("Nombre completo: " + usuario.getNombre() + " " + usuario.getApellido()); // Modificado
+        System.out.println("Nombre completo: " + usuario.getNombre() + " " + usuario.getApellido());
         System.out.println("Hash almacenado: " + usuario.getPassword());
         System.out.println("Activado?: " + usuario.getActivado());
+
+        if (!usuario.getActivado()) {
+            return ResponseEntity.status(403).body("La cuenta aún no ha sido verificada.");
+        }
 
         boolean coincide = passwordEncoder.matches(
                 loginRequest.getPassword(),
                 usuario.getPassword()
         );
-        System.out.println("🔑 ¿Contraseña coincide?: " + coincide);
 
         if (!coincide) {
             System.out.println("❌ Contraseña incorrecta");
-            System.out.println("Contraseña recibida: " + loginRequest.getPassword());
             return ResponseEntity.status(401).body("Credenciales inválidas");
         }
 
@@ -64,7 +75,7 @@ public class AuthController {
         return ResponseEntity.ok(Map.of(
                 "usuario", Map.of(
                         "id", usuario.getId(),
-                        "nombreCompleto", usuario.getNombre() + " " + usuario.getApellido(), // Modificado
+                        "nombreCompleto", usuario.getNombre() + " " + usuario.getApellido(),
                         "email", usuario.getEmail(),
                         "rol", usuario.getRol().name()
                 )
@@ -77,7 +88,6 @@ public class AuthController {
             System.out.println("Solicitud de registro recibida: " + registroRequest.getEmail());
 
             if (usuarioRepository.existsByEmail(registroRequest.getEmail())) {
-                System.out.println("Email ya registrado: " + registroRequest.getEmail());
                 return ResponseEntity.badRequest().body(createErrorResponse("El email ya está registrado"));
             }
 
@@ -90,20 +100,46 @@ public class AuthController {
             nuevoUsuario.setTelefono("");
             nuevoUsuario.setDireccion("");
             nuevoUsuario.setRol(Usuario.Rol.CLIENTE);
-            nuevoUsuario.setActivado(true); // Asegúrate que esté activo
+            nuevoUsuario.setActivado(false); // ❗ Inicia como NO activado
 
             usuarioRepository.save(nuevoUsuario);
-            System.out.println("Usuario registrado con ID: " + nuevoUsuario.getId());
 
-            return ResponseEntity.ok(createSuccessResponse(nuevoUsuario, "Usuario registrado con éxito"));
+            // ✅ Generamos token y lo enviamos por correo
+            String token = verificationTokenService.generarToken(nuevoUsuario.getEmail());
+            emailService.enviarTokenVerificacion(nuevoUsuario.getEmail(), token);
+
+            return ResponseEntity.ok(createSuccessResponse(
+                    nuevoUsuario,
+                    "Registro exitoso. Revisa tu correo para verificar tu cuenta."
+            ));
         } catch (Exception e) {
-            System.out.println("Error en registro: " + e.getMessage());
-            e.printStackTrace();
             return ResponseEntity.status(500).body(createErrorResponse("Error interno al registrar usuario"));
         }
     }
 
-    // Métodos auxiliares (sin cambios)
+    // ✅ NUEVO: Endpoint para activar cuenta usando el token
+    @GetMapping("/verificar")
+    public ResponseEntity<?> verificarCuenta(@RequestParam("token") String token) {
+        String email = verificationTokenService.obtenerEmailPorToken(token);
+
+        if (email == null) {
+            return ResponseEntity.badRequest().body("Token inválido o expirado");
+        }
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body("No se encontró un usuario para este token");
+        }
+
+        Usuario usuario = usuarioOpt.get();
+        usuario.setActivado(true);
+        usuarioRepository.save(usuario);
+
+        verificationTokenService.eliminarToken(token);
+        return ResponseEntity.ok("Cuenta verificada correctamente. Ya puedes iniciar sesión.");
+    }
+
+    // Métodos auxiliares
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
@@ -122,7 +158,7 @@ public class AuthController {
     private Map<String, Object> createUserData(Usuario usuario) {
         Map<String, Object> userData = new HashMap<>();
         userData.put("id", usuario.getId());
-        userData.put("nombreCompleto", usuario.getNombre() + " " + usuario.getApellido()); // Modificado
+        userData.put("nombreCompleto", usuario.getNombre() + " " + usuario.getApellido());
         userData.put("email", usuario.getEmail());
         userData.put("fechaRegistro", usuario.getFechaRegistro());
         userData.put("rol", usuario.getRol().name());

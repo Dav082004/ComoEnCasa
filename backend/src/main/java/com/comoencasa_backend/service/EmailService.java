@@ -10,4 +10,7 @@ public interface EmailService {
      * @return true si el email contiene @ y ., false en caso contrario
      */
     boolean esEmailValido(String email);
+
+    //  NUEVO MÉTODO → Usamos este para enviar enlace con token al registrar cuenta
+    void enviarTokenVerificacion(String destino, String token);
 }
