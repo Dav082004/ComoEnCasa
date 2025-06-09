@@ -1,24 +1,18 @@
 package com.comoencasa_backend.service;
 
-import com.comoencasa_backend.model.Pedido;
-import com.comoencasa_backend.repository.PedidoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.comoencasa_backend.dto.PedidoDTO;
 import java.util.List;
 
-@Service
-public class PedidoService {
 
-    private final PedidoRepository pedidoRepository;
-
-    @Autowired
-    public PedidoService(PedidoRepository pedidoRepository) {
-        this.pedidoRepository = pedidoRepository;
-    }
-
-    // Método para obtener todos los pedidos de un usuario específico
-    public List<Pedido> obtenerPedidosPorUsuario(Long usuarioId) {
-        return pedidoRepository.findByUsuarioId(usuarioId);
-    }
+public interface PedidoService {
+    /**
+     * Listar todos los pedidos (para el panel de administración)
+     */
+    List<PedidoDTO> findAll();
+    /**
+     * Obtener pedidos por ID de usuario
+     * @param usuarioId ID del usuario
+     * @return Lista de pedidos del usuario
+     */
+    List<PedidoDTO> obtenerPedidosPorUsuario(Long usuarioId);
 }

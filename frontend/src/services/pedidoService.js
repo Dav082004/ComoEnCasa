@@ -1,6 +1,15 @@
-import axios from "axios";
+import axios from 'axios';
+
+const PEDIDOS_URL = 'http://localhost:8081/api/pedidos';
+
+export const getAllPedidos = async () => {
+  const { data } = await axios.get(PEDIDOS_URL);
+  return data;
+};
 
 export const getPedidosByUserId = async (userId) => {
-  const response = await axios.get(`http://localhost:8080/api/pedidos/usuario/${userId}`);
-  return response.data;
+  const { data } = await axios.get(`${PEDIDOS_URL}/usuario/${userId}`);
+  return data;
 };
+
+export const getAllOrders = getAllPedidos;

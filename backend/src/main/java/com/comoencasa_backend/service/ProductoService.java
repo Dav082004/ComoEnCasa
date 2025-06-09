@@ -24,4 +24,9 @@ public interface ProductoService {
      * Cambiar disponibilidad del producto
      */
     Producto cambiarDisponibilidad(Long productoId, Boolean disponible);
+
+    Producto create(Producto producto);
+    Producto update(Long id, Producto data);
+    void delete(Long id);
+
 }

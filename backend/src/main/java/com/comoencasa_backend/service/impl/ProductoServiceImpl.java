@@ -1,14 +1,18 @@
 package com.comoencasa_backend.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import com.comoencasa_backend.model.Producto;
 import com.comoencasa_backend.repository.ProductoRepository;
 import com.comoencasa_backend.service.ProductoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
@@ -119,5 +123,48 @@ public class ProductoServiceImpl implements ProductoService {
         } else {
             throw new IllegalArgumentException("Producto no encontrado con ID: " + productoId);
         }
+    }
+
+     @Override
+    public Producto create(Producto producto) {
+        sanitize(producto);
+        Producto saved = productoRepository.save(producto);
+        log.info("CREAR producto: {}", saved);
+        return saved;
+    }
+
+    @Override
+    public Producto update(Long id, Producto data) {
+        Producto existing = productoRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("No existe producto " + id));
+        // sanitiza datos entrantes:
+        sanitize(data);
+        // actualiza campos:
+        existing.setNombre(data.getNombre());
+        existing.setDescripcion(data.getDescripcion());
+        existing.setPrecioVenta(data.getPrecioVenta());
+        existing.setCostoProduccion(data.getCostoProduccion());
+        existing.setImagenUrl(data.getImagenUrl());
+        existing.setCantidad(data.getCantidad());
+        existing.setDisponible(data.getCantidad() > 0);
+        Producto updated = productoRepository.save(existing);
+        log.info("EDITAR producto (ID={}): {}", id, updated);
+        return updated;
+    }
+
+    @Override
+    public void delete(Long id) {
+        if (!productoRepository.existsById(id)) {
+            throw new IllegalArgumentException("No existe producto " + id);
+        }
+        productoRepository.deleteById(id);
+        log.info("ELIMINAR producto ID={}", id);
+    }
+
+    /** Método auxiliar para limpiar y escapar cadenas */
+    private void sanitize(Producto p) {
+        p.setNombre(StringEscapeUtils.escapeHtml4(StringUtils.trimToEmpty(p.getNombre())));
+        p.setDescripcion(StringEscapeUtils.escapeHtml4(StringUtils.trimToEmpty(p.getDescripcion())));
+        p.setImagenUrl(StringEscapeUtils.escapeHtml4(StringUtils.trimToEmpty(p.getImagenUrl())));
     }
 }

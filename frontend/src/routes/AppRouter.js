@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../components/Layout";
+import AdminLayout from "../components/AdminLayout";
 import Home from "../pages/Home";
 import Pasteles from "../pages/Pasteles";
 import Postres from "../pages/Postres";
@@ -18,9 +19,11 @@ import Perfil from "../pages/Perfil";
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ProductProvider } from "../context/ProductContext";
-import RecuperarCuenta from '../pages/RecuperarCuenta';
+import RecuperarCuenta from "../pages/RecuperarCuenta";
 import Pedidos from "../pages/Pedidos";
-
+import AdminProducts from "../pages/AdminProducts";
+import AdminOrders from "../pages/AdminOrders";
+import AdminComprobantes from "../pages/AdminComprobantes";
 
 export const AppRouter = () => {
   return (
@@ -44,6 +47,11 @@ export const AppRouter = () => {
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="/pedidos" element={<Pedidos />} />
                 <Route path="/recuperar" element={<RecuperarCuenta />} />
+              </Route>
+              <Route path="admin" element={<AdminLayout />}>
+                <Route path="productos" element={<AdminProducts />} />
+                <Route path="pedidos" element={<AdminOrders />} />
+                <Route path="comprobantes" element={<AdminComprobantes />} />
               </Route>
             </Routes>
             <ToastContainer

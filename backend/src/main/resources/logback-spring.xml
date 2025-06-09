@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- Configuración base de Logback para el proyecto ComoEnCasa -->
-    
+
     <!-- Appender para consola con colores -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level)
+                %magenta(%logger{36}) - %msg%n</pattern>
         </encoder>
-    </appender>    <!-- Appender para archivo general -->
+    </appender>    <!--
+    Appender para archivo general -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/comoencasa.log</file>
         <encoder>
@@ -19,7 +21,8 @@
             <maxHistory>30</maxHistory>
             <totalSizeCap>300MB</totalSizeCap>
         </rollingPolicy>
-    </appender>    <!-- Appender específico para eventos de autenticación -->
+    </appender>    <!-- Appender
+    específico para eventos de autenticación -->
     <appender name="AUTH_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/auth.log</file>
         <encoder>
@@ -36,36 +39,52 @@
         </filter>
     </appender>
 
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/productos.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/productos.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
     <!-- Logger específico para eventos de autenticación -->
     <logger name="com.comoencasa_backend.controller.AuthController" level="INFO" additivity="false">
-        <appender-ref ref="AUTH_FILE"/>
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="AUTH_FILE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
-    <logger name="com.comoencasa_backend.service.impl.UsuarioServiceImpl" level="INFO" additivity="false">
-        <appender-ref ref="AUTH_FILE"/>
-        <appender-ref ref="CONSOLE"/>
+    <logger name="com.comoencasa_backend.service.impl.UsuarioServiceImpl" level="INFO"
+        additivity="false">
+        <appender-ref ref="AUTH_FILE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
-    <logger name="com.comoencasa_backend.controller.RecuperarCuentaController" level="INFO" additivity="false">
-        <appender-ref ref="AUTH_FILE"/>
-        <appender-ref ref="CONSOLE"/>
+    <logger name="com.comoencasa_backend.controller.RecuperarCuentaController" level="INFO"
+        additivity="false">
+        <appender-ref ref="AUTH_FILE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
     <!-- Logger para el paquete principal -->
-    <logger name="com.comoencasa_backend" level="DEBUG"/>
+    <logger name="com.comoencasa_backend" level="DEBUG" />
 
     <!-- Logger para Spring Security -->
-    <logger name="org.springframework.security" level="WARN"/>
+    <logger name="org.springframework.security" level="WARN" />
 
     <!-- Logger para SQL -->
-    <logger name="org.hibernate.SQL" level="DEBUG"/>
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
 
     <!-- Configuración del root logger -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
     </root>
 
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
 </configuration>
