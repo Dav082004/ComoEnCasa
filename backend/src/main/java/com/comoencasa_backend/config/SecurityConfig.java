@@ -28,6 +28,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/productos/**").permitAll() // Añade esta línea
                         .requestMatchers("/api/carrito/**").permitAll() // Nuevos endpoints del carrito
+                        .requestMatchers("/api/pedidos/**").permitAll()
+                        .requestMatchers("/api/admin/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

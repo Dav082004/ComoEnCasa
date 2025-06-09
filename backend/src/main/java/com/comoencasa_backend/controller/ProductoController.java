@@ -2,7 +2,9 @@ package com.comoencasa_backend.controller;
 
 import com.comoencasa_backend.model.Producto;
 import com.comoencasa_backend.service.ProductoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
+@CrossOrigin(origins = "http://localhost:3000")
+@Slf4j
 public class ProductoController {
 
     @Autowired
@@ -33,28 +37,28 @@ public class ProductoController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
     @GetMapping("/categoria/{categoriaId}")
     public ResponseEntity<List<Producto>> getProductosByCategoria(@PathVariable Long categoriaId) {
         return ResponseEntity.ok(productoService.findByCategoriaId(categoriaId));
     }
 
     // ENDPOINTS DE ADMINISTRACIÓN - Para uso futuro del panel de admin
-    
+
     /**
-     * Obtener todos los productos (incluyendo no disponibles) - Solo para administradores
+     * Obtener todos los productos (incluyendo no disponibles) - Solo para
+     * administradores
      */
     @GetMapping("/admin/all")
     public ResponseEntity<List<Producto>> getAllProductosAdmin() {
         return ResponseEntity.ok(productoService.findAll());
     }
-    
+
     /**
      * Actualizar stock de un producto - Solo para administradores
      */
     @PutMapping("/{id}/stock")
     public ResponseEntity<Producto> actualizarStock(
-            @PathVariable Long id, 
+            @PathVariable Long id,
             @RequestBody StockUpdateRequest request) {
         try {
             Producto productoActualizado = productoService.actualizarStock(id, request.getCantidad());
@@ -69,7 +73,7 @@ public class ProductoController {
      */
     @PutMapping("/{id}/disponibilidad")
     public ResponseEntity<Producto> cambiarDisponibilidad(
-            @PathVariable Long id, 
+            @PathVariable Long id,
             @RequestBody DisponibilidadUpdateRequest request) {
         try {
             Producto productoActualizado = productoService.cambiarDisponibilidad(id, request.getDisponible());
@@ -79,6 +83,40 @@ public class ProductoController {
         }
     }
 
+    /** Crear producto */
+    @PostMapping
+    public ResponseEntity<Producto> create(@RequestBody Producto producto) {
+        log.info("ADMIN accedió a POST /api/productos");
+        Producto created = productoService.create(producto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+
+    /** Actualizar producto completo */
+    @PutMapping("/{id}")
+    public ResponseEntity<Producto> update(
+            @PathVariable Long id,
+            @RequestBody Producto producto) {
+        log.info("ADMIN accedió a PUT /api/productos/{}", id);
+        try {
+            Producto updated = productoService.update(id, producto);
+            return ResponseEntity.ok(updated);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    /** Eliminar producto */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        log.info("ADMIN accedió a DELETE /api/productos/{}", id);
+        try {
+            productoService.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
     // Clases DTO para las peticiones
     public static class StockUpdateRequest {
         private Integer cantidad;
