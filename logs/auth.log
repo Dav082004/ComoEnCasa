@@ -569,3 +569,33 @@ Caused by: java.sql.SQLException: Field 'activo' doesn't have a default value
 2025-06-07 16:56:37.264 [http-nio-8081-exec-10] WARN  c.c.controller.AuthController - Registro fallido: campos adicionales vacíos para email: Jua***@gmail.com
 2025-06-09 20:29:47.997 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Intento de login para email: ola***@c.com
 2025-06-09 20:29:48.064 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 2 (ola***@c.com)
+2025-06-09 21:20:48.032 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: davidestudio123@gmail.com, nombre: David, apellido: estudio
+2025-06-09 21:20:48.146 [http-nio-8081-exec-4] WARN  c.c.controller.AuthController - Registro fallido: contraseña muy corta para email: dav***@gmail.com
+2025-06-09 21:20:55.160 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: davidestudio123@gmail.com, nombre: David, apellido: estudio
+2025-06-09 21:21:31.944 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:21:34.152 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:21:37.137 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:22:03.950 [http-nio-8081-exec-1] INFO  c.c.c.RecuperarCuentaController - Intento de recuperación de cuenta para email: dav***@gmail.com
+2025-06-09 21:22:05.414 [http-nio-8081-exec-4] INFO  c.c.c.RecuperarCuentaController - Intento de recuperación de cuenta para email: dav***@gmail.com
+2025-06-09 21:22:07.129 [http-nio-8081-exec-1] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: davidestudio123@gmail.com
+2025-06-09 21:22:07.129 [http-nio-8081-exec-1] INFO  c.c.c.RecuperarCuentaController - Recuperación de cuenta exitosa para email: dav***@gmail.com
+2025-06-09 21:22:08.563 [http-nio-8081-exec-4] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: davidestudio123@gmail.com
+2025-06-09 21:22:08.563 [http-nio-8081-exec-4] INFO  c.c.c.RecuperarCuentaController - Recuperación de cuenta exitosa para email: dav***@gmail.com
+2025-06-09 21:22:21.952 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:22:34.639 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:22:51.773 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:22:59.581 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:23:08.398 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:23:16.720 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:23:19.960 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:23:44.114 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:23:52.989 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Intento de login para email: dav***@gmail.com
+2025-06-09 21:23:53.042 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 8 (dav***@gmail.com)
+2025-06-09 21:24:53.372 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-09 21:24:56.642 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-09 21:24:59.578 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-09 21:25:20.686 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Intento de login para email: ola***@c.com
+2025-06-09 21:25:21.148 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Intento de login para email: ola***@c.com
+2025-06-09 21:25:21.311 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Intento de login para email: ola***@c.com
+2025-06-09 21:25:52.781 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-09 21:25:52.833 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 5 (adm***@c.com)

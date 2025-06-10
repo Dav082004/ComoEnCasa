@@ -23,7 +23,6 @@ import Perfil from "../pages/Perfil";
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ProductProvider } from "../context/ProductContext";
-import RecuperarCuenta from "../pages/RecuperarCuenta";
 import Pedidos from "../pages/Pedidos";
 import AdminProducts from "../pages/AdminProducts";
 import AdminOrders from "../pages/AdminOrders";
@@ -53,12 +52,10 @@ export const AppRouter = () => {
                 <Route path="carrito" element={<Carrito />} />
 
                 <Route path="recuperar" element={<RecuperarCuenta />} />
-                <Route path="verificar" element={<VerificarCuenta />} /> 
+                <Route path="verificar" element={<VerificarCuenta />} />
 
                 <Route path="perfil" element={<Perfil />} />
-                <Route path="/pedidos" element={<Pedidos />} />
-                <Route path="/recuperar" element={<RecuperarCuenta />} />
-
+                <Route path="pedidos" element={<Pedidos />} />
               </Route>
               <Route path="admin" element={<AdminLayout />}>
                 <Route path="productos" element={<AdminProducts />} />

@@ -206,6 +206,11 @@ public class AuthController {
     }
 
     // Métodos auxiliares
+    
+    private String maskEmail(String email) {
+        if (email == null) return "unknown";
+        return email.replaceAll("(.{3}).*(@.*)", "$1***$2");
+    }
 
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
         Map<String, Object> response = new HashMap<>();
