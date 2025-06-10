@@ -29,12 +29,19 @@ This project consists of developing a **web system** to improve order and custom
 ### Architecture & Design Patterns
 
 - **MVC (Model-View-Controller)** 🏗️ - Architectural pattern for separation of concerns
+  - 📖 **[Implementación de MVC](docs/PATRON-MVC.md)** - Documentación detallada de implementación
 - **TDD (Test-Driven Development)** 🧪 - Development methodology with **47 tests implemented**
-  - 📖 **[Guía Completa de TDD](docs/TDD-GUIDE-ES.md)** - Documentación detallada de implementación
+  - 📖 **[Guía Completa de TDD](docs/PATRON-TDD.md)** - Documentación detallada de implementación
   - ✅ **100% tests passing** - Cobertura de código con JaCoCo
   - 🚀 **Scripts automatizados** - Ejecución de tests con un comando
 - **DAO (Data Access Object)** 📊 - Data access pattern
+  - 📖 **[Implementación de DAO](docs/PATRON-DAO.md)** - Documentación detallada de implementación
 - **SOLID Principles** 💎 - Object-oriented design principles
+  - 📖 **[Implementación de SOLID](docs/PATRON-SOLID.md)** - Documentación detallada de implementación
+- **Builder & Factory Patterns** 🏭 - Creational design patterns
+  - 📖 **[Implementación de Builder/Factory](docs/PATRON-BUILDER-FACTORY.md)** - Documentación detallada de implementación
+- **Configuration & Security Patterns** ⚙️ - Configuration and security design patterns
+  - 📖 **[Patrones de Configuración y Seguridad](docs/PATRON-CONFIGURACION-SEGURIDAD.md)** - Documentación detallada de implementación
 
 ### Testing & Quality Assurance 🧪
 
@@ -47,11 +54,16 @@ This project consists of developing a **web system** to improve order and custom
 
 ### Support Libraries
 
-- **Google Guava** 📚 - Core libraries for Java
-- **Apache POI** 📄 - Library for Microsoft documents
+- **Google Guava** 📚 - Core libraries for Java (Cache implementation for CarritoDAO)
+  - 📖 **[Implementación de Builder/Factory](docs/PATRON-BUILDER-FACTORY.md)** - Incluye uso de Google Guava Cache
+- **Apache POI** 📄 - Library for Microsoft documents (Excel generation for reports)
+  - 📖 **[Implementación de Apache POI](docs/APACHE-POI-ES.md)** - Documentación detallada de implementación
 - **Apache Commons** 🔧 - Reusable Java components
+  - **Commons Validator** - Email validation (RFC 5322 compliant)
+  - **Commons Lang3** - String utilities and null-safe operations
+  - **Commons Text** - Advanced text processing
   - 📖 **[Implementación de Apache Commons](docs/APACHE-COMMONS-ES.md)** - Documentación detallada de implementación
-- **Logback** 📝 - Logging framework
+- **Logback** 📝 - Enterprise logging framework
   - 📖 **[Implementación de Logback](docs/LOGBACK-ES.md)** - Documentación detallada de implementación
 
 ### Security Features 🛡️
