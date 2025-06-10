@@ -4,6 +4,8 @@ import com.comoencasa_backend.dto.LoginRequest;
 import com.comoencasa_backend.dto.RegistroRequest;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
+import com.comoencasa_backend.service.EmailService;
+import com.comoencasa_backend.service.VerificationTokenService;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -26,11 +28,20 @@ public class AuthController {
     private final UsuarioRepository usuarioRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+
+    // ✅ NUEVO: servicios para enviar correo y manejar tokens de verificación
+    private final EmailService emailService;
+    private final VerificationTokenService verificationTokenService;
+
     @Autowired
     public AuthController(UsuarioRepository usuarioRepository,
-                          BCryptPasswordEncoder passwordEncoder) {
+                          BCryptPasswordEncoder passwordEncoder,
+                          EmailService emailService,
+                          VerificationTokenService verificationTokenService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
+        this.verificationTokenService = verificationTokenService;
     }
 
     @PostMapping("/login")
@@ -63,12 +74,23 @@ public class AuthController {
 
         Usuario usuario = usuarioOpt.get();
 
-        // Comparación segura de contraseñas usando BCrypt
-        boolean credencialesValidas = passwordEncoder.matches(password, usuario.getPassword());
+        System.out.println("Usuario encontrado: " + usuario.getEmail());
+        System.out.println("Nombre completo: " + usuario.getNombre() + " " + usuario.getApellido());
+        System.out.println("Hash almacenado: " + usuario.getPassword());
+        System.out.println("Activado?: " + usuario.getActivado());
 
-        if (!credencialesValidas) {
-            logger.warn("Login fallido: contraseña incorrecta para usuario ID: {}", usuario.getId());
-            return ResponseEntity.status(401).body(createErrorResponse("Credenciales inválidas"));
+        if (!usuario.getActivado()) {
+            return ResponseEntity.status(403).body("La cuenta aún no ha sido verificada.");
+        }
+
+        boolean coincide = passwordEncoder.matches(
+                loginRequest.getPassword(),
+                usuario.getPassword()
+        );
+
+        if (!coincide) {
+            System.out.println("❌ Contraseña incorrecta");
+            return ResponseEntity.status(401).body("Credenciales inválidas");
         }
 
         // Login exitoso
@@ -101,20 +123,10 @@ public class AuthController {
             String direccion = StringUtils.trimToNull(registroRequest.getDireccion());
             String numeroDocumento = StringUtils.trimToNull(registroRequest.getNumeroDocumento());
 
-            logger.info("Intento de registro para email: {}", maskEmail(email));
 
-            // Validar campos requeridos básicos (solo nombre, apellido, email y contraseña)
-            if (StringUtils.isAnyBlank(email, nombre, apellido, password)) {
-                logger.warn("Registro fallido: campos obligatorios vacíos para email: {}", maskEmail(email));
-                return ResponseEntity.badRequest()
-                    .body(createErrorResponse("Los campos nombre, apellido, email y contraseña son obligatorios"));
-            }
+            if (usuarioRepository.existsByEmail(registroRequest.getEmail())) {
+                return ResponseEntity.badRequest().body(createErrorResponse("El email ya está registrado"));
 
-            // Validar formato de email
-            if (!EmailValidator.getInstance().isValid(email)) {
-                logger.warn("Registro fallido: email inválido: {}", maskEmail(email));
-                return ResponseEntity.badRequest()
-                    .body(createErrorResponse("Formato de email inválido"));
             }
 
             // Validar longitud mínima de contraseña
@@ -153,27 +165,47 @@ public class AuthController {
             
             nuevoUsuario.setFechaRegistro(LocalDateTime.now());
             nuevoUsuario.setRol(Usuario.Rol.CLIENTE);
-            nuevoUsuario.setActivado(true);
+
+            nuevoUsuario.setActivado(false); // ❗ Inicia como NO activado
 
             usuarioRepository.save(nuevoUsuario);
-            
-            logger.info("Registro exitoso para usuario ID: {} ({})", 
-                nuevoUsuario.getId(), maskEmail(email));
-            
-            return ResponseEntity.ok(createSuccessResponse(nuevoUsuario, "Usuario registrado con éxito"));
-            
+
+            // ✅ Generamos token y lo enviamos por correo
+            String token = verificationTokenService.generarToken(nuevoUsuario.getEmail());
+            emailService.enviarTokenVerificacion(nuevoUsuario.getEmail(), token);
+
+            return ResponseEntity.ok(createSuccessResponse(
+                    nuevoUsuario,
+                    "Registro exitoso. Revisa tu correo para verificar tu cuenta."
+            ));
         } catch (Exception e) {
-            logger.error("Error interno durante el registro para email {}: {}", maskEmail(email), e.getMessage(), e);
-            return ResponseEntity.status(500)
-                .body(createErrorResponse("Error interno al registrar usuario"));
+            return ResponseEntity.status(500).body(createErrorResponse("Error interno al registrar usuario"));
         }
     }
 
-    // Métodos auxiliares
-    private String maskEmail(String email) {
-        if (email == null) return "unknown";
-        return email.replaceAll("(.{3}).*(@.*)", "$1***$2");
+    // ✅ NUEVO: Endpoint para activar cuenta usando el token
+    @GetMapping("/verificar")
+    public ResponseEntity<?> verificarCuenta(@RequestParam("token") String token) {
+        String email = verificationTokenService.obtenerEmailPorToken(token);
+
+        if (email == null) {
+            return ResponseEntity.badRequest().body("Token inválido o expirado");
+        }
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body("No se encontró un usuario para este token");
+        }
+
+        Usuario usuario = usuarioOpt.get();
+        usuario.setActivado(true);
+        usuarioRepository.save(usuario);
+
+        verificationTokenService.eliminarToken(token);
+        return ResponseEntity.ok("Cuenta verificada correctamente. Ya puedes iniciar sesión.");
     }
+
+    // Métodos auxiliares
 
     private Map<String, Object> createSuccessResponse(Usuario usuario, String message) {
         Map<String, Object> response = new HashMap<>();
@@ -193,12 +225,13 @@ public class AuthController {
     private Map<String, Object> createUserData(Usuario usuario) {
         Map<String, Object> userData = new HashMap<>();
         userData.put("id", usuario.getId());
-        userData.put("nombreCompleto", usuario.getNombre() + " " + usuario.getApellido()); // Modificado
+        userData.put("nombreCompleto", usuario.getNombre() + " " + usuario.getApellido());
         userData.put("email", usuario.getEmail());
         userData.put("fechaRegistro", usuario.getFechaRegistro());
         userData.put("rol", usuario.getRol().name());
         return userData;
     }
+
     @GetMapping("/perfil/{id}")
     public ResponseEntity<?> obtenerPerfil(@PathVariable Long id) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
@@ -284,5 +317,4 @@ public class AuthController {
 
         return ResponseEntity.ok(Map.of("message", "Perfil actualizado correctamente"));
     }
-
 }
