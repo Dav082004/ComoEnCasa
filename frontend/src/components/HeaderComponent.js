@@ -5,12 +5,14 @@ import { useCart } from "../context/CartContext";
 import { Dropdown } from "react-bootstrap";
 import { PersonCircle } from "react-bootstrap-icons";
 import "../styles/Header.css";
+import "../styles/CartBadge.css";
+import { CartFill } from "react-bootstrap-icons";
 
 export const HeaderComponent = () => {
   const { user, logout } = useAuth();
   const { cart } = useCart();
   const totalItems = Object.values(cart).reduce(
-    (sum, item) => sum + item.cantidad,
+    (sum, item) => sum + (item.quantity || item.cantidad || 0),
     0
   );
 
@@ -96,12 +98,16 @@ export const HeaderComponent = () => {
                 Iniciar Sesión
               </Link>
             )}
-            <Link to="/carrito" className="cart-icon">
-              🛒
-              {totalItems > 0 && (
-                <span className="cart-count">{totalItems}</span>
-              )}
-            </Link>
+<Link to="/carrito" className="cart-icon-wrapper">
+  <CartFill size={28} color="#6c757d" />
+  {totalItems > 0 && (
+    <span className="cart-badge">{totalItems}</span>
+  )}
+</Link>
+
+
+
+
           </div>
         </nav>
       </div>

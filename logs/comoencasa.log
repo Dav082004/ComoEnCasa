@@ -1,0 +1,546 @@
+2025-06-07 16:22:05.734 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 6756 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 16:22:05.735 [main] DEBUG c.c.ComoencasaBackendApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-07 16:22:05.735 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 16:22:06.199 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 16:22:06.262 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48 ms. Found 2 JPA repository interfaces.
+2025-06-07 16:22:06.646 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 16:22:06.654 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:22:06.655 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 16:22:06.656 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 16:22:06.692 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 16:22:06.692 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 929 ms
+2025-06-07 16:22:06.837 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 16:22:06.899 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 16:22:06.935 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 16:22:07.163 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 16:22:07.185 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 16:22:07.346 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@778c2e7c
+2025-06-07 16:22:07.347 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 16:22:07.362 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 16:22:07.362 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-07 16:22:07.373 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 16:22:07.883 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 16:22:07.966 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:22:08.175 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 16:22:08.201 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 16:22:08.243 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-07 16:22:08.254 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 210dde25-c14f-47f0-8a64-ff11327bd78b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 16:22:08.263 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 16:22:08.364 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 19 mappings in 'requestMappingHandlerMapping'
+2025-06-07 16:22:08.423 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-06-07 16:22:08.457 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-07 16:22:08.517 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-07 16:22:08.556 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-07 16:22:08.624 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:22:08.645 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 16:22:08.651 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.405 seconds (process running for 3.703)
+2025-06-07 16:22:23.614 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-07 16:22:23.618 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-07 16:22:23.620 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:22:23.621 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-07 16:22:23.625 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-07 16:22:25.759 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 21396 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 16:22:25.759 [main] DEBUG c.c.ComoencasaBackendApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-07 16:22:25.761 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 16:22:26.280 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 16:22:26.324 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 2 JPA repository interfaces.
+2025-06-07 16:22:26.739 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 16:22:26.747 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:22:26.748 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 16:22:26.748 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 16:22:26.790 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 16:22:26.790 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1002 ms
+2025-06-07 16:22:26.962 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 16:22:27.012 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 16:22:27.037 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 16:22:27.258 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 16:22:27.275 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 16:22:27.423 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a4a2090
+2025-06-07 16:22:27.425 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 16:22:27.438 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 16:22:27.439 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-07 16:22:27.452 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 16:22:27.938 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 16:22:27.991 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:22:28.233 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 16:22:28.262 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 16:22:28.309 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-07 16:22:28.326 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: ce31684c-fe4c-4e6f-ba7a-6b5d6833072c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 16:22:28.336 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 16:22:28.516 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 19 mappings in 'requestMappingHandlerMapping'
+2025-06-07 16:22:28.594 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-06-07 16:22:28.633 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-07 16:22:28.689 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-07 16:22:28.744 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-07 16:22:28.814 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:22:28.831 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 16:22:28.838 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.491 seconds (process running for 3.741)
+2025-06-07 16:22:41.157 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-07 16:22:41.158 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-07 16:22:41.158 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-06-07 16:22:41.158 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-06-07 16:22:41.158 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-06-07 16:22:41.159 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@48861d1
+2025-06-07 16:22:41.159 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3f7a7ce6
+2025-06-07 16:22:41.159 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-07 16:22:41.160 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-06-07 16:22:41.174 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/login
+2025-06-07 16:22:41.190 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2025-06-07 16:22:41.193 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:22:41.194 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2025-06-07 16:22:41.196 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-06-07 16:22:41.197 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#login(LoginRequest)
+2025-06-07 16:22:41.232 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.LoginRequest@46cd81cf]
+2025-06-07 16:22:41.291 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.activado,u1_0.apellido,u1_0.direccion,u1_0.correo,u1_0.fecha_registro,u1_0.nombre,u1_0.numero_documento,u1_0.password,u1_0.rol,u1_0.telefono,u1_0.tipo_documento from usuario u1_0 where u1_0.correo=?
+2025-06-07 16:22:41.382 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:22:41.383 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{usuario={id=3, nombreCompleto=As , email=as@gm.com, rol=CLIENTE}}]
+2025-06-07 16:22:41.393 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-06-07 16:22:52.803 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/login
+2025-06-07 16:22:52.806 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2025-06-07 16:22:52.807 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:22:52.807 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2025-06-07 16:22:52.807 [http-nio-8081-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-06-07 16:22:52.807 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#login(LoginRequest)
+2025-06-07 16:22:52.808 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.LoginRequest@26515fcc]
+2025-06-07 16:22:52.809 [http-nio-8081-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.activado,u1_0.apellido,u1_0.direccion,u1_0.correo,u1_0.fecha_registro,u1_0.nombre,u1_0.numero_documento,u1_0.password,u1_0.rol,u1_0.telefono,u1_0.tipo_documento from usuario u1_0 where u1_0.correo=?
+2025-06-07 16:22:52.862 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:22:52.862 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{usuario={id=4, nombreCompleto=Ola321 pepito, email=ola4@i.com, rol=CLIENTE}}]
+2025-06-07 16:22:52.863 [http-nio-8081-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-06-07 16:23:09.122 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:23:09.125 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:23:09.126 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:23:09.126 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:23:09.127 [http-nio-8081-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:23:09.127 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:23:09.129 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@578f61d1]
+2025-06-07 16:23:09.143 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:23:09.143 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=La contraseña debe tener al menos 6 caracteres}]
+2025-06-07 16:23:09.144 [http-nio-8081-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:23:13.086 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:23:13.089 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:23:13.090 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:23:13.090 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:23:13.091 [http-nio-8081-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:23:13.091 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:23:13.091 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@2c77c45f]
+2025-06-07 16:23:13.094 [http-nio-8081-exec-8] DEBUG org.hibernate.SQL - select u1_0.id from usuario u1_0 where u1_0.correo=? limit ?
+2025-06-07 16:23:13.160 [http-nio-8081-exec-8] DEBUG org.hibernate.SQL - insert into usuario (activado,apellido,direccion,correo,fecha_registro,nombre,numero_documento,password,rol,telefono,tipo_documento) values (?,?,?,?,?,?,?,?,?,?,?)
+2025-06-07 16:23:13.470 [http-nio-8081-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1364, SQLState: HY000
+2025-06-07 16:23:13.471 [http-nio-8081-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'activo' doesn't have a default value
+2025-06-07 16:23:13.478 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:23:13.479 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Error interno al registrar usuario}]
+2025-06-07 16:23:13.479 [http-nio-8081-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-06-07 16:23:36.977 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:23:36.981 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:23:36.982 [http-nio-8081-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:23:36.982 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:23:36.982 [http-nio-8081-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:23:36.982 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:23:36.984 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@2b6705e1]
+2025-06-07 16:23:36.985 [http-nio-8081-exec-10] DEBUG org.hibernate.SQL - select u1_0.id from usuario u1_0 where u1_0.correo=? limit ?
+2025-06-07 16:23:37.038 [http-nio-8081-exec-10] DEBUG org.hibernate.SQL - insert into usuario (activado,apellido,direccion,correo,fecha_registro,nombre,numero_documento,password,rol,telefono,tipo_documento) values (?,?,?,?,?,?,?,?,?,?,?)
+2025-06-07 16:23:37.039 [http-nio-8081-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1364, SQLState: HY000
+2025-06-07 16:23:37.039 [http-nio-8081-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'activo' doesn't have a default value
+2025-06-07 16:23:37.041 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:23:37.041 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Error interno al registrar usuario}]
+2025-06-07 16:23:37.041 [http-nio-8081-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-06-07 16:23:44.249 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:23:44.251 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:23:44.252 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:23:44.252 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:23:44.252 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:23:44.252 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:23:44.253 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@3e78ec67]
+2025-06-07 16:23:44.254 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - select u1_0.id from usuario u1_0 where u1_0.correo=? limit ?
+2025-06-07 16:23:44.307 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - insert into usuario (activado,apellido,direccion,correo,fecha_registro,nombre,numero_documento,password,rol,telefono,tipo_documento) values (?,?,?,?,?,?,?,?,?,?,?)
+2025-06-07 16:23:44.309 [http-nio-8081-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1364, SQLState: HY000
+2025-06-07 16:23:44.309 [http-nio-8081-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Field 'activo' doesn't have a default value
+2025-06-07 16:23:44.312 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:23:44.312 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Error interno al registrar usuario}]
+2025-06-07 16:23:44.313 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-06-07 16:24:25.876 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-07 16:24:25.881 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-07 16:24:25.883 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:24:25.884 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-07 16:24:25.887 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-07 16:55:11.572 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 8396 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 16:55:11.574 [main] DEBUG c.c.ComoencasaBackendApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-07 16:55:11.574 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 16:55:11.946 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 5632 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 16:55:11.948 [main] DEBUG c.c.ComoencasaBackendApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-07 16:55:11.948 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 16:55:12.216 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 16:55:12.283 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58 ms. Found 2 JPA repository interfaces.
+2025-06-07 16:55:12.579 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 16:55:12.638 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+2025-06-07 16:55:12.826 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 16:55:12.838 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:55:12.841 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 16:55:12.841 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 16:55:12.897 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 16:55:12.897 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1282 ms
+2025-06-07 16:55:13.066 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 16:55:13.121 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 16:55:13.159 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 16:55:13.199 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 16:55:13.210 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:55:13.211 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 16:55:13.213 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 16:55:13.260 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 16:55:13.260 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1270 ms
+2025-06-07 16:55:13.412 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 16:55:13.428 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 16:55:13.458 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 16:55:13.466 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 16:55:13.499 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 16:55:13.625 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3ec082a1
+2025-06-07 16:55:13.627 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 16:55:13.646 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 16:55:13.648 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-07 16:55:13.662 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 16:55:13.770 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 16:55:13.798 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 16:55:13.938 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e31d53b
+2025-06-07 16:55:13.939 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 16:55:13.953 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 16:55:13.954 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-07 16:55:13.964 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 16:55:14.275 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 16:55:14.338 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:55:14.478 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 16:55:14.535 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:55:14.569 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 16:55:14.596 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 16:55:14.654 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-07 16:55:14.673 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 03ba5a8d-2a2c-49db-a7f9-1bdd55cbce75
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 16:55:14.679 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 16:55:14.781 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 16:55:14.807 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 19 mappings in 'requestMappingHandlerMapping'
+2025-06-07 16:55:14.817 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 16:55:14.879 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-07 16:55:14.885 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-06-07 16:55:14.896 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f542ea4c-2d0f-4a9e-9c1b-99d422b77d18
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 16:55:14.904 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 16:55:14.928 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-07 16:55:15.016 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-07 16:55:15.068 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 19 mappings in 'requestMappingHandlerMapping'
+2025-06-07 16:55:15.070 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-07 16:55:15.161 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-06-07 16:55:15.206 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 16:55:15.214 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-07 16:55:15.216 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 4.235 seconds (process running for 4.872)
+2025-06-07 16:55:15.221 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-07 16:55:15.231 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-07 16:55:15.235 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:55:15.238 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-07 16:55:15.249 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-07 16:55:15.299 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-07 16:55:15.335 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-07 16:55:15.441 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 16:55:15.448 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.99 seconds (process running for 4.298)
+2025-06-07 16:55:15.450 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-07 16:55:15.456 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-07 16:55:15.458 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:55:15.460 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-07 16:55:15.466 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-07 16:55:17.830 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 22464 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 16:55:17.831 [main] DEBUG c.c.ComoencasaBackendApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-07 16:55:17.832 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 16:55:18.278 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 16:55:18.321 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 2 JPA repository interfaces.
+2025-06-07 16:55:18.738 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 16:55:18.747 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:55:18.748 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 16:55:18.748 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 16:55:18.788 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 16:55:18.789 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 926 ms
+2025-06-07 16:55:18.926 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 16:55:18.979 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 16:55:19.015 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 16:55:19.250 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 16:55:19.277 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 16:55:19.434 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d798e76
+2025-06-07 16:55:19.436 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 16:55:19.449 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 16:55:19.450 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-07 16:55:19.461 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 16:55:19.977 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 16:55:20.030 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 16:55:20.251 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 16:55:20.280 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 16:55:20.326 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-07 16:55:20.336 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: e536fb63-bac4-4afd-9b17-847b8bf7dfc0
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 16:55:20.342 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 16:55:20.458 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 19 mappings in 'requestMappingHandlerMapping'
+2025-06-07 16:55:20.522 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-06-07 16:55:20.571 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-07 16:55:20.632 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-07 16:55:20.674 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-07 16:55:20.775 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-06-07 16:55:20.802 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 16:55:20.810 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.376 seconds (process running for 3.656)
+2025-06-07 16:55:44.907 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-07 16:55:44.907 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-07 16:55:44.907 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-06-07 16:55:44.908 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-06-07 16:55:44.908 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-06-07 16:55:44.908 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@50331591
+2025-06-07 16:55:44.909 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@52df6d0f
+2025-06-07 16:55:44.909 [http-nio-8081-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-07 16:55:44.909 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-06-07 16:55:44.921 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/login
+2025-06-07 16:55:44.940 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2025-06-07 16:55:44.943 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:55:44.944 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2025-06-07 16:55:44.945 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-06-07 16:55:44.946 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#login(LoginRequest)
+2025-06-07 16:55:45.002 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.LoginRequest@4b20fc81]
+2025-06-07 16:55:45.088 [http-nio-8081-exec-2] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.activo,u1_0.apellido,u1_0.direccion,u1_0.correo,u1_0.fecha_registro,u1_0.nombre,u1_0.nombre_completo,u1_0.numero_documento,u1_0.password,u1_0.rol,u1_0.telefono,u1_0.tipo_documento from usuario u1_0 where u1_0.correo=?
+2025-06-07 16:55:45.183 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:55:45.183 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{usuario={id=2, nombreCompleto=Ola2 , email=ola@c.com, rol=CLIENTE}}]
+2025-06-07 16:55:45.191 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-06-07 16:56:09.902 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:09.906 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:09.907 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:09.907 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:09.908 [http-nio-8081-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:09.908 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:09.912 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@409fb250]
+2025-06-07 16:56:09.915 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:09.916 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:09.916 [http-nio-8081-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:30.821 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:30.823 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:30.824 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:30.824 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:30.824 [http-nio-8081-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:30.824 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:30.825 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@26515fcc]
+2025-06-07 16:56:30.825 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:30.826 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:30.826 [http-nio-8081-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:36.054 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:36.058 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:36.058 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:36.058 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:36.059 [http-nio-8081-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:36.059 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:36.060 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@59489488]
+2025-06-07 16:56:36.060 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:36.060 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:36.061 [http-nio-8081-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:36.534 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:36.538 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:36.539 [http-nio-8081-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:36.539 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:36.539 [http-nio-8081-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:36.539 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:36.540 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@2c77c45f]
+2025-06-07 16:56:36.540 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:36.540 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:36.541 [http-nio-8081-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:36.692 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:36.694 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:36.694 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:36.696 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:36.696 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:36.696 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:36.697 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@6497b2c]
+2025-06-07 16:56:36.698 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:36.698 [http-nio-8081-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:36.699 [http-nio-8081-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:36.836 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:36.837 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:36.838 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:36.838 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:36.838 [http-nio-8081-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:36.838 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:36.838 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@340c7514]
+2025-06-07 16:56:36.839 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:36.839 [http-nio-8081-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:36.839 [http-nio-8081-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:36.983 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:36.984 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:36.985 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:36.985 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:36.985 [http-nio-8081-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:36.985 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:36.985 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@2896a576]
+2025-06-07 16:56:36.986 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:36.986 [http-nio-8081-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:36.986 [http-nio-8081-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:37.126 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:37.129 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:37.130 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:37.130 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:37.130 [http-nio-8081-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:37.131 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:37.131 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@578f61d1]
+2025-06-07 16:56:37.133 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:37.133 [http-nio-8081-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:37.133 [http-nio-8081-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 16:56:37.259 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/auth/registro
+2025-06-07 16:56:37.261 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/registro
+2025-06-07 16:56:37.262 [http-nio-8081-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-07 16:56:37.262 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/registro
+2025-06-07 16:56:37.262 [http-nio-8081-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/registro", parameters={}
+2025-06-07 16:56:37.262 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.comoencasa_backend.controller.AuthController#registrar(RegistroRequest)
+2025-06-07 16:56:37.263 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.comoencasa_backend.dto.RegistroRequest@22b02fa1]
+2025-06-07 16:56:37.264 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-06-07 16:56:37.264 [http-nio-8081-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{success=false, error=Los campos teléfono, dirección y número de documento son obligatorios}]
+2025-06-07 16:56:37.265 [http-nio-8081-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 400 BAD_REQUEST
+2025-06-07 17:23:56.251 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 1148 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 17:23:56.253 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 17:23:56.763 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 17:23:56.811 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2025-06-07 17:23:57.230 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 17:23:57.240 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 17:23:57.240 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 17:23:57.240 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 17:23:57.280 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 17:23:57.280 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1001 ms
+2025-06-07 17:23:57.432 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 17:23:57.505 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 17:23:57.536 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 17:23:57.780 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 17:23:57.804 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 17:23:57.966 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@213835b6
+2025-06-07 17:23:57.967 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 17:23:57.990 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-06-07 17:23:57.994 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 17:23:58.006 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 17:23:58.502 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 17:23:58.562 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 17:23:58.783 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 17:23:58.808 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 17:23:58.861 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: d0d3fb31-5687-4b33-a205-9892e0b024db
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 17:23:58.870 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 17:23:59.327 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-06-07 17:23:59.343 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 17:23:59.348 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.549 seconds (process running for 3.817)
+2025-06-07 17:30:08.567 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-07 17:30:08.571 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-07 17:30:08.576 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 17:30:08.576 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-07 17:30:08.582 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-07 17:55:54.076 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 7604 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+2025-06-07 17:55:54.077 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-07 17:55:54.566 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-07 17:55:54.617 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+2025-06-07 17:55:55.034 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-06-07 17:55:55.041 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-06-07 17:55:55.042 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-07 17:55:55.042 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-07 17:55:55.077 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-07 17:55:55.077 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 969 ms
+2025-06-07 17:55:55.230 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-07 17:55:55.281 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-07 17:55:55.312 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-07 17:55:55.531 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-07 17:55:55.557 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-07 17:55:55.696 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38a38ed4
+2025-06-07 17:55:55.697 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-07 17:55:55.723 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-06-07 17:55:55.726 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-07 17:55:55.737 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-07 17:55:56.257 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-07 17:55:56.329 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 17:55:56.586 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+2025-06-07 17:55:56.616 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+2025-06-07 17:55:56.702 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f2f9b3f3-d37f-49cc-965e-ea5f7a63c4dc
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-07 17:55:56.711 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-07 17:55:57.118 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-06-07 17:55:57.134 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-06-07 17:55:57.141 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.486 seconds (process running for 3.725)
+2025-06-07 17:56:03.746 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-07 17:56:03.746 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-07 17:56:03.746 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-06-07 17:56:19.510 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-07 17:56:19.513 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-07 17:56:19.516 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-07 17:56:19.517 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-07 17:56:19.522 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

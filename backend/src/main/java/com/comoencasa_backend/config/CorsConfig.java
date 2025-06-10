@@ -18,6 +18,10 @@ public class CorsConfig {
                         .allowedHeaders("*") // Permite todos los encabezados
                         .allowCredentials(true); // Necesario si usas cookies o auth con tokens
             }
+            
         };
+
     }
+
 }
+

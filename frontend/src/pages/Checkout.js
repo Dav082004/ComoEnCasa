@@ -1,31 +1,73 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Card,
-  ListGroup,
-} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "../styles/Checkout.css";
 
-const Checkout = () => {
-  const { cart } = useCart();
+const CheckoutSimple = () => {
+  const { cart, getTotalPrice } = useCart();
+  const navigate = useNavigate();
+
   const [datos, setDatos] = useState({
-    departamento: "",
     distrito: "",
     direccion: "",
     referencia: "",
-    numero: "",
     tarjeta: "",
     titular: "",
     vencimiento: "",
     cvv: "",
-    guardar: false,
-    giftcard: "",
+    documento: "",
+    tipoComprobante: "boleta", // boleta o factura
+    metodoPago: "tarjeta", // tarjeta, yape, plin
   });
+
+  const [procesando, setProcesando] = useState(false);
+
+  // Lista completa de distritos de Lima Metropolitana
+  const distritos = [
+    "Ancón",
+    "Ate",
+    "Barranco",
+    "Breña",
+    "Carabayllo",
+    "Chaclacayo",
+    "Chorrillos",
+    "Cieneguilla",
+    "Comas",
+    "El Agustino",
+    "Independencia",
+    "Jesús María",
+    "La Molina",
+    "La Victoria",
+    "Lima",
+    "Lince",
+    "Los Olivos",
+    "Lurigancho",
+    "Lurín",
+    "Magdalena del Mar",
+    "Miraflores",
+    "Pachacámac",
+    "Pucusana",
+    "Pueblo Libre",
+    "Puente Piedra",
+    "Punta Hermosa",
+    "Punta Negra",
+    "Rímac",
+    "San Bartolo",
+    "San Borja",
+    "San Isidro",
+    "San Juan de Lurigancho",
+    "San Juan de Miraflores",
+    "San Luis",
+    "San Martín de Porres",
+    "San Miguel",
+    "Santa Anita",
+    "Santa María del Mar",
+    "Santa Rosa",
+    "Santiago de Surco",
+    "Surquillo",
+    "Villa El Salvador",
+    "Villa María del Triunfo",
+  ];
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -37,190 +79,297 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Orden finalizada correctamente.");
+    setProcesando(true);
+
+    // Simulación de procesamiento
+    setTimeout(() => {
+      alert("¡Pedido procesado exitosamente!");
+      setProcesando(false);
+      navigate("/");
+    }, 2000);
+  };
+
+  const handleComprobanteChange = (tipo) => {
+    setDatos((prev) => ({
+      ...prev,
+      tipoComprobante: tipo,
+      documento: "", // Limpiar documento al cambiar tipo
+    }));
+  };
+
+  const handleMetodoPagoChange = (metodo) => {
+    setDatos((prev) => ({
+      ...prev,
+      metodoPago: metodo,
+    }));
   };
 
   const productos = Object.values(cart);
-  const subtotal = productos.reduce((acc, p) => acc + p.precio * p.quantity, 0);
-  const igv = subtotal * 0.18;
-  const total = subtotal + igv;
+  const subtotal = getTotalPrice() || 0;
+  const costoEnvio = datos.distrito && datos.direccion ? 10.0 : 0;
+  const igv = (subtotal + costoEnvio) * 0.18;
+  const total = subtotal + costoEnvio + igv;
 
   return (
-    <Container className="my-5 checkout-container">
-      <Row>
-        <Col lg={8} className="mb-4">
-          <Card className="p-4">
-            <h2 className="text-pink mb-4">Detalles de Envío</h2>
-            <Form onSubmit={handleSubmit}>
-              <Row className="mb-3">
-                <Col md={6}>
-                  <Form.Group controlId="departamento">
-                    <Form.Select
-                      name="departamento"
-                      value={datos.departamento}
-                      onChange={handleChange}
-                      required>
-                      <option value="">Seleccionar Departamento</option>
-                      <option value="Lima">Lima</option>
-                      <option value="Arequipa">Arequipa</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group controlId="distrito">
-                    <Form.Select
-                      name="distrito"
-                      value={datos.distrito}
-                      onChange={handleChange}
-                      required>
-                      <option value="">Seleccionar Distrito</option>
-                      <option value="Miraflores">Miraflores</option>
-                      <option value="Surco">Surco</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-              </Row>
+    <div className="checkout-container">
+      <div className="checkout-form">
+        <h1>🛒 Finalizar Compra</h1>
 
-              <Row className="mb-3">
-                <Col md={8}>
-                  <Form.Group controlId="direccion">
-                    <Form.Control
-                      type="text"
-                      name="direccion"
-                      placeholder="Ingrese su Dirección"
-                      value={datos.direccion}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={4}>
-                  <Form.Group controlId="numero">
-                    <Form.Control
-                      type="text"
-                      name="numero"
-                      placeholder="Número/Dpto/Bloque"
-                      value={datos.numero}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
+        <h2>Detalles de Envío - Lima Metropolitana</h2>
+        <p className="info-envio-text">
+          📍 Realizamos entregas únicamente en Lima Metropolitana
+        </p>
 
-              <Form.Group className="mb-4" controlId="referencia">
-                <Form.Control
-                  type="text"
-                  name="referencia"
-                  placeholder="Referencia (Opcional)"
-                  value={datos.referencia}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <select
+              name="distrito"
+              value={datos.distrito}
+              onChange={handleChange}
+              required
+              className="select-full-width">
+              <option value="">Seleccionar Distrito de Lima</option>
+              {distritos.map((distrito) => (
+                <option key={distrito} value={distrito}>
+                  {distrito}
+                </option>
+              ))}
+            </select>
+          </div>
 
-              <h2 className="text-pink mb-4">Métodos de Pago</h2>
+          <div className="form-row">
+            <input
+              type="text"
+              name="direccion"
+              placeholder="Ingrese su Dirección"
+              value={datos.direccion}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-              <Form.Group className="mb-3" controlId="tarjeta">
-                <Form.Control
+          <h3>Comprobante de Pago</h3>
+          <div className="form-row">
+            <div
+              className={`comprobante-option ${
+                datos.tipoComprobante === "boleta" ? "active" : ""
+              }`}
+              onClick={() => handleComprobanteChange("boleta")}>
+              <h5>Boleta de Venta</h5>
+              <p>Para consumo personal</p>
+              <small>Requiere DNI</small>
+            </div>
+            <div
+              className={`comprobante-option ${
+                datos.tipoComprobante === "factura" ? "active" : ""
+              }`}
+              onClick={() => handleComprobanteChange("factura")}>
+              <h5>Factura</h5>
+              <p>Para empresas</p>
+              <small>Requiere RUC</small>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <input
+              type="text"
+              name="documento"
+              placeholder={
+                datos.tipoComprobante === "boleta"
+                  ? "Ingrese su DNI (8 dígitos)"
+                  : "Ingrese su RUC (11 dígitos)"
+              }
+              value={datos.documento}
+              onChange={handleChange}
+              maxLength={datos.tipoComprobante === "boleta" ? 8 : 11}
+              required
+            />
+          </div>
+
+          <h3>Métodos de Pago</h3>
+          <div className="form-row">
+            <div
+              className={`comprobante-option ${
+                datos.metodoPago === "tarjeta" ? "active" : ""
+              }`}
+              onClick={() => handleMetodoPagoChange("tarjeta")}>
+              <h5>💳 Tarjeta</h5>
+              <p>Visa, MasterCard, etc.</p>
+              <small>Pago seguro</small>
+            </div>
+            <div
+              className={`comprobante-option ${
+                datos.metodoPago === "yape" ? "active" : ""
+              }`}
+              onClick={() => handleMetodoPagoChange("yape")}>
+              <h5>📱 Yape</h5>
+              <p>Pago móvil rápido</p>
+              <small>Instantáneo</small>
+            </div>
+            <div
+              className={`comprobante-option ${
+                datos.metodoPago === "plin" ? "active" : ""
+              }`}
+              onClick={() => handleMetodoPagoChange("plin")}>
+              <h5>💰 Plin</h5>
+              <p>Transferencia móvil</p>
+              <small>Sin comisiones</small>
+            </div>
+          </div>
+
+          {/* Campos de tarjeta solo si se selecciona tarjeta */}
+          {datos.metodoPago === "tarjeta" && (
+            <>
+              <div className="form-row">
+                <input
                   type="text"
                   name="tarjeta"
                   placeholder="Número de tarjeta"
                   value={datos.tarjeta}
                   onChange={handleChange}
+                  maxLength="19"
                   required
                 />
-              </Form.Group>
+              </div>
 
-              <Row className="mb-3">
-                <Col md={6}>
-                  <Form.Group controlId="titular">
-                    <Form.Control
-                      type="text"
-                      name="titular"
-                      placeholder="Titular de la tarjeta"
-                      value={datos.titular}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={3}>
-                  <Form.Group controlId="vencimiento">
-                    <Form.Control
-                      type="text"
-                      name="vencimiento"
-                      placeholder="MM/YY"
-                      value={datos.vencimiento}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={3}>
-                  <Form.Group controlId="cvv">
-                    <Form.Control
-                      type="text"
-                      name="cvv"
-                      placeholder="CVV"
-                      value={datos.cvv}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Form.Group className="mb-4" controlId="guardar">
-                <Form.Check
-                  type="checkbox"
-                  name="guardar"
-                  label="Guardar mi información para una compra más rápida"
-                  checked={datos.guardar}
+              <div className="form-row">
+                <input
+                  type="text"
+                  name="titular"
+                  placeholder="Titular de la tarjeta"
+                  value={datos.titular}
                   onChange={handleChange}
+                  required
                 />
-              </Form.Group>
+                <input
+                  type="text"
+                  name="vencimiento"
+                  placeholder="MM/YY"
+                  value={datos.vencimiento}
+                  onChange={handleChange}
+                  maxLength="5"
+                  required
+                />
+                <input
+                  type="text"
+                  name="cvv"
+                  placeholder="CVV"
+                  value={datos.cvv}
+                  onChange={handleChange}
+                  maxLength="4"
+                  required
+                />
+              </div>
+            </>
+          )}
 
-              <Button variant="primary" type="submit" className="w-100 py-2">
-                Finalizar Orden
-              </Button>
-            </Form>
-          </Card>
-        </Col>
+          {/* Información para Yape */}
+          {datos.metodoPago === "yape" && (
+            <div className="metodo-pago-info">
+              <div className="payment-info-card">
+                <h4>📱 Pagar con Yape</h4>
+                <p>1. Escanea el código QR con tu app Yape</p>
+                <p>
+                  2. Confirma el monto: <strong>S/. {total.toFixed(2)}</strong>
+                </p>
+                <p>3. Completa el pago en tu celular</p>
+                <div className="qr-placeholder">
+                  <div className="qr-code">📱 QR Code</div>
+                </div>
+              </div>
+            </div>
+          )}
 
-        <Col lg={4}>
-          <Card className="p-4 checkout-summary">
-            <h3 className="text-pink mb-4">Resumen del Pedido</h3>
-            <ListGroup variant="flush">
-              {productos.map((prod) => (
-                <ListGroup.Item
-                  key={prod.id}
-                  className="d-flex justify-content-between">
-                  <span>
-                    {prod.nombre} x {prod.quantity}
-                  </span>
-                  <span>S/. {(prod.precio * prod.quantity).toFixed(2)}</span>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
+          {/* Información para Plin */}
+          {datos.metodoPago === "plin" && (
+            <div className="metodo-pago-info">
+              <div className="payment-info-card">
+                <h4>💰 Pagar con Plin</h4>
+                <p>1. Abre tu app Plin</p>
+                <p>
+                  2. Envía <strong>S/. {total.toFixed(2)}</strong> al número:
+                </p>
+                <div className="numero-plin">
+                  <strong>987 654 321</strong>
+                </div>
+                <p>3. Usa como concepto: "Pedido ComoEnCasa"</p>
+              </div>
+            </div>
+          )}
 
-            <ListGroup variant="flush" className="mt-3">
-              <ListGroup.Item className="d-flex justify-content-between">
-                <span>Subtotal:</span>
-                <span>S/. {subtotal.toFixed(2)}</span>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between">
-                <span>IGV (18%):</span>
-                <span>S/. {igv.toFixed(2)}</span>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between fw-bold fs-5">
-                <span>Total:</span>
-                <span>S/. {total.toFixed(2)}</span>
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+          <button
+            type="submit"
+            className={`finalizar-btn ${procesando ? "procesando" : ""}`}
+            disabled={procesando}>
+            {procesando ? "⏳ Procesando..." : "🛒 Finalizar Orden"}
+          </button>
+        </form>
+      </div>
+
+      <div className="checkout-summary">
+        <h3>Resumen del Pedido</h3>
+        <div>
+          {productos.length > 0 ? (
+            productos.map((prod) => (
+              <div key={prod.id} className="resumen-producto-item">
+                <div className="resumen-producto-header">
+                  <div>
+                    <div className="resumen-producto-name">{prod.nombre}</div>
+                    <small className="resumen-producto-quantity">
+                      {prod.quantity} x S/.{" "}
+                      {(prod.precioVenta || prod.precio).toFixed(2)}
+                    </small>
+                  </div>
+                  <div className="resumen-producto-total">
+                    S/.{" "}
+                    {(
+                      (prod.precioVenta || prod.precio || 0) * prod.quantity
+                    ).toFixed(2)}
+                  </div>
+                </div>
+                {/* Notas del producto */}
+                {(prod.comentarios || prod.nota) && (
+                  <div className="producto-nota">
+                    <strong>Nota:</strong> {prod.comentarios || prod.nota}
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="carrito-vacio-message">
+              No hay productos en el carrito
+            </div>
+          )}
+        </div>
+
+        <div className="resumen-totales">
+          <div className="resumen-subtotal">
+            <span>Subtotal:</span>
+            <span>S/. {subtotal.toFixed(2)}</span>
+          </div>
+
+          <div className="envio-line">
+            <span>Envío:</span>
+            <span className={costoEnvio === 0 ? "envio-gratis" : ""}>
+              {costoEnvio === 0
+                ? "Seleccione dirección"
+                : `S/. ${costoEnvio.toFixed(2)}`}
+            </span>
+          </div>
+
+          <div className="resumen-igv">
+            <span>IGV (18%):</span>
+            <span>S/. {igv.toFixed(2)}</span>
+          </div>
+
+          <div className="resumen-total-final">
+            <span>Total:</span>
+            <span>S/. {total.toFixed(2)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Checkout;
+export default CheckoutSimple;

@@ -3,10 +3,6 @@ package com.comoencasa_backend.service;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.impl.UsuarioServiceImpl;
-import com.comoencasa_backend.service.EmailService;
-import com.comoencasa_backend.testutil.TestDataFactory;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
@@ -227,14 +223,13 @@ class UsuarioServiceTDDTest {
             // Given
             String emailInvalido = "email-invalido";
 
-            // When & Then - El servicio actual no valida formato, solo busca en BD
-            when(usuarioRepository.findByEmail(emailInvalido)).thenReturn(Optional.empty());
-            
+            // When & Then - Apache Commons valida formato antes de buscar en BD
             assertThatThrownBy(() -> usuarioService.recuperarCuenta(emailInvalido))
-                    .isInstanceOf(RuntimeException.class)
-                    .hasMessage("No se encontró un usuario con ese correo.");
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("Formato de correo electrónico inválido.");
 
-            verify(usuarioRepository).findByEmail(emailInvalido);
+            // No debería llamar al repositorio si el formato es inválido
+            verify(usuarioRepository, never()).findByEmail(emailInvalido);
         }
     }
 

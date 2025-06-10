@@ -1039,44 +1039,6 @@ mvn dependency:tree > dependencies.txt
 mvn test -X > test-logs.txt
 ```
 
-### 📋 **Checklist de Verificación**
-
-- [ ] ✅ Java 21+ instalado
-- [ ] ✅ Maven 3.9+ configurado
-- [ ] ✅ Tests pasan: `mvn test`
-- [ ] ✅ Cobertura genera: `mvn jacoco:report`
-- [ ] ✅ Reportes abren en navegador
-- [ ] ✅ No hay errores de compilación
-
-### 🔄 **Ciclo de Contribución**
-
-1. **Fork** del repositorio
-2. **Crear rama** para nueva feature
-3. **Escribir tests** (Red)
-4. **Implementar código** (Green)
-5. **Refactorizar** (Refactor)
-6. **Pull Request** con tests incluidos
-
----
-
-## 📈 **Métricas de Éxito del Proyecto**
-
-```
-🎯 OBJETIVOS ALCANZADOS
-┌─────────────────────────────────────────────────────────┐
-│ ✅ 47 tests implementados y pasando (100% success)     │
-│ ✅ Cobertura JaCoCo configurada y funcional            │
-│ ✅ Scripts optimizados (eliminados no funcionales)     │
-│ ✅ Documentación actualizada y simplificada            │
-│ ✅ Compatibilidad Java 21/24 verificada                │
-│ ✅ Base de datos H2 para tests configurada             │
-│ ✅ Integración Maven completamente funcional           │
-│ 🗑️ Scripts PITest/Clover eliminados (no configurados)  │
-└─────────────────────────────────────────────────────────┘
-```
-
-**¡El proyecto ComoEnCasa es un ejemplo completo y funcional de TDD en Spring Boot!** 🚀
-
 ---
 
 _Última actualización: 6 de junio de 2025_  

@@ -43,7 +43,7 @@ const Productos = () => {
     if (filters.category) params.set("category", filters.category);
     if (filters.priceSort) params.set("sort", filters.priceSort);
     navigate(`?${params.toString()}`, { replace: true });
-  }, [filters.category, filters.priceSort, navigate]);
+  }, [filters, navigate]);
 
   // Aplicar filtros cuando cambian
   useEffect(() => {
