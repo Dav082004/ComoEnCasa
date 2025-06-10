@@ -1,63 +1,465 @@
-/* Estilos personalizados para complementar Bootstrap */
 .checkout-container {
-  background-color: #fff9fb;
-  min-height: 500px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background-color: #fff5f8;
+  font-family: "Comfortaa", cursive;
 }
 
-.text-pink {
-  color: #d63384;
+.checkout-form {
+  flex: 2;
+  min-width: 300px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .checkout-summary {
-  background-color: #f8f9fa;
-  border-radius: 10px;
+  flex: 1;
+  background: #f4f4f4;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  min-width: 280px;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
 }
 
-.form-control,
-.form-select {
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+input,
+select {
+  flex: 1;
+  padding: 0.8rem;
   border-radius: 8px;
-  padding: 10px 15px;
-  border: 1px solid #ced4da;
+  border: 1px solid #ddd;
+  font-family: "Comfortaa", cursive;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
 }
 
-.form-control:focus,
-.form-select:focus {
-  border-color: #d63384;
-  box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.25);
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #c94f7c;
+  box-shadow: 0 0 5px rgba(201, 79, 124, 0.3);
 }
 
-.btn-primary {
-  background-color: #d63384;
-  border-color: #d63384;
+h1 {
+  color: #c94f7c;
+  font-family: "Comfortaa", cursive;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+h2,
+h3 {
+  color: #c94f7c;
+  font-family: "Comfortaa", cursive;
+  margin-bottom: 1rem;
+}
+
+.finalizar-btn,
+.apply-btn {
+  padding: 1rem 2rem;
+  background-color: #c94f7c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Comfortaa", cursive;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.finalizar-btn:hover,
+.apply-btn:hover {
+  background-color: #a8426a;
+  transform: translateY(-2px);
+}
+
+.total {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  color: #c94f7c;
+}
+
+/* Estilos para las opciones de comprobante */
+.comprobante-option {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+}
+
+.comprobante-option:hover {
+  border-color: #c94f7c;
+  background-color: #fff5f8;
+}
+
+.comprobante-option.active {
+  border-color: #c94f7c !important;
+  background-color: #fff5f8 !important;
+}
+
+.comprobante-option h5 {
+  color: #c94f7c;
+  margin: 0.5rem 0;
+  font-family: "Comfortaa", cursive;
+}
+
+.comprobante-option p {
+  color: #666;
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.comprobante-option small {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Sección de resumen del pedido */
+.checkout-summary h3 {
+  color: #c94f7c;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilos para información de métodos de pago */
+.metodo-pago-info {
+  margin-top: 1rem;
+}
+
+.payment-info-card {
+  background: #fff;
+  border: 2px solid #c94f7c;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.payment-info-card h4 {
+  color: #c94f7c;
+  margin-bottom: 1rem;
+  font-family: "Comfortaa", cursive;
+}
+
+.payment-info-card p {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.qr-placeholder {
+  background: #f8f9fa;
+  border: 2px dashed #c94f7c;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.qr-code {
+  font-size: 2rem;
+  color: #c94f7c;
+}
+
+.numero-plin {
+  background: #fff5f8;
+  border: 2px solid #c94f7c;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  color: #c94f7c;
+}
+
+/* Estilos para gestión de dirección guardada */
+.direccion-guardada {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #e8f5e8;
+  border-radius: 8px;
+  border: 1px solid #4caf50;
+}
+
+.direccion-guardada-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.direccion-texto {
+  color: #2e7d32;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.direccion-botones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-editar,
+.btn-eliminar {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.btn-editar {
+  background-color: #2196f3;
+  color: white;
+}
+
+.btn-editar:hover {
+  background-color: #1976d2;
+}
+
+.btn-eliminar {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-eliminar:hover {
+  background-color: #d32f2f;
+}
+
+/* Estilos para el botón de guardar dirección */
+.guardar-direccion {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.btn-guardar-direccion {
+  background: linear-gradient(45deg, #c94f7c, #e91e63);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(201, 79, 124, 0.2);
+}
+
+.btn-guardar-direccion:hover {
+  background: linear-gradient(45deg, #b8316c, #d81b60);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(201, 79, 124, 0.3);
+}
+
+.btn-guardar-direccion:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(201, 79, 124, 0.2);
+}
+
+/* Estilos para la línea de envío */
+.envio-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.envio-gratis {
+  color: #888;
+  font-style: italic;
+}
+
+/* Estilos para las notas de productos */
+.producto-nota {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.producto-nota.sin-nota {
+  color: #bbb;
+}
+
+/* Estilos para el checkbox de guardar dirección */
+.guardar-direccion-checkbox {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e3e6ea;
+  border-radius: 8px;
+}
+
+.checkbox-guardar-direccion {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #495057;
+  user-select: none;
+}
+
+.checkbox-guardar-direccion input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-guardar-direccion .checkmark {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #c94f7c;
+  border-radius: 4px;
+  margin-right: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.checkbox-guardar-direccion:hover input ~ .checkmark {
+  background-color: #fff5f8;
+  border-color: #e91e63;
+}
+
+.checkbox-guardar-direccion input:checked ~ .checkmark {
+  background-color: #c94f7c;
+  border-color: #c94f7c;
+}
+
+.checkbox-guardar-direccion .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-guardar-direccion input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-guardar-direccion:hover {
+  color: #c94f7c;
+}
+
+/* Estilos para el texto de información de envío */
+.info-envio-text {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+/* Estilos para selects de ancho completo */
+.select-full-width {
+  width: 100%;
+}
+
+/* Estilos para el botón finalizar con estados */
+.finalizar-btn.procesando {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Estilos para el resumen de productos */
+.resumen-producto-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.resumen-producto-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.resumen-producto-name {
   font-weight: 500;
 }
 
-.btn-primary:hover {
-  background-color: #b02a6f;
-  border-color: #b02a6f;
+.resumen-producto-quantity {
+  color: #c94f7c;
+  font-weight: 600;
 }
 
-.btn-outline-secondary:hover {
-  color: white;
-  background-color: #6c757d;
+.resumen-producto-total {
+  font-weight: 500;
 }
 
-.list-group-item {
-  border-left: none;
-  border-right: none;
-  padding: 12px 0;
+.carrito-vacio-message {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .checkout-summary {
-    margin-top: 2rem;
+/* Estilos para el resumen de totales */
+.resumen-totales {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #c94f7c;
+}
+
+.resumen-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.resumen-subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.resumen-igv {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.resumen-total-final {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .checkout-container {
+    flex-direction: column;
+    padding: 1rem;
   }
-}
 
-@media (max-width: 576px) {
-  .form-control,
-  .form-select {
-    margin-bottom: 10px;
+  .form-row {
+    flex-direction: column;
   }
 }

@@ -129,6 +129,10 @@ const Carrito = () => {
                 />
                 <div className="carrito-detalles">
                   <h3>{prod.nombre}</h3>
+                  <div className="producto-precio-detalle">
+                    {prod.quantity} x S/.{" "}
+                    {(prod.precioVenta || prod.precio).toFixed(2)}
+                  </div>
                   {/* Información de stock */}
                   <div className="stock-info-carrito">
                     {esDisponible ? (

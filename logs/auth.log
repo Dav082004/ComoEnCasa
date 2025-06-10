@@ -567,3 +567,5 @@ Caused by: java.sql.SQLException: Field 'activo' doesn't have a default value
 2025-06-07 16:56:37.264 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: Juanperez@gmail.com, nombre: Juan, apellido: perez
 2025-06-07 16:56:37.264 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de registro para email: Jua***@gmail.com
 2025-06-07 16:56:37.264 [http-nio-8081-exec-10] WARN  c.c.controller.AuthController - Registro fallido: campos adicionales vacíos para email: Jua***@gmail.com
+2025-06-09 20:29:47.997 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Intento de login para email: ola***@c.com
+2025-06-09 20:29:48.064 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 2 (ola***@c.com)
