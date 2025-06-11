@@ -10,7 +10,7 @@ import {
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState(''); // 'create' | 'edit' | 'delete'
+  const [modalType, setModalType] = useState('');
   const [currentProduct, setCurrentProduct] = useState(null);
   const [form, setForm] = useState({
     categoriaId: '',
@@ -102,6 +102,7 @@ export default function AdminProducts() {
 
   return (
     <div className="page-container">
+
       <h2 className="theme-header">Gestión de Productos</h2>
       <button className="theme-button" onClick={() => openModal('create')}>
         Nuevo Producto

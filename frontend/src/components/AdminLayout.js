@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaTags, FaShoppingCart } from "react-icons/fa";
+import { FaFileInvoice } from "react-icons/fa6";
 import "../styles/AdminLayout.css";
-import { FaFileInvoice } from "react-icons/fa6"; // Importar el icono de factura
+import { HeaderComponent } from "../components/HeaderComponent"; 
 
 export default function AdminLayout() {
   return (
@@ -40,6 +41,7 @@ export default function AdminLayout() {
       </aside>
 
       <main className="admin-main">
+        <HeaderComponent />
         <Outlet />
       </main>
     </div>

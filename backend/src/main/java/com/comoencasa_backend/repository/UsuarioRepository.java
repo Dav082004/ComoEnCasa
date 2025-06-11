@@ -8,3 +8,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByEmail(String email); // Debe coincidir con el nombre del campo en la entidad
     boolean existsByEmail(String email);
 }
+
