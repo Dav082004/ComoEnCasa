@@ -287,3 +287,708 @@ This generated password is for development use only. Your security configuration
 21:55:24.241 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
 21:55:24.352 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
 21:55:24.353 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:26:44.411 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 6832 (C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes started by Marcofaik in C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa)
+14:26:44.418 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+14:26:45.527 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+14:26:45.680 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 136 ms. Found 5 JPA repository interfaces.
+14:26:46.903 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+14:26:46.928 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+14:26:46.931 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+14:26:46.932 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+14:26:47.022 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+14:26:47.022 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2551 ms
+14:26:47.279 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+14:26:47.368 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+14:26:47.417 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+14:26:47.875 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+14:26:47.924 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:26:49.027 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 08S01
+14:26:49.028 [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+14:26:49.030 [main] WARN  o.h.e.j.e.i.JdbcEnvironmentInitiator - HHH000342: Could not obtain connection to query metadata
+org.hibernate.exception.JDBCConnectionException: unable to obtain isolated JDBC connection [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:100)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:320)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1865)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1814)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.comoencasa_backend.ComoencasaBackendApplication.main(ComoencasaBackendApplication.java:11)
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:837)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:467)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	... 35 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:142)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:961)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	... 48 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:628)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:533)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
+	... 51 common frames omitted
+14:26:49.054 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+14:26:49.068 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (null)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+14:26:50.952 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+14:26:50.996 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:26:52.001 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 08S01
+14:26:52.001 [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+14:26:52.011 [main] ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+14:26:52.012 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+14:26:52.014 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+14:26:52.038 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+14:26:52.067 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1818)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.comoencasa_backend.ComoencasaBackendApplication.main(ComoencasaBackendApplication.java:11)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:431)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1865)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1814)
+	... 15 common frames omitted
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.] [n/a]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:100)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcDatabaseMetaData(ImprovedExtractionContextImpl.java:70)
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.processTableResultSet(InformationExtractorJdbcDatabaseMetaDataImpl.java:65)
+	at org.hibernate.tool.schema.extract.internal.AbstractInformationExtractorImpl.getTables(AbstractInformationExtractorImpl.java:570)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.getTablesInformation(DatabaseInformationImpl.java:122)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:72)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	... 19 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:837)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:467)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
+	... 40 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:142)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:961)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	... 53 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:628)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:533)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:583)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
+	... 56 common frames omitted
+14:27:16.512 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 15520 (C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes started by Marcofaik in C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa)
+14:27:16.514 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+14:27:17.365 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+14:27:17.497 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 106 ms. Found 5 JPA repository interfaces.
+14:27:18.157 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+14:27:18.172 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+14:27:18.174 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+14:27:18.174 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+14:27:18.242 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+14:27:18.242 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1673 ms
+14:27:18.417 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+14:27:18.488 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+14:27:18.525 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+14:27:18.894 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+14:27:18.925 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+14:27:19.135 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7878bbdb
+14:27:19.137 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+14:27:19.187 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+14:27:19.194 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+14:27:19.214 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+14:27:20.286 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+14:27:20.467 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+14:27:20.929 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+14:27:20.983 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+14:27:21.104 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 93da5a33-9903-4cad-83e7-8e9580c473e1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+14:27:21.118 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+14:27:21.701 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+14:27:21.720 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+14:27:21.729 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 5.93 seconds (process running for 6.713)
+14:28:21.563 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:28:21.564 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+14:28:21.565 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+14:28:31.566 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:28:31.577 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:28:31.610 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:28:31.611 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:28:44.599 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:28:44.600 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:28:44.616 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:28:44.616 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:28:48.436 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:28:48.439 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:28:48.448 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:28:48.449 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:28:50.954 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:28:50.956 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:28:50.966 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:28:50.967 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:28:54.249 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:28:54.250 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:28:54.261 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:28:54.262 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:29:57.524 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:29:57.525 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:29:57.534 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:29:57.535 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:30:04.825 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:30:04.827 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:30:04.837 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:30:04.838 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:30:07.392 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:07.393 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:07.400 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:07.401 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:08.686 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:08.688 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:08.692 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:08.693 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:12.730 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:12.731 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:12.736 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:12.737 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:18.850 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:18.852 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:18.858 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:18.858 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:25.047 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:25.050 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:25.055 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:25.056 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:32.319 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:32.319 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:32.327 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:32.329 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:36.688 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:36.689 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:36.696 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:36.697 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:37.513 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:37.514 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:37.520 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:30:37.520 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:30:44.231 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:30:44.233 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:30:44.239 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/2
+14:30:44.239 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=2
+14:32:27.331 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/3
+14:32:27.332 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=3
+14:32:27.340 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos/usuario/3
+14:32:27.341 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo pedidos del usuario ID=3
+14:33:28.242 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:28.242 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:28.251 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:28.251 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:31.475 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:31.476 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:31.481 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:31.483 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:35.818 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:35.819 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:35.823 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:35.824 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:59.163 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:59.163 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:33:59.168 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:33:59.168 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:54.714 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:54.718 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:54.728 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:54.729 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:55.745 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:55.747 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:55.756 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:55.758 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:57.434 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:57.439 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:57.447 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:57.448 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:58.710 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:58.711 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:39:58.718 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:39:58.722 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:40:37.115 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:40:37.126 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:40:37.135 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:40:37.140 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:11.659 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:11.660 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:11.665 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:11.665 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:18.176 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:18.177 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:18.182 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:18.183 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:18.958 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:18.958 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:18.965 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:18.966 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:34.386 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:34.387 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:34.395 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:34.395 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:35.658 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:35.659 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:44:35.664 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:44:35.665 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:34.497 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:34.526 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:34.614 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:34.615 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:35.517 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:35.517 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:38.316 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:38.336 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:38.355 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:38.355 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:38.473 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:38.738 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:38.848 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:38.849 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:45:38.853 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:45:38.853 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:18.030 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:18.031 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:18.037 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:18.038 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:19.339 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:19.340 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:19.348 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:19.348 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:21.448 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:21.449 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:21.459 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:21.459 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:22.896 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:22.897 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:22.904 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:22.905 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:23.729 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:23.730 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:23.735 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:23.735 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:24.698 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:24.701 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:24.707 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:24.707 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:28.514 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:28.515 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:28.526 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:28.527 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:30.265 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:30.266 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:47:30.271 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:47:30.271 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:48:33.708 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:48:33.711 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:48:33.719 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:48:33.719 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:57:01.069 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:57:01.085 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:57:01.122 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:57:01.122 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:59:51.852 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:59:51.854 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:59:51.867 [http-nio-8081-exec-8] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:59:51.870 [http-nio-8081-exec-8] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:59:54.909 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:59:54.910 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+14:59:54.919 [http-nio-8081-exec-5] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+14:59:54.920 [http-nio-8081-exec-5] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:00:49.372 [http-nio-8081-exec-7] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:00:49.374 [http-nio-8081-exec-7] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:00:49.380 [http-nio-8081-exec-6] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:00:49.381 [http-nio-8081-exec-6] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:01:34.171 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:01:34.172 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:01:34.176 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:01:34.176 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:01:38.832 [http-nio-8081-exec-9] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:01:38.833 [http-nio-8081-exec-9] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:01:38.838 [http-nio-8081-exec-4] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:01:38.838 [http-nio-8081-exec-4] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:01:55.548 [http-nio-8081-exec-2] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:01:55.549 [http-nio-8081-exec-2] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:01:55.554 [http-nio-8081-exec-3] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:01:55.555 [http-nio-8081-exec-3] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:04:51.874 [http-nio-8081-exec-1] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:04:51.887 [http-nio-8081-exec-1] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:04:51.898 [http-nio-8081-exec-10] INFO  c.c.controller.PedidoController - ADMIN accedió a GET /api/pedidos
+15:04:51.899 [http-nio-8081-exec-10] INFO  c.c.service.impl.PedidoServiceImpl - ADMIN: obteniendo todos los pedidos
+15:42:14.559 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+15:42:14.768 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+15:42:14.956 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+15:42:15.083 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:42:15.125 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:42:22.987 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 13624 (C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes started by Marcofaik in C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa)
+15:42:22.989 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+15:42:23.963 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15:42:24.039 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 5 JPA repository interfaces.
+15:42:24.578 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+15:42:24.591 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:42:24.592 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+15:42:24.592 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+15:42:24.648 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:42:24.649 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1588 ms
+15:42:24.816 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+15:42:24.897 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+15:42:24.937 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+15:42:25.369 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+15:42:25.402 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:42:25.563 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5dd747c1
+15:42:25.564 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:42:25.612 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+15:42:25.617 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+15:42:25.637 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+15:42:26.626 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+15:42:26.728 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+15:42:27.072 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+15:42:27.103 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+15:42:27.224 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 4962b9e1-9db5-4dc3-acf1-c1d17cde6327
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+15:42:27.230 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+15:42:27.676 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+15:42:27.699 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+15:42:27.706 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 5.42 seconds (process running for 6.092)
+15:46:10.901 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:46:10.902 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+15:46:10.903 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+15:55:47.221 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+15:55:47.280 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+15:55:47.326 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+15:55:47.373 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:55:47.420 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:55:55.241 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 14192 (C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes started by Marcofaik in C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa)
+15:55:55.243 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+15:55:56.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15:55:56.102 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 65 ms. Found 5 JPA repository interfaces.
+15:55:56.609 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+15:55:56.624 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:55:56.625 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+15:55:56.625 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+15:55:56.675 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:55:56.676 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1375 ms
+15:55:56.835 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+15:55:56.907 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+15:55:56.950 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+15:55:57.315 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+15:55:57.347 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:55:57.505 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2335aef2
+15:55:57.507 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:55:57.552 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+15:55:57.557 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+15:55:57.577 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+15:55:58.570 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+15:55:58.658 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+15:55:59.012 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+15:55:59.041 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+15:55:59.044 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'comprobanteController' defined in file [C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes\com\comoencasa_backend\controller\ComprobanteController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.comoencasa_backend.service.ComprobanteService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+15:55:59.045 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+15:55:59.046 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:55:59.052 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:55:59.053 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+15:55:59.060 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+15:55:59.081 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.comoencasa_backend.controller.ComprobanteController required a bean of type 'com.comoencasa_backend.service.ComprobanteService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.comoencasa_backend.service.ComprobanteService' in your configuration.
+
+15:56:21.096 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 13416 (C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes started by Marcofaik in C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa)
+15:56:21.097 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+15:56:21.766 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15:56:21.838 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64 ms. Found 5 JPA repository interfaces.
+15:56:22.294 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+15:56:22.306 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:56:22.307 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+15:56:22.307 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+15:56:22.355 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:56:22.355 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1212 ms
+15:56:22.487 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+15:56:22.536 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+15:56:22.570 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+15:56:22.843 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+15:56:22.870 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:56:23.003 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a1a20ae
+15:56:23.004 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:56:23.039 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+15:56:23.042 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+15:56:23.059 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+15:56:23.944 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+15:56:24.032 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+15:56:24.355 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+15:56:24.383 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+15:56:24.385 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'comprobanteController' defined in file [C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes\com\comoencasa_backend\controller\ComprobanteController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.comoencasa_backend.service.ComprobanteService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+15:56:24.385 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+15:56:24.387 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:56:24.392 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:56:24.394 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+15:56:24.402 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+15:56:24.419 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.comoencasa_backend.controller.ComprobanteController required a bean of type 'com.comoencasa_backend.service.ComprobanteService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.comoencasa_backend.service.ComprobanteService' in your configuration.
+
+15:57:31.636 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 9040 (C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes started by Marcofaik in C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa)
+15:57:31.638 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+15:57:32.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15:57:32.532 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 5 JPA repository interfaces.
+15:57:33.057 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+15:57:33.072 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:57:33.073 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+15:57:33.073 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+15:57:33.129 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:57:33.129 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1442 ms
+15:57:33.298 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+15:57:33.377 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+15:57:33.416 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+15:57:33.773 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+15:57:33.804 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+15:57:33.954 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c50cd7d
+15:57:33.955 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+15:57:33.996 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+15:57:34.001 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+15:57:34.020 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+15:57:35.003 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+15:57:35.089 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+15:57:35.437 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+15:57:35.475 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+15:57:35.477 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'comprobanteController' defined in file [C:\Users\Marcofaik\Documents\Proyectos\ComoEnCasa\backend\target\classes\com\comoencasa_backend\controller\ComprobanteController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.comoencasa_backend.service.ComprobanteService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+15:57:35.478 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+15:57:35.480 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:57:35.487 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+15:57:35.489 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+15:57:35.499 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+15:57:35.523 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.comoencasa_backend.controller.ComprobanteController required a bean of type 'com.comoencasa_backend.service.ComprobanteService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.comoencasa_backend.service.ComprobanteService' in your configuration.
+

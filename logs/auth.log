@@ -599,3 +599,9 @@ Caused by: java.sql.SQLException: Field 'activo' doesn't have a default value
 2025-06-09 21:25:21.311 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Intento de login para email: ola***@c.com
 2025-06-09 21:25:52.781 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
 2025-06-09 21:25:52.833 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 5 (adm***@c.com)
+2025-06-11 14:31:25.654 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: marco@g.com, nombre: Marco, apellido: SS
+2025-06-11 14:32:06.497 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Intento de login para email: mar***@g.com
+2025-06-11 14:32:24.693 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Intento de login para email: mar***@g.com
+2025-06-11 14:32:24.770 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 3 (mar***@g.com)
+2025-06-11 14:33:22.758 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Intento de login para email: tes***@g.com
+2025-06-11 14:33:22.834 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 2 (tes***@g.com)

@@ -1,6 +1,8 @@
 package com.comoencasa_backend.service;
 
 import com.comoencasa_backend.dto.PedidoDTO;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 
@@ -15,4 +17,7 @@ public interface PedidoService {
      * @return Lista de pedidos del usuario
      */
     List<PedidoDTO> obtenerPedidosPorUsuario(Long usuarioId);
+
+    @Transactional
+    PedidoDTO crearPedido(PedidoDTO pedidoDTO);
 }
