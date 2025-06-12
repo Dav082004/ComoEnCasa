@@ -53,6 +53,8 @@ public class EmailServiceImpl implements EmailService {
         mensaje.setSubject("Recuperación de cuenta - Como En Casa");
         mensaje.setText("Tu nueva contraseña es: " + nuevaContrasena);
         mailSender.send(mensaje);
+
+        System.out.println("📨 Correo de recuperación enviado a: " + destinoEmail);
     }
 
     @Override
@@ -63,6 +65,8 @@ public class EmailServiceImpl implements EmailService {
         mensaje.setSubject("Recuperación de cuenta - Como En Casa");
         mensaje.setText("Para recuperar tu cuenta, utiliza el siguiente token: " + token);
         mailSender.send(mensaje);
+
+        System.out.println("📨 Token de recuperación enviado a: " + destinoEmail);
     }
 
     @Override
@@ -103,7 +107,11 @@ public class EmailServiceImpl implements EmailService {
             helper.setText(html, true); // true = HTML
 
             mailSender.send(mensaje);
+
+            System.out.println("📨 Correo de verificación enviado a: " + destinoEmail);
+            System.out.println("🔗 Enlace generado: " + enlace);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Error al enviar email de verificación", e);
         }
     }

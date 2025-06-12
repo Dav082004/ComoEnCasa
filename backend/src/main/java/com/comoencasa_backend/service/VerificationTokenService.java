@@ -9,35 +9,43 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class VerificationTokenService {
 
-    // ✅ Almacenamiento temporal en memoria (email asociado a token)
+    // Mapa que asocia tokens con correos electrónicos
     private final Map<String, String> tokenToEmailMap = new ConcurrentHashMap<>();
     private final Map<String, String> emailToTokenMap = new ConcurrentHashMap<>();
 
     /**
-     * ✅ Genera un token único y lo asocia con un email.
+     * Genera un token único para el email y lo guarda en memoria.
      */
     public String generarToken(String email) {
-        // Si el usuario ya tenía un token anterior, lo eliminamos
+        // Eliminar token anterior si ya existe
         if (emailToTokenMap.containsKey(email)) {
-            String oldToken = emailToTokenMap.remove(email);
-            tokenToEmailMap.remove(oldToken);
+            String tokenAnterior = emailToTokenMap.remove(email);
+            tokenToEmailMap.remove(tokenAnterior);
         }
 
-        String token = UUID.randomUUID().toString(); // Token único
-        tokenToEmailMap.put(token, email);
-        emailToTokenMap.put(email, token);
-        return token;
+        String nuevoToken = UUID.randomUUID().toString();
+        tokenToEmailMap.put(nuevoToken, email);
+        emailToTokenMap.put(email, nuevoToken);
+
+        return nuevoToken;
     }
 
     /**
-     * ✅ Devuelve el email asociado a un token, o null si no existe.
+     * Devuelve el correo electrónico asociado a un token.
      */
     public String obtenerEmailPorToken(String token) {
-        return tokenToEmailMap.get(token);
+        System.out.println("🔍 Buscando email para token: " + token);
+        String email = tokenToEmailMap.get(token);
+        if (email == null) {
+            System.out.println("❌ Token no encontrado en memoria.");
+        } else {
+            System.out.println("📧 Email asociado al token: " + email);
+        }
+        return email;
     }
 
     /**
-     * ✅ Elimina el token una vez verificada la cuenta.
+     * Elimina el token una vez que se usó.
      */
     public void eliminarToken(String token) {
         String email = tokenToEmailMap.remove(token);
@@ -47,7 +55,7 @@ public class VerificationTokenService {
     }
 
     /**
-     * ✅ (Opcional) Verifica si un token es válido.
+     * Verifica si un token aún está activo en memoria.
      */
     public boolean tokenEsValido(String token) {
         return tokenToEmailMap.containsKey(token);

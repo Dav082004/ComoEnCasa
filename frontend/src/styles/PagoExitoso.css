@@ -1,0 +1,28 @@
+/* src/styles/PagoExitoso.css */
+.pago-exitoso-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #fdfdfd;
+}
+
+.pago-exitoso-card {
+  background-color: #fff;
+  border: 2px solid #28a745;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.pago-exitoso-card h2 {
+  color: #28a745;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.pago-exitoso-card p {
+  font-size: 16px;
+  color: #333;
+}

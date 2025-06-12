@@ -617,3 +617,71 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'activo' in 'field l
 2025-06-07 17:34:27.644 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
 2025-06-07 17:34:27.647 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
 2025-06-07 17:34:27.648 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 14:55:07.129 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:10.739 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:11.795 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:15.513 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:16.118 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:16.308 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:16.465 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:16.627 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:49.937 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:55:50.883 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 14:56:09.992 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Intento de login para email: ben***@gmail.com
+2025-06-11 14:56:13.524 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Intento de login para email: ben***@gmail.com
+2025-06-11 14:56:13.818 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 7 (ben***@gmail.com)
+2025-06-11 14:56:38.580 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Intento de login para email: adm***@c.com
+2025-06-11 15:01:31.439 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Intento de login para email: ben***@gmail.com
+2025-06-11 15:01:34.271 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Intento de login para email: ben***@gmail.com
+2025-06-11 15:01:34.574 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 7 (ben***@gmail.com)
+2025-06-11 17:11:08.899 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: dundunbai123@gmail.com, nombre: b, apellido: c
+2025-06-11 17:11:09.191 [http-nio-8081-exec-2] WARN  c.c.controller.AuthController - Registro fallido: contraseña muy corta para email: dun***@gmail.com
+2025-06-11 17:11:17.131 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: dundunbai123@gmail.com, nombre: b, apellido: c
+2025-06-11 17:18:33.611 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: dundunbai123@gmail.com, nombre: vvv, apellido: ccc
+2025-06-11 17:19:42.208 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Intento de login para email: dun***@gmail.com
+2025-06-11 17:21:59.054 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - RegistroRequest recibido - correo: dundunbai123@gmail.com, nombre: aaa, apellido: ccc
+2025-06-11 17:40:15.359 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: aaaaaa eeee (dundunbai123@gmail.com)
+2025-06-11 17:40:15.362 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - 📧 Token enviado: a281cacd-0a0b-4ee3-a919-08be4676f1dd
+2025-06-11 17:41:26.437 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Login recibido para: dun***@gmail.com
+2025-06-11 17:41:45.412 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Login recibido para: dun***@gmail.com
+2025-06-11 17:43:36.703 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: lolo lala (hedex19644@gotemv.com)
+2025-06-11 17:43:36.718 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - 📧 Token enviado: c638f674-fcbd-4537-9cbb-ea44314702eb
+2025-06-11 17:55:46.387 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: ffff eee (dundunbai123@gmail.com)
+2025-06-11 17:55:46.389 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - 📧 Token enviado: dundunbai123@gmail.com-token
+2025-06-11 17:56:42.538 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Login recibido para: dun***@gmail.com
+2025-06-11 17:56:42.800 [http-nio-8081-exec-2] WARN  c.c.controller.AuthController - Intento de login con cuenta no verificada: dundunbai123@gmail.com
+2025-06-11 17:59:50.335 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: fff aaa (dundunbai123@gmail.com)
+2025-06-11 17:59:50.343 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - 📧 Token enviado: dundunbai123@gmail.com-token
+2025-06-11 18:11:15.004 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: www qqqq (dundunbai123@gmail.com)
+2025-06-11 18:11:15.010 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 📧 Token enviado: dundunbai123@gmail.com-token
+2025-06-11 18:15:10.449 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: bbb aaa (dundunbai123@gmail.com)
+2025-06-11 18:15:10.465 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - 📧 Token enviado: dundunbai123@gmail.com-token
+2025-06-11 18:22:52.491 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: prueba corr (ledoxe8729@2mik.com)
+2025-06-11 18:22:52.494 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - 📧 Token enviado: 7a55e375-399f-466d-8ba1-c2d34f253f5e
+2025-06-11 18:33:35.701 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: aaa qq (dundunbai123@gmail.com)
+2025-06-11 18:33:35.706 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 📧 Token enviado: e7633ca3-4986-4452-b259-f0e864d72894
+2025-06-11 18:41:28.813 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: bebeen cococ (dundunbai123@gmail.com)
+2025-06-11 18:41:28.817 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 📧 Token enviado: 33e218c9-2327-4678-83a7-725168a18246
+2025-06-11 18:44:04.840 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: aaa aaa (litowac785@adrewire.com)
+2025-06-11 18:44:04.884 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - 📧 Token enviado: 0fbb02e7-0789-4bfe-a741-12bbff9b4c8a
+2025-06-11 18:46:02.949 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: ddd aaa (jojir28849@gotemv.com)
+2025-06-11 18:46:02.967 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - 📧 Token enviado: 05a2b064-4e36-4168-9cae-6a86f15e43cc
+2025-06-11 18:54:15.120 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: fff aaa (dundunbai123@gmail.com)
+2025-06-11 18:54:15.125 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - 📧 Token enviado: a53f766e-b495-4617-8ab7-bf888aaa524f
+2025-06-11 18:54:33.346 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: a53f766e-b495-4617-8ab7-bf888aaa524f
+2025-06-11 18:54:33.875 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: dundunbai123@gmail.com
+2025-06-11 18:54:33.905 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: a53f766e-b495-4617-8ab7-bf888aaa524f
+2025-06-11 18:54:33.906 [http-nio-8081-exec-6] WARN  c.c.controller.AuthController - ❌ Token inválido o expirado: a53f766e-b495-4617-8ab7-bf888aaa524f
+2025-06-11 18:58:59.664 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: qqq sss (dundunbai123@gmail.com)
+2025-06-11 18:58:59.681 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - 📧 Token enviado: cf320929-7b85-4b8f-b37f-b6cfd326198d
+2025-06-11 18:59:18.847 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: cf320929-7b85-4b8f-b37f-b6cfd326198d
+2025-06-11 18:59:19.400 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: dundunbai123@gmail.com
+2025-06-11 18:59:19.412 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: cf320929-7b85-4b8f-b37f-b6cfd326198d
+2025-06-11 18:59:19.412 [http-nio-8081-exec-1] WARN  c.c.controller.AuthController - ❌ Token inválido o expirado: cf320929-7b85-4b8f-b37f-b6cfd326198d
+2025-06-11 19:03:30.320 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: dddd aaaaaaa (dundunbai123@gmail.com)
+2025-06-11 19:03:30.339 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 📧 Token enviado: ae2487b9-ffcb-4eef-b047-1fc03f0c95ce
+2025-06-11 19:03:40.174 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: ae2487b9-ffcb-4eef-b047-1fc03f0c95ce
+2025-06-11 19:03:40.288 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: dundunbai123@gmail.com
+2025-06-11 19:03:40.304 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: ae2487b9-ffcb-4eef-b047-1fc03f0c95ce
+2025-06-11 19:03:40.306 [http-nio-8081-exec-4] WARN  c.c.controller.AuthController - ❌ Token inválido o expirado: ae2487b9-ffcb-4eef-b047-1fc03f0c95ce
+2025-06-11 19:03:55.205 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Login recibido para: dun***@gmail.com

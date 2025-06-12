@@ -16,57 +16,20 @@ const CheckoutSimple = () => {
     vencimiento: "",
     cvv: "",
     documento: "",
-    tipoComprobante: "boleta", // boleta o factura
-    metodoPago: "tarjeta", // tarjeta, yape, plin
+    tipoComprobante: "boleta",
+    metodoPago: "tarjeta",
   });
 
   const [procesando, setProcesando] = useState(false);
 
-  // Lista completa de distritos de Lima Metropolitana
   const distritos = [
-    "Ancón",
-    "Ate",
-    "Barranco",
-    "Breña",
-    "Carabayllo",
-    "Chaclacayo",
-    "Chorrillos",
-    "Cieneguilla",
-    "Comas",
-    "El Agustino",
-    "Independencia",
-    "Jesús María",
-    "La Molina",
-    "La Victoria",
-    "Lima",
-    "Lince",
-    "Los Olivos",
-    "Lurigancho",
-    "Lurín",
-    "Magdalena del Mar",
-    "Miraflores",
-    "Pachacámac",
-    "Pucusana",
-    "Pueblo Libre",
-    "Puente Piedra",
-    "Punta Hermosa",
-    "Punta Negra",
-    "Rímac",
-    "San Bartolo",
-    "San Borja",
-    "San Isidro",
-    "San Juan de Lurigancho",
-    "San Juan de Miraflores",
-    "San Luis",
-    "San Martín de Porres",
-    "San Miguel",
-    "Santa Anita",
-    "Santa María del Mar",
-    "Santa Rosa",
-    "Santiago de Surco",
-    "Surquillo",
-    "Villa El Salvador",
-    "Villa María del Triunfo",
+    "Ancón", "Ate", "Barranco", "Breña", "Carabayllo", "Chaclacayo", "Chorrillos", "Cieneguilla",
+    "Comas", "El Agustino", "Independencia", "Jesús María", "La Molina", "La Victoria", "Lima",
+    "Lince", "Los Olivos", "Lurigancho", "Lurín", "Magdalena del Mar", "Miraflores", "Pachacámac",
+    "Pucusana", "Pueblo Libre", "Puente Piedra", "Punta Hermosa", "Punta Negra", "Rímac",
+    "San Bartolo", "San Borja", "San Isidro", "San Juan de Lurigancho", "San Juan de Miraflores",
+    "San Luis", "San Martín de Porres", "San Miguel", "Santa Anita", "Santa María del Mar",
+    "Santa Rosa", "Santiago de Surco", "Surquillo", "Villa El Salvador", "Villa María del Triunfo",
   ];
 
   const handleChange = (e) => {
@@ -81,11 +44,9 @@ const CheckoutSimple = () => {
     e.preventDefault();
     setProcesando(true);
 
-    // Simulación de procesamiento
     setTimeout(() => {
-      alert("¡Pedido procesado exitosamente!");
       setProcesando(false);
-      navigate("/");
+      navigate("/pago-exitoso"); // ✅ Cambio aquí
     }, 2000);
   };
 
@@ -93,7 +54,7 @@ const CheckoutSimple = () => {
     setDatos((prev) => ({
       ...prev,
       tipoComprobante: tipo,
-      documento: "", // Limpiar documento al cambiar tipo
+      documento: "",
     }));
   };
 
@@ -127,7 +88,8 @@ const CheckoutSimple = () => {
               value={datos.distrito}
               onChange={handleChange}
               required
-              className="select-full-width">
+              className="select-full-width"
+            >
               <option value="">Seleccionar Distrito de Lima</option>
               {distritos.map((distrito) => (
                 <option key={distrito} value={distrito}>
@@ -151,19 +113,17 @@ const CheckoutSimple = () => {
           <h3>Comprobante de Pago</h3>
           <div className="form-row">
             <div
-              className={`comprobante-option ${
-                datos.tipoComprobante === "boleta" ? "active" : ""
-              }`}
-              onClick={() => handleComprobanteChange("boleta")}>
+              className={`comprobante-option ${datos.tipoComprobante === "boleta" ? "active" : ""}`}
+              onClick={() => handleComprobanteChange("boleta")}
+            >
               <h5>Boleta de Venta</h5>
               <p>Para consumo personal</p>
               <small>Requiere DNI</small>
             </div>
             <div
-              className={`comprobante-option ${
-                datos.tipoComprobante === "factura" ? "active" : ""
-              }`}
-              onClick={() => handleComprobanteChange("factura")}>
+              className={`comprobante-option ${datos.tipoComprobante === "factura" ? "active" : ""}`}
+              onClick={() => handleComprobanteChange("factura")}
+            >
               <h5>Factura</h5>
               <p>Para empresas</p>
               <small>Requiere RUC</small>
@@ -174,11 +134,7 @@ const CheckoutSimple = () => {
             <input
               type="text"
               name="documento"
-              placeholder={
-                datos.tipoComprobante === "boleta"
-                  ? "Ingrese su DNI (8 dígitos)"
-                  : "Ingrese su RUC (11 dígitos)"
-              }
+              placeholder={datos.tipoComprobante === "boleta" ? "Ingrese su DNI" : "Ingrese su RUC"}
               value={datos.documento}
               onChange={handleChange}
               maxLength={datos.tipoComprobante === "boleta" ? 8 : 11}
@@ -188,36 +144,21 @@ const CheckoutSimple = () => {
 
           <h3>Métodos de Pago</h3>
           <div className="form-row">
-            <div
-              className={`comprobante-option ${
-                datos.metodoPago === "tarjeta" ? "active" : ""
-              }`}
-              onClick={() => handleMetodoPagoChange("tarjeta")}>
-              <h5>💳 Tarjeta</h5>
-              <p>Visa, MasterCard, etc.</p>
-              <small>Pago seguro</small>
-            </div>
-            <div
-              className={`comprobante-option ${
-                datos.metodoPago === "yape" ? "active" : ""
-              }`}
-              onClick={() => handleMetodoPagoChange("yape")}>
-              <h5>📱 Yape</h5>
-              <p>Pago móvil rápido</p>
-              <small>Instantáneo</small>
-            </div>
-            <div
-              className={`comprobante-option ${
-                datos.metodoPago === "plin" ? "active" : ""
-              }`}
-              onClick={() => handleMetodoPagoChange("plin")}>
-              <h5>💰 Plin</h5>
-              <p>Transferencia móvil</p>
-              <small>Sin comisiones</small>
-            </div>
+            {["tarjeta", "yape", "plin"].map((m) => (
+              <div
+                key={m}
+                className={`comprobante-option ${datos.metodoPago === m ? "active" : ""}`}
+                onClick={() => handleMetodoPagoChange(m)}
+              >
+                <h5>
+                  {m === "tarjeta" && "💳 Tarjeta"}
+                  {m === "yape" && "📱 Yape"}
+                  {m === "plin" && "💰 Plin"}
+                </h5>
+              </div>
+            ))}
           </div>
 
-          {/* Campos de tarjeta solo si se selecciona tarjeta */}
           {datos.metodoPago === "tarjeta" && (
             <>
               <div className="form-row">
@@ -263,44 +204,11 @@ const CheckoutSimple = () => {
             </>
           )}
 
-          {/* Información para Yape */}
-          {datos.metodoPago === "yape" && (
-            <div className="metodo-pago-info">
-              <div className="payment-info-card">
-                <h4>📱 Pagar con Yape</h4>
-                <p>1. Escanea el código QR con tu app Yape</p>
-                <p>
-                  2. Confirma el monto: <strong>S/. {total.toFixed(2)}</strong>
-                </p>
-                <p>3. Completa el pago en tu celular</p>
-                <div className="qr-placeholder">
-                  <div className="qr-code">📱 QR Code</div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Información para Plin */}
-          {datos.metodoPago === "plin" && (
-            <div className="metodo-pago-info">
-              <div className="payment-info-card">
-                <h4>💰 Pagar con Plin</h4>
-                <p>1. Abre tu app Plin</p>
-                <p>
-                  2. Envía <strong>S/. {total.toFixed(2)}</strong> al número:
-                </p>
-                <div className="numero-plin">
-                  <strong>987 654 321</strong>
-                </div>
-                <p>3. Usa como concepto: "Pedido ComoEnCasa"</p>
-              </div>
-            </div>
-          )}
-
           <button
             type="submit"
             className={`finalizar-btn ${procesando ? "procesando" : ""}`}
-            disabled={procesando}>
+            disabled={procesando}
+          >
             {procesando ? "⏳ Procesando..." : "🛒 Finalizar Orden"}
           </button>
         </form>
@@ -308,64 +216,27 @@ const CheckoutSimple = () => {
 
       <div className="checkout-summary">
         <h3>Resumen del Pedido</h3>
-        <div>
-          {productos.length > 0 ? (
-            productos.map((prod) => (
-              <div key={prod.id} className="resumen-producto-item">
-                <div className="resumen-producto-header">
-                  <div>
-                    <div className="resumen-producto-name">{prod.nombre}</div>
-                    <small className="resumen-producto-quantity">
-                      {prod.quantity} x S/.{" "}
-                      {(prod.precioVenta || prod.precio).toFixed(2)}
-                    </small>
-                  </div>
-                  <div className="resumen-producto-total">
-                    S/.{" "}
-                    {(
-                      (prod.precioVenta || prod.precio || 0) * prod.quantity
-                    ).toFixed(2)}
-                  </div>
-                </div>
-                {/* Notas del producto */}
-                {(prod.comentarios || prod.nota) && (
-                  <div className="producto-nota">
-                    <strong>Nota:</strong> {prod.comentarios || prod.nota}
-                  </div>
-                )}
+        {productos.length === 0 ? (
+          <p>No hay productos en el carrito</p>
+        ) : (
+          productos.map((prod) => (
+            <div key={prod.id} className="resumen-producto-item">
+              <div>
+                <div>{prod.nombre}</div>
+                <small>{prod.quantity} x S/. {(prod.precioVenta || prod.precio).toFixed(2)}</small>
               </div>
-            ))
-          ) : (
-            <div className="carrito-vacio-message">
-              No hay productos en el carrito
+              <div>
+                S/. {((prod.precioVenta || prod.precio) * prod.quantity).toFixed(2)}
+              </div>
             </div>
-          )}
-        </div>
+          ))
+        )}
 
         <div className="resumen-totales">
-          <div className="resumen-subtotal">
-            <span>Subtotal:</span>
-            <span>S/. {subtotal.toFixed(2)}</span>
-          </div>
-
-          <div className="envio-line">
-            <span>Envío:</span>
-            <span className={costoEnvio === 0 ? "envio-gratis" : ""}>
-              {costoEnvio === 0
-                ? "Seleccione dirección"
-                : `S/. ${costoEnvio.toFixed(2)}`}
-            </span>
-          </div>
-
-          <div className="resumen-igv">
-            <span>IGV (18%):</span>
-            <span>S/. {igv.toFixed(2)}</span>
-          </div>
-
-          <div className="resumen-total-final">
-            <span>Total:</span>
-            <span>S/. {total.toFixed(2)}</span>
-          </div>
+          <div><span>Subtotal:</span><span>S/. {subtotal.toFixed(2)}</span></div>
+          <div><span>Envío:</span><span>S/. {costoEnvio.toFixed(2)}</span></div>
+          <div><span>IGV:</span><span>S/. {igv.toFixed(2)}</span></div>
+          <div><strong>Total:</strong><strong>S/. {total.toFixed(2)}</strong></div>
         </div>
       </div>
     </div>

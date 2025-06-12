@@ -27,6 +27,7 @@ import Pedidos from "../pages/Pedidos";
 import AdminProducts from "../pages/AdminProducts";
 import AdminOrders from "../pages/AdminOrders";
 import AdminComprobantes from "../pages/AdminComprobantes";
+import PagoExitoso from "../pages/PagoExitoso";
 
 export const AppRouter = () => {
   return (
@@ -56,11 +57,13 @@ export const AppRouter = () => {
 
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="pedidos" element={<Pedidos />} />
+                   <Route path="/pago-exitoso" element={<PagoExitoso />} />
               </Route>
               <Route path="admin" element={<AdminLayout />}>
                 <Route path="productos" element={<AdminProducts />} />
                 <Route path="pedidos" element={<AdminOrders />} />
                 <Route path="comprobantes" element={<AdminComprobantes />} />
+             
               </Route>
             </Routes>
             <ToastContainer
