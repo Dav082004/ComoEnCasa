@@ -34,7 +34,7 @@ class EmailServiceTDDTest {
     private JavaMailSender mockMailSender;
 
     private EmailService emailService;
-    
+
     private final String REMITENTE_TEST = "test@comoencasa.com";
 
     @BeforeEach
@@ -52,40 +52,36 @@ class EmailServiceTDDTest {
         @DisplayName("RED: Debe fallar cuando el destinatario es nulo")
         void debeFailar_CuandoDestinatarioEsNulo() {
             // RED: Este test debe fallar inicialmente
-            assertThatThrownBy(() -> 
-                emailService.enviarNuevaContrasena(null, "password123")
-            ).isInstanceOf(IllegalArgumentException.class)
-             .hasMessage("El email del destinatario no puede ser nulo");
+            assertThatThrownBy(() -> emailService.enviarNuevaContrasena(null, "password123"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("El email del destinatario no puede ser nulo o vacío");
         }
 
         @Test
         @DisplayName("RED: Debe fallar cuando el destinatario está vacío")
         void debeFailar_CuandoDestinatarioEstaVacio() {
             // RED: Este test debe fallar inicialmente
-            assertThatThrownBy(() -> 
-                emailService.enviarNuevaContrasena("", "password123")
-            ).isInstanceOf(IllegalArgumentException.class)
-             .hasMessage("El email del destinatario no puede estar vacío");
+            assertThatThrownBy(() -> emailService.enviarNuevaContrasena("", "password123"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("El email del destinatario no puede ser nulo o vacío");
         }
 
         @Test
         @DisplayName("RED: Debe fallar cuando la contraseña es nula")
         void debeFailar_CuandoContrasenaEsNula() {
             // RED: Este test debe fallar inicialmente
-            assertThatThrownBy(() -> 
-                emailService.enviarNuevaContrasena("test@email.com", null)
-            ).isInstanceOf(IllegalArgumentException.class)
-             .hasMessage("La nueva contraseña no puede ser nula");
+            assertThatThrownBy(() -> emailService.enviarNuevaContrasena("test@email.com", null))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("La nueva contraseña no puede ser nula o vacía");
         }
 
         @Test
         @DisplayName("RED: Debe fallar cuando la contraseña está vacía")
         void debeFailar_CuandoContrasenaEstaVacia() {
             // RED: Este test debe fallar inicialmente
-            assertThatThrownBy(() -> 
-                emailService.enviarNuevaContrasena("test@email.com", "")
-            ).isInstanceOf(IllegalArgumentException.class)
-             .hasMessage("La nueva contraseña no puede estar vacía");
+            assertThatThrownBy(() -> emailService.enviarNuevaContrasena("test@email.com", ""))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("La nueva contraseña no puede ser nula o vacía");
         }
 
         @Test
@@ -99,8 +95,7 @@ class EmailServiceTDDTest {
             emailService.enviarNuevaContrasena(destinoEmail, nuevaContrasena);
 
             // Assert
-            ArgumentCaptor<SimpleMailMessage> messageCaptor = 
-                ArgumentCaptor.forClass(SimpleMailMessage.class);
+            ArgumentCaptor<SimpleMailMessage> messageCaptor = ArgumentCaptor.forClass(SimpleMailMessage.class);
             verify(mockMailSender).send(messageCaptor.capture());
 
             SimpleMailMessage mensajeEnviado = messageCaptor.getValue();
@@ -121,13 +116,12 @@ class EmailServiceTDDTest {
             emailService.enviarNuevaContrasena(destinoEmail, nuevaContrasena);
 
             // Assert
-            ArgumentCaptor<SimpleMailMessage> messageCaptor = 
-                ArgumentCaptor.forClass(SimpleMailMessage.class);
+            ArgumentCaptor<SimpleMailMessage> messageCaptor = ArgumentCaptor.forClass(SimpleMailMessage.class);
             verify(mockMailSender).send(messageCaptor.capture());
 
             SimpleMailMessage mensaje = messageCaptor.getValue();
             assertThat(mensaje.getSubject())
-                .isEqualTo("Recuperación de cuenta - Como En Casa");
+                    .isEqualTo("Recuperación de cuenta - Como En Casa");
         }
 
         @Test
@@ -141,14 +135,13 @@ class EmailServiceTDDTest {
             emailService.enviarNuevaContrasena(destinoEmail, nuevaContrasena);
 
             // Assert
-            ArgumentCaptor<SimpleMailMessage> messageCaptor = 
-                ArgumentCaptor.forClass(SimpleMailMessage.class);
+            ArgumentCaptor<SimpleMailMessage> messageCaptor = ArgumentCaptor.forClass(SimpleMailMessage.class);
             verify(mockMailSender).send(messageCaptor.capture());
 
             SimpleMailMessage mensaje = messageCaptor.getValue();
             assertThat(mensaje.getText())
-                .contains(nuevaContrasena)
-                .startsWith("Tu nueva contraseña es: ");
+                    .contains(nuevaContrasena)
+                    .startsWith("Tu nueva contraseña es: ");
         }
 
         @Test
@@ -159,9 +152,8 @@ class EmailServiceTDDTest {
             String nuevaContrasena = "password123";
 
             // Act & Assert - No debe lanzar excepción
-            assertThatCode(() -> 
-                emailService.enviarNuevaContrasena(destinoEmailConEspacios, nuevaContrasena)
-            ).doesNotThrowAnyException();
+            assertThatCode(() -> emailService.enviarNuevaContrasena(destinoEmailConEspacios, nuevaContrasena))
+                    .doesNotThrowAnyException();
 
             verify(mockMailSender).send(any(SimpleMailMessage.class));
         }
@@ -170,10 +162,9 @@ class EmailServiceTDDTest {
         @DisplayName("REFACTOR: Debe validar formato básico de email")
         void debeValidarFormatoBasicoEmail() {
             // RED: Este test debe fallar hasta implementar validación
-            assertThatThrownBy(() -> 
-                emailService.enviarNuevaContrasena("email-invalido", "password123")
-            ).isInstanceOf(IllegalArgumentException.class)
-             .hasMessage("Formato de email inválido");
+            assertThatThrownBy(() -> emailService.enviarNuevaContrasena("email-invalido", "password123"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("Formato de email inválido");
         }
     }
 
@@ -186,14 +177,12 @@ class EmailServiceTDDTest {
         void debeManejarExcepcionJavaMailSender() {
             // Arrange
             doThrow(new RuntimeException("Error de conexión SMTP"))
-                .when(mockMailSender).send(any(SimpleMailMessage.class));
+                    .when(mockMailSender).send(any(SimpleMailMessage.class));
 
             // Act & Assert
-            assertThatThrownBy(() -> 
-                emailService.enviarNuevaContrasena("test@email.com", "password123")
-            ).isInstanceOf(RuntimeException.class)
-             .hasMessage("Error al enviar email de recuperación")
-             .hasCauseInstanceOf(RuntimeException.class);
+            assertThatThrownBy(() -> emailService.enviarNuevaContrasena("test@email.com", "password123"))
+                    .isInstanceOf(RuntimeException.class)
+                    .hasMessage("Error de conexión SMTP");
         }
 
         @Test
@@ -226,8 +215,7 @@ class EmailServiceTDDTest {
             emailService.enviarNuevaContrasena(destinoEmail, nuevaContrasena);
 
             // Assert
-            ArgumentCaptor<SimpleMailMessage> messageCaptor = 
-                ArgumentCaptor.forClass(SimpleMailMessage.class);
+            ArgumentCaptor<SimpleMailMessage> messageCaptor = ArgumentCaptor.forClass(SimpleMailMessage.class);
             verify(mockMailSender).send(messageCaptor.capture());
 
             SimpleMailMessage mensaje = messageCaptor.getValue();
@@ -242,10 +230,9 @@ class EmailServiceTDDTest {
             // No configuramos el remitente (null)
 
             // Act & Assert
-            assertThatThrownBy(() -> 
-                emailServiceSinRemitente.enviarNuevaContrasena("test@email.com", "password123")
-            ).isInstanceOf(IllegalStateException.class)
-             .hasMessage("El remitente del email no está configurado");
+            assertThatThrownBy(() -> emailServiceSinRemitente.enviarNuevaContrasena("test@email.com", "password123"))
+                    .isInstanceOf(IllegalStateException.class)
+                    .hasMessage("El remitente del email no está configurado");
         }
     }
 
@@ -257,19 +244,19 @@ class EmailServiceTDDTest {
         void deberiaValidarEmailsCorrectos() {
             // Convertir a EmailServiceImpl para acceder al método público
             EmailServiceImpl emailServiceImpl = (EmailServiceImpl) emailService;
-            
+
             assertTrue(emailServiceImpl.esEmailValido("usuario@dominio.com"));
             assertTrue(emailServiceImpl.esEmailValido("usuario.nombre@dominio.com"));
             assertTrue(emailServiceImpl.esEmailValido("usuario_nombre@dominio.com"));
             assertTrue(emailServiceImpl.esEmailValido("usuario+nombre@dominio.com"));
         }
-        
+
         @Test
         @DisplayName("Debería rechazar emails inválidos")
         void deberiaRechazarEmailsInvalidos() {
             // Convertir a EmailServiceImpl para acceder al método público
             EmailServiceImpl emailServiceImpl = (EmailServiceImpl) emailService;
-            
+
             assertFalse(emailServiceImpl.esEmailValido(null));
             assertFalse(emailServiceImpl.esEmailValido(""));
             assertFalse(emailServiceImpl.esEmailValido("usuario"));

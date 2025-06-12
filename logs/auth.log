@@ -605,3 +605,9 @@ Caused by: java.sql.SQLException: Field 'activo' doesn't have a default value
 2025-06-11 14:32:24.770 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 3 (mar***@g.com)
 2025-06-11 14:33:22.758 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Intento de login para email: tes***@g.com
 2025-06-11 14:33:22.834 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Login exitoso para usuario ID: 2 (tes***@g.com)
+2025-06-11 19:34:41.484 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: david estudio (davidestudio123@gmail.com)
+2025-06-11 19:34:41.484 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - 📧 Token enviado: cbe80bea-2a84-43ae-a413-64df3159114e
+2025-06-11 19:34:50.847 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: cbe80bea-2a84-43ae-a413-64df3159114e
+2025-06-11 19:34:50.862 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: davidestudio123@gmail.com
+2025-06-11 19:34:50.865 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: cbe80bea-2a84-43ae-a413-64df3159114e
+2025-06-11 23:22:03.452 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Login recibido para: adm***@c.com
