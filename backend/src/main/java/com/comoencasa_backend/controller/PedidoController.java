@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -38,5 +40,54 @@ public class PedidoController {
             log.warn("Validación fallida para usuario {}: {}", id, ex.getMessage());
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    /** Actualizar estado de pedido */
+    @PutMapping("/{id}/estado")
+    public ResponseEntity<PedidoDTO> actualizarEstadoPedido(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request) {
+        log.info("ADMIN accedió a PUT /api/pedidos/{}/estado", id);
+        try {
+            String nuevoEstado = request.get("estado");
+            PedidoDTO pedidoActualizado = pedidoService.actualizarEstadoPedido(id, nuevoEstado);
+            return ResponseEntity.ok(pedidoActualizado);
+        } catch (IllegalArgumentException ex) {
+            log.warn("Error al actualizar estado del pedido {}: {}", id, ex.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    /** Actualizar estado de pedido de forma forzada */
+    @PutMapping("/{id}/estado/forzado")
+    public ResponseEntity<PedidoDTO> actualizarEstadoPedidoForzado(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request) {
+        log.info("ADMIN accedió a PUT /api/pedidos/{}/estado/forzado", id);
+        try {
+            String nuevoEstado = request.get("estado");
+            String password = request.get("password");
+            PedidoDTO pedidoActualizado = pedidoService.actualizarEstadoPedidoForzado(id, nuevoEstado, password);
+            return ResponseEntity.ok(pedidoActualizado);
+        } catch (IllegalArgumentException ex) {
+            log.warn("Error al actualizar estado forzado del pedido {}: {}", id, ex.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    /** Obtener estados disponibles */
+    @GetMapping("/estados")
+    public ResponseEntity<List<String>> getEstadosDisponibles() {
+        log.info("ADMIN accedió a GET /api/pedidos/estados");
+        List<String> estados = Arrays.asList("Pendiente", "En preparación", "Entregado", "Cancelado");
+        return ResponseEntity.ok(estados);
+    }
+
+    /** Obtener transiciones disponibles para un estado */
+    @GetMapping("/transiciones/{estado}")
+    public ResponseEntity<List<String>> getTransicionesDisponibles(@PathVariable String estado) {
+        log.info("ADMIN accedió a GET /api/pedidos/transiciones/{}", estado);
+        List<String> transiciones = pedidoService.getTransicionesDisponibles(estado);
+        return ResponseEntity.ok(transiciones);
     }
 }

@@ -685,3 +685,1719 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'activo' in 'field l
 2025-06-11 19:03:40.304 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: ae2487b9-ffcb-4eef-b047-1fc03f0c95ce
 2025-06-11 19:03:40.306 [http-nio-8081-exec-4] WARN  c.c.controller.AuthController - ❌ Token inválido o expirado: ae2487b9-ffcb-4eef-b047-1fc03f0c95ce
 2025-06-11 19:03:55.205 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Login recibido para: dun***@gmail.com
+2025-06-11 21:51:21.774 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 21:51:21.787 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 21:51:21.793 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 21:51:21.798 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 21:51:21.802 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 21:51:21.804 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 21:51:21.806 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 21:54:59.278 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 21:54:59.292 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 21:54:59.299 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 21:54:59.305 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 21:54:59.309 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 21:54:59.309 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 21:54:59.309 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:04:52.827 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:04:52.840 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:04:52.845 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:04:52.849 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:04:52.852 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:04:52.855 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:04:52.855 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:06:57.839 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:06:57.855 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:06:57.862 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:06:57.867 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:06:57.870 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:06:57.874 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:06:57.874 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:08:24.486 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:08:24.498 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:08:24.506 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:08:24.510 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:08:24.514 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:08:24.517 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:08:24.518 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:09:28.989 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:09:29.004 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:09:29.010 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:09:29.013 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:09:29.016 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:09:29.019 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:09:29.019 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:10:45.653 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:10:45.666 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:10:45.672 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:10:45.675 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:10:45.679 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:10:45.681 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:10:45.681 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:22:11.956 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:22:11.970 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:22:11.976 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:22:11.980 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:22:11.984 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:22:11.988 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:22:11.988 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:27:53.982 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:27:54.002 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:27:54.011 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:27:54.017 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:27:54.021 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:27:54.025 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:27:54.026 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:30:47.534 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:30:47.540 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:30:47.543 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:30:47.546 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:30:47.546 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:30:47.564 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:30:47.571 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:32:31.133 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:32:31.148 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:32:31.155 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:32:31.158 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:32:31.162 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:32:31.166 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:32:31.166 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:34:00.045 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:34:00.060 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:34:00.064 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:34:00.068 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:34:00.072 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:34:00.075 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:34:00.076 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:38:59.818 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:38:59.838 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:38:59.847 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:38:59.854 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:38:59.858 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:38:59.863 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:38:59.864 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:47:59.851 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:47:59.866 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:47:59.873 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:47:59.876 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:47:59.880 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:47:59.882 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:47:59.883 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:49:19.877 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:49:19.895 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:49:19.904 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:49:19.905 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:49:19.912 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:49:19.916 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:49:19.916 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:50:45.948 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:50:45.963 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:50:45.968 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:50:45.972 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:50:45.976 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:50:45.978 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:50:45.978 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:57:57.643 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 22:57:57.726 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 22:57:57.728 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 22:57:57.820 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 22:57:57.821 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 22:57:57.834 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 22:57:57.850 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 22:57:57.851 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 22:57:57.863 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 22:57:57.864 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 22:57:57.874 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 22:57:57.905 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:317)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 22:57:57.925 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 22:57:57.925 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 22:57:57.933 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 22:57:57.933 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 22:57:57.956 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 22:57:57.968 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 22:57:57.974 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 22:57:57.978 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 22:57:57.983 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 22:57:57.984 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 22:57:57.989 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 22:58:04.459 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:58:04.465 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:58:04.467 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:58:04.468 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:58:04.470 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:58:04.471 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:58:04.471 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:59:46.507 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 22:59:46.567 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 22:59:46.591 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 22:59:46.593 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 22:59:46.636 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 22:59:46.645 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 22:59:46.654 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 22:59:46.664 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 22:59:46.674 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 22:59:46.684 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 22:59:46.684 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 22:59:46.691 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 22:59:46.790 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:315)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 22:59:46.808 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 22:59:46.809 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 22:59:46.817 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 22:59:46.817 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 22:59:46.861 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 22:59:46.862 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 22:59:46.869 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 22:59:46.874 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 22:59:46.874 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 22:59:46.881 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 22:59:46.881 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 22:59:46.888 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 22:59:53.834 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 22:59:53.840 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 22:59:53.843 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 22:59:53.844 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 22:59:53.846 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 22:59:53.847 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 22:59:53.847 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:06:30.808 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:06:30.938 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:06:30.969 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:06:30.971 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:06:31.008 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:06:31.018 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:06:31.029 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:06:31.046 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:06:31.055 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:06:31.062 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:06:31.062 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:06:31.068 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:06:31.094 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:06:31.114 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:06:31.115 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:06:31.124 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:06:31.124 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:06:31.176 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:06:31.177 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:06:31.185 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:06:31.191 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:06:31.191 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:06:31.197 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:06:31.197 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:06:31.203 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:06:37.513 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:06:37.517 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:06:37.519 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:06:37.520 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:06:37.521 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:06:37.521 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:06:37.522 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:07:11.752 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:07:11.872 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:07:11.896 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:07:11.898 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:07:11.950 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:07:11.951 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:07:11.960 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:07:11.969 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:07:11.969 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:07:11.978 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:07:11.978 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:07:11.986 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:07:12.008 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:07:12.026 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:07:12.026 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:07:12.035 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:07:12.035 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:07:12.055 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:07:12.061 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:07:12.068 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:07:12.074 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:07:12.080 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:07:12.085 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:07:12.085 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:07:12.091 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:07:18.642 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:07:18.646 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:07:18.648 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:07:18.649 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:07:18.651 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:07:18.652 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:07:18.652 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:08:30.416 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:08:30.518 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:08:30.542 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:08:30.544 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:08:30.592 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:08:30.593 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:08:30.602 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:08:30.610 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:08:30.611 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:08:30.622 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:08:30.623 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:08:30.633 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:08:30.659 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:08:30.678 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:08:30.678 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:08:30.685 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:08:30.686 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:08:30.705 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:08:30.712 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:08:30.718 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:08:30.726 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:08:30.731 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:08:30.735 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:08:30.736 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:08:30.741 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:08:37.266 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:08:37.269 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:08:37.272 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:08:37.273 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:08:37.275 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:08:37.276 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:08:37.276 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:15:43.446 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:15:43.579 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:15:43.601 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:15:43.602 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:15:43.666 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:15:43.667 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:15:43.679 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:15:43.686 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:15:43.686 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:15:43.697 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:15:43.697 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:15:43.704 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:15:43.733 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:15:43.752 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:15:43.753 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:15:43.763 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:15:43.763 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:15:43.784 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:15:43.792 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:15:43.797 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:15:43.802 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:15:43.808 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:15:43.814 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:15:43.814 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:15:43.820 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:15:49.965 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:15:49.970 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:15:49.973 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:15:49.974 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:15:49.976 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:15:49.977 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:15:49.977 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:16:38.257 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:16:38.397 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:16:38.420 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:16:38.420 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:16:38.467 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:16:38.468 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:16:38.478 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:16:38.485 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:16:38.485 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:16:38.492 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:16:38.492 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:16:38.499 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:16:38.528 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:16:38.548 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:16:38.548 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:16:38.556 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:16:38.556 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:16:38.575 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:16:38.582 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:16:38.588 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:16:38.594 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:16:38.601 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:16:38.607 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:16:38.607 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:16:38.613 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:16:45.268 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:16:45.272 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:16:45.275 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:16:45.276 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:16:45.278 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:16:45.279 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:16:45.279 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:22:43.411 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:22:43.553 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:22:43.577 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:22:43.580 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:22:43.634 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:22:43.634 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:22:43.641 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:22:43.646 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:22:43.647 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:22:43.652 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:22:43.653 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:22:43.659 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:22:43.678 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:22:43.696 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:22:43.696 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:22:43.704 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:22:43.704 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:22:43.722 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:22:43.729 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:22:43.734 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:22:43.739 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:22:43.744 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:22:43.749 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:22:43.749 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:22:43.754 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:22:49.883 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:22:49.888 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:22:49.890 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:22:49.892 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:22:49.893 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:22:49.894 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:22:49.894 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:38:01.149 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:38:01.270 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:38:01.294 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:38:01.296 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:38:01.347 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:38:01.348 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:38:01.357 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:38:01.363 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:38:01.363 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:38:01.369 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:38:01.370 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:38:01.382 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:38:01.406 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:38:01.424 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:38:01.424 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:38:01.432 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:38:01.433 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:38:01.452 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:38:01.459 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:38:01.465 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:38:01.471 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:38:01.477 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:38:01.482 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:38:01.482 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:38:01.488 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:38:08.202 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:38:08.213 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:38:08.216 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:38:08.217 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:38:08.221 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:38:08.222 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:38:08.222 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:39:55.316 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:39:55.440 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:39:55.464 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:39:55.466 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:39:55.519 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:39:55.520 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:39:55.535 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:39:55.542 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:39:55.542 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:39:55.549 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:39:55.550 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:39:55.556 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:39:55.580 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:39:55.599 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:39:55.599 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:39:55.607 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:39:55.608 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:39:55.627 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:39:55.634 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:39:55.640 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:39:55.646 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:39:55.652 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:39:55.657 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:39:55.657 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:39:55.664 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:40:02.335 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:40:02.339 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:40:02.341 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:40:02.343 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:40:02.345 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:40:02.347 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:40:02.347 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:42:38.444 [main] INFO  c.c.controller.AuthController - Login recibido para: adm***@test.com
+2025-06-11 23:42:38.579 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:42:38.601 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (defecto@test.com)
+2025-06-11 23:42:38.603 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:42:38.656 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:42:38.656 [main] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: nuevo@test.com
+2025-06-11 23:42:38.664 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_invalido
+2025-06-11 23:42:38.671 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:42:38.671 [main] WARN  c.c.controller.AuthController - ❌ No se encontró usuario con email del token: inexistente@test.com
+2025-06-11 23:42:38.677 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_valido
+2025-06-11 23:42:38.678 [main] INFO  c.c.controller.AuthController - ⚠️ Cuenta ya verificada anteriormente: verificado@test.com
+2025-06-11 23:42:38.683 [main] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: token_123-abc.xyz
+2025-06-11 23:42:38.703 [main] ERROR c.c.controller.AuthController - ❌ Error en el registro: Error interno
+java.lang.RuntimeException: Error interno
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:106)
+	at com.comoencasa_backend.controller.AuthController.registrar(AuthController.java:91)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.comoencasa_backend.controller.AuthControllerCoberturaTDDTest$TestsRegistro.registro_DeberiaManejarErroresInternos(AuthControllerCoberturaTDDTest.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-06-11 23:42:38.725 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: María García (nuevo@test.com)
+2025-06-11 23:42:38.725 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:42:38.733 [main] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: Test User (espacios@test.com)
+2025-06-11 23:42:38.733 [main] INFO  c.c.controller.AuthController - 📧 Token enviado: token123
+2025-06-11 23:42:38.753 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:42:38.760 [main] INFO  c.c.controller.AuthController - Login recibido para: email-invalido
+2025-06-11 23:42:38.765 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:42:38.771 [main] INFO  c.c.controller.AuthController - Login recibido para: ina***@test.com
+2025-06-11 23:42:38.776 [main] INFO  c.c.controller.AuthController - Login recibido para: unknown
+2025-06-11 23:42:38.781 [main] INFO  c.c.controller.AuthController - Login recibido para: ine***@test.com
+2025-06-11 23:42:38.781 [main] WARN  c.c.controller.AuthController - Usuario no encontrado: ine***@test.com
+2025-06-11 23:42:38.787 [main] INFO  c.c.controller.AuthController - Login recibido para: usu***@test.com
+2025-06-11 23:42:45.156 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: null
+2025-06-11 23:42:45.160 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: inactivo@test.com
+2025-06-11 23:42:45.162 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: usuario@test.com
+2025-06-11 23:42:45.164 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Recuperación fallida: no existe usuario con el email inexistente@test.com
+2025-06-11 23:42:45.165 [main] WARN  c.c.service.impl.UsuarioServiceImpl - Intento de recuperación con email inválido: email-invalido
+2025-06-11 23:42:45.166 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com
+2025-06-11 23:42:45.166 [main] INFO  c.c.service.impl.UsuarioServiceImpl - Se envió nueva contraseña al usuario con email: test@test.com

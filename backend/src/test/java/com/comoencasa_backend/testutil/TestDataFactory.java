@@ -60,10 +60,27 @@ public class TestDataFactory {
             return this;
         }
 
+        public ProductoTestBuilder conDescripcion(String descripcion) {
+            this.producto.setDescripcion(descripcion);
+            return this;
+        }
+
+        public ProductoTestBuilder conImagenUrl(String imagenUrl) {
+            this.producto.setImagenUrl(imagenUrl);
+            return this;
+        }
+
+        public ProductoTestBuilder conDisponible(Boolean disponible) {
+            this.producto.setDisponible(disponible);
+            return this;
+        }
+
         public Producto build() {
             return this.producto;
         }
-    }    public static class UsuarioTestBuilder {
+    }
+
+    public static class UsuarioTestBuilder {
         private Usuario usuario;
 
         public UsuarioTestBuilder() {
@@ -89,7 +106,9 @@ public class TestDataFactory {
         public UsuarioTestBuilder conApellido(String apellido) {
             this.usuario.setApellido(apellido);
             return this;
-        }        public UsuarioTestBuilder conNombreCompleto(String nombre, String apellido) {
+        }
+
+        public UsuarioTestBuilder conNombreCompleto(String nombre, String apellido) {
             this.usuario.setNombre(nombre);
             this.usuario.setApellido(apellido);
             return this;
@@ -135,7 +154,9 @@ public class TestDataFactory {
         public UsuarioTestBuilder conRol(Usuario.Rol rol) {
             this.usuario.setRol(rol);
             return this;
-        }        public UsuarioTestBuilder inactivo() {
+        }
+
+        public UsuarioTestBuilder inactivo() {
             this.usuario.setActivado(false);
             return this;
         }
