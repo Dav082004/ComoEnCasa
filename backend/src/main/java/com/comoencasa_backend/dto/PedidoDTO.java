@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class PedidoDTO {
@@ -16,6 +17,6 @@ public class PedidoDTO {
     private BigDecimal subtotal;
     private BigDecimal costoTotal;
     private String direccionEntrega;
-    private String notas;
     private Boolean necesitaFactura;
+    private List<DetallePedidoDTO> detalles;
 }

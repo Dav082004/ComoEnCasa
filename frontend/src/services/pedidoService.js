@@ -12,6 +12,16 @@ export const getPedidosByUserId = async (userId) => {
   return data;
 };
 
+export const getPedidoById = async (pedidoId) => {
+  try {
+    const { data } = await axios.get(`${PEDIDOS_URL}/${pedidoId}`);
+    return data;
+  } catch (error) {
+    console.error("Error al obtener detalles del pedido:", error);
+    throw error;
+  }
+};
+
 // Nuevas funcionalidades para actualización de estado
 export const actualizarEstadoPedido = async (pedidoId, nuevoEstado) => {
   try {

@@ -19,6 +19,7 @@ import RecuperarCuenta from "../pages/RecuperarCuenta";
 import VerificarCuenta from "../pages/VerificarCuenta"; // ✅ Ruta corregida
 
 import Perfil from "../pages/Perfil";
+import Recomendacion from "../pages/Recomendacion";
 
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
@@ -27,6 +28,7 @@ import Pedidos from "../pages/Pedidos";
 import AdminProducts from "../pages/AdminProducts";
 import AdminOrders from "../pages/AdminOrders";
 import AdminComprobantes from "../pages/AdminComprobantes";
+import AdminCategories from "../pages/AdminCategories";
 import PagoExitoso from "../pages/PagoExitoso";
 
 export const AppRouter = () => {
@@ -56,14 +58,15 @@ export const AppRouter = () => {
                 <Route path="verificar" element={<VerificarCuenta />} />
 
                 <Route path="perfil" element={<Perfil />} />
+                <Route path="recomendacion" element={<Recomendacion />} />
                 <Route path="pedidos" element={<Pedidos />} />
-                   <Route path="/pago-exitoso" element={<PagoExitoso />} />
+                <Route path="pago-exitoso" element={<PagoExitoso />} />
               </Route>
               <Route path="admin" element={<AdminLayout />}>
                 <Route path="productos" element={<AdminProducts />} />
+                <Route path="categorias" element={<AdminCategories />} />
                 <Route path="pedidos" element={<AdminOrders />} />
                 <Route path="comprobantes" element={<AdminComprobantes />} />
-             
               </Route>
             </Routes>
             <ToastContainer

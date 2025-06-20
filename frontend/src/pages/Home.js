@@ -1,12 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import slide from "../assets/slide.jpg";
 import TortaRosa from "../assets/imgReales/TortaRosa.png";
 import TortaSherk from "../assets/imgReales/TortaSherk.png";
 import TestimonialCarousel from "../components/TestimonialCarousel";
+import { useAuth } from "../context/AuthContext";
 import "../styles/Home.css";
 
 const Home = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleRecomendacionClick = () => {
+    navigate("/recomendacion");
+  };
+
   return (
     <div className="container">
       {/* Hero Section */}
@@ -82,6 +90,32 @@ const Home = () => {
 
       {/* Testimonials Section */}
       <TestimonialCarousel />
+
+      {/* Botón de Recomendación para usuarios logueados */}
+      {user && (
+        <section className="container recommendation-section mb-5">
+          <div className="row justify-content-center">
+            <div className="col-md-8">
+              <div className="recommendation-card">
+                <div className="recommendation-content">
+                  <h3 className="recommendation-title">
+                    💝 ¿Qué opinas de nuestros productos?
+                  </h3>
+                  <p className="recommendation-subtitle">
+                    Tu experiencia nos importa. Comparte tu opinión y ayúdanos a
+                    seguir mejorando.
+                  </p>
+                  <button
+                    className="btn-recommendation"
+                    onClick={handleRecomendacionClick}>
+                    ✍️ Comparte tu opinión
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 };

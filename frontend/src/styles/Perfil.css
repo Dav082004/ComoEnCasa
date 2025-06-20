@@ -2,16 +2,16 @@
   display: flex;
   justify-content: center;
   padding: 40px 0;
-  background-color: #fff5f7; 
+  background-color: #fff5f7;
 }
 
 .perfil-wrapper {
   display: flex;
   width: 100%;
-  max-width: 950px; 
+  max-width: 950px;
   background-color: #ffe4ec;
   border-radius: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   padding: 30px;
   gap: 30px;
   justify-content: center;
@@ -27,9 +27,7 @@
 }
 
 .perfil-menu button {
-  background-color: #ff8fab
-
-;
+  background-color: #ff8fab;
   color: white;
   padding: 10px;
   border: none;
@@ -37,6 +35,30 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.perfil-menu button.btn-outline-primary {
+  background-color: transparent;
+  color: #ff8fab;
+  border: 2px solid #ff8fab;
+}
+
+.perfil-menu button.btn-outline-primary:hover {
+  background-color: #ff8fab;
+  color: white;
+}
+
+.perfil-menu button.btn-primary {
+  background-color: #ff8fab;
+  border: 2px solid #ff8fab;
+}
+
+.perfil-formulario-group small {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #6c757d;
 }
 
 .perfil-form-section {
@@ -45,9 +67,8 @@
 }
 
 .perfil-titulo {
-  color: #ff8fab
-;
-  font-family: 'Comic Sans MS', cursive;
+  color: #ff8fab;
+  font-family: "Comic Sans MS", cursive;
   margin-bottom: 20px;
   font-size: 1.2rem;
 }
@@ -74,15 +95,37 @@
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.perfil-formulario-group input:focus {
+  outline: none;
+  border-color: #ff8fab;
+  box-shadow: 0 0 0 2px rgba(255, 143, 171, 0.2);
+}
+
+.perfil-formulario-group input.readonly-field {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.perfil-formulario-group input.readonly-field:focus {
+  border-color: #e9ecef;
+  box-shadow: none;
+}
+
+.perfil-formulario-group input::placeholder {
+  color: #adb5bd;
+  font-style: italic;
 }
 
 .perfil-boton {
   grid-column: 1 / -1;
   padding: 10px;
   border: none;
-  background-color: #ff8fab
-
-;
+  background-color: #ff8fab;
   color: white;
   border-radius: 8px;
   font-weight: bold;

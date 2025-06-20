@@ -81,9 +81,11 @@ export const HeaderComponent = () => {
                   <Dropdown.Item as={Link} to="/perfil">
                     Perfil
                   </Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/pedidos">
-                    Mis Pedidos
-                  </Dropdown.Item>
+                  {user.rol !== "ADMIN" && (
+                    <Dropdown.Item as={Link} to="/pedidos">
+                      Mis Pedidos
+                    </Dropdown.Item>
+                  )}
                   {user.isAdmin && (
                     <Dropdown.Item as={Link} to="/admin">
                       Panel Admin
@@ -98,16 +100,12 @@ export const HeaderComponent = () => {
                 Iniciar Sesión
               </Link>
             )}
-<Link to="/carrito" className="cart-icon-wrapper">
-  <CartFill size={28} color="#6c757d" />
-  {totalItems > 0 && (
-    <span className="cart-badge">{totalItems}</span>
-  )}
-</Link>
-
-
-
-
+            <Link to="/carrito" className="cart-icon-wrapper">
+              <CartFill size={28} color="#6c757d" />
+              {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )}
+            </Link>
           </div>
         </nav>
       </div>

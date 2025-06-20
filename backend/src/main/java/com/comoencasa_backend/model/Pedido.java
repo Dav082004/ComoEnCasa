@@ -41,8 +41,6 @@ public class Pedido {
     @Column(name = "direccion_entrega")
     private String direccionEntrega;
 
-    private String notas;
-
     @Column(name = "necesita_factura")
     private Boolean necesitaFactura;
 

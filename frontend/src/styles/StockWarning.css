@@ -1,0 +1,215 @@
+/* === COMPONENTE DE AVISOS DE STOCK === */
+
+.stock-warning {
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: "Comfortaa", cursive;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stock-warning::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: currentColor;
+}
+
+/* Tipos de avisos */
+.stock-warning-warning {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border: 1px solid #ffc107;
+  color: #856404;
+}
+
+.stock-warning-danger {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  border: 1px solid #dc3545;
+  color: #721c24;
+}
+
+.stock-warning-info {
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+  border: 1px solid #17a2b8;
+  color: #0c5460;
+}
+
+/* Header del aviso */
+.stock-warning-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.stock-warning-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stock-warning-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex-grow: 1;
+}
+
+.stock-warning-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: currentColor;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.stock-warning-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Contenido del aviso */
+.stock-warning-content {
+  line-height: 1.5;
+}
+
+.stock-warning-message {
+  margin: 0 0 0.75rem 0;
+  font-weight: 500;
+}
+
+.stock-warning-suggestions {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+}
+
+.stock-warning-suggestions strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.stock-warning-suggestions ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.stock-warning-suggestions li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Acciones del aviso */
+.stock-warning-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.stock-warning-action-btn {
+  background: currentColor;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.stock-warning-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animaciones */
+.stock-warning {
+  animation: stockWarningSlideIn 0.4s ease-out;
+}
+
+@keyframes stockWarningSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Variaciones de color para botones según el tipo */
+.stock-warning-warning .stock-warning-action-btn {
+  background: #ffc107;
+  color: #212529;
+}
+
+.stock-warning-danger .stock-warning-action-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.stock-warning-info .stock-warning-action-btn {
+  background: #17a2b8;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stock-warning {
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+  }
+
+  .stock-warning-header {
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stock-warning-icon {
+    font-size: 1.25rem;
+  }
+
+  .stock-warning-title {
+    font-size: 1rem;
+  }
+
+  .stock-warning-message {
+    font-size: 0.9rem;
+  }
+
+  .stock-warning-suggestions {
+    padding: 0.5rem;
+  }
+
+  .stock-warning-action-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Estados especiales */
+.stock-warning.pulsing {
+  animation: stockWarningPulse 2s infinite;
+}
+
+@keyframes stockWarningPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+  }
+}

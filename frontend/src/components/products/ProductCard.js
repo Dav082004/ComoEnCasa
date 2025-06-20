@@ -5,14 +5,26 @@ import "./styles/ProductCard.css";
 const ProductCard = ({ producto }) => {
   const includesText = producto.descripcion?.match(/Incluye.*/)?.[0];
 
+  // Imagen por defecto si no hay imagenUrl o está vacía
+  const imagenSrc =
+    producto.imagenUrl && producto.imagenUrl.trim() !== ""
+      ? producto.imagenUrl
+      : "/placeholder-product.svg"; // Imagen por defecto
+
   return (
     <div className="card">
       <Link to={`/productos/${producto.id}`} className="cardLink">
         <div className="image-container">
           <img
-            src={producto.imagenUrl}
+            src={imagenSrc}
             alt={producto.nombre}
             className="image"
+            onError={(e) => {
+              // Fallback si la imagen no se puede cargar
+              if (e.target.src !== "/placeholder-product.svg") {
+                e.target.src = "/placeholder-product.svg";
+              }
+            }}
           />
         </div>
         <div className="info">

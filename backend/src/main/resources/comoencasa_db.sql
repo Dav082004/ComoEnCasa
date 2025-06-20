@@ -160,10 +160,10 @@ INSERT INTO `producto` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio_v
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto_pedido`
+-- Estructura de tabla para la tabla `detalle_pedido`
 --
 
-CREATE TABLE `producto_pedido` (
+CREATE TABLE `detalle_pedido` (
   `id` bigint(20) NOT NULL,
   `pedido_id` bigint(20) NOT NULL,
   `producto_id` bigint(20) NOT NULL,
@@ -174,10 +174,10 @@ CREATE TABLE `producto_pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `producto_pedido`
+-- Volcado de datos para la tabla `detalle_pedido`
 --
 
-INSERT INTO `producto_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `precio_unitario`, `costo_unitario`, `personalizacion`) VALUES
+INSERT INTO `detalle_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `precio_unitario`, `costo_unitario`, `personalizacion`) VALUES
 (1, 1, 1, 1, 120.00, 80.00, 'Con dedicatoria'),
 (2, 2, 3, 1, 150.00, 95.00, 'Agregar logo personalizado'),
 (3, 3, 4, 1, 80.00, 45.00, 'Cupcakes temáticos'),
@@ -201,7 +201,8 @@ CREATE TABLE `usuario` (
   `tipo_documento` enum('DNI','RUC','CE') DEFAULT 'DNI',
   `numero_documento` varchar(20) DEFAULT NULL,
   `rol` enum('CLIENTE','ADMIN') NOT NULL DEFAULT 'CLIENTE',
-  `activado` tinyint(1) DEFAULT 0
+  `activado` tinyint(1) DEFAULT 0,
+  `recomendacion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -255,9 +256,9 @@ ALTER TABLE `producto`
   ADD KEY `categoria_id` (`categoria_id`);
 
 --
--- Indices de la tabla `producto_pedido`
+-- Indices de la tabla `detalle_pedido`
 --
-ALTER TABLE `producto_pedido`
+ALTER TABLE `detalle_pedido`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pedido_id` (`pedido_id`),
   ADD KEY `producto_id` (`producto_id`);
@@ -304,9 +305,9 @@ ALTER TABLE `producto`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `producto_pedido`
+-- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
-ALTER TABLE `producto_pedido`
+ALTER TABLE `detalle_pedido`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -344,11 +345,11 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria_producto` (`id`);
 
 --
--- Filtros para la tabla `producto_pedido`
+-- Filtros para la tabla `detalle_pedido`
 --
-ALTER TABLE `producto_pedido`
-  ADD CONSTRAINT `producto_pedido_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `producto_pedido_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`);
+ALTER TABLE `detalle_pedido`
+  ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detalle_pedido_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

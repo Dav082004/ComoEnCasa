@@ -30,6 +30,19 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.findAll());
     }
 
+    /** Obtener un pedido por ID */
+    @GetMapping("/{id}")
+    public ResponseEntity<PedidoDTO> getPedidoById(@PathVariable Long id) {
+        log.info("ADMIN accedió a GET /api/pedidos/{}", id);
+        try {
+            PedidoDTO pedido = pedidoService.findById(id);
+            return ResponseEntity.ok(pedido);
+        } catch (IllegalArgumentException ex) {
+            log.warn("Pedido no encontrado con ID {}: {}", id, ex.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     /** Listar pedidos de un usuario */
     @GetMapping("/usuario/{id}")
     public ResponseEntity<List<PedidoDTO>> getPedidosPorUsuario(@PathVariable Long id) {
@@ -81,6 +94,19 @@ public class PedidoController {
         log.info("ADMIN accedió a GET /api/pedidos/estados");
         List<String> estados = Arrays.asList("Pendiente", "En preparación", "Entregado", "Cancelado");
         return ResponseEntity.ok(estados);
+    }
+
+    /** Crear un nuevo pedido */
+    @PostMapping
+    public ResponseEntity<PedidoDTO> crearPedido(@RequestBody PedidoDTO pedidoDTO) {
+        log.info("Creando nuevo pedido para usuario ID: {}", pedidoDTO.getUsuarioId());
+        try {
+            PedidoDTO nuevoPedido = pedidoService.crearPedido(pedidoDTO);
+            return ResponseEntity.ok(nuevoPedido);
+        } catch (IllegalArgumentException ex) {
+            log.warn("Error al crear pedido: {}", ex.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     /** Obtener transiciones disponibles para un estado */

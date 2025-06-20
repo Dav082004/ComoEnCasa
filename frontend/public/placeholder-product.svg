@@ -1,0 +1,24 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="300" height="300" fill="url(#grad)" rx="8"/>
+  
+  <!-- Icono de imagen -->
+  <circle cx="150" cy="120" r="15" fill="#6c757d" opacity="0.3"/>
+  <rect x="100" y="150" width="100" height="80" rx="4" fill="none" stroke="#6c757d" stroke-width="2" opacity="0.3"/>
+  <polygon points="110,200 140,170 160,185 190,160 190,220 110,220" fill="#6c757d" opacity="0.2"/>
+  
+  <!-- Texto -->
+  <text x="150" y="250" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" fill="#6c757d">
+    Imagen del producto
+  </text>
+  <text x="150" y="270" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#adb5bd">
+    No disponible
+  </text>
+</svg>

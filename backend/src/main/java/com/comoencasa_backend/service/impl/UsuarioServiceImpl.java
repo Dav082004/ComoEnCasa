@@ -90,10 +90,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public boolean activarCuenta(String token) {
         String email = verificationTokenService.obtenerEmailPorToken(token);
-        if (email == null) return false;
+        if (email == null)
+            return false;
 
         Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
-        if (usuarioOpt.isEmpty()) return false;
+        if (usuarioOpt.isEmpty())
+            return false;
 
         Usuario usuario = usuarioOpt.get();
         usuario.setActivado(true);
@@ -115,5 +117,27 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public void actualizarRecomendacion(Long usuarioId, String recomendacion) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+        if (usuarioOpt.isEmpty()) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+
+        Usuario usuario = usuarioOpt.get();
+        usuario.setRecomendacion(recomendacion);
+        usuarioRepository.save(usuario);
+        logger.info("Recomendación actualizada para usuario ID: {}", usuarioId);
+    }
+
+    @Override
+    public Optional<String> obtenerRecomendacion(Long usuarioId) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+        if (usuarioOpt.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(usuarioOpt.get().getRecomendacion());
     }
 }

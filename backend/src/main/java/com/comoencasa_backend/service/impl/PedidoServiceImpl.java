@@ -1,17 +1,19 @@
 package com.comoencasa_backend.service.impl;
 
+import com.comoencasa_backend.dto.DetallePedidoDTO;
 import com.comoencasa_backend.dto.PedidoDTO;
+import com.comoencasa_backend.model.DetallePedido;
 import com.comoencasa_backend.model.Pedido;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.PedidoRepository;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.PedidoService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +28,6 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;
 
-    @Autowired
     public PedidoServiceImpl(PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioRepository = usuarioRepository;
@@ -40,6 +41,23 @@ public class PedidoServiceImpl implements PedidoService {
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PedidoDTO findById(Long pedidoId) {
+        if (pedidoId == null) {
+            throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
+        }
+
+        log.info("ADMIN: obteniendo pedido por ID={}", pedidoId);
+
+        Optional<Pedido> pedidoOpt = pedidoRepository.findById(pedidoId);
+        if (pedidoOpt.isEmpty()) {
+            throw new IllegalArgumentException("Pedido no encontrado con ID=" + pedidoId);
+        }
+
+        return toDTO(pedidoOpt.get());
     }
 
     @Override
@@ -81,7 +99,6 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setSubtotal(pedidoDTO.getSubtotal());
         pedido.setCostoTotal(pedidoDTO.getCostoTotal());
         pedido.setDireccionEntrega(pedidoDTO.getDireccionEntrega());
-        pedido.setNotas(pedidoDTO.getNotas());
         pedido.setNecesitaFactura(pedidoDTO.getNecesitaFactura());
 
         Pedido guardado = pedidoRepository.save(pedido);
@@ -123,8 +140,18 @@ public class PedidoServiceImpl implements PedidoService {
             throw new IllegalArgumentException("Transición de retroceso requiere confirmación especial");
         }
 
-        // Actualizar estado
+        // Actualizar estado y manejar fecha de entrega
         pedido.setEstado(nuevoEstado);
+
+        // Lógica de fecha de entrega: solo se establece cuando el estado es "Entregado"
+        if ("Entregado".equals(nuevoEstado)) {
+            // Si se marca como entregado, establecer fecha actual
+            pedido.setFechaEntrega(LocalDateTime.now());
+        } else {
+            // Si no está entregado, limpiar la fecha de entrega
+            pedido.setFechaEntrega(null);
+        }
+
         Pedido pedidoActualizado = pedidoRepository.save(pedido);
 
         log.info("Estado de pedido actualizado: ID={}, estado anterior={}, nuevo estado={}",
@@ -168,8 +195,18 @@ public class PedidoServiceImpl implements PedidoService {
             throw new IllegalArgumentException("Estado no válido: " + nuevoEstado);
         }
 
-        // Actualizar estado
+        // Actualizar estado y manejar fecha de entrega
         pedido.setEstado(nuevoEstado);
+
+        // Lógica de fecha de entrega: solo se establece cuando el estado es "Entregado"
+        if ("Entregado".equals(nuevoEstado)) {
+            // Si se marca como entregado, establecer fecha actual
+            pedido.setFechaEntrega(LocalDateTime.now());
+        } else {
+            // Si no está entregado, limpiar la fecha de entrega
+            pedido.setFechaEntrega(null);
+        }
+
         Pedido pedidoActualizado = pedidoRepository.save(pedido);
 
         log.warn("Estado de pedido actualizado FORZADAMENTE: ID={}, estado anterior={}, nuevo estado={}",
@@ -258,8 +295,31 @@ public class PedidoServiceImpl implements PedidoService {
         dto.setSubtotal(p.getSubtotal());
         dto.setCostoTotal(p.getCostoTotal());
         dto.setDireccionEntrega(p.getDireccionEntrega());
-        dto.setNotas(p.getNotas());
         dto.setNecesitaFactura(p.getNecesitaFactura());
+
+        // Convertir detalles del pedido
+        if (p.getDetallePedidos() != null && !p.getDetallePedidos().isEmpty()) {
+            List<DetallePedidoDTO> detallesDTO = p.getDetallePedidos().stream()
+                    .map(this::toDetallePedidoDTO)
+                    .collect(Collectors.toList());
+            dto.setDetalles(detallesDTO);
+        }
+
+        return dto;
+    }
+
+    private DetallePedidoDTO toDetallePedidoDTO(DetallePedido detalle) {
+        DetallePedidoDTO dto = new DetallePedidoDTO();
+        dto.setId(detalle.getId());
+        dto.setProductoId(detalle.getProducto().getId());
+        dto.setNombreProducto(detalle.getProducto().getNombre());
+        dto.setCantidad(detalle.getCantidad());
+        dto.setPrecioUnitario(detalle.getPrecioUnitario());
+        dto.setCostoUnitario(detalle.getCostoUnitario());
+        dto.setPersonalizacion(detalle.getPersonalizacion());
+        // Calcular subtotal: cantidad * precio unitario
+        BigDecimal subtotal = detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
+        dto.setSubtotal(subtotal);
         return dto;
     }
 }

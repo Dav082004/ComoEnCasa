@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { FaTags, FaShoppingCart } from "react-icons/fa";
+import { FaTags, FaShoppingCart, FaList } from "react-icons/fa";
 import { FaFileInvoice } from "react-icons/fa6";
 import "../styles/AdminLayout.css";
-import { HeaderComponent } from "../components/HeaderComponent"; 
+import { HeaderComponent } from "../components/HeaderComponent";
 
 export default function AdminLayout() {
   return (
@@ -16,24 +16,28 @@ export default function AdminLayout() {
           <NavLink
             to="/admin/productos"
             className="nav-item"
-            activeclassname="active"
-          >
+            activeclassname="active">
             <FaTags className="nav-icon" />
             <span>Productos</span>
           </NavLink>
           <NavLink
+            to="/admin/categorias"
+            className="nav-item"
+            activeclassname="active">
+            <FaList className="nav-icon" />
+            <span>Categorías</span>
+          </NavLink>
+          <NavLink
             to="/admin/pedidos"
             className="nav-item"
-            activeclassname="active"
-          >
+            activeclassname="active">
             <FaShoppingCart className="nav-icon" />
             <span>Pedidos</span>
           </NavLink>
           <NavLink
             to="/admin/comprobantes"
             className="nav-item"
-            activeclassname="active"
-          >
+            activeclassname="active">
             <FaFileInvoice className="nav-icon" />
             <span>Comprobantes</span>
           </NavLink>

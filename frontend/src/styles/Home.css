@@ -24,3 +24,92 @@
 .container-blogs {
   margin-bottom: 160px; /* Aumenta la separación con la sección de productos */
 }
+
+/* Estilos para la sección de recomendación */
+.recommendation-section {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.recommendation-card {
+  background: linear-gradient(135deg, #f8c2d4 0%, #f0b5c4 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(248, 194, 212, 0.4);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendation-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+}
+
+.recommendation-content {
+  position: relative;
+  z-index: 2;
+}
+
+.recommendation-title {
+  color: #6b4c57;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.recommendation-subtitle {
+  color: #8b6c7a;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.btn-recommendation {
+  background: white;
+  color: #d63384;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border: 2px solid #f8c2d4;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(248, 194, 212, 0.3);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-recommendation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(248, 194, 212, 0.5);
+  background: #fef7f9;
+  color: #c2185b;
+  border-color: #f0b5c4;
+}

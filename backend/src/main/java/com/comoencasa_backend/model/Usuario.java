@@ -48,12 +48,15 @@ public class Usuario {
     @Column(name = "activado", nullable = false)
     private Boolean activado = true;
 
+    @Column(name = "recomendacion", columnDefinition = "TEXT")
+    private String recomendacion;
+
     public enum TipoDocumento {
         DNI, RUC, CE
     }
 
     public enum Rol {
-        CLIENTE("CLIENTE"),  // Valor que espera Java
+        CLIENTE("CLIENTE"), // Valor que espera Java
         ADMIN("ADMIN");
 
         private final String dbValue;
