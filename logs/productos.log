@@ -2035,3 +2035,146 @@ This generated password is for development use only. Your security configuration
 19:07:16.313 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 19:07:16.314 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 19:07:16.319 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+19:13:54.949 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 19008 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+19:13:54.950 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+19:13:55.472 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+19:13:55.533 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 53 ms. Found 6 JPA repository interfaces.
+19:13:55.963 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+19:13:55.970 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+19:13:55.972 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:13:55.972 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+19:13:56.013 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:13:56.013 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1033 ms
+19:13:56.159 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+19:13:56.202 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+19:13:56.236 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+19:13:56.454 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+19:13:56.473 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+19:13:56.604 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c421123
+19:13:56.606 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+19:13:56.627 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+19:13:56.629 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+19:13:56.639 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+19:13:57.228 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+19:13:57.286 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+19:13:57.517 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+19:13:57.542 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+19:13:57.664 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 60829ea9-b279-47d8-bd36-eceec16448b1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+19:13:57.675 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+19:13:58.012 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+19:13:58.035 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+19:13:58.043 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.51 seconds (process running for 3.775)
+19:13:58.641 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:13:58.642 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:13:58.642 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+19:26:36.947 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+19:26:36.952 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+19:26:36.955 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+19:26:36.959 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+19:26:36.963 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+19:30:26.885 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 20592 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+19:30:26.886 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+19:30:27.392 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+19:30:27.449 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 6 JPA repository interfaces.
+19:30:27.876 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+19:30:27.920 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1002 ms
+19:30:28.093 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+19:30:28.160 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+19:30:28.189 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+19:30:28.405 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+19:30:28.427 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+19:30:28.557 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@343db2f6
+19:30:28.558 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+19:30:28.579 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+19:30:28.582 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+19:30:28.593 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+19:30:29.157 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+19:30:29.235 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+19:30:29.523 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+19:30:29.550 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+19:30:29.686 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: a436ec02-75bc-4ebc-9707-08a1be7a8098
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+19:30:29.701 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+19:30:30.133 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+19:30:30.134 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+19:30:30.136 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+19:30:30.143 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+19:36:45.810 [main] INFO  c.c.ComoencasaBackendApplication - Starting ComoencasaBackendApplication using Java 24.0.1 with PID 8500 (C:\Users\User\Desktop\ComoEnCasa\backend\target\classes started by User in C:\Users\User\Desktop\ComoEnCasa)
+19:36:45.811 [main] INFO  c.c.ComoencasaBackendApplication - No active profile set, falling back to 1 default profile: "default"
+19:36:46.337 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+19:36:46.399 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 6 JPA repository interfaces.
+19:36:46.849 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+19:36:46.857 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+19:36:46.858 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:36:46.858 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+19:36:46.896 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:36:46.896 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1053 ms
+19:36:47.041 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+19:36:47.091 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+19:36:47.118 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+19:36:47.336 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+19:36:47.355 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+19:36:47.494 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5db9f51f
+19:36:47.496 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+19:36:47.518 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+19:36:47.521 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+19:36:47.533 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+19:36:48.122 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+19:36:48.200 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+19:36:48.465 [main] INFO  c.c.dao.impl.CarritoDAOImpl - CarritoDAO inicializado con cache Guava - Max: 1000, TTL: 2h
+19:36:48.493 [main] INFO  c.c.service.impl.CarritoServiceImpl - CarritoService inicializado con DAO y ProductoService
+19:36:48.612 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 91d1b33b-e04a-464c-920f-52596d389fa4
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+19:36:48.624 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+19:36:48.965 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+19:36:48.987 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+19:36:48.993 [main] INFO  c.c.ComoencasaBackendApplication - Started ComoencasaBackendApplication in 3.613 seconds (process running for 3.908)
+19:36:55.533 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:36:55.534 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:36:55.534 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+19:37:08.550 [http-nio-8081-exec-3] INFO  c.c.controller.CheckoutController - Procesando checkout para usuario ID: 7
+19:37:08.551 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Iniciando proceso de checkout para usuario ID: 7
+19:37:08.553 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Validando stock para 1 productos
+19:37:08.554 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Stock validado para Red Velvet: 1 disponible, 1 solicitado
+19:37:08.581 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Creados 1 detalles de pedido para el pedido ID: 11
+19:37:08.581 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Procesando pago: método=yape, monto=188.8
+19:37:08.584 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Confirmando reducción de stock para 1 productos
+19:37:08.585 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Producto 'Red Velvet' agotado (stock = 0), pero mantiene disponibilidad para reabastecimiento
+19:37:08.586 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Stock actualizado para 'Red Velvet': 1 -> 0 unidades
+19:37:08.600 [http-nio-8081-exec-3] INFO  c.c.s.impl.ComprobanteServiceImpl - Comprobante generado ID=12 para pedido 11
+19:37:08.601 [http-nio-8081-exec-3] INFO  c.c.service.impl.CheckoutServiceImpl - Checkout procesado exitosamente. Pedido ID: 11, Pago ID: 12, Comprobante ID: 12
+19:37:08.610 [http-nio-8081-exec-3] INFO  c.c.controller.CheckoutController - Checkout procesado exitosamente. Pedido ID: 11

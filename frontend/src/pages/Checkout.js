@@ -7,7 +7,13 @@ import { toast } from "react-toastify";
 import "../styles/Checkout.css";
 
 const CheckoutSimple = () => {
-  const { cart, getTotalPrice, clearCart } = useCart();
+  const {
+    cart,
+    getTotalPrice,
+    clearCart,
+    validateCartStock,
+    syncCartWithStock,
+  } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -100,6 +106,36 @@ const CheckoutSimple = () => {
         return;
       }
 
+      // ✅ NUEVA VALIDACIÓN: Verificar stock antes del checkout
+      toast.info("🔍 Verificando disponibilidad de productos...", {
+        autoClose: 2000,
+      });
+
+      const stockErrors = await validateCartStock();
+      if (stockErrors.length > 0) {
+        // Intentar sincronizar carrito con stock disponible
+        const hasChanges = await syncCartWithStock();
+
+        if (hasChanges) {
+          toast.warning(
+            "⚠️ Tu carrito ha sido actualizado según la disponibilidad actual",
+            {
+              autoClose: 4000,
+            }
+          );
+        }
+
+        // Mostrar errores específicos de stock
+        setError(`Problemas de stock detectados:\n${stockErrors.join("\n")}`);
+        toast.error(
+          "❌ No se puede procesar el pedido debido a problemas de stock",
+          {
+            autoClose: 5000,
+          }
+        );
+        return;
+      }
+
       // Preparar datos del checkout
       const checkoutData = {
         usuarioId: user.id,
@@ -154,14 +190,49 @@ const CheckoutSimple = () => {
           },
         });
       } else {
-        setError(response.mensaje || "Error procesando el pedido");
-        toast.error(response.mensaje || "Error procesando el pedido");
+        const mensajeError = response.mensaje || "Error procesando el pedido";
+        setError(mensajeError);
+
+        // Verificar si es un error de stock y mostrar mensaje específico
+        if (
+          mensajeError.toLowerCase().includes("stock insuficiente") ||
+          mensajeError.toLowerCase().includes("no disponible") ||
+          mensajeError.toLowerCase().includes("agotado")
+        ) {
+          toast.error(`❌ ${mensajeError}`, {
+            autoClose: 5000,
+            style: {
+              backgroundColor: "#fff3cd",
+              color: "#856404",
+              border: "1px solid #ffeaa7",
+            },
+          });
+        } else {
+          toast.error(mensajeError);
+        }
       }
     } catch (error) {
       console.error("Error en checkout:", error);
       const mensajeError = error.mensaje || "Error de conexión con el servidor";
       setError(mensajeError);
-      toast.error(mensajeError);
+
+      // Verificar si es un error de stock en la excepción
+      if (
+        mensajeError.toLowerCase().includes("stock insuficiente") ||
+        mensajeError.toLowerCase().includes("no disponible") ||
+        mensajeError.toLowerCase().includes("agotado")
+      ) {
+        toast.error(`🚫 ${mensajeError}`, {
+          autoClose: 5000,
+          style: {
+            backgroundColor: "#f8d7da",
+            color: "#721c24",
+            border: "1px solid #e74c3c",
+          },
+        });
+      } else {
+        toast.error(mensajeError);
+      }
     } finally {
       setProcesando(false);
     }
@@ -194,8 +265,33 @@ const CheckoutSimple = () => {
         <h1>🛒 Finalizar Compra</h1>
 
         {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
+          <div
+            className={`alert ${
+              error.toLowerCase().includes("stock") ||
+              error.toLowerCase().includes("disponible") ||
+              error.toLowerCase().includes("agotado")
+                ? "alert-warning stock-error"
+                : "alert-danger"
+            }`}
+            role="alert">
+            <div className="error-content">
+              <strong>
+                {error.toLowerCase().includes("stock") ||
+                error.toLowerCase().includes("disponible") ||
+                error.toLowerCase().includes("agotado")
+                  ? "⚠️ Problema de inventario:"
+                  : "❌ Error:"}
+              </strong>
+              <div className="error-message">{error}</div>
+              {(error.toLowerCase().includes("stock") ||
+                error.toLowerCase().includes("disponible") ||
+                error.toLowerCase().includes("agotado")) && (
+                <small className="error-suggestion">
+                  💡 Sugerencia: Revisa las cantidades en tu carrito o actualiza
+                  la página.
+                </small>
+              )}
+            </div>
           </div>
         )}
 

@@ -28,6 +28,7 @@ import AdminProducts from "../pages/AdminProducts";
 import AdminOrders from "../pages/AdminOrders";
 import AdminComprobantes from "../pages/AdminComprobantes";
 import PagoExitoso from "../pages/PagoExitoso";
+import InventoryTestPage from "../pages/InventoryTestPage";
 
 export const AppRouter = () => {
   return (
@@ -57,13 +58,15 @@ export const AppRouter = () => {
 
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="pedidos" element={<Pedidos />} />
-                   <Route path="/pago-exitoso" element={<PagoExitoso />} />
+                <Route path="pago-exitoso" element={<PagoExitoso />} />
+
+                {/* Página de pruebas de inventario - Solo para testing */}
+                <Route path="inventory-test" element={<InventoryTestPage />} />
               </Route>
               <Route path="admin" element={<AdminLayout />}>
                 <Route path="productos" element={<AdminProducts />} />
                 <Route path="pedidos" element={<AdminOrders />} />
                 <Route path="comprobantes" element={<AdminComprobantes />} />
-             
               </Route>
             </Routes>
             <ToastContainer

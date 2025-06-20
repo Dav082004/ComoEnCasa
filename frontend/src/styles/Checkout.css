@@ -453,6 +453,141 @@ h3 {
   border-top: 1px solid #ddd;
 }
 
+/* === ESTILOS PARA ERRORES DE STOCK === */
+
+/* Alerta específica para errores de stock */
+.alert.stock-error {
+  background-color: #fff3cd !important;
+  border: 2px solid #ffc107 !important;
+  color: #856404 !important;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  animation: stockErrorPulse 0.5s ease-in-out;
+}
+
+.alert.alert-warning.stock-error {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.alert.alert-danger {
+  background-color: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #721c24;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Contenido del error */
+.error-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.error-content strong {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-message {
+  font-weight: 500;
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+.error-suggestion {
+  font-style: italic;
+  color: #6c757d !important;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  border-left: 3px solid #17a2b8;
+}
+
+/* Animación para errores de stock */
+@keyframes stockErrorPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Estilos responsivos para errores */
+@media (max-width: 768px) {
+  .alert.stock-error,
+  .alert.alert-danger {
+    margin: 1rem 0;
+    padding: 0.75rem;
+  }
+
+  .error-content strong {
+    font-size: 0.9rem;
+  }
+
+  .error-message {
+    font-size: 0.85rem;
+  }
+
+  .error-suggestion {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+}
+
+/* === MEJORAS ADICIONALES PARA VALIDACIÓN === */
+
+/* Botón de finalizar con estado de error */
+.finalizar-btn.error-state {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  border: 2px solid #dc3545;
+  transform: none;
+}
+
+.finalizar-btn.error-state:hover {
+  background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+  transform: translateY(-1px);
+}
+
+/* Indicador de stock en el resumen */
+.resumen-producto-item.stock-warning {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.stock-indicator {
+  font-size: 0.75rem;
+  color: #856404;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.stock-indicator.low-stock {
+  color: #fd7e14;
+}
+
+.stock-indicator.out-of-stock {
+  color: #dc3545;
+}
+
 @media (max-width: 768px) {
   .checkout-container {
     flex-direction: column;

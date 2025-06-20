@@ -64,7 +64,6 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
-
     setCart((prevCart) => {
       const nuevoCarrito = { ...prevCart };
       const productKey = `${productId}`;
@@ -77,7 +76,6 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-
   const removeFromCart = (productId) => {
     setCart((prevCart) => {
       const nuevoCarrito = { ...prevCart };
@@ -85,7 +83,6 @@ export const CartProvider = ({ children }) => {
       return nuevoCarrito;
     });
   };
-
 
   const clearCart = () => {
     setCart({});
@@ -106,6 +103,88 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // VALIDACIÓN DE STOCK ANTES DEL CHECKOUT
+  const validateCartStock = async () => {
+    const errors = [];
+    const cartItems = Object.values(cart);
+
+    for (const item of cartItems) {
+      try {
+        // Aquí deberías importar y usar el servicio de productos
+        // para verificar el stock actual del producto
+        const response = await fetch(
+          `http://localhost:8081/api/productos/${item.id}`
+        );
+        if (response.ok) {
+          const producto = await response.json();
+
+          if (!producto.disponible) {
+            errors.push(`${item.nombre} ya no está disponible`);
+          } else if (producto.cantidad < item.quantity) {
+            errors.push(
+              `${item.nombre}: Solo ${producto.cantidad} unidades disponibles (tienes ${item.quantity} en el carrito)`
+            );
+          }
+        }
+      } catch (error) {
+        console.error(`Error validando stock de ${item.nombre}:`, error);
+        errors.push(`No se pudo verificar el stock de ${item.nombre}`);
+      }
+    }
+
+    return errors;
+  };
+
+  // FUNCIÓN PARA ACTUALIZAR CARRITO CON STOCK DISPONIBLE
+  const syncCartWithStock = async () => {
+    const cartItems = Object.values(cart);
+    let hasChanges = false;
+    const updatedCart = { ...cart };
+
+    for (const item of cartItems) {
+      try {
+        const response = await fetch(
+          `http://localhost:8081/api/productos/${item.id}`
+        );
+        if (response.ok) {
+          const producto = await response.json();
+
+          if (!producto.disponible) {
+            // Eliminar producto no disponible
+            delete updatedCart[`${item.id}`];
+            hasChanges = true;
+            toast.warning(
+              `${item.nombre} ha sido removido del carrito (no disponible)`
+            );
+          } else if (producto.cantidad < item.quantity) {
+            // Ajustar cantidad al stock disponible
+            if (producto.cantidad > 0) {
+              updatedCart[`${item.id}`].quantity = producto.cantidad;
+              hasChanges = true;
+              toast.warning(
+                `Cantidad de ${item.nombre} ajustada a ${producto.cantidad} unidades (stock disponible)`
+              );
+            } else {
+              delete updatedCart[`${item.id}`];
+              hasChanges = true;
+              toast.warning(
+                `${item.nombre} ha sido removido del carrito (sin stock)`
+              );
+            }
+          }
+        }
+      } catch (error) {
+        console.error(`Error sincronizando ${item.nombre}:`, error);
+      }
+    }
+
+    if (hasChanges) {
+      setCart(updatedCart);
+    }
+
+    return hasChanges;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -118,6 +197,8 @@ export const CartProvider = ({ children }) => {
         getTotalItems,
         getTotalPrice,
         isAdding,
+        validateCartStock,
+        syncCartWithStock,
       }}>
       {children}
     </CartContext.Provider>

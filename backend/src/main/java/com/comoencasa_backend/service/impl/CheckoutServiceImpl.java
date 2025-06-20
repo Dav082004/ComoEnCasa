@@ -47,27 +47,37 @@ public class CheckoutServiceImpl implements CheckoutService {
      @Transactional
      public CheckoutResponseDTO procesarCheckout(CheckoutDTO checkoutDTO) {
           log.info("Iniciando proceso de checkout para usuario ID: {}", checkoutDTO.getUsuarioId());
-
           try {
                // 1. Validaciones
                validarCheckoutDTO(checkoutDTO);
 
-               // 2. Crear el pedido
+               // 2. Validar y reservar stock
+               validarYReservarStock(checkoutDTO.getItems());
+
+               // 3. Crear el pedido
                Pedido pedido = crearPedido(checkoutDTO);
 
-               // 3. Crear detalles del pedido
+               // 4. Crear detalles del pedido
                crearDetallesPedido(pedido, checkoutDTO.getItems());
 
-               // 4. Procesar pago
+               // 5. Procesar pago
                Pago pago = procesarPagoCheckout(pedido, checkoutDTO);
 
-               // 5. Generar comprobante solo si el pago fue exitoso
+               // 6. Generar comprobante solo si el pago fue exitoso
                Comprobante comprobante = null;
                if (pago.getEstado() == Pago.EstadoPago.PAGADO) {
+                    // 6.1. Confirmar reducción de stock definitivamente
+                    confirmarReduccionStock(checkoutDTO.getItems());
+
+                    // 6.2. Generar comprobante
                     comprobante = generarComprobante(pedido, checkoutDTO);
-                    // Actualizar estado del pedido a "En preparación"
+
+                    // 6.3. Actualizar estado del pedido a "En preparación"
                     pedido.setEstado("En preparación");
                     pedidoRepository.save(pedido);
+               } else {
+                    // Si el pago falló, revertir la reserva de stock
+                    revertirReservaStock(checkoutDTO.getItems());
                }
 
                // 6. Construir respuesta
@@ -267,5 +277,83 @@ public class CheckoutServiceImpl implements CheckoutService {
           response.setExitoso(false);
           response.setMensaje("Error: " + mensaje);
           return response;
+     }
+
+     /**
+      * Valida que haya suficiente stock y hace una reserva temporal
+      */
+     private void validarYReservarStock(List<CheckoutDTO.CheckoutItemDTO> items) {
+          log.info("Validando stock para {} productos", items.size());
+
+          for (CheckoutDTO.CheckoutItemDTO item : items) {
+               Optional<Producto> productoOpt = productoRepository.findById(item.getProductoId());
+               if (productoOpt.isEmpty()) {
+                    throw new IllegalArgumentException("Producto no encontrado: " + item.getProductoId());
+               }
+
+               Producto producto = productoOpt.get();
+
+               // Verificar disponibilidad del producto
+               if (!producto.getDisponible()) {
+                    throw new IllegalArgumentException("El producto '" + producto.getNombre() + "' no está disponible");
+               }
+
+               // Verificar stock suficiente
+               if (producto.getCantidad() < item.getCantidad()) {
+                    throw new IllegalArgumentException(
+                              String.format("Stock insuficiente para '%s'. Disponible: %d, Solicitado: %d",
+                                        producto.getNombre(), producto.getCantidad(), item.getCantidad()));
+               }
+
+               log.info("Stock validado para {}: {} disponible, {} solicitado",
+                         producto.getNombre(), producto.getCantidad(), item.getCantidad());
+          }
+     }
+
+     /**
+      * Confirma la reducción definitiva del stock después de un pago exitoso
+      */
+     private void confirmarReduccionStock(List<CheckoutDTO.CheckoutItemDTO> items) {
+          log.info("Confirmando reducción de stock para {} productos", items.size());
+
+          for (CheckoutDTO.CheckoutItemDTO item : items) {
+               Optional<Producto> productoOpt = productoRepository.findById(item.getProductoId());
+               if (productoOpt.isPresent()) {
+                    Producto producto = productoOpt.get();
+                    int nuevaCantidad = producto.getCantidad() - item.getCantidad();
+
+                    // Asegurar que no quede en negativo (doble verificación)
+                    if (nuevaCantidad < 0) {
+                         log.warn("Intento de reducir stock por debajo de 0 para producto {}: {} - {} = {}",
+                                   producto.getId(), producto.getCantidad(), item.getCantidad(), nuevaCantidad);
+                         nuevaCantidad = 0;
+                    }
+                    producto.setCantidad(nuevaCantidad);
+
+                    // NO marcar como no disponible automáticamente cuando se agota el stock
+                    // La disponibilidad debe ser controlada manualmente por los administradores
+                    if (nuevaCantidad == 0) {
+                         log.info("Producto '{}' agotado (stock = 0), pero mantiene disponibilidad para reabastecimiento",
+                                   producto.getNombre());
+                    }
+
+                    productoRepository.save(producto);
+
+                    log.info("Stock actualizado para '{}': {} -> {} unidades",
+                              producto.getNombre(), producto.getCantidad() + item.getCantidad(), nuevaCantidad);
+               }
+          }
+     }
+
+     /**
+      * Revierte la reserva de stock en caso de fallo en el pago
+      * (En esta implementación simple, no necesitamos hacer nada ya que no
+      * reservamos físicamente)
+      */
+     private void revertirReservaStock(List<CheckoutDTO.CheckoutItemDTO> items) {
+          log.info("Revirtiendo reserva de stock para {} productos", items.size());
+          // En una implementación más avanzada, aquí revertiríamos cualquier reserva
+          // temporal
+          // Por ahora, como solo validamos sin reservar, no hay nada que revertir
      }
 }
