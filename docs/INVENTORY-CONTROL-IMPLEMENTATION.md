@@ -39,7 +39,10 @@
 - 🎨 **Estilos diferenciados**: Warning, danger, info con colores distintivos
 - 📱 **Responsive**: Adaptado para móviles y desktop
 
-#### **6. Página de Pruebas (InventoryTestPage)**
+#### **6. Página de Pruebas (InventoryTestPage)** ❌ ELIMINADA
+
+La página de pruebas fue eliminada después de completar las validaciones del sistema.
+Ya no está disponible en producción por seguridad.
 
 - 🧪 **Tests automáticos**: Simulación de diferentes escenarios de stock
 - 👥 **Pruebas de concurrencia**: Simulación de múltiples usuarios comprando
@@ -83,7 +86,9 @@ if (stockErrors.length > 0) {
 ### Componentes Creados
 
 - `StockWarning.js` - Componente de avisos de stock
-- `InventoryTestPage.js` - Página de pruebas completas
+- `CheckoutServiceImpl.java` - Lógica de control de inventario
+- `Checkout.js` - Validaciones en el frontend
+- `CartContext.js` - Gestión de stock en carrito
 
 ## 🧪 Testing
 

@@ -1,6 +1,8 @@
 package com.comoencasa_backend.service.impl;
 
+import com.comoencasa_backend.dto.DetallePedidoDTO;
 import com.comoencasa_backend.dto.PedidoDTO;
+import com.comoencasa_backend.model.DetallePedido;
 import com.comoencasa_backend.model.Pedido;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.PedidoRepository;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -255,6 +258,30 @@ public class PedidoServiceImpl implements PedidoService {
         dto.setCostoTotal(p.getCostoTotal());
         dto.setDireccionEntrega(p.getDireccionEntrega());
         dto.setNecesitaFactura(p.getNecesitaFactura());
+
+        // Convertir detalles del pedido
+        if (p.getDetallePedidos() != null && !p.getDetallePedidos().isEmpty()) {
+            List<DetallePedidoDTO> detallesDTO = p.getDetallePedidos().stream()
+                    .map(this::toDetallePedidoDTO)
+                    .collect(Collectors.toList());
+            dto.setDetalles(detallesDTO);
+        }
+
+        return dto;
+    }
+
+    private DetallePedidoDTO toDetallePedidoDTO(DetallePedido detalle) {
+        DetallePedidoDTO dto = new DetallePedidoDTO();
+        dto.setId(detalle.getId());
+        dto.setProductoId(detalle.getProducto().getId());
+        dto.setNombreProducto(detalle.getProducto().getNombre());
+        dto.setCantidad(detalle.getCantidad());
+        dto.setPrecioUnitario(detalle.getPrecioUnitario());
+        dto.setCostoUnitario(detalle.getCostoUnitario());
+        dto.setPersonalizacion(detalle.getPersonalizacion());
+        // Calcular subtotal: cantidad * precio unitario
+        BigDecimal subtotal = detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
+        dto.setSubtotal(subtotal);
         return dto;
     }
 }
