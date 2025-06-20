@@ -12,6 +12,15 @@ public interface PedidoService {
     List<PedidoDTO> findAll();
 
     /**
+     * Obtener un pedido por su ID
+     * 
+     * @param pedidoId ID del pedido
+     * @return Pedido encontrado
+     * @throws IllegalArgumentException si el pedido no existe
+     */
+    PedidoDTO findById(Long pedidoId);
+
+    /**
      * Obtener pedidos por ID de usuario
      * 
      * @param usuarioId ID del usuario

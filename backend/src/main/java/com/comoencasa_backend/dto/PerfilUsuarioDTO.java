@@ -13,4 +13,5 @@ public class PerfilUsuarioDTO {
      private String telefono;
      private String direccion;
      private LocalDateTime fechaRegistro;
+     private String recomendacion;
 }

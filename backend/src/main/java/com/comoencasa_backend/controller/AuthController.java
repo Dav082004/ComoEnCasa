@@ -5,9 +5,11 @@ import com.comoencasa_backend.dto.CambiarContrasenaRequest;
 import com.comoencasa_backend.dto.LoginRequest;
 import com.comoencasa_backend.dto.PerfilUsuarioDTO;
 import com.comoencasa_backend.dto.RegistroRequest;
+import com.comoencasa_backend.dto.RecomendacionDTO;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.EmailService;
+import com.comoencasa_backend.service.UsuarioService;
 import com.comoencasa_backend.service.VerificationTokenService;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.commons.lang3.StringUtils;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -30,16 +34,19 @@ public class AuthController {
     private final BCryptPasswordEncoder passwordEncoder;
     private final EmailService emailService;
     private final VerificationTokenService verificationTokenService;
+    private final UsuarioService usuarioService;
 
     @Autowired
     public AuthController(UsuarioRepository usuarioRepository,
             BCryptPasswordEncoder passwordEncoder,
             EmailService emailService,
-            VerificationTokenService verificationTokenService) {
+            VerificationTokenService verificationTokenService,
+            UsuarioService usuarioService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
         this.verificationTokenService = verificationTokenService;
+        this.usuarioService = usuarioService;
     }
 
     @PostMapping("/login")
@@ -257,6 +264,89 @@ public class AuthController {
 
         } catch (Exception e) {
             logger.error("Error al cambiar contraseña del usuario {}: {}", userId, e.getMessage());
+            return ResponseEntity.status(500).body("Error interno del servidor");
+        }
+    }
+
+    // Endpoint para guardar/actualizar recomendación
+    @PostMapping("/recomendacion/{userId}")
+    public ResponseEntity<?> guardarRecomendacion(@PathVariable Long userId, @RequestBody RecomendacionDTO request) {
+        try {
+            if (request.getRecomendacion() == null || StringUtils.isBlank(request.getRecomendacion().trim())) {
+                return ResponseEntity.status(400).body("La recomendación no puede estar vacía");
+            }
+
+            String recomendacion = request.getRecomendacion().trim();
+            if (recomendacion.length() > 1000) {
+                return ResponseEntity.status(400).body("La recomendación no puede exceder 1000 caracteres");
+            }
+
+            usuarioService.actualizarRecomendacion(userId, recomendacion);
+            logger.info("Recomendación guardada para usuario ID: {}", userId);
+            return ResponseEntity.ok("Recomendación guardada correctamente");
+
+        } catch (RuntimeException e) {
+            logger.error("Error al guardar recomendación para usuario {}: {}", userId, e.getMessage());
+            return ResponseEntity.status(404).body("Usuario no encontrado");
+        } catch (Exception e) {
+            logger.error("Error interno al guardar recomendación para usuario {}: {}", userId, e.getMessage());
+            return ResponseEntity.status(500).body("Error interno del servidor");
+        }
+    }
+
+    // Endpoint para obtener recomendación del usuario
+    @GetMapping("/recomendacion/{userId}")
+    public ResponseEntity<?> obtenerRecomendacion(@PathVariable Long userId) {
+        try {
+            Optional<String> recomendacion = usuarioService.obtenerRecomendacion(userId);
+
+            if (recomendacion.isPresent() && !StringUtils.isBlank(recomendacion.get())) {
+                Map<String, String> response = new HashMap<>();
+                response.put("recomendacion", recomendacion.get());
+                return ResponseEntity.ok(response);
+            } else {
+                return ResponseEntity.ok(Collections.emptyMap());
+            }
+
+        } catch (Exception e) {
+            logger.error("Error al obtener recomendación para usuario {}: {}", userId, e.getMessage());
+            return ResponseEntity.status(500).body("Error interno del servidor");
+        }
+    }
+
+    // Endpoint para obtener todas las recomendaciones públicas
+    @GetMapping("/recomendaciones")
+    public ResponseEntity<?> obtenerRecomendaciones() {
+        try {
+            List<Usuario> usuariosConRecomendaciones = usuarioRepository.findByRecomendacionIsNotNull();
+            logger.info("Encontrados {} usuarios con recomendaciones", usuariosConRecomendaciones.size());
+
+            List<Map<String, String>> recomendaciones = usuariosConRecomendaciones.stream()
+                    .filter(usuario -> usuario.getRecomendacion() != null
+                            && !usuario.getRecomendacion().trim().isEmpty())
+                    .map(usuario -> {
+                        Map<String, String> testimonio = new HashMap<>();
+
+                        // Manejar apellido de forma segura
+                        String apellidoInicial = "";
+                        if (usuario.getApellido() != null && !usuario.getApellido().trim().isEmpty()) {
+                            apellidoInicial = " " + usuario.getApellido().trim().substring(0, 1) + ".";
+                        }
+
+                        String nombreCompleto = usuario.getNombre() + apellidoInicial;
+                        testimonio.put("nombre", nombreCompleto);
+                        testimonio.put("recomendacion", usuario.getRecomendacion());
+
+                        logger.debug("Agregando testimonio de: {}", nombreCompleto);
+                        return testimonio;
+                    })
+                    .collect(Collectors.toList());
+
+            logger.info("Retornando {} recomendaciones válidas", recomendaciones.size());
+            return ResponseEntity.ok(recomendaciones);
+
+        } catch (Exception e) {
+            logger.error("Error al obtener recomendaciones: {}", e.getMessage(), e);
             return ResponseEntity.status(500).body("Error interno del servidor");
         }
     }

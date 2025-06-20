@@ -1,50 +1,28 @@
-2025-06-19 18:33:10.559 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 🟢 Usuario registrado: dav id (davidestudio123@gmail.com)
-2025-06-19 18:33:10.567 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - 📧 Token enviado: 127157bf-325d-448f-b06b-d377a7150149
-2025-06-19 18:33:20.412 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: 127157bf-325d-448f-b06b-d377a7150149
-2025-06-19 18:33:20.429 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - ✅ Cuenta activada correctamente para: davidestudio123@gmail.com
-2025-06-19 18:33:20.433 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - 🔍 Intentando verificar con token: 127157bf-325d-448f-b06b-d377a7150149
-2025-06-19 18:33:35.585 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 19:06:16.440 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Login recibido para: adm***@c.com
-2025-06-19 19:06:59.068 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 19:07:09.693 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 21:18:52.248 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:18:52.321 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:23.419 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:23.423 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:29.357 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 21:19:30.998 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:31.002 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:38.476 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Cambiando contraseña del usuario ID: 7
-2025-06-19 21:19:38.622 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Contraseña cambiada correctamente para usuario ID: 7
-2025-06-19 21:19:51.328 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 21:19:53.089 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:53.093 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:19:56.377 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Actualizando perfil del usuario ID: 7
-2025-06-19 21:19:56.384 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Perfil actualizado correctamente para usuario ID: 7
-2025-06-19 21:20:03.512 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Actualizando perfil del usuario ID: 7
-2025-06-19 21:20:03.535 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Perfil actualizado correctamente para usuario ID: 7
-2025-06-19 21:20:24.135 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:20:24.139 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:20:27.275 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:20:27.279 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:20:50.751 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Login recibido para: ola***@c.com
-2025-06-19 21:20:57.658 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Login recibido para: ola***@g.com
-2025-06-19 21:21:05.202 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: ola***@g.com
-2025-06-19 21:21:21.976 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 1
-2025-06-19 21:21:21.979 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 1
-2025-06-19 21:23:27.179 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 1
-2025-06-19 21:23:27.182 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 1
-2025-06-19 21:23:33.931 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 21:30:58.801 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:30:58.805 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:31:50.893 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:31:50.897 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
-2025-06-19 21:46:17.094 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
-2025-06-19 22:01:02.769 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: adm***@c.com
-2025-06-19 22:01:45.136 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
-2025-06-19 22:01:45.140 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
-2025-06-19 22:02:39.261 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
-2025-06-19 22:02:39.264 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
-2025-06-19 22:03:44.006 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: adm***@c.com
-2025-06-19 22:03:45.388 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
-2025-06-19 22:03:45.391 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-20 15:49:54.554 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-20 15:49:54.563 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-20 15:52:10.975 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
+2025-06-20 16:19:10.337 [http-nio-8081-exec-10] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:10.344 [http-nio-8081-exec-1] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:13.117 [http-nio-8081-exec-4] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:13.127 [http-nio-8081-exec-2] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:13.830 [http-nio-8081-exec-7] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:13.835 [http-nio-8081-exec-10] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:45.219 [http-nio-8081-exec-3] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:52.750 [http-nio-8081-exec-5] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:19:52.757 [http-nio-8081-exec-6] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:20:08.999 [http-nio-8081-exec-1] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:20:09.004 [http-nio-8081-exec-3] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:20:09.656 [http-nio-8081-exec-5] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:20:09.660 [http-nio-8081-exec-2] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:20:24.342 [http-nio-8081-exec-10] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:20:24.342 [http-nio-8081-exec-4] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:21:41.615 [http-nio-8081-exec-6] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:21:41.615 [http-nio-8081-exec-5] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:22:01.434 [http-nio-8081-exec-8] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:22:01.441 [http-nio-8081-exec-10] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:22:03.474 [http-nio-8081-exec-6] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:22:03.479 [http-nio-8081-exec-1] ERROR c.c.controller.AuthController - Error al obtener recomendaciones: Range [0, 1) out of bounds for length 0
+2025-06-20 16:39:15.521 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Encontrados 2 usuarios con recomendaciones
+2025-06-20 16:39:15.522 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Retornando 2 recomendaciones válidas
+2025-06-20 16:39:15.551 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Encontrados 2 usuarios con recomendaciones
+2025-06-20 16:39:15.551 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Retornando 2 recomendaciones válidas

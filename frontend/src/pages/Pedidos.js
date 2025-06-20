@@ -112,30 +112,24 @@ const Pedidos = () => {
             <p className="text-muted mb-3">
               Mostrando {pedidosFiltrados.length} de {pedidos.length} pedidos
             </p>
-            {pedidosFiltrados.map((pedido) => (
-              <div
-                key={pedido.id}
-                className="pedido-card p-3 mb-3 bg-white rounded shadow-sm">
-                <div className="d-flex justify-content-between align-items-start">
-                  <div>
-                    <h5 className="mb-2">Pedido #{pedido.id}</h5>
-                    <p className="mb-1">
-                      <strong>Fecha de creación:</strong>{" "}
-                      {new Date(pedido.fechaCreacion).toLocaleDateString(
-                        "es-ES",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        }
-                      )}
-                    </p>
-                    {pedido.fechaEntrega && (
+            {pedidosFiltrados.map((pedido, index) => {
+              // Calcular el número de pedido del usuario (basado en la fecha de creación)
+              const pedidosOrdenados = [...pedidos].sort(
+                (a, b) => new Date(a.fechaCreacion) - new Date(b.fechaCreacion)
+              );
+              const numeroPedidoUsuario =
+                pedidosOrdenados.findIndex((p) => p.id === pedido.id) + 1;
+
+              return (
+                <div
+                  key={pedido.id}
+                  className="pedido-card p-3 mb-3 bg-white rounded shadow-sm">
+                  <div className="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h5 className="mb-2">Pedido #{numeroPedidoUsuario}</h5>
                       <p className="mb-1">
-                        <strong>Fecha de entrega:</strong>{" "}
-                        {new Date(pedido.fechaEntrega).toLocaleDateString(
+                        <strong>Fecha de creación:</strong>{" "}
+                        {new Date(pedido.fechaCreacion).toLocaleDateString(
                           "es-ES",
                           {
                             year: "numeric",
@@ -146,69 +140,84 @@ const Pedidos = () => {
                           }
                         )}
                       </p>
-                    )}
-                    <p className="mb-1">
-                      <strong>Total:</strong> S/{" "}
-                      {pedido.costoTotal
-                        ? pedido.costoTotal.toFixed(2)
-                        : "0.00"}
-                    </p>
-                    {pedido.direccionEntrega && (
+                      {pedido.fechaEntrega && (
+                        <p className="mb-1">
+                          <strong>Fecha de entrega:</strong>{" "}
+                          {new Date(pedido.fechaEntrega).toLocaleDateString(
+                            "es-ES",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            }
+                          )}
+                        </p>
+                      )}
                       <p className="mb-1">
-                        <strong>Dirección:</strong> {pedido.direccionEntrega}
+                        <strong>Total:</strong> S/{" "}
+                        {pedido.costoTotal
+                          ? pedido.costoTotal.toFixed(2)
+                          : "0.00"}
                       </p>
-                    )}
+                      {pedido.direccionEntrega && (
+                        <p className="mb-1">
+                          <strong>Dirección:</strong> {pedido.direccionEntrega}
+                        </p>
+                      )}
+                    </div>
+                    <span
+                      className={`badge fs-6 ${getEstadoBadgeClass(
+                        pedido.estado
+                      )}`}>
+                      {pedido.estado}
+                    </span>
                   </div>
-                  <span
-                    className={`badge fs-6 ${getEstadoBadgeClass(
-                      pedido.estado
-                    )}`}>
-                    {pedido.estado}
-                  </span>
-                </div>
 
-                {pedido.detalles && pedido.detalles.length > 0 && (
-                  <div className="mt-3">
-                    <h6>Productos:</h6>
-                    <ul className="list-unstyled">
-                      {pedido.detalles.map((detalle) => (
-                        <li
-                          key={detalle.id}
-                          className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
-                          <div>
-                            <strong>{detalle.nombreProducto}</strong>
-                            {detalle.personalizacion && (
-                              <div className="text-muted small">
-                                Personalización: {detalle.personalizacion}
-                              </div>
-                            )}
-                          </div>
-                          <div className="text-end">
+                  {pedido.detalles && pedido.detalles.length > 0 && (
+                    <div className="mt-3">
+                      <h6>Productos:</h6>
+                      <ul className="list-unstyled">
+                        {pedido.detalles.map((detalle) => (
+                          <li
+                            key={detalle.id}
+                            className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
                             <div>
-                              {detalle.cantidad} unidad
-                              {detalle.cantidad > 1 ? "es" : ""}
+                              <strong>{detalle.nombreProducto}</strong>
+                              {detalle.personalizacion && (
+                                <div className="text-muted small">
+                                  Personalización: {detalle.personalizacion}
+                                </div>
+                              )}
                             </div>
-                            <div className="text-muted">
-                              S/{" "}
-                              {detalle.precioUnitario
-                                ? detalle.precioUnitario.toFixed(2)
-                                : "0.00"}{" "}
-                              c/u
+                            <div className="text-end">
+                              <div>
+                                {detalle.cantidad} unidad
+                                {detalle.cantidad > 1 ? "es" : ""}
+                              </div>
+                              <div className="text-muted">
+                                S/{" "}
+                                {detalle.precioUnitario
+                                  ? detalle.precioUnitario.toFixed(2)
+                                  : "0.00"}{" "}
+                                c/u
+                              </div>
+                              <div className="fw-bold">
+                                S/{" "}
+                                {detalle.subtotal
+                                  ? detalle.subtotal.toFixed(2)
+                                  : "0.00"}
+                              </div>
                             </div>
-                            <div className="fw-bold">
-                              S/{" "}
-                              {detalle.subtotal
-                                ? detalle.subtotal.toFixed(2)
-                                : "0.00"}
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="no-pedidos text-center p-4 bg-light rounded shadow-sm">

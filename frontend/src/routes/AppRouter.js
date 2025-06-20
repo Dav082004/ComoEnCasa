@@ -19,6 +19,7 @@ import RecuperarCuenta from "../pages/RecuperarCuenta";
 import VerificarCuenta from "../pages/VerificarCuenta"; // ✅ Ruta corregida
 
 import Perfil from "../pages/Perfil";
+import Recomendacion from "../pages/Recomendacion";
 
 import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
@@ -57,6 +58,7 @@ export const AppRouter = () => {
                 <Route path="verificar" element={<VerificarCuenta />} />
 
                 <Route path="perfil" element={<Perfil />} />
+                <Route path="recomendacion" element={<Recomendacion />} />
                 <Route path="pedidos" element={<Pedidos />} />
                 <Route path="pago-exitoso" element={<PagoExitoso />} />
               </Route>

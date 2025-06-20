@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -40,6 +41,23 @@ public class PedidoServiceImpl implements PedidoService {
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PedidoDTO findById(Long pedidoId) {
+        if (pedidoId == null) {
+            throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
+        }
+
+        log.info("ADMIN: obteniendo pedido por ID={}", pedidoId);
+
+        Optional<Pedido> pedidoOpt = pedidoRepository.findById(pedidoId);
+        if (pedidoOpt.isEmpty()) {
+            throw new IllegalArgumentException("Pedido no encontrado con ID=" + pedidoId);
+        }
+
+        return toDTO(pedidoOpt.get());
     }
 
     @Override
@@ -122,8 +140,18 @@ public class PedidoServiceImpl implements PedidoService {
             throw new IllegalArgumentException("Transición de retroceso requiere confirmación especial");
         }
 
-        // Actualizar estado
+        // Actualizar estado y manejar fecha de entrega
         pedido.setEstado(nuevoEstado);
+
+        // Lógica de fecha de entrega: solo se establece cuando el estado es "Entregado"
+        if ("Entregado".equals(nuevoEstado)) {
+            // Si se marca como entregado, establecer fecha actual
+            pedido.setFechaEntrega(LocalDateTime.now());
+        } else {
+            // Si no está entregado, limpiar la fecha de entrega
+            pedido.setFechaEntrega(null);
+        }
+
         Pedido pedidoActualizado = pedidoRepository.save(pedido);
 
         log.info("Estado de pedido actualizado: ID={}, estado anterior={}, nuevo estado={}",
@@ -167,8 +195,18 @@ public class PedidoServiceImpl implements PedidoService {
             throw new IllegalArgumentException("Estado no válido: " + nuevoEstado);
         }
 
-        // Actualizar estado
+        // Actualizar estado y manejar fecha de entrega
         pedido.setEstado(nuevoEstado);
+
+        // Lógica de fecha de entrega: solo se establece cuando el estado es "Entregado"
+        if ("Entregado".equals(nuevoEstado)) {
+            // Si se marca como entregado, establecer fecha actual
+            pedido.setFechaEntrega(LocalDateTime.now());
+        } else {
+            // Si no está entregado, limpiar la fecha de entrega
+            pedido.setFechaEntrega(null);
+        }
+
         Pedido pedidoActualizado = pedidoRepository.save(pedido);
 
         log.warn("Estado de pedido actualizado FORZADAMENTE: ID={}, estado anterior={}, nuevo estado={}",

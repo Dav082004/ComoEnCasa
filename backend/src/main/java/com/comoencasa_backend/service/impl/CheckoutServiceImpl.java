@@ -61,9 +61,8 @@ public class CheckoutServiceImpl implements CheckoutService {
                crearDetallesPedido(pedido, checkoutDTO.getItems());
 
                // 5. Procesar pago
-               Pago pago = procesarPagoCheckout(pedido, checkoutDTO);
-
-               // 6. Generar comprobante solo si el pago fue exitoso
+               Pago pago = procesarPagoCheckout(pedido, checkoutDTO); // 6. Generar comprobante solo si el pago fue
+                                                                      // exitoso
                Comprobante comprobante = null;
                if (pago.getEstado() == Pago.EstadoPago.PAGADO) {
                     // 6.1. Confirmar reducción de stock definitivamente
@@ -72,9 +71,10 @@ public class CheckoutServiceImpl implements CheckoutService {
                     // 6.2. Generar comprobante
                     comprobante = generarComprobante(pedido, checkoutDTO);
 
-                    // 6.3. Actualizar estado del pedido a "En preparación"
-                    pedido.setEstado("En preparación");
-                    pedidoRepository.save(pedido);
+                    // 6.3. El pedido permanece en "Pendiente" para verificación manual del pago
+                    // No cambiar automáticamente a "En preparación"
+                    log.info("Pedido {} creado en estado 'Pendiente' - Requiere verificación manual del pago",
+                              pedido.getId());
                } else {
                     // Si el pago falló, revertir la reserva de stock
                     revertirReservaStock(checkoutDTO.getItems());

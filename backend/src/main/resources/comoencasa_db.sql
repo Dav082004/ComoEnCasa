@@ -201,7 +201,8 @@ CREATE TABLE `usuario` (
   `tipo_documento` enum('DNI','RUC','CE') DEFAULT 'DNI',
   `numero_documento` varchar(20) DEFAULT NULL,
   `rol` enum('CLIENTE','ADMIN') NOT NULL DEFAULT 'CLIENTE',
-  `activado` tinyint(1) DEFAULT 0
+  `activado` tinyint(1) DEFAULT 0,
+  `recomendacion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

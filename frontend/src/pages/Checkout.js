@@ -19,6 +19,7 @@ const CheckoutSimple = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // Estados principales del formulario
   const [datos, setDatos] = useState({
     distrito: "",
     direccion: "",
@@ -32,6 +33,7 @@ const CheckoutSimple = () => {
     metodoPago: "tarjeta",
   });
 
+  // Estados de UI y validación
   const [procesando, setProcesando] = useState(false);
   const [error, setError] = useState("");
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -50,6 +52,7 @@ const CheckoutSimple = () => {
     }
   }, [validateAuthForCheckout]);
 
+  // Constantes de datos
   const distritos = [
     "Ancón",
     "Ate",
@@ -96,6 +99,14 @@ const CheckoutSimple = () => {
     "Villa María del Triunfo",
   ];
 
+  // Cálculos de precio
+  const productos = Object.values(cart);
+  const subtotal = getTotalPrice() || 0;
+  const costoEnvio = datos.distrito && datos.direccion ? 10.0 : 0;
+  const igv = 0; // IGV ya está incluido en los precios de productos
+  const total = subtotal + costoEnvio;
+
+  // Funciones de manejo de formulario
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setDatos((prev) => ({
@@ -104,56 +115,66 @@ const CheckoutSimple = () => {
     }));
   };
 
+  const handleComprobanteChange = (tipo) => {
+    setDatos((prev) => ({
+      ...prev,
+      tipoComprobante: tipo,
+      documento: "",
+    }));
+  };
+
+  const handleMetodoPagoChange = (metodo) => {
+    setDatos((prev) => ({
+      ...prev,
+      metodoPago: metodo,
+    }));
+  };
+
+  // Función principal de submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setProcesando(true);
 
     try {
-      // Validar que el usuario esté autenticado
+      // 1. Validar autenticación
       if (!user || !user.id) {
         toast.error("Debe iniciar sesión para realizar el pedido");
         navigate("/login");
         return;
       }
 
-      // Validar que haya productos en el carrito
+      // 2. Validar carrito no vacío
       if (productos.length === 0) {
         toast.error("El carrito está vacío");
         return;
       }
 
-      // ✅ NUEVA VALIDACIÓN: Verificar stock antes del checkout
+      // 3. Validar stock
       toast.info("🔍 Verificando disponibilidad de productos...", {
         autoClose: 2000,
       });
 
       const stockErrors = await validateCartStock();
       if (stockErrors.length > 0) {
-        // Intentar sincronizar carrito con stock disponible
         const hasChanges = await syncCartWithStock();
 
         if (hasChanges) {
           toast.warning(
             "⚠️ Tu carrito ha sido actualizado según la disponibilidad actual",
-            {
-              autoClose: 4000,
-            }
+            { autoClose: 4000 }
           );
         }
 
-        // Mostrar errores específicos de stock
         setError(`Problemas de stock detectados:\n${stockErrors.join("\n")}`);
         toast.error(
           "❌ No se puede procesar el pedido debido a problemas de stock",
-          {
-            autoClose: 5000,
-          }
+          { autoClose: 5000 }
         );
         return;
       }
 
-      // Preparar datos del checkout
+      // 4. Preparar datos del checkout
       const checkoutData = {
         usuarioId: user.id,
         direccionEntrega: datos.direccion,
@@ -167,7 +188,7 @@ const CheckoutSimple = () => {
         total: total,
         fechaEntrega: new Date(
           Date.now() + 3 * 24 * 60 * 60 * 1000
-        ).toISOString(), // 3 días desde ahora
+        ).toISOString(),
 
         // Datos del pago
         metodoPago: datos.metodoPago,
@@ -189,17 +210,12 @@ const CheckoutSimple = () => {
 
       console.log("Enviando checkout data:", checkoutData);
 
-      // Procesar checkout
+      // 5. Procesar checkout
       const response = await checkoutService.procesarCheckout(checkoutData);
 
       if (response.exitoso) {
-        // Limpiar carrito
         clearCart();
-
-        // Mostrar mensaje de éxito
         toast.success("¡Pedido procesado exitosamente!");
-
-        // Redirigir a página de éxito con datos del pedido
         navigate("/pago-exitoso", {
           state: {
             pedidoData: response,
@@ -209,300 +225,332 @@ const CheckoutSimple = () => {
       } else {
         const mensajeError = response.mensaje || "Error procesando el pedido";
         setError(mensajeError);
-
-        // Verificar si es un error de stock y mostrar mensaje específico
-        if (
-          mensajeError.toLowerCase().includes("stock insuficiente") ||
-          mensajeError.toLowerCase().includes("no disponible") ||
-          mensajeError.toLowerCase().includes("agotado")
-        ) {
-          toast.error(`❌ ${mensajeError}`, {
-            autoClose: 5000,
-            style: {
-              backgroundColor: "#fff3cd",
-              color: "#856404",
-              border: "1px solid #ffeaa7",
-            },
-          });
-        } else {
-          toast.error(mensajeError);
-        }
+        showStockErrorToast(mensajeError);
       }
     } catch (error) {
       console.error("Error en checkout:", error);
       const mensajeError = error.mensaje || "Error de conexión con el servidor";
       setError(mensajeError);
-
-      // Verificar si es un error de stock en la excepción
-      if (
-        mensajeError.toLowerCase().includes("stock insuficiente") ||
-        mensajeError.toLowerCase().includes("no disponible") ||
-        mensajeError.toLowerCase().includes("agotado")
-      ) {
-        toast.error(`🚫 ${mensajeError}`, {
-          autoClose: 5000,
-          style: {
-            backgroundColor: "#f8d7da",
-            color: "#721c24",
-            border: "1px solid #e74c3c",
-          },
-        });
-      } else {
-        toast.error(mensajeError);
-      }
+      showStockErrorToast(mensajeError);
     } finally {
       setProcesando(false);
     }
   };
 
-  const handleComprobanteChange = (tipo) => {
-    setDatos((prev) => ({
-      ...prev,
-      tipoComprobante: tipo,
-      documento: "",
-    }));
+  // Función auxiliar para mostrar errores de stock
+  const showStockErrorToast = (mensaje) => {
+    if (
+      mensaje.toLowerCase().includes("stock insuficiente") ||
+      mensaje.toLowerCase().includes("no disponible") ||
+      mensaje.toLowerCase().includes("agotado")
+    ) {
+      toast.error(`🚫 ${mensaje}`, {
+        autoClose: 5000,
+        style: {
+          backgroundColor: "#f8d7da",
+          color: "#721c24",
+          border: "1px solid #e74c3c",
+        },
+      });
+    } else {
+      toast.error(mensaje);
+    }
   };
 
-  const handleMetodoPagoChange = (metodo) => {
-    setDatos((prev) => ({
-      ...prev,
-      metodoPago: metodo,
-    }));
+  // Componentes auxiliares para renderizado
+  const renderErrorAlert = () => {
+    if (!error) return null;
+
+    const isStockError =
+      error.toLowerCase().includes("stock") ||
+      error.toLowerCase().includes("disponible") ||
+      error.toLowerCase().includes("agotado");
+
+    return (
+      <div
+        className={`alert ${
+          isStockError ? "alert-warning stock-error" : "alert-danger"
+        }`}
+        role="alert">
+        <div className="error-content">
+          <strong>
+            {isStockError ? "⚠️ Problema de inventario:" : "❌ Error:"}
+          </strong>
+          <div className="error-message">{error}</div>
+          {isStockError && (
+            <small className="error-suggestion">
+              💡 Sugerencia: Revisa las cantidades en tu carrito o actualiza la
+              página.
+            </small>
+          )}
+        </div>
+      </div>
+    );
   };
 
-  const productos = Object.values(cart);
-  const subtotal = getTotalPrice() || 0;
-  const costoEnvio = datos.distrito && datos.direccion ? 10.0 : 0;
-  const igv = (subtotal + costoEnvio) * 0.18;
-  const total = subtotal + costoEnvio + igv;
+  const renderShippingSection = () => (
+    <div className="checkout-section">
+      <h2>📦 Detalles de Envío</h2>
+      <p className="info-envio-text">
+        📍 Realizamos entregas únicamente en Lima Metropolitana
+      </p>
+
+      <div className="form-row">
+        <select
+          name="distrito"
+          value={datos.distrito}
+          onChange={handleChange}
+          required
+          className="select-full-width">
+          <option value="">Seleccionar Distrito de Lima</option>
+          {distritos.map((distrito) => (
+            <option key={distrito} value={distrito}>
+              {distrito}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-row">
+        <input
+          type="text"
+          name="direccion"
+          placeholder="Ingrese su Dirección Completa"
+          value={datos.direccion}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <input
+          type="text"
+          name="referencia"
+          placeholder="Referencia (opcional) - Ej: Casa verde, puerta negra"
+          value={datos.referencia}
+          onChange={handleChange}
+        />
+      </div>
+    </div>
+  );
+
+  const renderComprobanteSection = () => (
+    <div className="checkout-section">
+      <h3>📄 Comprobante de Pago</h3>
+      <div className="form-row">
+        <div
+          className={`comprobante-option ${
+            datos.tipoComprobante === "boleta" ? "active" : ""
+          }`}
+          onClick={() => handleComprobanteChange("boleta")}>
+          <h5>📋 Boleta de Venta</h5>
+          <p>Para consumo personal</p>
+          <small>Requiere DNI</small>
+        </div>
+        <div
+          className={`comprobante-option ${
+            datos.tipoComprobante === "factura" ? "active" : ""
+          }`}
+          onClick={() => handleComprobanteChange("factura")}>
+          <h5>🏢 Factura</h5>
+          <p>Para empresas</p>
+          <small>Requiere RUC</small>
+        </div>
+      </div>
+
+      <div className="form-row">
+        <input
+          type="text"
+          name="documento"
+          placeholder={
+            datos.tipoComprobante === "boleta"
+              ? "Ingrese su DNI (8 dígitos)"
+              : "Ingrese su RUC (11 dígitos)"
+          }
+          value={datos.documento}
+          onChange={handleChange}
+          maxLength={datos.tipoComprobante === "boleta" ? 8 : 11}
+          required
+        />
+      </div>
+    </div>
+  );
+
+  const renderPaymentSection = () => (
+    <div className="checkout-section">
+      <h3>💳 Métodos de Pago</h3>
+      <div className="form-row">
+        {[
+          { key: "tarjeta", icon: "💳", label: "Tarjeta de Crédito/Débito" },
+          { key: "yape", icon: "📱", label: "Yape" },
+          { key: "plin", icon: "💰", label: "Plin" },
+        ].map((metodo) => (
+          <div
+            key={metodo.key}
+            className={`comprobante-option ${
+              datos.metodoPago === metodo.key ? "active" : ""
+            }`}
+            onClick={() => handleMetodoPagoChange(metodo.key)}>
+            <h5>
+              {metodo.icon} {metodo.label}
+            </h5>
+          </div>
+        ))}
+      </div>
+
+      {datos.metodoPago === "tarjeta" && (
+        <div className="payment-details">
+          <div className="form-row">
+            <input
+              type="text"
+              name="tarjeta"
+              placeholder="Número de tarjeta (16 dígitos)"
+              value={datos.tarjeta}
+              onChange={handleChange}
+              maxLength="19"
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <input
+              type="text"
+              name="titular"
+              placeholder="Nombre del titular"
+              value={datos.titular}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="vencimiento"
+              placeholder="MM/YY"
+              value={datos.vencimiento}
+              onChange={handleChange}
+              maxLength="5"
+              required
+            />
+            <input
+              type="text"
+              name="cvv"
+              placeholder="CVV"
+              value={datos.cvv}
+              onChange={handleChange}
+              maxLength="4"
+              required
+            />
+          </div>
+        </div>
+      )}
+
+      {datos.metodoPago === "yape" && (
+        <div className="payment-info-card">
+          <h4>📱 Instrucciones para Yape</h4>
+          <p>1. Abre tu app Yape</p>
+          <p>
+            2. Escanea el código QR o envía a: <strong>123-456-789</strong>
+          </p>
+          <p>
+            3. Monto: <strong>S/. {total.toFixed(2)}</strong>
+          </p>
+          <div className="qr-placeholder">
+            <div className="qr-code">📱 QR Yape</div>
+          </div>
+        </div>
+      )}
+
+      {datos.metodoPago === "plin" && (
+        <div className="payment-info-card">
+          <h4>💰 Instrucciones para Plin</h4>
+          <p>1. Abre tu app Plin</p>
+          <p>2. Envía el pago al número:</p>
+          <div className="numero-plin">987-654-321</div>
+          <p>
+            3. Monto: <strong>S/. {total.toFixed(2)}</strong>
+          </p>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderOrderSummary = () => (
+    <div className="checkout-summary">
+      <h3>📋 Resumen del Pedido</h3>
+      {productos.length === 0 ? (
+        <div className="carrito-vacio-message">
+          <p>🛒 No hay productos en el carrito</p>
+        </div>
+      ) : (
+        <>
+          {productos.map((prod) => (
+            <div key={prod.id} className="resumen-producto-item">
+              <div>
+                <div className="resumen-producto-name">{prod.nombre}</div>
+                <small className="resumen-producto-quantity">
+                  {prod.quantity} x S/.{" "}
+                  {(prod.precioVenta || prod.precio).toFixed(2)}
+                </small>
+                {prod.comentarios && (
+                  <div className="producto-nota">💬 {prod.comentarios}</div>
+                )}
+              </div>
+              <div className="resumen-producto-total">
+                S/.{" "}
+                {((prod.precioVenta || prod.precio) * prod.quantity).toFixed(2)}
+              </div>
+            </div>
+          ))}
+
+          <div className="resumen-totales">
+            <div className="resumen-line">
+              <span>Subtotal:</span>
+              <span>S/. {subtotal.toFixed(2)}</span>
+            </div>
+            <div className="resumen-line">
+              <span>Envío a {datos.distrito || "Lima"}:</span>
+              <span>
+                {costoEnvio > 0 ? `S/. ${costoEnvio.toFixed(2)}` : "Gratis"}
+              </span>
+            </div>
+            <div className="resumen-total-final">
+              <strong>Total a Pagar:</strong>
+              <strong>S/. {total.toFixed(2)}</strong>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 
   return (
     <div className="checkout-container">
       <div className="checkout-form">
         <h1>🛒 Finalizar Compra</h1>
 
-        {error && (
-          <div
-            className={`alert ${
-              error.toLowerCase().includes("stock") ||
-              error.toLowerCase().includes("disponible") ||
-              error.toLowerCase().includes("agotado")
-                ? "alert-warning stock-error"
-                : "alert-danger"
-            }`}
-            role="alert">
-            <div className="error-content">
-              <strong>
-                {error.toLowerCase().includes("stock") ||
-                error.toLowerCase().includes("disponible") ||
-                error.toLowerCase().includes("agotado")
-                  ? "⚠️ Problema de inventario:"
-                  : "❌ Error:"}
-              </strong>
-              <div className="error-message">{error}</div>
-              {(error.toLowerCase().includes("stock") ||
-                error.toLowerCase().includes("disponible") ||
-                error.toLowerCase().includes("agotado")) && (
-                <small className="error-suggestion">
-                  💡 Sugerencia: Revisa las cantidades en tu carrito o actualiza
-                  la página.
-                </small>
-              )}
-            </div>
-          </div>
-        )}
-
-        <h2>Detalles de Envío - Lima Metropolitana</h2>
-        <p className="info-envio-text">
-          📍 Realizamos entregas únicamente en Lima Metropolitana
-        </p>
+        {renderErrorAlert()}
 
         <form onSubmit={handleSubmit}>
-          <div className="form-row">
-            <select
-              name="distrito"
-              value={datos.distrito}
-              onChange={handleChange}
-              required
-              className="select-full-width">
-              <option value="">Seleccionar Distrito de Lima</option>
-              {distritos.map((distrito) => (
-                <option key={distrito} value={distrito}>
-                  {distrito}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-row">
-            <input
-              type="text"
-              name="direccion"
-              placeholder="Ingrese su Dirección"
-              value={datos.direccion}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <h3>Comprobante de Pago</h3>
-          <div className="form-row">
-            <div
-              className={`comprobante-option ${
-                datos.tipoComprobante === "boleta" ? "active" : ""
-              }`}
-              onClick={() => handleComprobanteChange("boleta")}>
-              <h5>Boleta de Venta</h5>
-              <p>Para consumo personal</p>
-              <small>Requiere DNI</small>
-            </div>
-            <div
-              className={`comprobante-option ${
-                datos.tipoComprobante === "factura" ? "active" : ""
-              }`}
-              onClick={() => handleComprobanteChange("factura")}>
-              <h5>Factura</h5>
-              <p>Para empresas</p>
-              <small>Requiere RUC</small>
-            </div>
-          </div>
-
-          <div className="form-row">
-            <input
-              type="text"
-              name="documento"
-              placeholder={
-                datos.tipoComprobante === "boleta"
-                  ? "Ingrese su DNI"
-                  : "Ingrese su RUC"
-              }
-              value={datos.documento}
-              onChange={handleChange}
-              maxLength={datos.tipoComprobante === "boleta" ? 8 : 11}
-              required
-            />
-          </div>
-
-          <h3>Métodos de Pago</h3>
-          <div className="form-row">
-            {["tarjeta", "yape", "plin"].map((m) => (
-              <div
-                key={m}
-                className={`comprobante-option ${
-                  datos.metodoPago === m ? "active" : ""
-                }`}
-                onClick={() => handleMetodoPagoChange(m)}>
-                <h5>
-                  {m === "tarjeta" && "💳 Tarjeta"}
-                  {m === "yape" && "📱 Yape"}
-                  {m === "plin" && "💰 Plin"}
-                </h5>
-              </div>
-            ))}
-          </div>
-
-          {datos.metodoPago === "tarjeta" && (
-            <>
-              <div className="form-row">
-                <input
-                  type="text"
-                  name="tarjeta"
-                  placeholder="Número de tarjeta"
-                  value={datos.tarjeta}
-                  onChange={handleChange}
-                  maxLength="19"
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <input
-                  type="text"
-                  name="titular"
-                  placeholder="Titular de la tarjeta"
-                  value={datos.titular}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="text"
-                  name="vencimiento"
-                  placeholder="MM/YY"
-                  value={datos.vencimiento}
-                  onChange={handleChange}
-                  maxLength="5"
-                  required
-                />
-                <input
-                  type="text"
-                  name="cvv"
-                  placeholder="CVV"
-                  value={datos.cvv}
-                  onChange={handleChange}
-                  maxLength="4"
-                  required
-                />
-              </div>
-            </>
-          )}
+          {renderShippingSection()}
+          {renderComprobanteSection()}
+          {renderPaymentSection()}
 
           <button
             type="submit"
             className={`finalizar-btn ${procesando ? "procesando" : ""}`}
-            disabled={procesando}>
-            {procesando ? "⏳ Procesando..." : "🛒 Finalizar Orden"}
+            disabled={procesando || productos.length === 0}>
+            {procesando ? "⏳ Procesando Pedido..." : "✅ Confirmar y Pagar"}
           </button>
         </form>
       </div>
 
-      <div className="checkout-summary">
-        <h3>Resumen del Pedido</h3>
-        {productos.length === 0 ? (
-          <p>No hay productos en el carrito</p>
-        ) : (
-          productos.map((prod) => (
-            <div key={prod.id} className="resumen-producto-item">
-              <div>
-                <div>{prod.nombre}</div>
-                <small>
-                  {prod.quantity} x S/.{" "}
-                  {(prod.precioVenta || prod.precio).toFixed(2)}
-                </small>
-              </div>
-              <div>
-                S/.{" "}
-                {((prod.precioVenta || prod.precio) * prod.quantity).toFixed(2)}
-              </div>
-            </div>
-          ))
-        )}
-
-        <div className="resumen-totales">
-          <div>
-            <span>Subtotal:</span>
-            <span>S/. {subtotal.toFixed(2)}</span>
-          </div>
-          <div>
-            <span>Envío:</span>
-            <span>S/. {costoEnvio.toFixed(2)}</span>
-          </div>
-          <div>
-            <span>IGV:</span>
-            <span>S/. {igv.toFixed(2)}</span>
-          </div>
-          <div>
-            <strong>Total:</strong>
-            <strong>S/. {total.toFixed(2)}</strong>
-          </div>
-        </div>
-      </div>
+      {renderOrderSummary()}
 
       {/* Modal de autenticación requerida */}
       <AuthRequiredModal
         isOpen={showAuthModal}
         onClose={() => {
           setShowAuthModal(false);
-          navigate("/carrito"); // Redirigir de vuelta al carrito
+          navigate("/carrito");
         }}
         message={authModalData.message}
         action={authModalData.action}
