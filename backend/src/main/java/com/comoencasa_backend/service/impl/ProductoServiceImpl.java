@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 import com.comoencasa_backend.model.Producto;
 import com.comoencasa_backend.repository.ProductoRepository;
+import com.comoencasa_backend.repository.CategoriaRepository;
 import com.comoencasa_backend.service.ProductoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
     private ProductoRepository productoRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Override
     public List<Producto> findAllAvailable() {
@@ -58,7 +62,7 @@ public class ProductoServiceImpl implements ProductoService {
         if (productoOpt.isPresent()) {
             Producto producto = productoOpt.get();
             producto.setCantidad(nuevaCantidad);
-            
+
             // Si se agrega stock, asegurar que esté disponible
             if (nuevaCantidad > 0) {
                 producto.setDisponible(true);
@@ -66,7 +70,7 @@ public class ProductoServiceImpl implements ProductoService {
                 // Si stock es 0, marcar como no disponible
                 producto.setDisponible(false);
             }
-            
+
             return productoRepository.save(producto);
         } else {
             throw new IllegalArgumentException("Producto no encontrado con ID: " + productoId);
@@ -105,28 +109,33 @@ public class ProductoServiceImpl implements ProductoService {
         if (productoOpt.isPresent()) {
             Producto producto = productoOpt.get();
             int stockActual = producto.getCantidad() != null ? producto.getCantidad() : 0;
-            
+
             if (stockActual < cantidadVendida) {
-                throw new IllegalArgumentException("Stock insuficiente. Disponible: " + stockActual + 
-                    ", Solicitado: " + cantidadVendida);
+                throw new IllegalArgumentException("Stock insuficiente. Disponible: " + stockActual +
+                        ", Solicitado: " + cantidadVendida);
             }
-            
+
             int nuevoStock = stockActual - cantidadVendida;
             producto.setCantidad(nuevoStock);
-            
+
             // Si el stock llega a 0, marcar como no disponible
             if (nuevoStock == 0) {
                 producto.setDisponible(false);
             }
-            
+
             productoRepository.save(producto);
         } else {
             throw new IllegalArgumentException("Producto no encontrado con ID: " + productoId);
         }
     }
 
-     @Override
+    @Override
     public Producto create(Producto producto) {
+        // Validar que la categoría existe
+        if (producto.getCategoriaId() != null && !categoriaRepository.existsById(producto.getCategoriaId())) {
+            throw new IllegalArgumentException("No existe la categoría con ID: " + producto.getCategoriaId());
+        }
+
         sanitize(producto);
         Producto saved = productoRepository.save(producto);
         log.info("CREAR producto: {}", saved);
@@ -136,10 +145,17 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Producto update(Long id, Producto data) {
         Producto existing = productoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("No existe producto " + id));
+                .orElseThrow(() -> new IllegalArgumentException("No existe producto " + id));
+
+        // Validar que la categoría existe
+        if (data.getCategoriaId() != null && !categoriaRepository.existsById(data.getCategoriaId())) {
+            throw new IllegalArgumentException("No existe la categoría con ID: " + data.getCategoriaId());
+        }
+
         // sanitiza datos entrantes:
         sanitize(data);
         // actualiza campos:
+        existing.setCategoriaId(data.getCategoriaId());
         existing.setNombre(data.getNombre());
         existing.setDescripcion(data.getDescripcion());
         existing.setPrecioVenta(data.getPrecioVenta());

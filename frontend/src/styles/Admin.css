@@ -105,6 +105,7 @@
   justify-content: flex-end;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-top: 0.7rem; /* Reducido de 1rem a 0.7rem */
 }
 
 .modal-actions .theme-button {
@@ -271,4 +272,245 @@
   text-transform: uppercase;
   font-size: 0.875rem;
   letter-spacing: 0.5px;
+}
+
+/* Mejoras para el panel de productos */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #ff6ba6;
+  box-shadow: 0 0 0 3px rgba(255, 107, 166, 0.1);
+}
+
+/* Mejoras en la tabla de productos */
+.admin-table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th {
+  background: linear-gradient(135deg, #ff6ba6, #ff85c0);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.admin-table td {
+  vertical-align: middle;
+  padding: 1rem 0.75rem;
+}
+
+.admin-table tr:nth-child(even) {
+  background-color: #fdf2f8;
+}
+
+.admin-table tr:hover {
+  background-color: #fce7f3;
+  transition: background-color 0.2s ease;
+}
+
+/* Imagen de producto en la tabla */
+.product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de acción en la tabla */
+.admin-table .theme-button {
+  margin: 0 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  min-width: 70px;
+}
+
+.admin-table .theme-button:first-child {
+  background-color: #10b981;
+}
+
+.admin-table .theme-button:first-child:hover {
+  background-color: #059669;
+}
+
+.admin-table .theme-button:last-child {
+  background-color: #ef4444;
+}
+
+.admin-table .theme-button:last-child:hover {
+  background-color: #dc2626;
+}
+
+/* Categoría destacada */
+.admin-table td:first-child {
+  font-weight: 600;
+  color: #ff6ba6;
+}
+
+/* Estilos para formularios con etiquetas */
+.form-group {
+  margin-bottom: 0.4rem; /* Reducido de 0.8rem a 0.4rem */
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.15rem; /* Reducido de 0.3rem a 0.15rem */
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.85rem; /* Reducido de 0.9rem a 0.85rem */
+  letter-spacing: 0.3px;
+}
+
+.form-label::after {
+  content: "";
+}
+
+/* Asterisco para campos requeridos */
+.form-label:has(+ .form-input[required]),
+.form-label:has(+ .form-select[required]),
+.form-label:has(+ .form-textarea[required]) {
+  position: relative;
+}
+
+/* Estilos mejorados para inputs */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0d6e2;
+  padding: 0.5rem; /* Reducido de 0.6rem a 0.5rem */
+  font-family: inherit;
+  font-size: 0.95rem; /* Reducido de 1rem a 0.95rem */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #ff6ba6;
+  box-shadow: 0 0 0 3px rgba(255, 107, 166, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 50px; /* Reducido de 60px a 50px */
+  font-family: inherit;
+}
+
+.form-select {
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Placeholder mejorado */
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Contenedor de acciones del modal */
+.admin-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Título del modal mejorado */
+.modal-title {
+  color: #ff6ba6;
+  font-size: 1.4rem; /* Reducido de 1.5rem a 1.4rem */
+  margin-bottom: 0.7rem; /* Reducido de 1rem a 0.7rem */
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 2px solid #f0d6e2;
+  padding-bottom: 0.4rem; /* Reducido de 0.5rem a 0.4rem */
+}
+
+/* Estilos específicos para gestión de categorías */
+.category-id {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  border: 1px solid #e9ecef;
+}
+
+.category-name {
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.category-description {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.product-count {
+  background-color: #e8f4f8;
+  color: #0c5460;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.warning-text {
+  color: #e74c3c !important;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  background-color: #ffeaa7;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border-left: 4px solid #e74c3c;
+}
+
+/* Spinner personalizado para categorías */
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+  border-width: 0.25em;
+}
+
+.loading-container p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #6c757d;
 }

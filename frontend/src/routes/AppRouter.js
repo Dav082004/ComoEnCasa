@@ -27,6 +27,7 @@ import Pedidos from "../pages/Pedidos";
 import AdminProducts from "../pages/AdminProducts";
 import AdminOrders from "../pages/AdminOrders";
 import AdminComprobantes from "../pages/AdminComprobantes";
+import AdminCategories from "../pages/AdminCategories";
 import PagoExitoso from "../pages/PagoExitoso";
 
 export const AppRouter = () => {
@@ -61,6 +62,7 @@ export const AppRouter = () => {
               </Route>
               <Route path="admin" element={<AdminLayout />}>
                 <Route path="productos" element={<AdminProducts />} />
+                <Route path="categorias" element={<AdminCategories />} />
                 <Route path="pedidos" element={<AdminOrders />} />
                 <Route path="comprobantes" element={<AdminComprobantes />} />
               </Route>

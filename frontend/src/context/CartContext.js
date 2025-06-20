@@ -54,7 +54,6 @@ export const CartProvider = ({ children }) => {
       console.error("Error al agregar producto al carrito:", error);
       toast.error("Error al agregar producto al carrito");
       return false; // Indicar fallo
-      toast.error("Error al agregar el producto al carrito");
     } finally {
       // Reactivar después de un breve delay
       setTimeout(() => {

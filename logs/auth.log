@@ -40,3 +40,11 @@
 2025-06-19 21:31:50.893 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
 2025-06-19 21:31:50.897 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 7
 2025-06-19 21:46:17.094 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: dav***@gmail.com
+2025-06-19 22:01:02.769 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: adm***@c.com
+2025-06-19 22:01:45.136 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-19 22:01:45.140 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-19 22:02:39.261 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-19 22:02:39.264 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-19 22:03:44.006 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Login recibido para: adm***@c.com
+2025-06-19 22:03:45.388 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
+2025-06-19 22:03:45.391 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Obteniendo perfil del usuario ID: 5
