@@ -1,40 +1,4 @@
 # 🍰 Web System for Order and Customer Management - Como en Casa
-
-## 🔍 **ANÁLISIS TÉCNICO ACTUALIZADO - Diciembre 2024**
-
-> **Estado del Proyecto**: ✅ **COMPLETAMENTE FUNCIONAL** con implementación robusta de patrones arquitectónicos
->
-> **Análisis Realizado**: Revisión exhaustiva de 100+ archivos de código fuente
->
-> **Calificación Técnica**: 🏆 **9.2/10** - Implementación de nivel profesional
-
-### 📊 **Resumen de Implementación Verificada:**
-
-| Componente                | Estado          | Cobertura | Archivos Clave                     |
-| ------------------------- | --------------- | --------- | ---------------------------------- |
-| **🏗️ Patrón MVC**         | ✅ COMPLETO     | 95%       | 40+ Controllers, Services, Models  |
-| **🧪 TDD Implementation** | ✅ ACTIVO       | 85%       | 15+ archivos de test con 85+ tests |
-| **📊 Patrón DAO**         | ✅ IMPLEMENTADO | 90%       | Repositories + Custom DAOs         |
-| **💎 Principios SOLID**   | ✅ APLICADO     | 95%       | Toda la arquitectura               |
-| **🔐 Seguridad**          | ✅ ROBUSTA      | 98%       | Spring Security + validaciones     |
-| **📚 Librerías Soporte**  | ✅ INTEGRADAS   | 100%      | Guava, POI, Commons, Logback       |
-
-### 🎯 **Funcionalidades Principales Verificadas:**
-
-- ✅ **Sistema de Autenticación** completo con verificación por email
-- ✅ **Gestión de Productos** con CRUD, categorías y stock
-- ✅ **Carrito de Compras** inteligente con validación de stock
-- ✅ **Proceso de Checkout** completo con múltiples métodos de pago
-- ✅ **Panel de Administración** para gestión completa
-- ✅ **Generación de Reportes** Excel con Apache POI
-- ✅ **Sistema de Logging** estructurado por entornos
-
-### 📋 **Documentación Técnica Actualizada:**
-
-- 📖 **[Funciones Completas del Sistema](docs/FUNCIONES-SISTEMA-COMPLETO.md)** - 🆕 **NUEVO**
-- 📖 **[Análisis de Librerías de Soporte](docs/ANALISIS-LIBRERIAS-SOPORTE.md)** - ✅ **ACTUALIZADO**
-- 📖 **[Implementación de Patrones](docs/)** - ✅ **VERIFICADO**
-
 ---
 
 ## 📖 Project Description
@@ -108,6 +72,8 @@ This project consists of developing a **web system** to improve order and custom
 - Data encryption and secure authentication
 - Protection against common web vulnerabilities
 - Secure session management
+
+> � **[Ver Análisis Técnico Completo](docs/ANALISIS-TECNICO-COMPLETO.md)**
 
 ---
 
@@ -255,42 +221,10 @@ La guía incluye:
 
 ---
 
-## 🎯 **CONCLUSIONES DEL ANÁLISIS TÉCNICO**
+## 👥 Development Team
 
-### ✅ **Verificación de Requisitos:**
-
-**Conceptos de Arquitectura Implementados:**
-
-- 🏗️ **MVC**: ✅ Implementación completa con separación clara de capas
-- 🧪 **TDD**: ✅ 85+ tests con metodología Red-Green-Refactor
-- 📊 **DAO**: ✅ Patrón implementado con repositories y custom DAOs
-- 💎 **SOLID**: ✅ Principios aplicados en toda la arquitectura
-- 🔐 **Seguridad**: ✅ Spring Security con BCrypt, validaciones y CORS
-
-**Librerías de Soporte Utilizadas:**
-
-- 📈 **Google Guava**: ✅ Cache inteligente para carritos (CarritoDAOImpl.java)
-- 📊 **Apache POI**: ✅ Generación de reportes Excel (ComprobanteServiceImpl.java)
-- ✅ **Apache Commons**: ✅ Validación robusta y manipulación segura (3+ archivos)
-- 📝 **Logback**: ✅ Sistema de logging por entornos (logback-spring.xml)
-
-### 🏆 **Calidad del Proyecto:**
-
-- **Cobertura de Tests**: ~85% (verificado con JaCoCo)
-- **Patrones Arquitectónicos**: 4/4 implementados correctamente
-- **Librerías de Soporte**: 4/4 integradas y en uso activo
-- **Documentación**: Completa y actualizada
-- **Funcionalidad**: Sistema completamente operativo
-
-### 🚀 **Valor Agregado:**
-
-Este proyecto demuestra una implementación profesional de:
-
-- ✅ Arquitectura moderna full-stack (Spring Boot + React)
-- ✅ Metodologías ágiles de desarrollo (TDD)
-- ✅ Patrones de diseño reconocidos por la industria
-- ✅ Seguridad robusta y mejores prácticas
-- ✅ Testing automatizado y cobertura de código
-- ✅ Documentación técnica completa
-
-**🎯 Resultado Final: Sistema robusto, escalable y mantenible que cumple todos los requerimientos técnicos y funcionales.**
+- Correa Acosta, Benjamin Emanuel
+- Contreras Palacios, David Angel
+- Barboza Ataco, Mijhael Hamed
+- Meléndez Torre, José Martín
+- Llacctas Pereyra, Marco A.
