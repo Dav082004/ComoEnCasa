@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import checkoutService from "../services/checkoutService";
 import { toast } from "react-toastify";
+import AuthRequiredModal from "../components/AuthRequiredModal";
 import "../styles/Checkout.css";
 
 const CheckoutSimple = () => {
@@ -13,6 +14,7 @@ const CheckoutSimple = () => {
     clearCart,
     validateCartStock,
     syncCartWithStock,
+    validateAuthForCheckout,
   } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -32,6 +34,21 @@ const CheckoutSimple = () => {
 
   const [procesando, setProcesando] = useState(false);
   const [error, setError] = useState("");
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authModalData, setAuthModalData] = useState({});
+
+  // Validar autenticación al cargar la página
+  useEffect(() => {
+    const authValidation = validateAuthForCheckout();
+
+    if (!authValidation.isValid) {
+      setAuthModalData({
+        message: authValidation.message,
+        action: authValidation.action,
+      });
+      setShowAuthModal(true);
+    }
+  }, [validateAuthForCheckout]);
 
   const distritos = [
     "Ancón",
@@ -479,6 +496,17 @@ const CheckoutSimple = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal de autenticación requerida */}
+      <AuthRequiredModal
+        isOpen={showAuthModal}
+        onClose={() => {
+          setShowAuthModal(false);
+          navigate("/carrito"); // Redirigir de vuelta al carrito
+        }}
+        message={authModalData.message}
+        action={authModalData.action}
+      />
     </div>
   );
 };

@@ -118,12 +118,20 @@
   font-size: 1rem;
   transition: all 0.3s ease;
   background-color: #ffffff;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .product-detail-select:focus {
   border-color: #d63384;
   box-shadow: 0 0 0 0.2rem rgba(214, 51, 132, 0.15);
   outline: none;
+}
+
+.product-detail-select:hover {
+  border-color: rgba(214, 51, 132, 0.3);
 }
 
 /* Botón principal */

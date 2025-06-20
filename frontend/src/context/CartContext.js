@@ -2,16 +2,18 @@
 import React, { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import ProductToast from "../components/products/ProductToast";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({});
   const [isAdding, setIsAdding] = useState(false);
+  const { user } = useAuth();
 
   const addToCart = async (producto, cantidad = 1) => {
     // Evitar múltiples clics rápidos
-    if (isAdding) return;
+    if (isAdding) return false;
 
     setIsAdding(true);
 
@@ -46,8 +48,12 @@ export const CartProvider = ({ children }) => {
         hideProgressBar: false,
         draggable: true,
       });
+
+      return true; // Indicar éxito
     } catch (error) {
       console.error("Error al agregar producto al carrito:", error);
+      toast.error("Error al agregar producto al carrito");
+      return false; // Indicar fallo
       toast.error("Error al agregar el producto al carrito");
     } finally {
       // Reactivar después de un breve delay
@@ -185,6 +191,28 @@ export const CartProvider = ({ children }) => {
     return hasChanges;
   };
 
+  // VALIDACIÓN DE AUTENTICACIÓN ANTES DEL CHECKOUT
+  const validateAuthForCheckout = () => {
+    if (!user) {
+      return {
+        isValid: false,
+        message: "Debes iniciar sesión para proceder con la compra",
+        action: "login",
+      };
+    }
+
+    // Verificar si la cuenta está activada (si implementas activación)
+    if (user.activado === false) {
+      return {
+        isValid: false,
+        message: "Tu cuenta debe estar activada para realizar compras",
+        action: "activate",
+      };
+    }
+
+    return { isValid: true };
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -199,6 +227,7 @@ export const CartProvider = ({ children }) => {
         isAdding,
         validateCartStock,
         syncCartWithStock,
+        validateAuthForCheckout,
       }}>
       {children}
     </CartContext.Provider>

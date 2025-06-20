@@ -4,14 +4,23 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { getProductoById } from "../services/productoService";
+import AuthRequiredModal from "../components/AuthRequiredModal";
 import "../styles/Carrito.css";
 
 const Carrito = () => {
-  const { cart, updateQuantity, removeFromCart, getTotalPrice } = useCart();
+  const {
+    cart,
+    updateQuantity,
+    removeFromCart,
+    getTotalPrice,
+    validateAuthForCheckout,
+  } = useCart();
 
   const navigate = useNavigate();
   const [productosConStock, setProductosConStock] = useState({});
   const [loading, setLoading] = useState(true);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authModalData, setAuthModalData] = useState({});
 
   // Cargar información de stock actualizada para cada producto
   useEffect(() => {
@@ -79,6 +88,22 @@ const Carrito = () => {
 
   const eliminarProducto = (id) => {
     removeFromCart(id);
+  };
+
+  const handleProceedToCheckout = () => {
+    const authValidation = validateAuthForCheckout();
+
+    if (!authValidation.isValid) {
+      setAuthModalData({
+        message: authValidation.message,
+        action: authValidation.action,
+      });
+      setShowAuthModal(true);
+      return;
+    }
+
+    // Si está autenticado, proceder al checkout
+    navigate("/checkout");
   };
 
   const productos = Object.values(cart);
@@ -210,10 +235,18 @@ const Carrito = () => {
           <h3>Total: S/. {total.toFixed(2)}</h3>
         </div>
 
-        <button className="btn-finalizar" onClick={() => navigate("/Checkout")}>
+        <button className="btn-finalizar" onClick={handleProceedToCheckout}>
           Finalizar Compra
         </button>
       </div>
+
+      {/* Modal de autenticación requerida */}
+      <AuthRequiredModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        message={authModalData.message}
+        action={authModalData.action}
+      />
     </div>
   );
 };
