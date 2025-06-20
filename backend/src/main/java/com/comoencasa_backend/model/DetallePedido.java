@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-@Table(name = "producto_pedido")
+@Table(name = "detalle_pedido")
 public class DetallePedido {
-   @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

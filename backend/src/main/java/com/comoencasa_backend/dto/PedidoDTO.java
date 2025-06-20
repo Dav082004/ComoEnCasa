@@ -16,6 +16,5 @@ public class PedidoDTO {
     private BigDecimal subtotal;
     private BigDecimal costoTotal;
     private String direccionEntrega;
-    private String notas;
     private Boolean necesitaFactura;
 }

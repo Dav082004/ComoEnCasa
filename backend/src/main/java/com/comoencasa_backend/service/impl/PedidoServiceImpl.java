@@ -7,8 +7,6 @@ import com.comoencasa_backend.repository.PedidoRepository;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.PedidoService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +24,6 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;
 
-    @Autowired
     public PedidoServiceImpl(PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioRepository = usuarioRepository;
@@ -81,7 +78,6 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setSubtotal(pedidoDTO.getSubtotal());
         pedido.setCostoTotal(pedidoDTO.getCostoTotal());
         pedido.setDireccionEntrega(pedidoDTO.getDireccionEntrega());
-        pedido.setNotas(pedidoDTO.getNotas());
         pedido.setNecesitaFactura(pedidoDTO.getNecesitaFactura());
 
         Pedido guardado = pedidoRepository.save(pedido);
@@ -258,7 +254,6 @@ public class PedidoServiceImpl implements PedidoService {
         dto.setSubtotal(p.getSubtotal());
         dto.setCostoTotal(p.getCostoTotal());
         dto.setDireccionEntrega(p.getDireccionEntrega());
-        dto.setNotas(p.getNotas());
         dto.setNecesitaFactura(p.getNecesitaFactura());
         return dto;
     }

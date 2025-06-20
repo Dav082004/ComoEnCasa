@@ -110,7 +110,6 @@ CREATE TABLE `pedido` (
   `subtotal` decimal(10,2) NOT NULL,
   `costo_total` decimal(10,2) NOT NULL,
   `direccion_entrega` varchar(200) DEFAULT NULL,
-  `notas` text DEFAULT NULL,
   `necesita_factura` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,11 +117,11 @@ CREATE TABLE `pedido` (
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`id`, `usuario_id`, `fecha_creacion`, `fecha_entrega`, `estado`, `subtotal`, `costo_total`, `direccion_entrega`, `notas`, `necesita_factura`) VALUES
-(1, 1, '2025-06-05 15:50:22', '2025-06-10 14:00:00', 'En preparación', 120.00, 120.00, 'Av. Siempre Viva 123', 'Sin maní', 1),
-(2, 6, '2025-06-05 15:50:22', '2025-06-11 16:30:00', 'Pendiente', 150.00, 150.00, 'Calle Los Almendros 456', 'Pastel con logo', 0),
-(3, 2, '2025-06-04 12:20:00', '2025-06-09 15:00:00', 'Entregado', 80.00, 80.00, 'Jr. Las Flores 789', 'Cupcakes personalizados', 0),
-(4, 3, '2025-06-03 10:10:00', '2025-06-08 18:30:00', 'Entregado', 100.00, 100.00, 'Av. Primavera 321', 'Sin azúcar', 1);
+INSERT INTO `pedido` (`id`, `usuario_id`, `fecha_creacion`, `fecha_entrega`, `estado`, `subtotal`, `costo_total`, `direccion_entrega`, `necesita_factura`) VALUES
+(1, 1, '2025-06-05 15:50:22', '2025-06-10 14:00:00', 'En preparación', 120.00, 120.00, 'Av. Siempre Viva 123', 1),
+(2, 6, '2025-06-05 15:50:22', '2025-06-11 16:30:00', 'Pendiente', 150.00, 150.00, 'Calle Los Almendros 456', 0),
+(3, 2, '2025-06-04 12:20:00', '2025-06-09 15:00:00', 'Entregado', 80.00, 80.00, 'Jr. Las Flores 789', 0),
+(4, 3, '2025-06-03 10:10:00', '2025-06-08 18:30:00', 'Entregado', 100.00, 100.00, 'Av. Primavera 321', 1);
 
 -- --------------------------------------------------------
 
@@ -160,10 +159,10 @@ INSERT INTO `producto` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio_v
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto_pedido`
+-- Estructura de tabla para la tabla `detalle_pedido`
 --
 
-CREATE TABLE `producto_pedido` (
+CREATE TABLE `detalle_pedido` (
   `id` bigint(20) NOT NULL,
   `pedido_id` bigint(20) NOT NULL,
   `producto_id` bigint(20) NOT NULL,
@@ -174,10 +173,10 @@ CREATE TABLE `producto_pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `producto_pedido`
+-- Volcado de datos para la tabla `detalle_pedido`
 --
 
-INSERT INTO `producto_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `precio_unitario`, `costo_unitario`, `personalizacion`) VALUES
+INSERT INTO `detalle_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `precio_unitario`, `costo_unitario`, `personalizacion`) VALUES
 (1, 1, 1, 1, 120.00, 80.00, 'Con dedicatoria'),
 (2, 2, 3, 1, 150.00, 95.00, 'Agregar logo personalizado'),
 (3, 3, 4, 1, 80.00, 45.00, 'Cupcakes temáticos'),
@@ -255,9 +254,9 @@ ALTER TABLE `producto`
   ADD KEY `categoria_id` (`categoria_id`);
 
 --
--- Indices de la tabla `producto_pedido`
+-- Indices de la tabla `detalle_pedido`
 --
-ALTER TABLE `producto_pedido`
+ALTER TABLE `detalle_pedido`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pedido_id` (`pedido_id`),
   ADD KEY `producto_id` (`producto_id`);
@@ -304,9 +303,9 @@ ALTER TABLE `producto`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `producto_pedido`
+-- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
-ALTER TABLE `producto_pedido`
+ALTER TABLE `detalle_pedido`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -344,11 +343,11 @@ ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria_producto` (`id`);
 
 --
--- Filtros para la tabla `producto_pedido`
+-- Filtros para la tabla `detalle_pedido`
 --
-ALTER TABLE `producto_pedido`
-  ADD CONSTRAINT `producto_pedido_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `producto_pedido_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`);
+ALTER TABLE `detalle_pedido`
+  ADD CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detalle_pedido_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

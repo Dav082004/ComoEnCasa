@@ -29,12 +29,11 @@ public class SecurityConfig {
                         .requestMatchers("/api/productos/**").permitAll() // Añade esta línea
                         .requestMatchers("/api/carrito/**").permitAll() // Nuevos endpoints del carrito
                         .requestMatchers("/api/pedidos/**").permitAll()
+                        .requestMatchers("/api/checkout/**").permitAll() // Endpoints de checkout
                         .requestMatchers("/api/admin/**").permitAll()
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                );
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }
@@ -47,14 +46,13 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        
+
         // Permitimos acceso desde múltiples puertos para desarrollo
         configuration.setAllowedOrigins(List.of(
-            "http://localhost:3000", 
-            "http://localhost:3001", 
-            "http://localhost:3002"
-        ));
-        
+                "http://localhost:3000",
+                "http://localhost:3001",
+                "http://localhost:3002"));
+
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

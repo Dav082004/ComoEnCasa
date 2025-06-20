@@ -83,6 +83,19 @@ public class PedidoController {
         return ResponseEntity.ok(estados);
     }
 
+    /** Crear un nuevo pedido */
+    @PostMapping
+    public ResponseEntity<PedidoDTO> crearPedido(@RequestBody PedidoDTO pedidoDTO) {
+        log.info("Creando nuevo pedido para usuario ID: {}", pedidoDTO.getUsuarioId());
+        try {
+            PedidoDTO nuevoPedido = pedidoService.crearPedido(pedidoDTO);
+            return ResponseEntity.ok(nuevoPedido);
+        } catch (IllegalArgumentException ex) {
+            log.warn("Error al crear pedido: {}", ex.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     /** Obtener transiciones disponibles para un estado */
     @GetMapping("/transiciones/{estado}")
     public ResponseEntity<List<String>> getTransicionesDisponibles(@PathVariable String estado) {
