@@ -9,15 +9,29 @@ import com.comoencasa_backend.repository.PedidoRepository;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.PedidoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -321,5 +335,45 @@ public class PedidoServiceImpl implements PedidoService {
         BigDecimal subtotal = detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
         dto.setSubtotal(subtotal);
         return dto;
+    }
+    @Override
+    public ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta) throws IOException {
+        List<PedidoDTO> pedidos = this.findAll();
+
+        // Aplicar filtros por fechas si están presentes
+        if (desde.isPresent() && hasta.isPresent()) {
+            pedidos = pedidos.stream()
+                    .filter(p -> !p.getFechaCreacion().isBefore(desde.get()) &&
+                            !p.getFechaCreacion().isAfter(hasta.get()))
+                    .collect(Collectors.toList());
+        }
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Ventas");
+
+            // Cabecera
+            Row header = sheet.createRow(0);
+            String[] columnas = {"ID", "Cliente", "Documento", "Fecha Pedido", "Subtotal", "Total", "Factura"};
+            for (int i = 0; i < columnas.length; i++) {
+                header.createCell(i).setCellValue(columnas[i]);
+            }
+
+            // Cuerpo
+            int rowIdx = 1;
+            for (PedidoDTO p : pedidos) {
+                Row row = sheet.createRow(rowIdx++);
+                row.createCell(0).setCellValue(p.getId());
+                row.createCell(1).setCellValue(p.getUsuarioNombre());
+                row.createCell(2).setCellValue(p.getUsuarioId()); // Puedes cambiar por documento si lo tienes
+                row.createCell(3).setCellValue(p.getFechaCreacion().toString());
+                row.createCell(4).setCellValue(p.getSubtotal().doubleValue());
+                row.createCell(5).setCellValue(p.getCostoTotal().doubleValue());
+                row.createCell(6).setCellValue(p.getNecesitaFactura() ? "Sí" : "No");
+            }
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            workbook.write(out);
+            return new ByteArrayInputStream(out.toByteArray());
+        }
     }
 }

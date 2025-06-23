@@ -35,3 +35,21 @@ export const exportarPdf = async (id) => {
   });
   return res.data;
 };
+
+export const exportarReporteVentas = async () => {
+  const token = localStorage.getItem("token"); // O como lo guardes
+
+  const res = await axios.get(
+    "http://localhost:8081/api/admin/comprobantes/reporte-ventas.xlsx",
+    {
+      responseType: "blob",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.data;
+};
+
+
+

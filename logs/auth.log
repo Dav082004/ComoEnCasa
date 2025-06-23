@@ -1,0 +1,36 @@
+2025-06-23 01:19:11.490 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:19:11.493 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:19:11.557 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:19:11.558 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:19:25.423 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:19:25.423 [http-nio-8081-exec-2] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:19:25.429 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:19:25.429 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:19:38.267 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Login recibido para: mar***@g.com
+2025-06-23 01:19:38.411 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:19:38.412 [http-nio-8081-exec-7] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:19:38.415 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:19:38.415 [http-nio-8081-exec-9] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:20:34.540 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Login recibido para: tes***@g.com
+2025-06-23 01:20:34.660 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:20:34.661 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:20:34.667 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:20:34.668 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:32:24.780 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:32:24.780 [http-nio-8081-exec-10] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:32:24.787 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:32:24.787 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:32:33.710 [http-nio-8081-exec-4] INFO  c.c.controller.AuthController - Login recibido para: mar***@g.com
+2025-06-23 01:32:33.855 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:32:33.855 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:32:33.860 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:32:33.860 [http-nio-8081-exec-1] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:33:11.273 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:33:11.273 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:33:11.286 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:33:11.286 [http-nio-8081-exec-6] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:33:49.159 [http-nio-8081-exec-8] INFO  c.c.controller.AuthController - Login recibido para: tes***@g.com
+2025-06-23 01:33:49.286 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:33:49.286 [http-nio-8081-exec-3] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas
+2025-06-23 01:33:49.291 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Encontrados 0 usuarios con recomendaciones
+2025-06-23 01:33:49.291 [http-nio-8081-exec-5] INFO  c.c.controller.AuthController - Retornando 0 recomendaciones válidas

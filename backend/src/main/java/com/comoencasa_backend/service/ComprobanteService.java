@@ -26,4 +26,6 @@ public interface ComprobanteService {
 
     /** Genera el archivo PDF del comprobante */
     ByteArrayInputStream generarPdf(Long comprobanteId) throws IOException;
+
+    ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta) throws IOException;
 }

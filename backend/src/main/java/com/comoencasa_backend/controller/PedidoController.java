@@ -4,11 +4,17 @@ import com.comoencasa_backend.dto.PedidoDTO;
 import com.comoencasa_backend.service.PedidoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -116,4 +122,16 @@ public class PedidoController {
         List<String> transiciones = pedidoService.getTransicionesDisponibles(estado);
         return ResponseEntity.ok(transiciones);
     }
+    @GetMapping("/ventas/export.xlsx")
+    public ResponseEntity<byte[]> exportarReporteVentas(
+            @RequestParam Optional<LocalDateTime> desde,
+            @RequestParam Optional<LocalDateTime> hasta
+    ) throws IOException {
+        ByteArrayInputStream in = pedidoService.generarReporteVentasExcel(desde, hasta);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+        headers.setContentDisposition(ContentDisposition.builder("attachment").filename("reporte_ventas.xlsx").build());
+        return new ResponseEntity<>(in.readAllBytes(), headers, HttpStatus.OK);
+    }
+
 }

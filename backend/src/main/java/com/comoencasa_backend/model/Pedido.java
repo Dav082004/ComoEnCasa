@@ -1,5 +1,6 @@
 package com.comoencasa_backend.model;
 
+import com.comoencasa_backend.dto.RegistroRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 

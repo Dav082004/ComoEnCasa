@@ -1,6 +1,7 @@
 package com.comoencasa_backend.service.impl;
 
 import com.comoencasa_backend.dto.ComprobanteDTO;
+import com.comoencasa_backend.dto.PedidoDTO;
 import com.comoencasa_backend.model.Comprobante;
 import com.comoencasa_backend.model.DetallePedido;
 import com.comoencasa_backend.model.Pedido;
@@ -8,6 +9,7 @@ import com.comoencasa_backend.model.TipoComprobante;
 import com.comoencasa_backend.repository.ComprobanteRepository;
 import com.comoencasa_backend.repository.PedidoRepository;
 import com.comoencasa_backend.service.ComprobanteService;
+import com.comoencasa_backend.service.PedidoService;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -38,12 +40,19 @@ public class ComprobanteServiceImpl implements ComprobanteService {
 
     private final ComprobanteRepository comprobanteRepo;
     private final PedidoRepository pedidoRepo;
+    private PedidoService pedidoService;
 
-    public ComprobanteServiceImpl(ComprobanteRepository comprobanteRepo,
-            PedidoRepository pedidoRepo) {
+
+    public ComprobanteServiceImpl(
+            ComprobanteRepository comprobanteRepo,
+            PedidoRepository pedidoRepo,
+            PedidoService pedidoService
+    ) {
         this.comprobanteRepo = comprobanteRepo;
         this.pedidoRepo = pedidoRepo;
+        this.pedidoService = pedidoService;
     }
+
 
     @Override
     @Transactional
@@ -72,25 +81,37 @@ public class ComprobanteServiceImpl implements ComprobanteService {
     @Override
     @Transactional(readOnly = true)
     public List<ComprobanteDTO> listarComprobantes(Optional<LocalDateTime> desde,
-            Optional<LocalDateTime> hasta,
-            Optional<String> clienteDocumento,
-            Optional<Long> pedidoId) {
+                                                   Optional<LocalDateTime> hasta,
+                                                   Optional<String> clienteDocumento,
+                                                   Optional<Long> pedidoId) {
+
         List<Comprobante> lista = comprobanteRepo.findAll();
 
         if (pedidoId.isPresent()) {
-            lista = comprobanteRepo.findByPedido_Id(pedidoId.get());
+            lista = lista.stream()
+                    .filter(c -> c.getPedido().getId().equals(pedidoId.get()))
+                    .collect(Collectors.toList());
         }
+
         if (clienteDocumento.isPresent()) {
-            lista = comprobanteRepo.findByPedido_Usuario_NumeroDocumento(clienteDocumento.get());
+            lista = lista.stream()
+                    .filter(c -> clienteDocumento.get().equalsIgnoreCase(
+                            Optional.ofNullable(c.getPedido().getUsuario().getNumeroDocumento()).orElse("")))
+                    .collect(Collectors.toList());
         }
+
         if (desde.isPresent() && hasta.isPresent()) {
-            lista = comprobanteRepo.findByFechaEmisionBetween(desde.get(), hasta.get());
+            lista = lista.stream()
+                    .filter(c -> !c.getFechaEmision().isBefore(desde.get()) &&
+                            !c.getFechaEmision().isAfter(hasta.get()))
+                    .collect(Collectors.toList());
         }
 
         return lista.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -368,5 +389,41 @@ public class ComprobanteServiceImpl implements ComprobanteService {
         dto.setClienteEmail(c.getPedido().getUsuario().getEmail());
 
         return dto;
+    }
+    @Override
+    public ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta) throws IOException {
+        List<PedidoDTO> pedidos = pedidoService.findAll();
+
+
+        if (desde.isPresent() && hasta.isPresent()) {
+            pedidos = pedidos.stream()
+                    .filter(p -> !p.getFechaCreacion().isBefore(desde.get()) &&
+                            !p.getFechaCreacion().isAfter(hasta.get()))
+                    .toList();
+        }
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Ventas");
+
+            Row header = sheet.createRow(0);
+            String[] columnas = {"ID", "Cliente", "Fecha Pedido", "Estado", "Total"};
+            for (int i = 0; i < columnas.length; i++) {
+                header.createCell(i).setCellValue(columnas[i]);
+            }
+
+            int rowIdx = 1;
+            for (PedidoDTO p : pedidos) {
+                Row row = sheet.createRow(rowIdx++);
+                row.createCell(0).setCellValue(p.getId());
+                row.createCell(1).setCellValue(p.getUsuarioNombre());
+                row.createCell(2).setCellValue(p.getFechaCreacion().toString());
+                row.createCell(3).setCellValue(p.getEstado());
+                row.createCell(4).setCellValue(p.getCostoTotal().doubleValue());
+            }
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            workbook.write(out);
+            return new ByteArrayInputStream(out.toByteArray());
+        }
     }
 }

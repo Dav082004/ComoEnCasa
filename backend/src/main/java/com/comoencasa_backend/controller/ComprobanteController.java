@@ -3,10 +3,13 @@ package com.comoencasa_backend.controller;
 import com.comoencasa_backend.dto.ComprobanteDTO;
 import com.comoencasa_backend.model.TipoComprobante;
 import com.comoencasa_backend.service.ComprobanteService;
+import com.comoencasa_backend.service.impl.ComprobanteServiceImpl;
+import org.springframework.core.io.InputStreamResource;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
@@ -24,6 +27,7 @@ import java.util.Optional;
 public class ComprobanteController {
 
     private final ComprobanteService service;
+    private ComprobanteServiceImpl comprobanteService;
 
     /** Generar y guardar comprobante */
     @PostMapping("/generate")
@@ -77,4 +81,34 @@ public class ComprobanteController {
                         .build());
         return new ResponseEntity<>(in.readAllBytes(), headers, HttpStatus.OK);
     }
+    @GetMapping("/reporte/ventas")
+    public ResponseEntity<InputStreamResource> exportarReporteVentas(
+            @RequestParam Optional<LocalDateTime> desde,
+            @RequestParam Optional<LocalDateTime> hasta
+    ) throws IOException {
+        ByteArrayInputStream in = comprobanteService.generarReporteVentasExcel(desde, hasta);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=reporte_ventas.xlsx");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(new InputStreamResource(in));
+    }
+    @PreAuthorize("permitAll()")
+    @GetMapping("/reporte-ventas.xlsx")
+    public ResponseEntity<InputStreamResource> descargarReporteVentasExcel(
+            @RequestParam Optional<LocalDateTime> desde,
+            @RequestParam Optional<LocalDateTime> hasta
+    ) throws IOException {
+        ByteArrayInputStream excelStream = comprobanteService.generarReporteVentasExcel(desde, hasta);
+        InputStreamResource resource = new InputStreamResource(excelStream);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=reporte_ventas.xlsx")
+                .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                .body(resource);
+    }
+
 }

@@ -3,7 +3,12 @@ package com.comoencasa_backend.service;
 import com.comoencasa_backend.dto.PedidoDTO;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface PedidoService {
     /**
@@ -69,4 +74,6 @@ public interface PedidoService {
      * @return Lista de estados a los que se puede transicionar
      */
     List<String> getTransicionesDisponibles(String estadoActual);
+    ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta) throws IOException;
+
 }
