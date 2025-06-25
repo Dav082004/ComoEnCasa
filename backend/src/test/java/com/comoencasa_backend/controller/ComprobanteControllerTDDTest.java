@@ -64,7 +64,7 @@ class ComprobanteControllerTDDTest {
             ComprobanteDTO comprobanteDTO = new ComprobanteDTO();
             comprobanteDTO.setId(1L);
             comprobanteDTO.setPedidoId(pedidoId);
-            comprobanteDTO.setTipo(tipo);
+            comprobanteDTO.setTipo(tipo.name());
             comprobanteDTO.setNumeroSerie("001");
             comprobanteDTO.setNumeroComprobante("00000001");
             comprobanteDTO.setSubtotal(new java.math.BigDecimal("90.0"));
@@ -99,7 +99,7 @@ class ComprobanteControllerTDDTest {
             ComprobanteDTO comprobanteDTO = new ComprobanteDTO();
             comprobanteDTO.setId(2L);
             comprobanteDTO.setPedidoId(pedidoId);
-            comprobanteDTO.setTipo(tipo);
+            comprobanteDTO.setTipo(tipo.name());
 
             when(comprobanteService.generarComprobante(pedidoId, tipo))
                     .thenReturn(comprobanteDTO);
@@ -124,7 +124,7 @@ class ComprobanteControllerTDDTest {
             ComprobanteDTO comprobanteDTO = new ComprobanteDTO();
             comprobanteDTO.setId(1L);
             comprobanteDTO.setPedidoId(pedidoId);
-            comprobanteDTO.setTipo(tipo);
+            comprobanteDTO.setTipo(tipo.name());
 
             when(comprobanteService.generarComprobante(pedidoId, tipo))
                     .thenReturn(comprobanteDTO);
@@ -166,12 +166,12 @@ class ComprobanteControllerTDDTest {
             // Given
             ComprobanteDTO comprobante1 = new ComprobanteDTO();
             comprobante1.setId(1L);
-            comprobante1.setTipo(TipoComprobante.Boleta);
+            comprobante1.setTipo(TipoComprobante.Boleta.name());
             comprobante1.setClienteNombre("Juan Pérez");
 
             ComprobanteDTO comprobante2 = new ComprobanteDTO();
             comprobante2.setId(2L);
-            comprobante2.setTipo(TipoComprobante.Factura);
+            comprobante2.setTipo(TipoComprobante.Factura.name());
             comprobante2.setClienteNombre("María García");
 
             List<ComprobanteDTO> comprobantes = Arrays.asList(comprobante1, comprobante2);
@@ -453,7 +453,7 @@ class ComprobanteControllerTDDTest {
             // Given
             ComprobanteDTO comprobanteDTO = new ComprobanteDTO();
             comprobanteDTO.setId(1L);
-            comprobanteDTO.setTipo(TipoComprobante.Factura);
+            comprobanteDTO.setTipo(TipoComprobante.Factura.name());
 
             when(comprobanteService.generarComprobante(1L, TipoComprobante.Factura))
                     .thenReturn(comprobanteDTO);

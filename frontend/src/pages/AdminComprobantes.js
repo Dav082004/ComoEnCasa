@@ -3,7 +3,7 @@ import "../styles/Admin.css";
 import {
   listarComprobantes,
   exportarPdf,
-  exportarReporteVentas,
+  exportarReporteBoletas,
 } from "../services/comprobanteService";
 
 const AdminComprobantes = () => {
@@ -92,21 +92,52 @@ const AdminComprobantes = () => {
     }
   };
   const handleExportExcel = async () => {
-  try {
-    const blob = await exportarReporteVentas(); // Aquí la función nueva
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `reporte_ventas.xlsx`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error("Error al exportar Excel:", error);
-    alert("Error al exportar el reporte de ventas");
-  }
-};
+    try {
+      // Crear filtros para el reporte
+      const filtrosReporte = {};
+
+      if (filtros.desde) {
+        filtrosReporte.desde = new Date(filtros.desde).toISOString();
+      }
+
+      if (filtros.hasta) {
+        filtrosReporte.hasta = new Date(filtros.hasta).toISOString();
+      }
+
+      console.log("🚀 Exportando reporte de BOLETAS...");
+      const blob = await exportarReporteBoletas(filtrosReporte);
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+
+      // Crear nombre de archivo con fecha actual
+      const fechaActual = new Date().toISOString().split("T")[0];
+      link.download = `reporte_boletas_${fechaActual}.xlsx`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      alert("Reporte Excel de boletas generado exitosamente");
+    } catch (error) {
+      console.error("Error al exportar Excel:", error);
+
+      // Mostrar mensaje de error más específico
+      let mensajeError = "Error al exportar el reporte de boletas";
+      if (error.userMessage) {
+        mensajeError = error.userMessage;
+      } else if (error.response?.status === 403) {
+        mensajeError =
+          "No tienes permisos para generar reportes. Verifica que estés logueado como administrador.";
+      } else if (error.response?.status === 401) {
+        mensajeError =
+          "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.";
+      }
+
+      alert(mensajeError);
+    }
+  };
 
 
 
@@ -279,7 +310,7 @@ const AdminComprobantes = () => {
       </span>
     )}
     <button className="theme-button" onClick={handleExportExcel}>
-      📥 Reporte Ventas
+      📥 Reporte Boletas
     </button>
   </div>
 </div>

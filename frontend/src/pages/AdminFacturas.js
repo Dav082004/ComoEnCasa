@@ -3,9 +3,9 @@ import "../styles/Admin.css";
 import {
   listarComprobantes,
   exportarPdf,
-  exportarReporteVentas,
+  exportarReporteFacturas,
+  testReportesEndpoint,
 } from "../services/comprobanteService";
-
 
 const AdminFacturas = () => {
   const [facturas, setFacturas] = useState([]);
@@ -25,20 +25,19 @@ const AdminFacturas = () => {
     fetchFacturas();
   }, []);
 
-const fetchFacturas = async () => {
-  try {
-    setLoading(true);
-    const data = await listarComprobantes();
-    const soloFacturas = data.filter((f) => f.tipo === "Factura");
-    setFacturas(soloFacturas);
-    setFilteredFacturas(soloFacturas);
-  } catch (error) {
-    console.error("Error al cargar las Facturas:", error);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  const fetchFacturas = async () => {
+    try {
+      setLoading(true);
+      const data = await listarComprobantes();
+      const soloFacturas = data.filter((f) => f.tipo === "Factura");
+      setFacturas(soloFacturas);
+      setFilteredFacturas(soloFacturas);
+    } catch (error) {
+      console.error("Error al cargar las Facturas:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSearch = () => {
     const filtered = facturas.filter(
@@ -51,28 +50,27 @@ const fetchFacturas = async () => {
     setFilteredFacturas(filtered);
   };
 
- const handleFilterSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    setLoading(true);
-    const filtrosLimpios = {};
-    Object.entries(filtros).forEach(([key, value]) => {
-      if (value && value.trim() !== "") {
-        filtrosLimpios[key] = value.trim();
-      }
-    });
+  const handleFilterSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const filtrosLimpios = {};
+      Object.entries(filtros).forEach(([key, value]) => {
+        if (value && value.trim() !== "") {
+          filtrosLimpios[key] = value.trim();
+        }
+      });
 
-    const data = await listarComprobantes(filtrosLimpios);
-    const soloFacturas = data.filter((f) => f.tipo === "Factura");
-    setFacturas(soloFacturas);
-    setFilteredFacturas(soloFacturas);
-  } catch (error) {
-    console.error("Error al filtrar Facturas:", error);
-  } finally {
-    setLoading(false);
-  }
-};
-
+      const data = await listarComprobantes(filtrosLimpios);
+      const soloFacturas = data.filter((f) => f.tipo === "Factura");
+      setFacturas(soloFacturas);
+      setFilteredFacturas(soloFacturas);
+    } catch (error) {
+      console.error("Error al filtrar Facturas:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleExportPdf = async (id) => {
     try {
@@ -90,24 +88,65 @@ const fetchFacturas = async () => {
       alert("Error al exportar el PDF");
     }
   };
-const handleExportExcel = async () => {
-  try {
-    const blob = await exportarReporteVentas(); // Aquí la función nueva
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `reporte_ventas.xlsx`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error("Error al exportar Excel:", error);
-    alert("Error al exportar el reporte de ventas");
-  }
-};
 
+  // Función para probar la conectividad del endpoint de reportes
+  const handleTestEndpoint = async () => {
+    try {
+      const result = await testReportesEndpoint();
+      alert(`✅ Conectividad OK: ${result}`);
+    } catch (error) {
+      console.error("❌ Error en test:", error);
+      alert(`❌ Error de conectividad: ${error.message}`);
+    }
+  };
 
+  const handleExportExcel = async () => {
+    try {
+      // Crear filtros para el reporte
+      const filtrosReporte = {};
+
+      if (filtros.desde) {
+        filtrosReporte.desde = new Date(filtros.desde).toISOString();
+      }
+
+      if (filtros.hasta) {
+        filtrosReporte.hasta = new Date(filtros.hasta).toISOString();
+      }
+
+      console.log("🚀 Exportando reporte de FACTURAS...");
+      const blob = await exportarReporteFacturas(filtrosReporte);
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+
+      // Crear nombre de archivo con fecha actual
+      const fechaActual = new Date().toISOString().split("T")[0];
+      link.download = `reporte_facturas_${fechaActual}.xlsx`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      alert("Reporte Excel de facturas generado exitosamente");
+    } catch (error) {
+      console.error("Error al exportar Excel:", error);
+
+      // Mostrar mensaje de error más específico
+      let mensajeError = "Error al exportar el reporte de facturas";
+      if (error.userMessage) {
+        mensajeError = error.userMessage;
+      } else if (error.response?.status === 403) {
+        mensajeError =
+          "No tienes permisos para generar reportes. Verifica que estés logueado como administrador.";
+      } else if (error.response?.status === 401) {
+        mensajeError =
+          "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.";
+      }
+
+      alert(mensajeError);
+    }
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
@@ -141,8 +180,7 @@ const handleExportExcel = async () => {
         </button>
         <button
           className="theme-button filter-toggle-btn"
-          onClick={() => setShowFilters(!showFilters)}
-        >
+          onClick={() => setShowFilters(!showFilters)}>
           Filtros {showFilters ? "▲" : "▼"}
         </button>
       </div>
@@ -196,8 +234,7 @@ const handleExportExcel = async () => {
                   hasta: "",
                 });
                 fetchFacturas();
-              }}
-            >
+              }}>
               Limpiar
             </button>
           </form>
@@ -205,7 +242,9 @@ const handleExportExcel = async () => {
       )}
 
       {loading ? (
-        <div className="loading-container" style={{ padding: "2rem", textAlign: "center" }}>
+        <div
+          className="loading-container"
+          style={{ padding: "2rem", textAlign: "center" }}>
           <div className="spinner-border text-pink" role="status">
             <span className="visually-hidden">Cargando...</span>
           </div>
@@ -235,13 +274,17 @@ const handleExportExcel = async () => {
                 <tr
                   key={f.id}
                   onClick={() => setSelectedFactura(f)}
-                  className={selectedFactura?.id === f.id ? "selected-row" : ""}
-                >
+                  className={
+                    selectedFactura?.id === f.id ? "selected-row" : ""
+                  }>
                   <td>{f.id}</td>
                   <td>{f.pedidoId}</td>
-                  <span className={`status-badge status-${f.tipo?.toLowerCase()}`}>
+                  <td>
+                    <span
+                      className={`status-badge status-${f.tipo?.toLowerCase()}`}>
                       {f.tipo}
                     </span>
+                  </td>
                   <td>{f.clienteNombre}</td>
                   <td>{f.clienteDocumento || "N/A"}</td>
                   <td>{f.clienteEmail}</td>
@@ -256,8 +299,7 @@ const handleExportExcel = async () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         handleExportPdf(f.id);
-                      }}
-                    >
+                      }}>
                       PDF
                     </button>
                   </td>
@@ -266,23 +308,30 @@ const handleExportExcel = async () => {
             </tbody>
           </table>
 
-<div className="table-footer">
-  <span>Total de Facturas: {filteredFacturas.length}</span>
-  {selectedFactura && (
-    <div className="selected-info">
-      <span>
-        Seleccionado: Factura #{selectedFactura.id} - {selectedFactura.clienteNombre}
-      </span>
-    </div>
-  )}
+          <div className="table-footer">
+            <span>Total de Facturas: {filteredFacturas.length}</span>
+            {selectedFactura && (
+              <div className="selected-info">
+                <span>
+                  Seleccionado: Factura #{selectedFactura.id} -{" "}
+                  {selectedFactura.clienteNombre}
+                </span>
+              </div>
+            )}
 
-  <div style={{ width: "100%", textAlign: "right", marginTop: "1rem" }}>
-    <button className="theme-button" onClick={handleExportExcel}>
-      📥 Reporte Ventas
-    </button>
-  </div>
-</div>
-
+            <div
+              style={{ width: "100%", textAlign: "right", marginTop: "1rem" }}>
+              <button
+                className="theme-button"
+                onClick={handleTestEndpoint}
+                style={{ marginRight: "10px", backgroundColor: "#17a2b8" }}>
+                🧪 Test Conexión
+              </button>
+              <button className="theme-button" onClick={handleExportExcel}>
+                📥 Reporte Facturas
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>

@@ -5,13 +5,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import com.comoencasa_backend.model.TipoComprobante;
-
 @Data
 public class ComprobanteDTO {
     private Long id;
     private Long pedidoId;
-    private TipoComprobante tipo;
+    private String tipo; // Cambiado de TipoComprobante a String
     private LocalDateTime fechaEmision;
     private String numeroSerie;
     private String numeroComprobante;
