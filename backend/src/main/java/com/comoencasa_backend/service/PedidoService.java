@@ -3,7 +3,6 @@ package com.comoencasa_backend.service;
 import com.comoencasa_backend.dto.PedidoDTO;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -74,6 +73,18 @@ public interface PedidoService {
      * @return Lista de estados a los que se puede transicionar
      */
     List<String> getTransicionesDisponibles(String estadoActual);
-    ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta) throws IOException;
+
+    ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta)
+            throws IOException;
+
+    /**
+     * Eliminar un pedido por su ID
+     * 
+     * @param pedidoId ID del pedido a eliminar
+     * @throws IllegalArgumentException si el pedido no existe o no se puede
+     *                                  eliminar
+     */
+    @Transactional
+    void eliminarPedido(Long pedidoId);
 
 }

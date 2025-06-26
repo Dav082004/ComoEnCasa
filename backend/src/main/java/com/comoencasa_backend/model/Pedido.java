@@ -1,6 +1,5 @@
 package com.comoencasa_backend.model;
 
-import com.comoencasa_backend.dto.RegistroRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -47,4 +46,7 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<DetallePedido> detallePedidos;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Pago> pagos;
 }

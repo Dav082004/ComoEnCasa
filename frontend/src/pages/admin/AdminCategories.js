@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/Admin.css";
-import { useCategorias } from "../context/CategoriaContext";
+import "./styles/Admin.css";
+import { useCategorias } from "../../context/CategoriaContext";
 
 export default function AdminCategories() {
   const [showModal, setShowModal] = useState(false);

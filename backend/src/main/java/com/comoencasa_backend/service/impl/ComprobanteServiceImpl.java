@@ -236,16 +236,26 @@ public class ComprobanteServiceImpl implements ComprobanteService {
                         BaseColor pinkBg = new BaseColor(255, 107, 166);
                         BaseColor lightBg = new BaseColor(255, 228, 240);
 
-                        // Logo y encabezado
-                        Image logo = Image.getInstance("./frontend/src/assets/logo.png");
-                        logo.scaleToFit(120, 60);
-                        logo.setAlignment(Element.ALIGN_LEFT);
-
+                        // Encabezado
                         PdfPTable headerTable = new PdfPTable(2);
                         headerTable.setWidths(new float[] { 1, 2 });
                         headerTable.setWidthPercentage(100);
-                        PdfPCell logoCell = new PdfPCell(logo, false);
+
+                        // Intentar cargar logo, si falla usar texto
+                        PdfPCell logoCell;
+                        try {
+                                Image logo = Image.getInstance("./frontend/src/assets/logo.png");
+                                logo.scaleToFit(120, 60);
+                                logo.setAlignment(Element.ALIGN_LEFT);
+                                logoCell = new PdfPCell(logo, false);
+                        } catch (Exception e) {
+                                // Si no se puede cargar el logo, usar texto
+                                logoCell = new PdfPCell(new Phrase("COMO EN CASA", titleFont));
+                                logoCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+                                logoCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        }
                         logoCell.setBorder(PdfPCell.NO_BORDER);
+
                         PdfPCell titleCell = new PdfPCell(new Phrase("COMPROBANTE DE PAGO", titleFont));
                         titleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
                         titleCell.setVerticalAlignment(Element.ALIGN_BOTTOM);

@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaTags, FaShoppingCart, FaList, FaChartPie } from "react-icons/fa";
 import { FaFileInvoice } from "react-icons/fa6";
 import { FaRegFile } from "react-icons/fa6";
-import "../styles/AdminLayout.css";
+import "../pages/admin/styles/AdminLayout.css";
 import { HeaderComponent } from "../components/HeaderComponent";
 
 export default function AdminLayout() {
@@ -43,14 +43,14 @@ export default function AdminLayout() {
             <span>Boletas</span>
           </NavLink>
           <NavLink
-            to="/admin/facturas"  
+            to="/admin/facturas"
             className="nav-item"
             activeclassname="active">
             <FaRegFile className="nav-icon" />
             <span>Facturas</span>
           </NavLink>
           <NavLink
-            to="/admin/reportes"  
+            to="/admin/reportes"
             className="nav-item"
             activeclassname="active">
             <FaChartPie className="nav-icon" />

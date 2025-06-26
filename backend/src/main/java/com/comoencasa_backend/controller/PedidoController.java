@@ -122,16 +122,36 @@ public class PedidoController {
         List<String> transiciones = pedidoService.getTransicionesDisponibles(estado);
         return ResponseEntity.ok(transiciones);
     }
+
     @GetMapping("/ventas/export.xlsx")
     public ResponseEntity<byte[]> exportarReporteVentas(
             @RequestParam Optional<LocalDateTime> desde,
-            @RequestParam Optional<LocalDateTime> hasta
-    ) throws IOException {
+            @RequestParam Optional<LocalDateTime> hasta) throws IOException {
         ByteArrayInputStream in = pedidoService.generarReporteVentasExcel(desde, hasta);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+        headers.setContentType(
+                MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
         headers.setContentDisposition(ContentDisposition.builder("attachment").filename("reporte_ventas.xlsx").build());
         return new ResponseEntity<>(in.readAllBytes(), headers, HttpStatus.OK);
+    }
+
+    /** Eliminar un pedido */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> eliminarPedido(@PathVariable Long id) {
+        log.info("ADMIN accedió a DELETE /api/pedidos/{}", id);
+        try {
+            pedidoService.eliminarPedido(id);
+            Map<String, String> response = Map.of("mensaje", "Pedido eliminado exitosamente");
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException ex) {
+            log.warn("Error al eliminar pedido {}: {}", id, ex.getMessage());
+            Map<String, String> error = Map.of("error", ex.getMessage());
+            return ResponseEntity.badRequest().body(error);
+        } catch (Exception ex) {
+            log.error("Error interno al eliminar pedido {}: {}", id, ex.getMessage());
+            Map<String, String> error = Map.of("error", "Error interno del servidor");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
     }
 
 }

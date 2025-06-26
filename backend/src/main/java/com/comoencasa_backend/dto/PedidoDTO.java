@@ -3,7 +3,6 @@ package com.comoencasa_backend.dto;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,4 +19,8 @@ public class PedidoDTO {
     private String direccionEntrega;
     private Boolean necesitaFactura;
     private List<DetallePedidoDTO> detalles;
+
+    // Información de pago
+    private String metodoPago;
+    private String estadoPago;
 }

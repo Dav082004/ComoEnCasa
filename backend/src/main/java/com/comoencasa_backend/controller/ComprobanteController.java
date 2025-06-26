@@ -68,15 +68,21 @@ public class ComprobanteController {
 
         /** Exportar a PDF */
         @GetMapping("/{id}/export.pdf")
-        public ResponseEntity<byte[]> exportPdf(@PathVariable Long id) throws IOException {
-                ByteArrayInputStream in = service.generarPdf(id);
-                HttpHeaders headers = new HttpHeaders();
-                headers.setContentType(MediaType.APPLICATION_PDF);
-                headers.setContentDisposition(
-                                ContentDisposition.builder("attachment")
-                                                .filename("comprobante_" + id + ".pdf")
-                                                .build());
-                return new ResponseEntity<>(in.readAllBytes(), headers, HttpStatus.OK);
+        public ResponseEntity<byte[]> exportPdf(@PathVariable Long id) {
+                try {
+                        ByteArrayInputStream in = service.generarPdf(id);
+                        HttpHeaders headers = new HttpHeaders();
+                        headers.setContentType(MediaType.APPLICATION_PDF);
+                        headers.setContentDisposition(
+                                        ContentDisposition.builder("attachment")
+                                                        .filename("comprobante_" + id + ".pdf")
+                                                        .build());
+                        return new ResponseEntity<>(in.readAllBytes(), headers, HttpStatus.OK);
+                } catch (Exception e) {
+                        System.err.println("Error generando PDF para comprobante " + id + ": " + e.getMessage());
+                        e.printStackTrace();
+                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                }
         }
 
         @GetMapping("/reporte/ventas")

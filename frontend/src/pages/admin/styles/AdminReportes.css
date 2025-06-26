@@ -1,0 +1,661 @@
+/* Estilos específicos para la página de reportes */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0d6e2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #ff6ba6, #ff85c0);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-content h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff6ba6;
+}
+
+.stat-content p {
+  margin: 0.25rem 0 0 0;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.chart-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0d6e2;
+}
+
+.chart-title {
+  color: #ff6ba6;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #f0d6e2;
+  padding-bottom: 0.5rem;
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+}
+
+.no-data p {
+  font-size: 1.1rem;
+}
+
+/* Indicador de color para categorías */
+.category-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Mejorar el filtro de fechas */
+.filter-panel h3 {
+  color: #ff6ba6;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.filter-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-input[type="month"] {
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: white;
+}
+
+.form-input[type="month"]:focus {
+  outline: none;
+  border-color: #ff6ba6;
+  box-shadow: 0 0 0 3px rgba(255, 107, 166, 0.1);
+}
+
+/* Estilos para filtros rápidos */
+.quick-filters {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fff5f8, #ffeef4);
+  border-radius: 8px;
+  border: 1px solid #f0d6e2;
+}
+
+.quick-filters p {
+  margin: 0 0 1rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.quick-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.quick-filter-btn {
+  background: linear-gradient(135deg, #ff6ba6, #ff85c0);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(255, 107, 166, 0.3);
+}
+
+.quick-filter-btn:hover {
+  background: linear-gradient(135deg, #ff5a99, #ff7ab8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 107, 166, 0.4);
+}
+
+.quick-filter-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 107, 166, 0.3);
+}
+
+/* Información del filtro activo */
+.filter-info {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #e8f5e8, #f0fff0);
+  border: 1px solid #b8e6b8;
+  border-radius: 6px;
+}
+
+.filter-active {
+  margin: 0;
+  color: #2d5016;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Mejorar tooltips de los gráficos */
+.recharts-tooltip-wrapper {
+  background: white !important;
+  border: 1px solid #f0d6e2 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.recharts-tooltip-content {
+  padding: 1rem !important;
+}
+
+/* Mejoras para tabla de categorías */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table thead {
+  background: linear-gradient(135deg, #ff6ba6, #ff85c0);
+  color: white;
+}
+
+.admin-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.admin-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #fff5f8;
+}
+
+.admin-table tfoot {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-top: 2px solid #ff6ba6;
+}
+
+.admin-table tfoot td {
+  border-bottom: none;
+  font-size: 1rem;
+}
+
+.category-indicator {
+  margin-right: 8px;
+}
+
+/* Responsive para tabla */
+@media (max-width: 768px) {
+  .admin-table {
+    font-size: 0.8rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .stat-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .chart-container {
+    padding: 1rem;
+  }
+
+  .chart-title {
+    font-size: 1.1rem;
+  }
+
+  .filter-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-container {
+    padding: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 0.75rem;
+  }
+}
+
+/* Animaciones para los gráficos */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.stat-card {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Mejorar la leyenda de los gráficos */
+.recharts-legend-wrapper {
+  padding-top: 1rem !important;
+}
+
+.recharts-legend-item-text {
+  font-weight: 500 !important;
+  color: #555 !important;
+}
+
+/* Estilos para loading específico de reportes */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 1rem;
+}
+
+.loading-container .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3em;
+}
+
+.loading-container p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Estilos específicos para el gráfico de ganancias */
+.chart-container.full-width {
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible */
+  margin: 2rem 0;
+}
+
+.chart-container.full-width .chart-title {
+  background: linear-gradient(135deg, #96ceb4, #4ecdc4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.chart-container.full-width .chart-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #96ceb4, #4ecdc4);
+  border-radius: 2px;
+}
+
+/* Tooltip personalizado para gráfico de ganancias */
+.recharts-tooltip-wrapper .ganancia-tooltip {
+  background: linear-gradient(135deg, #f8fff8, #f0f8f0) !important;
+  border: 2px solid #96ceb4 !important;
+}
+
+.recharts-tooltip-wrapper .ganancia-tooltip .recharts-tooltip-label {
+  color: #2d5016 !important;
+  font-weight: 600 !important;
+}
+
+/* Responsive para el gráfico de ganancias */
+@media (max-width: 768px) {
+  .chart-container.full-width {
+    margin: 1.5rem 0;
+  }
+
+  .chart-container.full-width .chart-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container.full-width {
+    margin: 1rem 0;
+  }
+
+  .chart-container.full-width .chart-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Estilos para el toggle de categorías */
+.category-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+}
+
+.toggle-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 14px;
+  margin: 0;
+}
+
+.category-select {
+  padding: 8px 12px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.category-select:hover {
+  border-color: #ff6ba6;
+  box-shadow: 0 0 0 3px rgba(255, 107, 166, 0.1);
+}
+
+.category-select:focus {
+  outline: none;
+  border-color: #ff6ba6;
+  box-shadow: 0 0 0 3px rgba(255, 107, 166, 0.2);
+}
+
+.category-select option {
+  padding: 8px;
+  font-weight: 500;
+}
+
+/* Mejorar el estilo del contenedor de gráficos de ancho completo */
+.chart-container.full-width {
+  grid-column: 1 / -1;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .category-toggle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .category-select {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* Estilos para la sección de productos por categoría */
+.category-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 166, 0.15);
+  border-color: #ff6ba6;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6ba6, #4ecdc4);
+}
+
+.product-header {
+  border-bottom: 2px solid #f1f3f4;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.product-name {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border-left: 4px solid #e9ecef;
+}
+
+.stat-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9em;
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: 1em;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.stat-value.gain {
+  color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.stat-value.cost {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.stat-value.profit {
+  color: #ff6ba6;
+  background: rgba(255, 107, 166, 0.1);
+  font-weight: 800;
+}
+
+.stat-value.margin {
+  color: #6f42c1;
+  background: rgba(111, 66, 193, 0.1);
+}
+
+/* Indicadores visuales para los stats */
+.stat-item:nth-child(1) {
+  border-left-color: #17a2b8;
+}
+
+.stat-item:nth-child(2) {
+  border-left-color: #28a745;
+}
+
+.stat-item:nth-child(3) {
+  border-left-color: #dc3545;
+}
+
+.stat-item:nth-child(4) {
+  border-left-color: #ff6ba6;
+}
+
+.stat-item:nth-child(5) {
+  border-left-color: #6f42c1;
+}
+
+@media (max-width: 768px) {
+  .category-products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .product-card {
+    padding: 16px;
+  }
+
+  .stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .stat-value {
+    align-self: flex-end;
+  }
+}

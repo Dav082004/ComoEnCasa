@@ -47,6 +47,42 @@ public class CheckoutServiceImpl implements CheckoutService {
      @Transactional
      public CheckoutResponseDTO procesarCheckout(CheckoutDTO checkoutDTO) {
           log.info("Iniciando proceso de checkout para usuario ID: {}", checkoutDTO.getUsuarioId());
+
+          int maxRetries = 3;
+          int retryCount = 0;
+
+          while (retryCount < maxRetries) {
+               try {
+                    return procesarCheckoutInterno(checkoutDTO);
+               } catch (org.springframework.dao.DataAccessResourceFailureException e) {
+                    retryCount++;
+                    log.warn("Error de conexión en checkout (intento {}/{}): {}", retryCount, maxRetries,
+                              e.getMessage());
+
+                    if (retryCount >= maxRetries) {
+                         log.error("Error de conexión persistente después de {} intentos", maxRetries);
+                         throw new RuntimeException(
+                                   "Error de conexión con la base de datos. Por favor, intente nuevamente en unos momentos.");
+                    }
+
+                    // Esperar un poco antes del siguiente intento
+                    try {
+                         Thread.sleep(1000 * retryCount); // Backoff exponencial
+                    } catch (InterruptedException ie) {
+                         Thread.currentThread().interrupt();
+                         throw new RuntimeException("Proceso interrumpido");
+                    }
+               } catch (Exception e) {
+                    log.error("Error procesando checkout: {}", e.getMessage(), e);
+                    throw new RuntimeException("Error procesando el pedido: " + e.getMessage());
+               }
+          }
+
+          throw new RuntimeException("Error procesando el pedido después de múltiples intentos");
+     }
+
+     private CheckoutResponseDTO procesarCheckoutInterno(CheckoutDTO checkoutDTO) {
+          log.info("Iniciando proceso de checkout para usuario ID: {}", checkoutDTO.getUsuarioId());
           try {
                // 1. Validaciones
                validarCheckoutDTO(checkoutDTO);
@@ -61,10 +97,11 @@ public class CheckoutServiceImpl implements CheckoutService {
                crearDetallesPedido(pedido, checkoutDTO.getItems());
 
                // 5. Procesar pago
-               Pago pago = procesarPagoCheckout(pedido, checkoutDTO); // 6. Generar comprobante solo si el pago fue
-                                                                      // exitoso
+               Pago pago = procesarPagoCheckout(pedido, checkoutDTO);
+
+               // 6. Generar comprobante solo si el pago fue exitoso
                Comprobante comprobante = null;
-               if (pago.getEstado() == Pago.EstadoPago.PAGADO) {
+               if (pago.getEstado() == Pago.EstadoPago.Pagado) {
                     // 6.1. Confirmar reducción de stock definitivamente
                     confirmarReduccionStock(checkoutDTO.getItems());
 
@@ -80,7 +117,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                     revertirReservaStock(checkoutDTO.getItems());
                }
 
-               // 6. Construir respuesta
+               // 7. Construir respuesta
                CheckoutResponseDTO response = construirRespuesta(pedido, pago, comprobante);
 
                log.info("Checkout procesado exitosamente. Pedido ID: {}, Pago ID: {}, Comprobante ID: {}",
@@ -90,7 +127,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
           } catch (Exception e) {
                log.error("Error procesando checkout: {}", e.getMessage(), e);
-               return construirRespuestaError(e.getMessage());
+               throw new RuntimeException("Error procesando checkout: " + e.getMessage(), e);
           }
      }
 
@@ -145,6 +182,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 
      private Pedido crearPedido(CheckoutDTO checkoutDTO) {
           Usuario usuario = usuarioRepository.findById(checkoutDTO.getUsuarioId()).get();
+
+          // Actualizar documento del usuario si es necesario
+          actualizarDocumentoUsuario(usuario, checkoutDTO);
 
           Pedido pedido = new Pedido();
           pedido.setUsuario(usuario);
@@ -205,16 +245,16 @@ public class CheckoutServiceImpl implements CheckoutService {
           Pago.MetodoPago metodoPago;
           switch (checkoutDTO.getMetodoPago().toLowerCase()) {
                case "yape":
-                    metodoPago = Pago.MetodoPago.YAPE;
+                    metodoPago = Pago.MetodoPago.Yape;
                     break;
                case "plin":
-                    metodoPago = Pago.MetodoPago.PLIN;
+                    metodoPago = Pago.MetodoPago.Plin;
                     break;
                case "tarjeta":
-                    metodoPago = Pago.MetodoPago.TARJETA;
+                    metodoPago = Pago.MetodoPago.Tarjeta;
                     break;
                case "efectivo":
-                    metodoPago = Pago.MetodoPago.EFECTIVO;
+                    metodoPago = Pago.MetodoPago.Efectivo;
                     break;
                default:
                     throw new IllegalArgumentException("Método de pago no válido: " + checkoutDTO.getMetodoPago());
@@ -224,7 +264,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
           // Procesar pago
           boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());
-          pago.setEstado(pagoExitoso ? Pago.EstadoPago.PAGADO : Pago.EstadoPago.RECHAZADO);
+          pago.setEstado(pagoExitoso ? Pago.EstadoPago.Pagado : Pago.EstadoPago.Rechazado);
 
           return pagoRepository.save(pago);
      }
@@ -265,8 +305,8 @@ public class CheckoutServiceImpl implements CheckoutService {
           }
 
           // Estado de la respuesta
-          response.setExitoso(pago.getEstado() == Pago.EstadoPago.PAGADO);
-          response.setMensaje(pago.getEstado() == Pago.EstadoPago.PAGADO ? "¡Pedido procesado exitosamente!"
+          response.setExitoso(pago.getEstado() == Pago.EstadoPago.Pagado);
+          response.setMensaje(pago.getEstado() == Pago.EstadoPago.Pagado ? "¡Pedido procesado exitosamente!"
                     : "Error en el procesamiento del pago");
 
           return response;
@@ -355,5 +395,51 @@ public class CheckoutServiceImpl implements CheckoutService {
           // En una implementación más avanzada, aquí revertiríamos cualquier reserva
           // temporal
           // Por ahora, como solo validamos sin reservar, no hay nada que revertir
+     }
+
+     /**
+      * Actualiza el documento del usuario si ha cambiado o no está configurado
+      */
+     private void actualizarDocumentoUsuario(Usuario usuario, CheckoutDTO checkoutDTO) {
+          String nuevoDocumento = checkoutDTO.getDocumento();
+          String tipoComprobante = checkoutDTO.getTipoComprobante();
+
+          // Determinar el tipo de documento según el comprobante
+          Usuario.TipoDocumento nuevoTipoDocumento;
+          if ("factura".equals(tipoComprobante)) {
+               nuevoTipoDocumento = Usuario.TipoDocumento.RUC;
+          } else {
+               nuevoTipoDocumento = Usuario.TipoDocumento.DNI;
+          }
+
+          // Verificar si necesitamos actualizar
+          boolean necesitaActualizar = false;
+
+          // Si el usuario no tiene documento configurado
+          if (usuario.getNumeroDocumento() == null || usuario.getNumeroDocumento().trim().isEmpty()) {
+               necesitaActualizar = true;
+               log.info("Usuario {} no tiene documento configurado, actualizando con: {} ({})",
+                         usuario.getId(), nuevoDocumento, nuevoTipoDocumento);
+          }
+          // Si el documento cambió
+          else if (!nuevoDocumento.equals(usuario.getNumeroDocumento())) {
+               necesitaActualizar = true;
+               log.info("Actualizando documento de usuario {} de {} a {} ({})",
+                         usuario.getId(), usuario.getNumeroDocumento(), nuevoDocumento, nuevoTipoDocumento);
+          }
+          // Si el tipo de documento cambió
+          else if (!nuevoTipoDocumento.equals(usuario.getTipoDocumento())) {
+               necesitaActualizar = true;
+               log.info("Actualizando tipo de documento de usuario {} de {} a {}",
+                         usuario.getId(), usuario.getTipoDocumento(), nuevoTipoDocumento);
+          }
+
+          if (necesitaActualizar) {
+               usuario.setNumeroDocumento(nuevoDocumento);
+               usuario.setTipoDocumento(nuevoTipoDocumento);
+               usuarioRepository.save(usuario);
+               log.info("Documento actualizado exitosamente para usuario {}: {} ({})",
+                         usuario.getId(), nuevoDocumento, nuevoTipoDocumento);
+          }
      }
 }

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Admin.css";
+import "./styles/Admin.css";
 import {
   listarComprobantes,
   exportarPdf,
-  exportarReporteBoletas,
-} from "../services/comprobanteService";
+  exportarReporteFacturas,
+} from "../../services/comprobanteService";
 
-const AdminComprobantes = () => {
-  const [comprobantes, setComprobantes] = useState([]);
-  const [filteredComprobantes, setFilteredComprobantes] = useState([]);
+const AdminFacturas = () => {
+  const [facturas, setFacturas] = useState([]);
+  const [filteredFacturas, setFilteredFacturas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedComprobante, setSelectedComprobante] = useState(null);
+  const [selectedFactura, setSelectedFactura] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [filtros, setFiltros] = useState({
@@ -21,36 +21,32 @@ const AdminComprobantes = () => {
   });
 
   useEffect(() => {
-    fetchComprobantes();
+    fetchFacturas();
   }, []);
 
-  const fetchComprobantes = async () => {
+  const fetchFacturas = async () => {
     try {
       setLoading(true);
       const data = await listarComprobantes();
-      const soloBoletas = data.filter((c) => c.tipo === "Boleta");
-      setComprobantes(soloBoletas);
-      setFilteredComprobantes(soloBoletas);
+      const soloFacturas = data.filter((f) => f.tipo === "Factura");
+      setFacturas(soloFacturas);
+      setFilteredFacturas(soloFacturas);
     } catch (error) {
-      console.error("Error al cargar los comprobantes:", error);
+      console.error("Error al cargar las Facturas:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleSearch = () => {
-    const filtered = comprobantes.filter(
-      (comprobante) =>
-        comprobante.tipo === "Boleta" &&
-        (
-          comprobante.id?.toString().includes(searchTerm) ||
-          comprobante.clienteNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          comprobante.clienteDocumento?.includes(searchTerm) ||
-          comprobante.tipo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          comprobante.numeroComprobante?.includes(searchTerm)
-        )
+    const filtered = facturas.filter(
+      (f) =>
+        f.id?.toString().includes(searchTerm) ||
+        f.clienteNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        f.clienteDocumento?.includes(searchTerm) ||
+        f.numeroComprobante?.includes(searchTerm)
     );
-    setFilteredComprobantes(filtered);
+    setFilteredFacturas(filtered);
   };
 
   const handleFilterSubmit = async (e) => {
@@ -65,11 +61,11 @@ const AdminComprobantes = () => {
       });
 
       const data = await listarComprobantes(filtrosLimpios);
-      const soloBoletas = data.filter((c) => c.tipo === "Boleta");
-      setComprobantes(soloBoletas);
-      setFilteredComprobantes(soloBoletas);
+      const soloFacturas = data.filter((f) => f.tipo === "Factura");
+      setFacturas(soloFacturas);
+      setFilteredFacturas(soloFacturas);
     } catch (error) {
-      console.error("Error al filtrar comprobantes:", error);
+      console.error("Error al filtrar Facturas:", error);
     } finally {
       setLoading(false);
     }
@@ -81,7 +77,7 @@ const AdminComprobantes = () => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `comprobante_${id}.pdf`;
+      link.download = `Factura_${id}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -91,6 +87,7 @@ const AdminComprobantes = () => {
       alert("Error al exportar el PDF");
     }
   };
+
   const handleExportExcel = async () => {
     try {
       // Crear filtros para el reporte
@@ -104,27 +101,27 @@ const AdminComprobantes = () => {
         filtrosReporte.hasta = new Date(filtros.hasta).toISOString();
       }
 
-      console.log("🚀 Exportando reporte de BOLETAS...");
-      const blob = await exportarReporteBoletas(filtrosReporte);
+      console.log("🚀 Exportando reporte de FACTURAS...");
+      const blob = await exportarReporteFacturas(filtrosReporte);
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
 
       // Crear nombre de archivo con fecha actual
       const fechaActual = new Date().toISOString().split("T")[0];
-      link.download = `reporte_boletas_${fechaActual}.xlsx`;
+      link.download = `reporte_facturas_${fechaActual}.xlsx`;
 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
 
-      alert("Reporte Excel de boletas generado exitosamente");
+      alert("Reporte Excel de facturas generado exitosamente");
     } catch (error) {
       console.error("Error al exportar Excel:", error);
 
       // Mostrar mensaje de error más específico
-      let mensajeError = "Error al exportar el reporte de boletas";
+      let mensajeError = "Error al exportar el reporte de facturas";
       if (error.userMessage) {
         mensajeError = error.userMessage;
       } else if (error.response?.status === 403) {
@@ -138,11 +135,6 @@ const AdminComprobantes = () => {
       alert(mensajeError);
     }
   };
-
-
-
-
-
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
@@ -162,12 +154,12 @@ const AdminComprobantes = () => {
 
   return (
     <div className="page-container">
-      <h1 className="theme-header">Gestión de Comprobantes</h1>
+      <h1 className="theme-header">Gestión de Facturas</h1>
 
       <div className="admin-header">
         <input
           type="text"
-          placeholder="Buscar por ID, cliente, documento, tipo..."
+          placeholder="Buscar por ID, cliente, documento..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -229,7 +221,7 @@ const AdminComprobantes = () => {
                   desde: "",
                   hasta: "",
                 });
-                fetchComprobantes();
+                fetchFacturas();
               }}>
               Limpiar
             </button>
@@ -238,11 +230,13 @@ const AdminComprobantes = () => {
       )}
 
       {loading ? (
-        <div className="loading-container" style={{ padding: "2rem", textAlign: "center" }}>
+        <div
+          className="loading-container"
+          style={{ padding: "2rem", textAlign: "center" }}>
           <div className="spinner-border text-pink" role="status">
             <span className="visually-hidden">Cargando...</span>
           </div>
-          <p>Cargando comprobantes...</p>
+          <p>Cargando Facturas...</p>
         </div>
       ) : (
         <>
@@ -264,34 +258,35 @@ const AdminComprobantes = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredComprobantes.map((comprobante) => (
+              {filteredFacturas.map((f) => (
                 <tr
-                  key={comprobante.id}
-                  onClick={() => setSelectedComprobante(comprobante)}
+                  key={f.id}
+                  onClick={() => setSelectedFactura(f)}
                   className={
-                    selectedComprobante?.id === comprobante.id ? "selected-row" : ""
+                    selectedFactura?.id === f.id ? "selected-row" : ""
                   }>
-                  <td>{comprobante.id}</td>
-                  <td>{comprobante.pedidoId}</td>
+                  <td>{f.id}</td>
+                  <td>{f.pedidoId}</td>
                   <td>
-                    <span className={`status-badge status-${comprobante.tipo?.toLowerCase()}`}>
-                      {comprobante.tipo}
+                    <span
+                      className={`status-badge status-${f.tipo?.toLowerCase()}`}>
+                      {f.tipo}
                     </span>
                   </td>
-                  <td>{comprobante.clienteNombre}</td>
-                  <td>{comprobante.clienteDocumento || "N/A"}</td>
-                  <td>{comprobante.clienteEmail}</td>
-                  <td>{formatDate(comprobante.fechaEmision)}</td>
-                  <td>{comprobante.numeroSerie}</td>
-                  <td>{comprobante.numeroComprobante}</td>
-                  <td>{formatCurrency(comprobante.subtotal)}</td>
-                  <td>{formatCurrency(comprobante.total)}</td>
+                  <td>{f.clienteNombre}</td>
+                  <td>{f.clienteDocumento || "N/A"}</td>
+                  <td>{f.clienteEmail}</td>
+                  <td>{formatDate(f.fechaEmision)}</td>
+                  <td>{f.numeroSerie}</td>
+                  <td>{f.numeroComprobante}</td>
+                  <td>{formatCurrency(f.subtotal)}</td>
+                  <td>{formatCurrency(f.total)}</td>
                   <td>
                     <button
                       className="theme-button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleExportPdf(comprobante.id);
+                        handleExportPdf(f.id);
                       }}>
                       PDF
                     </button>
@@ -301,26 +296,28 @@ const AdminComprobantes = () => {
             </tbody>
           </table>
 
-<div className="table-footer" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-  <span>Total de comprobantes: {filteredComprobantes.length}</span>
-  <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-    {selectedComprobante && (
-      <span>
-        Seleccionado: Comprobante #{selectedComprobante.id} - {selectedComprobante.clienteNombre}
-      </span>
-    )}
-    <button className="theme-button" onClick={handleExportExcel}>
-      📥 Reporte Boletas
-    </button>
-  </div>
-</div>
+          <div className="table-footer">
+            <span>Total de Facturas: {filteredFacturas.length}</span>
+            {selectedFactura && (
+              <div className="selected-info">
+                <span>
+                  Seleccionado: Factura #{selectedFactura.id} -{" "}
+                  {selectedFactura.clienteNombre}
+                </span>
+              </div>
+            )}
 
-          
+            <div
+              style={{ width: "100%", textAlign: "right", marginTop: "1rem" }}>
+              <button className="theme-button" onClick={handleExportExcel}>
+                📥 Reporte Facturas
+              </button>
+            </div>
+          </div>
         </>
-        
       )}
     </div>
   );
 };
 
-export default AdminComprobantes;
+export default AdminFacturas;

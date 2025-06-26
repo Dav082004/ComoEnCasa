@@ -122,7 +122,8 @@ export const CategoriaProvider = ({ children }) => {
           {
             id: 3,
             nombre: "Postres",
-            descripcion: "Variedad de postres y dulces para complementar tu comida",
+            descripcion:
+              "Variedad de postres y dulces para complementar tu comida",
             cantidadProductos: 0,
           },
           {
