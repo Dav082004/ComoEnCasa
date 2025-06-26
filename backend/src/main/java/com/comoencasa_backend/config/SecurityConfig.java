@@ -25,14 +25,7 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/productos/**").permitAll() // Añade esta línea
-                        .requestMatchers("/api/categorias/**").permitAll() // Endpoints de categorías
-                        .requestMatchers("/api/carrito/**").permitAll() // Nuevos endpoints del carrito
-                        .requestMatchers("/api/pedidos/**").permitAll()
-                        .requestMatchers("/api/checkout/**").permitAll() // Endpoints de checkout
-                        .requestMatchers("/api/admin/**").permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll()) // Permitir todo temporalmente para debugging
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

@@ -19,4 +19,8 @@ public class PedidoDTO {
     private String direccionEntrega;
     private Boolean necesitaFactura;
     private List<DetallePedidoDTO> detalles;
+
+    // Información de pago
+    private String metodoPago;
+    private String estadoPago;
 }

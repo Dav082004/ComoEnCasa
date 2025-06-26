@@ -77,4 +77,14 @@ export const getTransicionesDisponibles = async (estadoActual) => {
   }
 };
 
+export const eliminarPedido = async (pedidoId) => {
+  try {
+    const { data } = await axios.delete(`${PEDIDOS_URL}/${pedidoId}`);
+    return data;
+  } catch (error) {
+    console.error("Error al eliminar pedido:", error);
+    throw error;
+  }
+};
+
 export const getAllOrders = getAllPedidos;

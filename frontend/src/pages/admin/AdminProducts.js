@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Admin.css";
+import "./styles/Admin.css";
 import {
   getProductos,
   createProducto,
   updateProducto,
   deleteProducto,
-} from "../services/productoService";
-import { useCategorias } from "../context/CategoriaContext";
+} from "../../services/productoService";
+import { useCategorias } from "../../context/CategoriaContext";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);

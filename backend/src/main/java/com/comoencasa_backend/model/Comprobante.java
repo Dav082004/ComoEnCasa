@@ -1,5 +1,6 @@
 package com.comoencasa_backend.model;
 
+import com.comoencasa_backend.dto.PedidoDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "comprobante")
-public class Comprobante {
+public class Comprobante extends PedidoDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

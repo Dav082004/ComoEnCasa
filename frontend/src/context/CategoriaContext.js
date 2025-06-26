@@ -105,24 +105,37 @@ export const CategoriaProvider = ({ children }) => {
 
         setError(errorMessage);
 
-        // Fallback con categorías conocidas
+        // Fallback con categorías conocidas (basado en la BD real)
         const fallbackCategorias = [
           {
             id: 1,
             nombre: "Tortas",
-            descripcion: "Tortas para ocasiones especiales",
+            descripcion: "Deliciosas tortas personalizadas para toda ocasión",
             cantidadProductos: 0,
           },
           {
             id: 2,
             nombre: "Eventos",
-            descripcion: "Productos para eventos",
+            descripcion: "Productos especiales para eventos y celebraciones",
             cantidadProductos: 0,
           },
           {
             id: 3,
-            nombre: "Panadería",
-            descripcion: "Pan y productos de panadería",
+            nombre: "Postres",
+            descripcion:
+              "Variedad de postres y dulces para complementar tu comida",
+            cantidadProductos: 0,
+          },
+          {
+            id: 4,
+            nombre: "Ola321",
+            descripcion: "asda",
+            cantidadProductos: 0,
+          },
+          {
+            id: 5,
+            nombre: "Fiestas",
+            descripcion: "fiestadescrip",
             cantidadProductos: 0,
           },
         ];

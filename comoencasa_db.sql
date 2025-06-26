@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2025 a las 23:56:21
+-- Tiempo de generación: 26-06-2025 a las 02:09:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,9 +40,7 @@ CREATE TABLE `categoria_producto` (
 INSERT INTO `categoria_producto` (`id`, `nombre`, `descripcion`) VALUES
 (1, 'Tortas', 'Deliciosas tortas personalizadas para toda ocasión'),
 (2, 'Eventos', 'Productos especiales para eventos y celebraciones'),
-(3, 'Postres', 'Variedad de postres y dulces para complementar tu comida'),
-(4, 'Ola321', 'asda'),
-(5, 'Fiestas', 'fiestadescrip');
+(3, 'Postres', 'Variedad de postres y dulces para complementar tu comida');
 
 -- --------------------------------------------------------
 
@@ -70,16 +68,13 @@ INSERT INTO `comprobante` (`id`, `pedido_id`, `tipo`, `fecha_emision`, `numero_s
 (3, 2, 'Factura', '2025-06-05 15:50:22', 'F001', '00005678', 150.00, 150.00),
 (4, 3, 'Boleta', '2025-06-04 13:00:00', 'B002', '00004567', 80.00, 80.00),
 (5, 4, 'Factura', '2025-06-03 11:00:00', 'F002', '00007890', 100.00, 100.00),
-(6, 5, 'Boleta', '2025-06-19 23:56:50', '003', '00000003', 160.00, 200.60),
-(7, 6, 'Boleta', '2025-06-19 23:57:24', '004', '00000004', 160.00, 200.60),
-(8, 7, 'Boleta', '2025-06-20 00:00:52', '005', '00000005', 24.00, 40.12),
-(9, 8, 'Factura', '2025-06-20 00:05:25', '003', '00000003', 360.00, 436.60),
-(10, 9, 'Boleta', '2025-06-20 00:30:52', '006', '00000006', 360.00, 436.60),
-(11, 10, 'Boleta', '2025-06-20 00:31:57', '007', '00000007', 300.00, 365.80),
-(12, 11, 'Boleta', '2025-06-20 00:37:08', '008', '00000008', 150.00, 188.80),
-(13, 12, 'Boleta', '2025-06-20 00:45:43', '009', '00000009', 220.00, 271.40),
-(14, 13, 'Boleta', '2025-06-20 17:56:03', '010', '00000010', 160.00, 200.60),
-(15, 14, 'Factura', '2025-06-20 18:23:57', '004', '00000004', 240.00, 250.00);
+(15, 14, 'Factura', '2025-06-20 18:23:57', '004', '00000004', 240.00, 250.00),
+(16, 15, 'Boleta', '2025-06-20 22:42:01', '003', '00000003', 120.00, 130.00),
+(17, 16, 'Boleta', '2025-06-23 20:18:45', '004', '00000004', 320.00, 330.00),
+(18, 17, 'Boleta', '2025-06-25 15:41:59', '005', '00000005', 15.00, 25.00),
+(19, 18, 'Boleta', '2025-06-25 16:17:52', '006', '00000006', 10.00, 20.00),
+(22, 21, 'Boleta', '2025-06-25 23:18:53', '007', '00000007', 6.00, 16.00),
+(23, 22, 'Factura', '2025-06-25 23:19:55', '004', '00000004', 3.00, 13.00);
 
 -- --------------------------------------------------------
 
@@ -106,18 +101,12 @@ INSERT INTO `detalle_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `pre
 (2, 2, 3, 1, 150.00, 95.00, 'Agregar logo personalizado'),
 (3, 3, 4, 1, 80.00, 45.00, 'Cupcakes temáticos'),
 (4, 4, 2, 1, 100.00, 65.00, 'Mensaje: Feliz Día'),
-(5, 5, 6, 2, 80.00, 50.00, 'asda'),
-(6, 6, 6, 2, 80.00, 50.00, 'sfasdf'),
-(7, 7, 7, 3, 5.00, 3.50, 'asdas'),
-(8, 7, 8, 3, 3.00, 2.00, 'fgfggf'),
-(9, 8, 1, 3, 120.00, 80.00, 'asdasdsa'),
-(10, 9, 1, 3, 120.00, 80.00, 'asdsaa'),
-(11, 10, 3, 2, 150.00, 95.00, 'dsfdfs'),
-(12, 11, 3, 1, 150.00, 95.00, 'asdasd'),
-(13, 12, 5, 3, 20.00, 14.00, 'asdas'),
-(14, 12, 6, 2, 80.00, 50.00, 'asdas'),
-(15, 13, 4, 2, 80.00, 45.00, 'uhouio'),
-(16, 14, 1, 2, 120.00, 80.00, 'jhhj');
+(16, 14, 1, 2, 120.00, 80.00, 'jhhj'),
+(17, 15, 1, 1, 120.00, 80.00, ''),
+(20, 17, 8, 5, 3.00, 2.00, 'sfdsfds'),
+(21, 18, 7, 2, 5.00, 3.50, 'wedsadas'),
+(24, 21, 9, 2, 3.00, 2.00, 'asda'),
+(25, 22, 9, 1, 3.00, 2.00, 'jnas');
 
 -- --------------------------------------------------------
 
@@ -144,16 +133,13 @@ INSERT INTO `pago` (`id`, `pedido_id`, `fecha`, `metodo`, `estado`, `monto`) VAL
 (3, 2, '2025-06-05 15:50:22', 'Plin', 'Pagado', 150.00),
 (4, 3, '2025-06-04 13:00:00', 'Plin', 'Pagado', 80.00),
 (5, 4, '2025-06-03 11:00:00', 'Tarjeta', 'Pagado', 100.00),
-(6, 5, '2025-06-19 23:56:50', 'Yape', 'Pagado', 200.60),
-(7, 6, '2025-06-19 23:57:24', 'Yape', 'Pagado', 200.60),
-(8, 7, '2025-06-20 00:00:52', 'Yape', 'Pagado', 40.12),
-(9, 8, '2025-06-20 00:05:25', 'Yape', 'Pagado', 436.60),
-(10, 9, '2025-06-20 00:30:52', 'Yape', 'Pagado', 436.60),
-(11, 10, '2025-06-20 00:31:57', 'Yape', 'Pagado', 365.80),
-(12, 11, '2025-06-20 00:37:08', 'Yape', 'Pagado', 188.80),
-(13, 12, '2025-06-20 00:45:43', 'Yape', 'Pagado', 271.40),
-(14, 13, '2025-06-20 17:56:03', 'Yape', 'Pagado', 200.60),
-(15, 14, '2025-06-20 18:23:57', 'Yape', 'Pagado', 250.00);
+(15, 14, '2025-06-20 18:23:57', 'Yape', 'Pagado', 250.00),
+(16, 15, '2025-06-20 22:42:01', 'Plin', 'Pagado', 130.00),
+(17, 16, '2025-06-23 20:18:45', 'Yape', 'Pagado', 330.00),
+(18, 17, '2025-06-25 15:41:59', 'Yape', 'Pagado', 25.00),
+(19, 18, '2025-06-25 16:17:52', 'Yape', 'Pagado', 20.00),
+(22, 21, '2025-06-25 23:18:53', 'Yape', 'Pagado', 16.00),
+(23, 22, '2025-06-25 23:19:55', 'Yape', 'Pagado', 13.00);
 
 -- --------------------------------------------------------
 
@@ -182,16 +168,13 @@ INSERT INTO `pedido` (`id`, `usuario_id`, `fecha_creacion`, `fecha_entrega`, `es
 (2, 6, '2025-06-05 15:50:22', '2025-06-11 16:30:00', 'Entregado', 150.00, 150.00, 'Calle Los Almendros 456', 0),
 (3, 2, '2025-06-04 12:20:00', '2025-06-09 15:00:00', 'Entregado', 80.00, 80.00, 'Jr. Las Flores 789', 0),
 (4, 3, '2025-06-03 10:10:00', '2025-06-08 18:30:00', 'Entregado', 100.00, 100.00, 'Av. Primavera 321', 1),
-(5, 7, '2025-06-19 23:56:50', '2025-06-23 04:56:50', 'Entregado', 160.00, 200.60, 'dsadasd, Barranco', 0),
-(6, 7, '2025-06-19 23:57:24', '2025-06-23 04:57:24', 'Entregado', 160.00, 200.60, 'dsadasd, Carabayllo', 0),
-(7, 7, '2025-06-20 00:00:52', '2025-06-23 05:00:52', 'Entregado', 24.00, 40.12, 'asdasd, Carabayllo', 0),
-(8, 7, '2025-06-20 00:05:25', '2025-06-23 05:05:24', 'Entregado', 360.00, 436.60, 'asdsadasda, Carabayllo', 1),
-(9, 7, '2025-06-20 00:30:52', '2025-06-23 05:30:52', 'Cancelado', 360.00, 436.60, 'dsadasd, Breña', 0),
-(10, 7, '2025-06-20 00:31:57', '2025-06-23 05:31:57', 'Cancelado', 300.00, 365.80, 'dsadasd, Barranco', 0),
-(11, 7, '2025-06-20 00:37:08', '2025-06-23 05:37:08', 'Entregado', 150.00, 188.80, 'dsadasd, Breña', 0),
-(12, 7, '2025-06-20 00:45:43', '2025-06-23 05:45:43', 'Entregado', 220.00, 271.40, 'sa, Carabayllo', 0),
-(13, 7, '2025-06-20 17:56:03', '2025-06-23 22:56:03', 'Cancelado', 160.00, 200.60, 'dsadasd, Ate', 0),
-(14, 5, '2025-06-20 18:23:57', '2025-06-23 23:23:57', 'Pendiente', 240.00, 250.00, 'ddsfsd, Breña', 1);
+(14, 5, '2025-06-20 18:23:57', '2025-06-25 16:16:59', 'Entregado', 240.00, 250.00, 'ddsfsd, Breña', 1),
+(15, 8, '2025-06-20 22:42:01', '2025-06-20 22:43:37', 'Entregado', 120.00, 130.00, 'sa, Los Olivos (wqewq)', 0),
+(16, 8, '2025-06-23 20:18:45', '2025-06-23 20:20:36', 'Entregado', 320.00, 330.00, 'sada, Barranco (asdasda)', 0),
+(17, 8, '2025-06-25 15:41:59', '2025-06-25 16:16:15', 'Entregado', 15.00, 25.00, 'dsfdsf, Breña (as)', 0),
+(18, 8, '2025-06-25 16:17:52', '2025-06-25 16:18:25', 'Entregado', 10.00, 20.00, 'dsadasd, Breña (as)', 0),
+(21, 5, '2025-06-25 23:18:53', '2025-06-29 04:18:53', 'Pendiente', 6.00, 16.00, 'as, Barranco (ads)', 0),
+(22, 8, '2025-06-25 23:19:55', '2025-06-29 04:19:55', 'Pendiente', 3.00, 13.00, 'dsadasd, Ate (as)', 1);
 
 -- --------------------------------------------------------
 
@@ -216,17 +199,15 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio_venta`, `costo_produccion`, `disponible`, `imagen_url`, `cantidad`) VALUES
-(1, 1, 'Torta de Chocolate', 'Torta de tres pisos con relleno de chocolate', 120, 80, 1, 'https://cdn0.recetasgratis.net/es/posts/1/9/6/torta_de_chocolate_esponjosa_10691_600.jpg', 1),
+(1, 1, 'Torta de Chocolate', 'Torta de tres pisos con relleno de chocolate', 120, 80, 1, 'https://cdn0.recetasgratis.net/es/posts/1/9/6/torta_de_chocolate_esponjosa_10691_600.jpg', 0),
 (2, 1, 'Torta de Vainilla', 'Torta esponjosa con relleno de crema chantilly', 100, 65, 1, 'https://peopleenespanol.com/thmb/195yL5HKvkX-V5hK4Xtdt7jvbaU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/pastel-de-vainilla-bc3a1sico-2000-d5538c31da3b4b6dba9940393128f2b2.jpg', 0),
 (3, 1, 'Red Velvet', 'Clásica torta roja con cubierta de queso crema', 150, 95, 1, 'https://i.ytimg.com/vi/aQOJEu77Pxs/maxresdefault.jpg', 0),
 (4, 2, 'Pack Cupcakes', 'Set de 24 cupcakes decorados', 80, 45, 1, 'https://lithdechocolat.pe/wp-content/uploads/2024/08/y8oI8EWV.jpeg', 0),
 (5, 2, 'Pack alfajorcitos', 'Perfecto para regalar a alguien especial', 20, 14, 1, 'https://res.cloudinary.com/riqra/image/upload/w_656,h_656,c_limit,q_auto,f_auto/v1742914440/sellers/tortas-gaby/products/yghr1jqwsb9yybwzo1vy.png', 0),
-(6, 2, 'Pastel futbol', 'Pastel con diseño perfecto para un amante del futbol', 80, 50, 1, 'https://i.ytimg.com/vi/v7sxI7kPNZQ/maxresdefault.jpg', 1),
-(7, 3, 'Suspiro a la limeña', 'Clásico postre peruano hecho con manjarblanco y merengue italiano, espolvoreado con canela.', 5, 3.5, 1, 'https://portal.andina.pe/EDPfotografia2/Thumbnail/2008/05/17/000062608W.jpg', 4),
-(8, 3, 'Leche Asada', 'Tradicional postre peruano similar al flan.', 3, 2, 1, 'https://i.pinimg.com/736x/e5/1d/1b/e51d1b7904c4e88b4574b5c6be50097a.jpg', 5),
-(9, 3, 'Arroz con leche', 'Postre con arroz cocido en leche condensada, canela y clavo.', 3, 2, 1, 'https://www.bekiacocina.com/images/cocina/0000/96-h.jpg', 4),
-(11, 5, 'dasas', 'dasdsa', 122, 2, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN0WgVwW-_RD-ph8bDtglOb_Mb17Tq_GTKfw&amp;amp;amp;amp;amp;amp;amp;amp;s', 2),
-(12, 2, 'adsa', 'asdsad', 12, 2, 1, '', 12);
+(6, 2, 'Pastel futbol', 'Pastel con diseño perfecto para un amante del futbol', 80, 50, 1, 'https://i.ytimg.com/vi/v7sxI7kPNZQ/maxresdefault.jpg', 0),
+(7, 3, 'Suspiro a la limeña', 'Clásico postre peruano hecho con manjarblanco y merengue italiano, espolvoreado con canela.', 5, 3.5, 1, 'https://portal.andina.pe/EDPfotografia2/Thumbnail/2008/05/17/000062608W.jpg', 1),
+(8, 3, 'Leche Asada', 'Tradicional postre peruano similar al flan.', 3, 2, 1, 'https://i.pinimg.com/736x/e5/1d/1b/e51d1b7904c4e88b4574b5c6be50097a.jpg', 0),
+(9, 3, 'Arroz con leche', 'Postre con arroz cocido en leche condensada, canela y clavo.', 3, 2, 1, 'https://www.bekiacocina.com/images/cocina/0000/96-h.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -259,9 +240,9 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `correo`, `telefono`, `direcc
 (2, 'Ola2', '', 'ola@c.com', '', '', '$2a$10$4fDgsWjwfs0Q.8LJuRPG/urcsRhWPtovIGPqZPZZGY/LFy82R9a/u', '2025-05-22 23:47:27', 'DNI', NULL, 'CLIENTE', 0, NULL),
 (3, 'As', '', 'as@gm.com', '', '', '$2a$10$N7CmTg0nuYhgQcLYmxVswe0c1rn9uxuwVlJ9sK5geXraJCupT.Z1C', '2025-05-23 00:07:14', 'DNI', NULL, 'CLIENTE', 1, 'dsfsdfdsfs'),
 (4, 'Ola', '', 'ola4@i.com', '', '', '$2a$10$2PVIZjwduHoXIDUO8glHa.6CqEg8RuZfGcbcMhebUjxBnqEPY//fu', '2025-05-23 03:28:50', 'DNI', NULL, 'CLIENTE', 0, NULL),
-(5, 'Administrador', 'Sistema', 'admin@c.com', '999888777', 'Oficina Central', '$2a$10$N7CmTg0nuYhgQcLYmxVswe0c1rn9uxuwVlJ9sK5geXraJCupT.Z1C', '2025-05-22 23:17:00', 'DNI', '87654321', 'ADMIN', 1, NULL),
+(5, 'Administrador', 'Sistema', 'admin@c.com', '999888777', 'Oficina Central', '$2a$10$N7CmTg0nuYhgQcLYmxVswe0c1rn9uxuwVlJ9sK5geXraJCupT.Z1C', '2025-05-22 23:17:00', 'DNI', '21312321', 'ADMIN', 1, NULL),
 (6, 'Juana', 'Pérez', 'juana@correo.com', '987654321', 'Calle Falsa 123', '$2a$10$demo', '2025-06-05 15:50:22', 'DNI', '12345678', 'CLIENTE', 0, NULL),
-(7, 'dav', 'id', 'davidestudio123@gmail.com', '9999909999', 'dsadasd', '$2a$10$RGI4crGdrwalextEj1EPyuOJ5Z.tIHKg57d0v1SWf0k6MOkzjP2jq', '2025-06-19 23:33:07', 'DNI', NULL, 'CLIENTE', 1, 'asdas');
+(8, 'dav', 'david', 'davidestudio123@gmail.com', '', '', '$2a$10$pD6CtYTDqLPikuKqHx6KTuA36pLkD9vAOAmR2dtNHBAxkgw0vHG12', '2025-06-20 22:39:09', 'RUC', '12321213222', 'CLIENTE', 1, 'Buenas tortaas');
 
 --
 -- Índices para tablas volcadas
@@ -324,43 +305,43 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `comprobante`
 --
 ALTER TABLE `comprobante`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

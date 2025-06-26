@@ -41,15 +41,15 @@ public class Pago {
                this.fecha = LocalDateTime.now();
           }
           if (this.estado == null) {
-               this.estado = EstadoPago.PENDIENTE;
+               this.estado = EstadoPago.Pendiente;
           }
      }
 
      public enum MetodoPago {
-          YAPE("Yape"),
-          PLIN("Plin"),
-          TARJETA("Tarjeta"),
-          EFECTIVO("Efectivo");
+          Yape("Yape"),
+          Plin("Plin"),
+          Tarjeta("Tarjeta"),
+          Efectivo("Efectivo");
 
           private final String displayName;
 
@@ -63,9 +63,9 @@ public class Pago {
      }
 
      public enum EstadoPago {
-          PENDIENTE("Pendiente"),
-          PAGADO("Pagado"),
-          RECHAZADO("Rechazado");
+          Pendiente("Pendiente"),
+          Pagado("Pagado"),
+          Rechazado("Rechazado");
 
           private final String displayName;
 

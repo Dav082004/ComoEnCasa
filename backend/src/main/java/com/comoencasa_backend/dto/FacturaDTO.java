@@ -6,17 +6,17 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-public class ComprobanteDTO {
+public class FacturaDTO {
     private Long id;
     private Long pedidoId;
-    private String tipo; // Cambiado de TipoComprobante a String
     private LocalDateTime fechaEmision;
     private String numeroSerie;
-    private String numeroComprobante;
+    private String numeroFactura;
     private BigDecimal subtotal;
     private BigDecimal total;
+
     // Datos del cliente
-    private String clienteNombre;      
-    private String clienteDocumento;   
-    private String clienteEmail;  
+    private String clienteNombre;
+    private String clienteDocumento;
+    private String clienteEmail;
 }

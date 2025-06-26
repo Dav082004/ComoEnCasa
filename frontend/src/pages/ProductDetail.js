@@ -125,6 +125,17 @@ const ProductDetail = () => {
   if (!producto) return null;
   return (
     <main className="container-fluid py-4">
+      {/* Botón de volver a productos */}
+      <div className="back-button-container">
+        <button
+          className="back-button"
+          onClick={() => navigate("/productos")}
+          aria-label="Volver a la página de productos">
+          <span className="back-arrow">←</span>
+          <span className="back-text">Volver a Productos</span>
+        </button>
+      </div>
+
       {/* Contenido principal del producto */}
       <div className="product-detail-container">
         <div className="row g-4">

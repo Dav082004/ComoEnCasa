@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Admin.css";
+import "./styles/Admin.css";
 import {
   listarComprobantes,
   exportarPdf,
-  exportarExcel,
-} from "../services/comprobanteService";
+  exportarReporteFacturas,
+} from "../../services/comprobanteService";
 
-const AdminComprobantes = () => {
-  const [comprobantes, setComprobantes] = useState([]);
-  const [filteredComprobantes, setFilteredComprobantes] = useState([]);
+const AdminFacturas = () => {
+  const [facturas, setFacturas] = useState([]);
+  const [filteredFacturas, setFilteredFacturas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedComprobante, setSelectedComprobante] = useState(null);
+  const [selectedFactura, setSelectedFactura] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [filtros, setFiltros] = useState({
@@ -21,34 +21,32 @@ const AdminComprobantes = () => {
   });
 
   useEffect(() => {
-    fetchComprobantes();
+    fetchFacturas();
   }, []);
 
-  const fetchComprobantes = async () => {
+  const fetchFacturas = async () => {
     try {
       setLoading(true);
       const data = await listarComprobantes();
-      setComprobantes(data);
-      setFilteredComprobantes(data);
+      const soloFacturas = data.filter((f) => f.tipo === "Factura");
+      setFacturas(soloFacturas);
+      setFilteredFacturas(soloFacturas);
     } catch (error) {
-      console.error("Error al cargar los comprobantes:", error);
+      console.error("Error al cargar las Facturas:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleSearch = () => {
-    const filtered = comprobantes.filter(
-      (comprobante) =>
-        comprobante.id?.toString().includes(searchTerm) ||
-        comprobante.clienteNombre
-          ?.toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        comprobante.clienteDocumento?.includes(searchTerm) ||
-        comprobante.tipo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        comprobante.numeroComprobante?.includes(searchTerm)
+    const filtered = facturas.filter(
+      (f) =>
+        f.id?.toString().includes(searchTerm) ||
+        f.clienteNombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        f.clienteDocumento?.includes(searchTerm) ||
+        f.numeroComprobante?.includes(searchTerm)
     );
-    setFilteredComprobantes(filtered);
+    setFilteredFacturas(filtered);
   };
 
   const handleFilterSubmit = async (e) => {
@@ -63,10 +61,11 @@ const AdminComprobantes = () => {
       });
 
       const data = await listarComprobantes(filtrosLimpios);
-      setComprobantes(data);
-      setFilteredComprobantes(data);
+      const soloFacturas = data.filter((f) => f.tipo === "Factura");
+      setFacturas(soloFacturas);
+      setFilteredFacturas(soloFacturas);
     } catch (error) {
-      console.error("Error al filtrar comprobantes:", error);
+      console.error("Error al filtrar Facturas:", error);
     } finally {
       setLoading(false);
     }
@@ -78,7 +77,7 @@ const AdminComprobantes = () => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `comprobante_${id}.pdf`;
+      link.download = `Factura_${id}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -89,20 +88,51 @@ const AdminComprobantes = () => {
     }
   };
 
-  const handleExportExcel = async (id) => {
+  const handleExportExcel = async () => {
     try {
-      const blob = await exportarExcel(id);
+      // Crear filtros para el reporte
+      const filtrosReporte = {};
+
+      if (filtros.desde) {
+        filtrosReporte.desde = new Date(filtros.desde).toISOString();
+      }
+
+      if (filtros.hasta) {
+        filtrosReporte.hasta = new Date(filtros.hasta).toISOString();
+      }
+
+      console.log("🚀 Exportando reporte de FACTURAS...");
+      const blob = await exportarReporteFacturas(filtrosReporte);
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `comprobante_${id}.xlsx`;
+
+      // Crear nombre de archivo con fecha actual
+      const fechaActual = new Date().toISOString().split("T")[0];
+      link.download = `reporte_facturas_${fechaActual}.xlsx`;
+
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+
+      alert("Reporte Excel de facturas generado exitosamente");
     } catch (error) {
       console.error("Error al exportar Excel:", error);
-      alert("Error al exportar el Excel");
+
+      // Mostrar mensaje de error más específico
+      let mensajeError = "Error al exportar el reporte de facturas";
+      if (error.userMessage) {
+        mensajeError = error.userMessage;
+      } else if (error.response?.status === 403) {
+        mensajeError =
+          "No tienes permisos para generar reportes. Verifica que estés logueado como administrador.";
+      } else if (error.response?.status === 401) {
+        mensajeError =
+          "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.";
+      }
+
+      alert(mensajeError);
     }
   };
 
@@ -124,12 +154,12 @@ const AdminComprobantes = () => {
 
   return (
     <div className="page-container">
-      <h1 className="theme-header">Gestión de Comprobantes</h1>
+      <h1 className="theme-header">Gestión de Facturas</h1>
 
       <div className="admin-header">
         <input
           type="text"
-          placeholder="Buscar por ID, cliente, documento, tipo..."
+          placeholder="Buscar por ID, cliente, documento..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -191,7 +221,7 @@ const AdminComprobantes = () => {
                   desde: "",
                   hasta: "",
                 });
-                fetchComprobantes();
+                fetchFacturas();
               }}>
               Limpiar
             </button>
@@ -206,7 +236,7 @@ const AdminComprobantes = () => {
           <div className="spinner-border text-pink" role="status">
             <span className="visually-hidden">Cargando...</span>
           </div>
-          <p>Cargando comprobantes...</p>
+          <p>Cargando Facturas...</p>
         </div>
       ) : (
         <>
@@ -228,49 +258,37 @@ const AdminComprobantes = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredComprobantes.map((comprobante) => (
+              {filteredFacturas.map((f) => (
                 <tr
-                  key={comprobante.id}
-                  onClick={() => setSelectedComprobante(comprobante)}
+                  key={f.id}
+                  onClick={() => setSelectedFactura(f)}
                   className={
-                    selectedComprobante?.id === comprobante.id
-                      ? "selected-row"
-                      : ""
+                    selectedFactura?.id === f.id ? "selected-row" : ""
                   }>
-                  <td>{comprobante.id}</td>
-                  <td>{comprobante.pedidoId}</td>
+                  <td>{f.id}</td>
+                  <td>{f.pedidoId}</td>
                   <td>
                     <span
-                      className={`status-badge status-${comprobante.tipo?.toLowerCase()}`}>
-                      {comprobante.tipo}
+                      className={`status-badge status-${f.tipo?.toLowerCase()}`}>
+                      {f.tipo}
                     </span>
                   </td>
-                  <td>{comprobante.clienteNombre}</td>
-                  <td>{comprobante.clienteDocumento || "N/A"}</td>
-                  <td>{comprobante.clienteEmail}</td>
-                  <td>{formatDate(comprobante.fechaEmision)}</td>
-                  <td>{comprobante.numeroSerie}</td>
-                  <td>{comprobante.numeroComprobante}</td>
-                  <td>{formatCurrency(comprobante.subtotal)}</td>
-                  <td>{formatCurrency(comprobante.total)}</td>
+                  <td>{f.clienteNombre}</td>
+                  <td>{f.clienteDocumento || "N/A"}</td>
+                  <td>{f.clienteEmail}</td>
+                  <td>{formatDate(f.fechaEmision)}</td>
+                  <td>{f.numeroSerie}</td>
+                  <td>{f.numeroComprobante}</td>
+                  <td>{formatCurrency(f.subtotal)}</td>
+                  <td>{formatCurrency(f.total)}</td>
                   <td>
                     <button
                       className="theme-button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleExportPdf(comprobante.id);
-                      }}
-                      title="Exportar a PDF">
+                        handleExportPdf(f.id);
+                      }}>
                       PDF
-                    </button>
-                    <button
-                      className="theme-button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleExportExcel(comprobante.id);
-                      }}
-                      title="Exportar a Excel">
-                      Excel
                     </button>
                   </td>
                 </tr>
@@ -279,15 +297,22 @@ const AdminComprobantes = () => {
           </table>
 
           <div className="table-footer">
-            <span>Total de comprobantes: {filteredComprobantes.length}</span>
-            {selectedComprobante && (
+            <span>Total de Facturas: {filteredFacturas.length}</span>
+            {selectedFactura && (
               <div className="selected-info">
                 <span>
-                  Seleccionado: Comprobante #{selectedComprobante.id} -{" "}
-                  {selectedComprobante.clienteNombre}
+                  Seleccionado: Factura #{selectedFactura.id} -{" "}
+                  {selectedFactura.clienteNombre}
                 </span>
               </div>
             )}
+
+            <div
+              style={{ width: "100%", textAlign: "right", marginTop: "1rem" }}>
+              <button className="theme-button" onClick={handleExportExcel}>
+                📥 Reporte Facturas
+              </button>
+            </div>
           </div>
         </>
       )}
@@ -295,4 +320,4 @@ const AdminComprobantes = () => {
   );
 };
 
-export default AdminComprobantes;
+export default AdminFacturas;

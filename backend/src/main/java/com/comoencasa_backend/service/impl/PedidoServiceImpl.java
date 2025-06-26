@@ -7,11 +7,19 @@ import com.comoencasa_backend.model.Pedido;
 import com.comoencasa_backend.model.Usuario;
 import com.comoencasa_backend.repository.PedidoRepository;
 import com.comoencasa_backend.repository.UsuarioRepository;
+import com.comoencasa_backend.repository.PagoRepository;
 import com.comoencasa_backend.service.PedidoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -27,17 +35,20 @@ public class PedidoServiceImpl implements PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;
+    private final PagoRepository pagoRepository;
 
-    public PedidoServiceImpl(PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository) {
+    public PedidoServiceImpl(PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository,
+            PagoRepository pagoRepository) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.pagoRepository = pagoRepository;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<PedidoDTO> findAll() {
-        log.info("ADMIN: obteniendo todos los pedidos");
-        return pedidoRepository.findAll()
+        log.info("ADMIN: obteniendo todos los pedidos con información de pago");
+        return pedidoRepository.findAllWithDetails()
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
@@ -50,9 +61,9 @@ public class PedidoServiceImpl implements PedidoService {
             throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
         }
 
-        log.info("ADMIN: obteniendo pedido por ID={}", pedidoId);
+        log.info("ADMIN: obteniendo pedido por ID={} con información de pago", pedidoId);
 
-        Optional<Pedido> pedidoOpt = pedidoRepository.findById(pedidoId);
+        Optional<Pedido> pedidoOpt = pedidoRepository.findByIdWithPayments(pedidoId);
         if (pedidoOpt.isEmpty()) {
             throw new IllegalArgumentException("Pedido no encontrado con ID=" + pedidoId);
         }
@@ -70,7 +81,7 @@ public class PedidoServiceImpl implements PedidoService {
             throw new IllegalArgumentException("El ID de usuario debe ser mayor a 0");
         }
         log.info("ADMIN: obteniendo pedidos del usuario ID={}", usuarioId);
-        return pedidoRepository.findByUsuarioId(usuarioId)
+        return pedidoRepository.findByUsuarioIdWithDetails(usuarioId)
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
@@ -297,6 +308,16 @@ public class PedidoServiceImpl implements PedidoService {
         dto.setDireccionEntrega(p.getDireccionEntrega());
         dto.setNecesitaFactura(p.getNecesitaFactura());
 
+        // Información de pago (cargar por separado para evitar
+        // MultipleBagFetchException)
+        var pagos = pagoRepository.findByPedidoId(p.getId());
+        if (!pagos.isEmpty()) {
+            // Tomar el primer pago (más reciente o único)
+            var pago = pagos.get(0);
+            dto.setMetodoPago(pago.getMetodo().getDisplayName());
+            dto.setEstadoPago(pago.getEstado().getDisplayName());
+        }
+
         // Convertir detalles del pedido
         if (p.getDetallePedidos() != null && !p.getDetallePedidos().isEmpty()) {
             List<DetallePedidoDTO> detallesDTO = p.getDetallePedidos().stream()
@@ -321,5 +342,79 @@ public class PedidoServiceImpl implements PedidoService {
         BigDecimal subtotal = detalle.getPrecioUnitario().multiply(BigDecimal.valueOf(detalle.getCantidad()));
         dto.setSubtotal(subtotal);
         return dto;
+    }
+
+    @Override
+    public ByteArrayInputStream generarReporteVentasExcel(Optional<LocalDateTime> desde, Optional<LocalDateTime> hasta)
+            throws IOException {
+        List<PedidoDTO> pedidos = this.findAll();
+
+        // Aplicar filtros por fechas si están presentes
+        if (desde.isPresent() && hasta.isPresent()) {
+            pedidos = pedidos.stream()
+                    .filter(p -> !p.getFechaCreacion().isBefore(desde.get()) &&
+                            !p.getFechaCreacion().isAfter(hasta.get()))
+                    .collect(Collectors.toList());
+        }
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Ventas");
+
+            // Cabecera
+            Row header = sheet.createRow(0);
+            String[] columnas = { "ID", "Cliente", "Documento", "Fecha Pedido", "Subtotal", "Total", "Factura" };
+            for (int i = 0; i < columnas.length; i++) {
+                header.createCell(i).setCellValue(columnas[i]);
+            }
+
+            // Cuerpo
+            int rowIdx = 1;
+            for (PedidoDTO p : pedidos) {
+                Row row = sheet.createRow(rowIdx++);
+                row.createCell(0).setCellValue(p.getId());
+                row.createCell(1).setCellValue(p.getUsuarioNombre());
+                row.createCell(2).setCellValue(p.getUsuarioId()); // Puedes cambiar por documento si lo tienes
+                row.createCell(3).setCellValue(p.getFechaCreacion().toString());
+                row.createCell(4).setCellValue(p.getSubtotal().doubleValue());
+                row.createCell(5).setCellValue(p.getCostoTotal().doubleValue());
+                row.createCell(6).setCellValue(p.getNecesitaFactura() ? "Sí" : "No");
+            }
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            workbook.write(out);
+            return new ByteArrayInputStream(out.toByteArray());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void eliminarPedido(Long pedidoId) {
+        log.info("ADMIN: eliminando pedido con ID {}", pedidoId);
+
+        // Verificar que el pedido existe
+        Optional<Pedido> pedidoOpt = pedidoRepository.findById(pedidoId);
+        if (pedidoOpt.isEmpty()) {
+            throw new IllegalArgumentException("El pedido con ID " + pedidoId + " no existe");
+        }
+
+        Pedido pedido = pedidoOpt.get();
+
+        // Verificar que el pedido puede ser eliminado
+        // Solo permitir eliminar pedidos en estado "Pendiente" o "Cancelado"
+        if (!"Pendiente".equals(pedido.getEstado()) && !"Cancelado".equals(pedido.getEstado())) {
+            throw new IllegalArgumentException(
+                    "Solo se pueden eliminar pedidos en estado 'Pendiente' o 'Cancelado'. Estado actual: "
+                            + pedido.getEstado());
+        }
+
+        try {
+            // Eliminar el pedido (esto eliminará automáticamente los detalles y pagos por
+            // CASCADE)
+            pedidoRepository.deleteById(pedidoId);
+            log.info("Pedido {} eliminado exitosamente", pedidoId);
+        } catch (Exception e) {
+            log.error("Error al eliminar el pedido {}: {}", pedidoId, e.getMessage());
+            throw new IllegalArgumentException("Error al eliminar el pedido: " + e.getMessage());
+        }
     }
 }
