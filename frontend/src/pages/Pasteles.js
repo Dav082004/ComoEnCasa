@@ -5,164 +5,71 @@ import Graduacion from "../assets/eventos/eventos_3.webp";
 import SanValentin from "../assets/eventos/eventos_4.webp";
 
 const Pasteles = () => {
+  const pastelesEspeciales = [
+    {
+      img: Cumpleaños,
+      nombre: "Torta de Cumpleaños",
+      precio: "S/. 60.00",
+      precioAnterior: "S/. 82.00",
+      descuento: "-15%",
+    },
+    {
+      img: Graduacion,
+      nombre: "Torta de Graduación",
+      precio: "S/. 45.00",
+      precioAnterior: "S/. 60.00",
+      descuento: "-10%",
+    },
+    {
+      img: SanValentin,
+      nombre: "Torta de San Valentín",
+      precio: "S/. 60.00",
+    },
+  ];
+
   return (
-    <main className="main-content">
-      <section className="container container-features">
-        <div className="card-feature">
-          <i className="fa-solid fa-plane-up"></i>
-          <div className="feature-content">
-            <span>Envío gratuito</span>
-            <p>En pedido superior a S/.100</p>
-          </div>
-        </div>
-        <div className="card-feature">
-          <i className="fa-solid fa-wallet"></i>
-          <div className="feature-content">
-            <span>Contraentrega</span>
-            <p>Pago realizado al momento de recibir el producto</p>
-          </div>
-        </div>
-        <div className="card-feature">
-          <i className="fa-solid fa-gift"></i>
-          <div className="feature-content">
-            <span>Tarjeta regalo especial</span>
-            <p>Ofrece bonos especiales con regalo</p>
-          </div>
-        </div>
-        <div className="card-feature">
-          <i className="fa-solid fa-headset"></i>
-          <div className="feature-content">
-            <span>Servicio al cliente</span>
-            <p>LLámenos al 123-456-789</p>
-          </div>
-        </div>
-      </section>
+    <div className="container py-5 pastel-bg">
+      <div className="text-center mb-5">
+        <h1 className="pastel-title">Pasteles Especiales</h1>
+        <p className="pastel-subtitle">
+          Tortas para cada ocasión: celebra con dulzura
+        </p>
+      </div>
 
-      <section className="container top-products">
-        <div className="container-options">
-          <span>Destacados</span>
-          <span>Más recientes</span>
-          <span>Mejores Vendidos</span>
-        </div>
-
-        <div className="container-products">
-          {[].map((product, index) => (
-            <div className="card-product" key={index}>
-              <div className="container-img">
-                <img src={product.img} alt={product.name} />
-                {product.discount && (
-                  <span className="discount">{product.discount}</span>
+      <div className="row g-4">
+        {pastelesEspeciales.map((pastel, index) => (
+          <div className="col-md-4 col-sm-6" key={index}>
+            <div className="card h-100 pastel-card">
+              <div className="position-relative">
+                <img
+                  src={pastel.img}
+                  alt={pastel.nombre}
+                  className="card-img-top pastel-img"
+                />
+                {pastel.descuento && (
+                  <span className="badge bg-danger position-absolute top-0 end-0 m-2">
+                    {pastel.descuento}
+                  </span>
                 )}
-                <div className="button-group">
-                  <span>
-                    <i className="fa-regular fa-eye"></i>
-                  </span>
-                  <span>
-                    <i className="fa-regular fa-heart"></i>
-                  </span>
-                  <span>
-                    <i className="fa-solid fa-code-compare"></i>
-                  </span>
-                </div>
               </div>
-              <div className="content-card-product">
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => (
-                    <i
-                      key={i}
-                      className={
-                        i < product.stars
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }></i>
-                  ))}
-                </div>
-                <h3>{product.name}</h3>
-                <span className="add-cart">
-                  <i className="fa-solid fa-basket-shopping"></i>
-                </span>
-                <p className="price">
-                  {product.price}{" "}
-                  {product.oldPrice && <span>{product.oldPrice}</span>}
+              <div className="card-body text-center">
+                <h5 className="card-title pastel-product-title">
+                  {pastel.nombre}
+                </h5>
+                <p className="card-text pastel-price">
+                  {pastel.precio}{" "}
+                  {pastel.precioAnterior && (
+                    <span className="text-muted text-decoration-line-through ms-2">
+                      {pastel.precioAnterior}
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="container specials">
-        <h1 className="heading-1">Especiales</h1>
-
-        <div className="container-products">
-          {[
-            {
-              img: Cumpleaños,
-              name: "Torta de Cumpleaños",
-              price: "S/.60.00",
-              oldPrice: "S/.82.00",
-              discount: "-15%",
-              stars: 4,
-            },
-            {
-              img: Graduacion,
-              name: "Torta de Graduación",
-              price: "S/.45.00",
-              oldPrice: "S/.60.00",
-              discount: "-10%",
-              stars: 3,
-            },
-            {
-              img: SanValentin,
-              name: "Torta de San Valentin",
-              price: "S/.60.00",
-              stars: 5,
-            },
-          ].map((product, index) => (
-            <div className="card-product" key={index}>
-              <div className="container-img">
-                <img src={product.img} alt={product.name} />
-                {product.discount && (
-                  <span className="discount">{product.discount}</span>
-                )}
-                <div className="button-group">
-                  <span>
-                    <i className="fa-regular fa-eye"></i>
-                  </span>
-                  <span>
-                    <i className="fa-regular fa-heart"></i>
-                  </span>
-                  <span>
-                    <i className="fa-solid fa-code-compare"></i>
-                  </span>
-                </div>
-              </div>
-              <div className="content-card-product">
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => (
-                    <i
-                      key={i}
-                      className={
-                        i < product.stars
-                          ? "fa-solid fa-star"
-                          : "fa-regular fa-star"
-                      }></i>
-                  ))}
-                </div>
-                <h3>{product.name}</h3>
-                <span className="add-cart">
-                  <i className="fa-solid fa-basket-shopping"></i>
-                </span>
-                <p className="price">
-                  {product.price}{" "}
-                  {product.oldPrice && <span>{product.oldPrice}</span>}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
