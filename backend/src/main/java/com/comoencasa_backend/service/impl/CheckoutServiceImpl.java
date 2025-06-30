@@ -74,7 +74,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                     }
                } catch (Exception e) {
                     log.error("Error procesando checkout: {}", e.getMessage(), e);
-                    throw new RuntimeException("Error procesando el pedido: " + e.getMessage());
+                    return construirRespuestaError("Error procesando el pedido: " + e.getMessage());
                }
           }
 
@@ -154,31 +154,42 @@ public class CheckoutServiceImpl implements CheckoutService {
      }
 
      private void validarCheckoutDTO(CheckoutDTO checkoutDTO) {
+          log.info("Validando checkoutDTO: usuarioId={}, items={}, direccionEntrega={}, metodoPago={}, tipoComprobante={}, documento={}",
+                  checkoutDTO.getUsuarioId(), checkoutDTO.getItems() != null ? checkoutDTO.getItems().size() : 0,
+                  checkoutDTO.getDireccionEntrega(), checkoutDTO.getMetodoPago(), checkoutDTO.getTipoComprobante(), checkoutDTO.getDocumento());
+
           if (checkoutDTO.getUsuarioId() == null) {
+               log.error("Validación fallida: usuarioId es null");
                throw new IllegalArgumentException("El ID de usuario es requerido");
           }
           if (checkoutDTO.getItems() == null || checkoutDTO.getItems().isEmpty()) {
+               log.error("Validación fallida: items vacío o null");
                throw new IllegalArgumentException("El carrito no puede estar vacío");
           }
           if (checkoutDTO.getDireccionEntrega() == null || checkoutDTO.getDireccionEntrega().trim().isEmpty()) {
+               log.error("Validación fallida: direccionEntrega es null o vacía");
                throw new IllegalArgumentException("La dirección de entrega es requerida");
           }
           if (checkoutDTO.getMetodoPago() == null || checkoutDTO.getMetodoPago().trim().isEmpty()) {
+               log.error("Validación fallida: metodoPago es null o vacío");
                throw new IllegalArgumentException("El método de pago es requerido");
           }
           if (checkoutDTO.getTipoComprobante() == null || checkoutDTO.getTipoComprobante().trim().isEmpty()) {
+               log.error("Validación fallida: tipoComprobante es null o vacío");
                throw new IllegalArgumentException("El tipo de comprobante es requerido");
           }
           if (checkoutDTO.getDocumento() == null || checkoutDTO.getDocumento().trim().isEmpty()) {
+               log.error("Validación fallida: documento es null o vacío");
                throw new IllegalArgumentException("El documento (DNI/RUC) es requerido");
           }
 
-          // Validar usuario existe
           Optional<Usuario> usuario = usuarioRepository.findById(checkoutDTO.getUsuarioId());
           if (usuario.isEmpty()) {
+               log.error("Validación fallida: usuario no encontrado para ID {}", checkoutDTO.getUsuarioId());
                throw new IllegalArgumentException("Usuario no encontrado");
           }
      }
+
 
      private Pedido crearPedido(CheckoutDTO checkoutDTO) {
           Usuario usuario = usuarioRepository.findById(checkoutDTO.getUsuarioId()).get();
@@ -256,11 +267,21 @@ public class CheckoutServiceImpl implements CheckoutService {
                case "efectivo":
                     metodoPago = Pago.MetodoPago.Efectivo;
                     break;
+               case "paypal":
+                    metodoPago = Pago.MetodoPago.PayPal;
+                    break;
+
                default:
                     throw new IllegalArgumentException("Método de pago no válido: " + checkoutDTO.getMetodoPago());
           }
 
           pago.setMetodo(metodoPago);
+          if (metodoPago == Pago.MetodoPago.PayPal) {
+               pago.setPaypalEmail(checkoutDTO.getPaypalEmail());
+               pago.setPaypalId(checkoutDTO.getPaypalId());
+               pago.setPayerId(checkoutDTO.getPayerId());
+               pago.setEstado(Pago.EstadoPago.Pagado);
+          }
 
           // Procesar pago
           boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());

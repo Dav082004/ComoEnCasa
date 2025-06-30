@@ -466,21 +466,62 @@ const renderPaymentSection = () => (
           ],
         });
       }}
-      onApprove={async (data, actions) => {
-        const details = await actions.order.capture();
-        // Aquí puedes enviar los detalles al backend o procesar el pedido
-        toast.success("¡Pago completado con PayPal!");
-        navigate("/pago-exitoso", {
-          state: {
-            metodoPago: "paypal",
-            pedidoData: details,
-          },
-        });
-      }}
-      onError={(err) => {
-        toast.error("Error en el pago con PayPal");
-        console.error("PayPal Error:", err);
-      }}
+onApprove={async (data, actions) => {
+  const details = await actions.order.capture();
+  toast.success("¡Pago completado con PayPal!");
+
+  const checkoutData = {
+    usuarioId: user.id,
+    direccionEntrega: datos.direccion,
+    distrito: datos.distrito,
+    referencia: datos.referencia || "",
+    notas: "",
+    necesitaFactura: datos.tipoComprobante === "factura",
+    subtotal: subtotal,
+    costoEnvio: costoEnvio,
+    igv: igv,
+    total: total,
+    fechaEntrega: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+
+    metodoPago: "paypal",
+    montoPago: total,
+    tipoComprobante: datos.tipoComprobante,
+    documento: datos.documento,
+
+    paypalId: details.id,
+    paypalEmail: details.payer.email_address,
+    payerId: details.payer.payer_id,
+
+    items: productos.map((prod) => ({
+      productoId: prod.id,
+      nombre: prod.nombre,
+      cantidad: prod.quantity,
+      precioUnitario: prod.precioVenta || prod.precio,
+      personalizacion: prod.comentarios || "",
+    })),
+  };
+
+  console.log("✅ Enviando checkoutData con PayPal:", checkoutData);
+
+  try {
+    const response = await checkoutService.procesarCheckout(checkoutData);
+    if (response.exitoso) {
+      clearCart();
+      navigate("/pago-exitoso", {
+        state: {
+          pedidoData: response,
+          metodoPago: "paypal",
+        },
+      });
+    } else {
+      toast.error(response.mensaje || "❌ Error al procesar el pedido con PayPal");
+    }
+  } catch (err) {
+    console.error("❌ Error en checkout con PayPal:", err);
+    toast.error("Error de conexión al procesar el pedido con PayPal");
+  }
+}}
+
     />
   </div>
 )}

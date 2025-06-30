@@ -15,7 +15,7 @@ const ProductToast = ({ producto, cantidad }) => (
           {cantidad === 1 ? "unidad" : "unidades"}
         </span>
         <span className="toast-price">
-          ${(producto.precioVenta * cantidad).toLocaleString("es-CO")}
+          S/.{(producto.precioVenta * cantidad).toLocaleString("es-CO")}
         </span>
       </div>
       {producto.comentarios && (
