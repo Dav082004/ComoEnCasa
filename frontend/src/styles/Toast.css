@@ -2,7 +2,7 @@
 
 /* Contenedor principal de las notificaciones */
 .Toastify__toast-container {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-primary);
   z-index: 9999;
   width: 380px;
 }

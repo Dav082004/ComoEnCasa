@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      canvas {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="64" height="64"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Fondo transparente
+      ctx.clearRect(0, 0, 64, 64);
+
+      // Base del pastel (más oscura)
+      ctx.fillStyle = "#8B4513";
+      ctx.fillRect(8, 48, 48, 12);
+
+      // Capa principal del pastel
+      ctx.fillStyle = "#FFB6C1";
+      ctx.fillRect(8, 32, 48, 16);
+
+      // Capa superior
+      ctx.fillStyle = "#FF69B4";
+      ctx.fillRect(12, 24, 40, 12);
+
+      // Cobertura blanca
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(12, 20, 40, 8);
+
+      // Cereza
+      ctx.fillStyle = "#DC143C";
+      ctx.beginPath();
+      ctx.arc(32, 16, 3, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // Vela
+      ctx.fillStyle = "#FFD700";
+      ctx.fillRect(31, 8, 2, 12);
+
+      // Llama
+      ctx.fillStyle = "#FF4500";
+      ctx.beginPath();
+      ctx.arc(32, 6, 2, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // Convertir a PNG y descargar
+      const link = document.createElement("a");
+      link.download = "favicon-64.png";
+      link.href = canvas.toDataURL();
+      link.click();
+    </script>
+  </body>
+</html>

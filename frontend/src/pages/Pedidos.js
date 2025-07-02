@@ -56,18 +56,13 @@ const Pedidos = () => {
 
   if (loading) {
     return (
-      <div
-        className="loading-container d-flex flex-column align-items-center justify-content-center"
-        style={{ minHeight: "40vh" }}>
+      <div className="loading-container d-flex flex-column align-items-center justify-content-center">
         <div
-          className="spinner-border text-pink mb-3"
-          role="status"
-          style={{ width: "4rem", height: "4rem" }}>
+          className="spinner-border text-pink mb-3 loading-spinner"
+          role="status">
           <span className="visually-hidden">Cargando...</span>
         </div>
-        <span className="mt-2" style={{ color: "#d63384", fontWeight: "bold" }}>
-          Cargando pedidos...
-        </span>
+        <span className="loading-text">Cargando pedidos...</span>
       </div>
     );
   }
@@ -76,9 +71,7 @@ const Pedidos = () => {
     <div className="pedidos-page py-4">
       <div className="container">
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <h1 className="mb-0" style={{ color: "#d63384", fontWeight: "bold" }}>
-            Mis Pedidos
-          </h1>
+          <h1 className="pedidos-title">Mis Pedidos</h1>
 
           {pedidos.length > 0 && (
             <div className="d-flex align-items-center">
@@ -87,8 +80,7 @@ const Pedidos = () => {
               </label>
               <select
                 id="filtroEstado"
-                className="form-select form-select-sm"
-                style={{ width: "auto" }}
+                className="form-select form-select-sm filtro-estado"
                 value={filtroEstado}
                 onChange={(e) => setFiltroEstado(e.target.value)}>
                 <option value="todos">Todos ({pedidos.length})</option>
@@ -221,7 +213,7 @@ const Pedidos = () => {
           </div>
         ) : (
           <div className="no-pedidos text-center p-4 bg-light rounded shadow-sm">
-            <h4 style={{ color: "#d63384" }}>
+            <h4 className="pedido-header">
               {filtroEstado === "todos"
                 ? "No tienes pedidos registrados aún."
                 : `No tienes pedidos con estado "${filtroEstado}".`}

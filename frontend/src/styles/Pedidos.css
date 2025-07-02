@@ -2,8 +2,41 @@
 
 .pedidos-page {
   min-height: 80vh;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-main);
+}
 
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.pedidos-title {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-primary);
+  margin-bottom: 0;
+}
+
+.loading-container {
+  min-height: 40vh;
+}
+
+.loading-spinner {
+  width: 4rem;
+  height: 4rem;
+}
+
+.loading-text {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-primary);
+  margin-top: 0.5rem;
+}
+
+.filtro-estado {
+  width: auto;
+}
+
+.pedido-header h4 {
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 .pedidos-container {

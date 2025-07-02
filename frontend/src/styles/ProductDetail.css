@@ -61,7 +61,7 @@
   font-size: 2.5rem;
   font-weight: 800;
   color: #d63384;
-  font-family: "Comfortaa", cursive, sans-serif;
+  font-family: var(--font-primary);
   margin-bottom: 1rem;
   line-height: 1.2;
   text-shadow: 0 2px 4px rgba(214, 51, 132, 0.1);
@@ -71,7 +71,7 @@
   font-size: 2rem;
   font-weight: 700;
   color: #2a5a3e;
-  font-family: "Comfortaa", cursive, sans-serif;
+  font-family: var(--font-primary);
   position: relative;
   padding-left: 1rem;
 }
@@ -108,7 +108,7 @@
   font-weight: 600;
   color: #495057;
   margin-bottom: 0.5rem;
-  font-family: "Comfortaa", cursive, sans-serif;
+  font-family: var(--font-primary);
 }
 
 .product-detail-select {
@@ -143,7 +143,7 @@
   padding: 1rem 2rem;
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: "Comfortaa", cursive, sans-serif;
+  font-family: var(--font-primary);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 8px 25px rgba(248, 180, 203, 0.4);
@@ -292,7 +292,7 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-primary);
   letter-spacing: 0.5px;
 }
 

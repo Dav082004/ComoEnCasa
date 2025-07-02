@@ -7,14 +7,18 @@
   text-align: center;
   background-color: #fffdfb;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-primary);
 }
 
 .verificacion-container h2 {
   margin-bottom: 16px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
 }
 
 .verificacion-container p {
   margin: 12px 0;
   font-size: 1rem;
   color: #444;
+  font-family: var(--font-primary);
 }

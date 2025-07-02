@@ -123,9 +123,7 @@ const Perfil = () => {
     <div className="perfil-container">
       <div className="perfil-wrapper">
         <div className="perfil-menu">
-          <h4 style={{ color: "#ff8fab", fontFamily: "Comic Sans MS" }}>
-            Configuración
-          </h4>
+          <h4>Configuración</h4>
           <button
             className={`btn w-100 mt-2 ${
               activeTab === "personal" ? "btn-primary" : "btn-outline-primary"
@@ -193,9 +191,7 @@ const Perfil = () => {
                     placeholder="Ingresa tu número de teléfono"
                   />
                 </div>
-                <div
-                  className="perfil-formulario-group"
-                  style={{ gridColumn: "1 / -1" }}>
+                <div className="perfil-formulario-group full-width">
                   <label>Dirección</label>
                   <input
                     type="text"
@@ -219,9 +215,7 @@ const Perfil = () => {
               <form
                 className="perfil-formulario"
                 onSubmit={handlePasswordSubmit}>
-                <div
-                  className="perfil-formulario-group"
-                  style={{ gridColumn: "1 / -1" }}>
+                <div className="perfil-formulario-group full-width">
                   <label>Contraseña Actual</label>
                   <input
                     type="password"
@@ -231,9 +225,7 @@ const Perfil = () => {
                     required
                   />
                 </div>
-                <div
-                  className="perfil-formulario-group"
-                  style={{ gridColumn: "1 / -1" }}>
+                <div className="perfil-formulario-group full-width">
                   <label>Nueva Contraseña</label>
                   <input
                     type="password"
@@ -245,9 +237,7 @@ const Perfil = () => {
                   />
                   <small className="text-muted">Mínimo 6 caracteres</small>
                 </div>
-                <div
-                  className="perfil-formulario-group"
-                  style={{ gridColumn: "1 / -1" }}>
+                <div className="perfil-formulario-group full-width">
                   <label>Confirmar Nueva Contraseña</label>
                   <input
                     type="password"

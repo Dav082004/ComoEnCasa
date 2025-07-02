@@ -4,14 +4,6 @@
   transition: transform 0.2s ease;
 }
 
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Mantiene la proporción sin deformar */
-  object-position: center; /* Centra la imagen */
-  transition: transform 0.2s ease;
-  padding-bottom: 10px;
-}
 .card-category p {
   text-decoration: none;
   margin: 0;
@@ -31,24 +23,6 @@
 
 .container-blogs {
   margin-bottom: 160px; /* Aumenta la separación con la sección de productos */
-}
-
-.blog-image-sherk {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Mantiene la proporción sin deformar */
-  object-position: center; /* Centra la imagen */
-  transition: transform 0.3s ease;
-  border-radius: 15px;
-}
-
-.blog-image-rosa {
-  width: 91%;
-  height: 91%;
-  object-fit: cover; /* Mantiene la proporción sin deformar */
-  object-position: center; /* Centra la imagen */
-  transition: transform 0.3s ease;
-  border-radius: 15px;
 }
 
 /* Estilos para la sección de recomendación */
@@ -138,4 +112,42 @@
   background: #fef7f9;
   color: #c2185b;
   border-color: #f0b5c4;
+}
+
+/* Botón Compra Aquí */
+.compra-aqui-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 15px 40px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.compra-aqui-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary) 100%
+  );
+  color: white;
+  text-decoration: none;
+}
+
+.compra-aqui-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.3);
 }

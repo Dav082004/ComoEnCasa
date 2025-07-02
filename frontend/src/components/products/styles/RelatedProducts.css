@@ -15,7 +15,7 @@
   font-size: 1.8rem;
   font-weight: 800;
   color: #d63384;
-  font-family: "Comfortaa", cursive, sans-serif;
+  font-family: var(--font-primary);
   text-align: center;
   margin-bottom: 1.5rem;
   position: relative;
@@ -162,7 +162,7 @@
   color: #333;
   text-align: center;
   line-height: 1.4;
-  font-family: "Comfortaa", cursive, sans-serif;
+  font-family: var(--font-primary);
   transition: color 0.3s ease;
   margin-top: auto;
   display: -webkit-box;

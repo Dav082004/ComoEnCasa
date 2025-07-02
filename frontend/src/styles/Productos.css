@@ -1,9 +1,53 @@
 /* productos.css */
 
+/* ===== ESTILOS PARA PÁGINA DE PRODUCTOS ===== */
+
+/* Loading container */
+.loading-container {
+  min-height: 40vh;
+}
+
+.loading-spinner {
+  width: 4rem;
+  height: 4rem;
+}
+
+.loading-text {
+  color: #d63384;
+  font-weight: bold;
+}
+
+/* Products page */
+.products-page {
+  font-family: var(--font-primary);
+}
+
+/* Products header */
+.products-header {
+  gap: 1rem;
+}
+
+.products-title {
+  color: #d63384;
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 0;
+}
+
+.products-count {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* No products message */
+.no-products {
+  color: #d63384;
+}
+
 /* Estilos generales */
 .productos {
   padding: 20px;
-  font-family: "Comfortaa", sans-serif;
+  font-family: var(--font-primary);
 }
 
 .productos-title {

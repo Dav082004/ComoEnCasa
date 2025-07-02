@@ -23,29 +23,18 @@ const Home = () => {
         <h1 className="text-center slogan">
           Tortas y pasteles que recuerden al hogar
         </h1>
+
+        {/* Botón Compra Aquí */}
+        <div className="text-center my-4">
+          <Link
+            to="/productos"
+            className="btn btn-primary btn-lg compra-aqui-btn">
+            🛒 Compra Aquí
+          </Link>
+        </div>
+
         <br />
       </div>
-
-      {/* Categories Section */}
-      <section className="container top-categories mb-5">
-        <div className="row g-4">
-          <div className="col-md-4">
-            <Link to="/pasteles" className="card-category category-Pasteles">
-              <p>Pasteles</p>
-            </Link>
-          </div>
-          <div className="col-md-4">
-            <Link to="/postres" className="card-category category-Postres">
-              <p>Postres</p>
-            </Link>
-          </div>
-          <div className="col-md-4">
-            <Link to="/eventos" className="card-category category-Eventos">
-              <p>Eventos</p>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Blog Section */}
       <section className="container blogs mb-5">

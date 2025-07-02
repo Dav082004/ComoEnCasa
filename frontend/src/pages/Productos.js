@@ -84,18 +84,13 @@ const Productos = () => {
 
   if (loading) {
     return (
-      <div
-        className="loading-container d-flex flex-column align-items-center justify-content-center"
-        style={{ minHeight: "40vh" }}>
+      <div className="loading-container d-flex flex-column align-items-center justify-content-center">
         <div
-          className="spinner-border text-pink mb-3"
-          role="status"
-          style={{ width: "4rem", height: "4rem" }}>
+          className="spinner-border text-pink mb-3 loading-spinner"
+          role="status">
           <span className="visually-hidden">Cargando...</span>
         </div>
-        <span className="mt-2" style={{ color: "#d63384", fontWeight: "bold" }}>
-          Cargando productos...
-        </span>
+        <span className="mt-2 loading-text">Cargando productos...</span>
       </div>
     );
   }
@@ -117,20 +112,10 @@ const Productos = () => {
           {/* Área principal */}
           <div className="col-md-9">
             {/* Header con título y filtro de precio */}
-            <div
-              className="products-header d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 p-3 rounded shadow-sm bg-white"
-              style={{ gap: "1rem" }}>
+            <div className="products-header d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 p-3 rounded shadow-sm bg-white">
               <div>
-                <h1
-                  className="mb-0"
-                  style={{
-                    color: "#d63384",
-                    fontWeight: "bold",
-                    fontSize: "2.2rem",
-                  }}>
-                  Nuestros Productos
-                </h1>
-                <span style={{ fontSize: "1rem", color: "#888" }}>
+                <h1 className="mb-0 products-title">Nuestros Productos</h1>
+                <span className="products-count">
                   {filteredProducts.length} producto
                   {filteredProducts.length !== 1 && "s"} encontrado
                   {filteredProducts.length !== 1 && "s"}
@@ -154,7 +139,7 @@ const Productos = () => {
                 ))
               ) : (
                 <div className="no-products text-center p-4 bg-light rounded shadow-sm">
-                  <h4 className="mb-2" style={{ color: "#d63384" }}>
+                  <h4 className="mb-2">
                     No se encontraron productos con estos filtros
                   </h4>
                   <p className="mb-0">

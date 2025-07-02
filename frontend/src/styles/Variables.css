@@ -1,16 +1,33 @@
 :root {
-  /* Colores pastel */
-  --color-primary: #ffb6c1; /* Rosa un poco más intenso pero pastel */
+  /* Colores principales */
+  --color-primary: #d63384; /* Rosa principal para títulos */
   --color-primary-light: #ffecef;
-  --color-primary-dark: #ff8fab; /* Rosa más vibrante */
+  --color-primary-dark: #c2185b; /* Rosa para precios */
   --color-accent: #a2d7d8;
+
+  /* Colores de texto */
   --color-text: #5a4a4a;
   --color-text-light: #8a7a7a;
+  --color-text-muted: #666;
 
-  /* Sombras */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  /* Colores de fondo */
+  --color-bg-main: #fff9fb;
+  --color-bg-card: #ffffff;
+  --color-bg-gradient: linear-gradient(135deg, #ffeef8 0%, #f8f9fa 100%);
+
+  /* Sombras con colores del tema */
+  --shadow-sm: 0 2px 8px rgba(248, 194, 212, 0.1);
+  --shadow-md: 0 5px 20px rgba(248, 194, 212, 0.1);
+  --shadow-lg: 0 15px 35px rgba(248, 194, 212, 0.2);
 
   /* Bordes */
-  --border-radius: 12px;
+  --border-radius: 15px;
+  --border-radius-sm: 12px;
+
+  /* Tipografía */
+  --font-primary: "Comfortaa", cursive;
+  --font-secondary: "Pacifico", cursive;
+  --font-weight-regular: 500;
+  --font-weight-bold: 600;
+  --font-weight-light: 400;
 }

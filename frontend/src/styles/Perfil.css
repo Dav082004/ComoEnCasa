@@ -26,6 +26,13 @@
   color: #fff;
 }
 
+.perfil-menu h4 {
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+}
+
 .perfil-menu button {
   background-color: #ff8fab;
   color: white;
@@ -67,8 +74,9 @@
 }
 
 .perfil-titulo {
-  color: #ff8fab;
-  font-family: "Comic Sans MS", cursive;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
   margin-bottom: 20px;
   font-size: 1.2rem;
 }
@@ -137,6 +145,12 @@
   background-color: #f76c6c;
 }
 
+/* Elementos del formulario que ocupan todo el ancho */
+.perfil-formulario-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .perfil-wrapper {
     flex-direction: column;
