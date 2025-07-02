@@ -2,10 +2,11 @@
 .pago-exitoso-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  background-color: #fdfdfd;
-  padding: 2rem;
+  align-items: flex-start;
+  min-height: 60vh;
+  background-color: #fef7f9;
+  padding: 2rem 2rem 4rem 2rem;
+  padding-top: 3rem;
 }
 
 .pago-exitoso-card {
