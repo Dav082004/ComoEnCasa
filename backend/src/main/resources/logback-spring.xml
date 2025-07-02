@@ -1,69 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!-- Configuración base de Logback para el proyecto ComoEnCasa -->
+    <!-- Configuración de Logback solo para consola (sin archivos) -->
 
     <!-- Appender para consola con colores -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level)
-                %magenta(%logger{36}) - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
         </encoder>
-    </appender>    <!--
-    Appender para archivo general -->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/comoencasa.log</file>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>logs/comoencasa.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <maxFileSize>10MB</maxFileSize>
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>300MB</totalSizeCap>
-        </rollingPolicy>
-    </appender>    <!-- Appender
-    específico para eventos de autenticación -->
-    <appender name="AUTH_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/auth.log</file>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>logs/auth.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <maxFileSize>10MB</maxFileSize>
-            <maxHistory>60</maxHistory>
-            <totalSizeCap>500MB</totalSizeCap>
-        </rollingPolicy>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/productos.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/productos.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>7</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
     <!-- Logger específico para eventos de autenticación -->
     <logger name="com.comoencasa_backend.controller.AuthController" level="INFO" additivity="false">
-        <appender-ref ref="AUTH_FILE" />
         <appender-ref ref="CONSOLE" />
     </logger>
 
-    <logger name="com.comoencasa_backend.service.impl.UsuarioServiceImpl" level="INFO"
-        additivity="false">
-        <appender-ref ref="AUTH_FILE" />
+    <logger name="com.comoencasa_backend.service.impl.UsuarioServiceImpl" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE" />
     </logger>
 
-    <logger name="com.comoencasa_backend.controller.RecuperarCuentaController" level="INFO"
-        additivity="false">
-        <appender-ref ref="AUTH_FILE" />
+    <logger name="com.comoencasa_backend.controller.RecuperarCuentaController" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE" />
     </logger>
 
@@ -73,18 +28,12 @@
     <!-- Logger para Spring Security -->
     <logger name="org.springframework.security" level="WARN" />
 
-    <!-- Logger para SQL -->
-    <logger name="org.hibernate.SQL" level="DEBUG" />
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
+    <!-- Logger para SQL (opcional, puedes cambiar a WARN si no quieres ver SQL) -->
+    <logger name="org.hibernate.SQL" level="WARN" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" />
 
-    <!-- Configuración del root logger -->
+    <!-- Configuración del root logger - SOLO CONSOLA -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
-    </root>
-
-    <root level="INFO">
-        <appender-ref ref="FILE" />
         <appender-ref ref="CONSOLE" />
     </root>
 </configuration>
