@@ -155,13 +155,14 @@ public class CheckoutServiceImpl implements CheckoutService {
 
      private void validarCheckoutDTO(CheckoutDTO checkoutDTO) {
           log.info("Validando checkoutDTO: usuarioId={}, items={}, direccionEntrega={}, metodoPago={}, tipoComprobante={}, documento={}",
-                  checkoutDTO.getUsuarioId(), checkoutDTO.getItems() != null ? checkoutDTO.getItems().size() : 0,
-                  checkoutDTO.getDireccionEntrega(), checkoutDTO.getMetodoPago(), checkoutDTO.getTipoComprobante(), checkoutDTO.getDocumento());
+                    checkoutDTO.getUsuarioId(), checkoutDTO.getItems() != null ? checkoutDTO.getItems().size() : 0,
+                    checkoutDTO.getDireccionEntrega(), checkoutDTO.getMetodoPago(), checkoutDTO.getTipoComprobante(),
+                    checkoutDTO.getDocumento());
 
           // Logs adicionales para PayPal
           if ("paypal".equalsIgnoreCase(checkoutDTO.getMetodoPago())) {
-               log.info("Validando datos de PayPal: paypalId={}, paypalEmail={}, payerId={}", 
-                        checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail(), checkoutDTO.getPayerId());
+               log.info("Validando datos de PayPal: paypalId={}, paypalEmail={}, payerId={}",
+                         checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail(), checkoutDTO.getPayerId());
           }
 
           if (checkoutDTO.getUsuarioId() == null) {
@@ -211,7 +212,6 @@ public class CheckoutServiceImpl implements CheckoutService {
                throw new IllegalArgumentException("Usuario no encontrado");
           }
      }
-
 
      private Pedido crearPedido(CheckoutDTO checkoutDTO) {
           Usuario usuario = usuarioRepository.findById(checkoutDTO.getUsuarioId()).get();
@@ -298,17 +298,18 @@ public class CheckoutServiceImpl implements CheckoutService {
           }
 
           pago.setMetodo(metodoPago);
-          
-          // Para PayPal, si tenemos los datos de la transacción, consideramos el pago como exitoso
+
+          // Para PayPal, si tenemos los datos de la transacción, consideramos el pago
+          // como exitoso
           if (metodoPago == Pago.MetodoPago.PayPal) {
                pago.setPaypalEmail(checkoutDTO.getPaypalEmail());
                pago.setPaypalId(checkoutDTO.getPaypalId());
                pago.setPayerId(checkoutDTO.getPayerId());
-               
+
                // Si tenemos paypalId, significa que PayPal ya aprobó la transacción
                if (checkoutDTO.getPaypalId() != null && !checkoutDTO.getPaypalId().isEmpty()) {
                     pago.setEstado(Pago.EstadoPago.Pagado);
-                    log.info("Pago de PayPal marcado como exitoso. PayPal ID: {}, PayPal Email: {}", 
+                    log.info("Pago de PayPal marcado como exitoso. PayPal ID: {}, PayPal Email: {}",
                               checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail());
                } else {
                     pago.setEstado(Pago.EstadoPago.Rechazado);
@@ -318,7 +319,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                // Para otros métodos de pago, usar la simulación existente
                boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());
                pago.setEstado(pagoExitoso ? Pago.EstadoPago.Pagado : Pago.EstadoPago.Rechazado);
-               log.info("Pago con {} procesado. Estado: {}", metodoPago.getDisplayName(), 
+               log.info("Pago con {} procesado. Estado: {}", metodoPago.getDisplayName(),
                          pagoExitoso ? "Exitoso" : "Rechazado");
           }
 

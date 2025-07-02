@@ -65,8 +65,8 @@ public class PayPalService {
       * Valida todos los datos de PayPal en conjunto
       */
      public ValidationResult validatePayPalData(String paypalId, String paypalEmail, String payerId) {
-          log.info("Validando datos de PayPal: paypalId={}, paypalEmail={}, payerId={}", 
-                   paypalId, paypalEmail, payerId);
+          log.info("Validando datos de PayPal: paypalId={}, paypalEmail={}, payerId={}",
+                    paypalId, paypalEmail, payerId);
 
           ValidationResult result = new ValidationResult();
 
@@ -82,8 +82,8 @@ public class PayPalService {
                result.addError("Payer ID de PayPal inválido: " + payerId);
           }
 
-          log.info("Resultado de validación de PayPal: válido={}, errores={}", 
-                   result.isValid(), result.getErrors().size());
+          log.info("Resultado de validación de PayPal: válido={}, errores={}",
+                    result.isValid(), result.getErrors().size());
 
           return result;
      }

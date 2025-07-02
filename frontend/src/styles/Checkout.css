@@ -208,6 +208,28 @@ h3 {
   font-size: 0.8rem;
 }
 
+/* Estado deshabilitado para opciones de comprobante y métodos de pago */
+.comprobante-option.disabled {
+  background-color: #f8f9fa !important;
+  border-color: #dee2e6 !important;
+  color: #6c757d !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.comprobante-option.disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: #dee2e6 !important;
+  background-color: #f8f9fa !important;
+}
+
+.comprobante-option.disabled h5,
+.comprobante-option.disabled p,
+.comprobante-option.disabled small {
+  color: #6c757d !important;
+}
+
 /* Mejorar cards de información de pago */
 .payment-info-card {
   background: linear-gradient(135deg, #fff 0%, #fff5f8 100%);
@@ -401,10 +423,17 @@ h3 {
 }
 
 .finalizar-btn:disabled {
+  background: linear-gradient(135deg, #dee2e6 0%, #ced4da 100%) !important;
+  color: #6c757d !important;
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+.finalizar-btn.disabled {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%) !important;
+  color: #2d3436 !important;
 }
 
 .finalizar-btn.procesando {

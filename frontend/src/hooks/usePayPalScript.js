@@ -14,10 +14,10 @@ const usePayPalScript = (clientId) => {
       script.async = true;
       script.onload = () => {
         const environment = isPayPalSandbox() ? "sandbox" : "production";
-        console.log(`✅ PayPal SDK cargado (${environment})`);
+        console.log(`PayPal SDK cargado (${environment}) - Moneda: USD`);
       };
       script.onerror = () => {
-        console.error("❌ Error cargando PayPal SDK");
+        console.error("Error cargando PayPal SDK");
       };
       document.body.appendChild(script);
     }
