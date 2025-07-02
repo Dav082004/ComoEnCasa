@@ -23,29 +23,16 @@ const Home = () => {
         <h1 className="text-center slogan">
           Tortas y pasteles que recuerden al hogar
         </h1>
-        <br />
-      </div>
 
-      {/* Categories Section */}
-      <section className="container top-categories mb-5">
-        <div className="row g-4">
-          <div className="col-md-4">
-            <Link to="/pasteles" className="card-category category-Pasteles">
-              <p>Pasteles</p>
-            </Link>
-          </div>
-          <div className="col-md-4">
-            <Link to="/postres" className="card-category category-Postres">
-              <p>Postres</p>
-            </Link>
-          </div>
-          <div className="col-md-4">
-            <Link to="/eventos" className="card-category category-Eventos">
-              <p>Eventos</p>
-            </Link>
-          </div>
+        {/* Botón Compra Aquí debajo del slogan */}
+        <div className="text-center mt-4 mb-5">
+          <Link
+            to="/productos"
+            className="btn btn-primary btn-lg compra-productos-btn">
+            🛒 Compra Aquí
+          </Link>
         </div>
-      </section>
+      </div>
 
       {/* Blog Section */}
       <section className="container blogs mb-5">
@@ -53,11 +40,14 @@ const Home = () => {
           <div className="col-md-6">
             <div className="card-blog">
               <div className="blog-image-container">
-                <img src={TortaRosa} alt="Torta Rosa" className="blog-image" />
+                <img
+                  src={TortaRosa}
+                  alt="Torta Rosa"
+                  className="blog-image-rosa"
+                />
               </div>
               <div className="blog-content">
-                <h3>Torta Rosa</h3>
-                <span className="blog-date">02 Mayo 2025</span>
+                <h3>Torta Especiales</h3>
                 <p>
                   Torta de vainilla con relleno de crema de fresa y decorada con
                   rosas. Ideal para cualquier celebración.
@@ -71,12 +61,11 @@ const Home = () => {
                 <img
                   src={TortaSherk}
                   alt="Torta Sherk"
-                  className="blog-image"
+                  className="blog-image-sherk"
                 />
               </div>
               <div className="blog-content">
-                <h3>Torta Sherk</h3>
-                <span className="blog-date">25 Abril 2025</span>
+                <h3>Tortas Tematicas</h3>
                 <p>
                   Torta de chocolate con relleno de crema de avellanas y
                   decorada con el personaje Sherk. Perfecta para los más

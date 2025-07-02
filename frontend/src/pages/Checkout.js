@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import checkoutService from "../services/checkoutService";
 import { toast } from "react-toastify";
 import AuthRequiredModal from "../components/AuthRequiredModal";
+import usePayPalScript from "../hooks/usePayPalScript";
+import PayPalCheckoutButton from "../components/PayPalCheckoutButton";
+import { getPayPalClientId } from "../config/paypal";
 import "../styles/Checkout.css";
+import PlinQR from "../assets/metodo_pago/PlinQR.jpeg";
+import YapeQR from "../assets/metodo_pago/YapeQR.jpeg";
 
 const CheckoutSimple = () => {
   const {
@@ -52,6 +57,7 @@ const CheckoutSimple = () => {
     }
   }, [validateAuthForCheckout]);
 
+  usePayPalScript(getPayPalClientId());
   // Constantes de datos
   const distritos = [
     "Ancón",
@@ -106,13 +112,40 @@ const CheckoutSimple = () => {
   const igv = 0; // IGV ya está incluido en los precios de productos
   const total = subtotal + costoEnvio;
 
+  // Estados de validación
+  const hasAddress = datos.distrito && datos.direccion.trim();
+  const hasValidDocument =
+    datos.documento &&
+    ((datos.tipoComprobante === "boleta" && /^\d{8}$/.test(datos.documento)) ||
+      (datos.tipoComprobante === "factura" &&
+        /^\d{11}$/.test(datos.documento)));
+  const isFormValid =
+    hasAddress && datos.tipoComprobante && hasValidDocument && datos.metodoPago;
+
   // Funciones de manejo de formulario
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setDatos((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    setDatos((prev) => {
+      const newDatos = {
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      };
+
+      // Si cambia el documento, verificar si se mantiene válido
+      if (name === "documento") {
+        const newHasValidDocument =
+          value &&
+          ((newDatos.tipoComprobante === "boleta" && /^\d{8}$/.test(value)) ||
+            (newDatos.tipoComprobante === "factura" && /^\d{11}$/.test(value)));
+
+        // Si el documento se vuelve inválido, resetear método de pago
+        if (!newHasValidDocument && newDatos.metodoPago) {
+          newDatos.metodoPago = "";
+        }
+      }
+
+      return newDatos;
+    });
   };
 
   const handleComprobanteChange = (tipo) => {
@@ -120,14 +153,94 @@ const CheckoutSimple = () => {
       ...prev,
       tipoComprobante: tipo,
       documento: "",
+      metodoPago: "", // Resetear método de pago al cambiar tipo de comprobante
     }));
   };
 
   const handleMetodoPagoChange = (metodo) => {
+    // Solo permitir cambio si hay documento válido
+    if (!hasValidDocument) {
+      toast.warning("Complete primero los datos del comprobante");
+      return;
+    }
+
     setDatos((prev) => ({
       ...prev,
       metodoPago: metodo,
     }));
+  };
+
+  // Función para manejar el éxito del pago de PayPal
+  const handlePayPalSuccess = async (paypalData) => {
+    try {
+      setProcesando(true);
+
+      const checkoutData = {
+        usuarioId: user.id,
+        direccionEntrega: datos.direccion,
+        distrito: datos.distrito,
+        referencia: datos.referencia || "",
+        notas: "",
+        necesitaFactura: datos.tipoComprobante === "factura",
+        subtotal: subtotal,
+        costoEnvio: costoEnvio,
+        igv: igv,
+        total: total,
+        fechaEntrega: new Date(
+          Date.now() + 3 * 24 * 60 * 60 * 1000
+        ).toISOString(),
+
+        metodoPago: "paypal",
+        montoPago: total,
+        tipoComprobante: datos.tipoComprobante,
+        documento: datos.documento,
+
+        // Datos específicos de PayPal
+        paypalId: paypalData.paypalId,
+        paypalEmail: paypalData.paypalEmail,
+        payerId: paypalData.payerId,
+
+        items: productos.map((prod) => ({
+          productoId: prod.id,
+          nombre: prod.nombre,
+          cantidad: prod.quantity,
+          precioUnitario: prod.precioVenta || prod.precio,
+          personalizacion: prod.comentarios || "",
+        })),
+      };
+
+      console.log("Enviando checkoutData con PayPal:", checkoutData);
+
+      const response = await checkoutService.procesarCheckout(checkoutData);
+
+      if (response.exitoso) {
+        clearCart();
+        toast.success("¡Pago con PayPal completado exitosamente!");
+        navigate("/pago-exitoso", {
+          state: {
+            pedidoData: response,
+            metodoPago: "paypal",
+            paypalData: paypalData,
+          },
+        });
+      } else {
+        throw new Error(
+          response.mensaje || "Error al procesar el pedido con PayPal"
+        );
+      }
+    } catch (err) {
+      console.error("❌ Error en checkout con PayPal:", err);
+      setError("Error procesando el pago con PayPal: " + err.message);
+      throw err; // Re-lanzar para que PayPalCheckoutButton pueda manejar el estado
+    } finally {
+      setProcesando(false);
+    }
+  };
+
+  // Función para manejar errores de PayPal
+  const handlePayPalError = (error) => {
+    console.error("❌ Error de PayPal manejado:", error);
+    setError("Error de PayPal: " + (error.message || "Error desconocido"));
   };
 
   // Función principal de submit
@@ -150,8 +263,60 @@ const CheckoutSimple = () => {
         return;
       }
 
-      // 3. Validar stock
-      toast.info("🔍 Verificando disponibilidad de productos...", {
+      // 3. Validar datos de dirección
+      if (!datos.distrito || datos.distrito.trim() === "") {
+        toast.error("Debe seleccionar un distrito");
+        setError("Debe seleccionar un distrito para continuar");
+        return;
+      }
+
+      if (!datos.direccion || datos.direccion.trim() === "") {
+        toast.error("Debe ingresar su dirección completa");
+        setError("Debe ingresar su dirección completa para continuar");
+        return;
+      }
+
+      // 4. Validar datos del comprobante
+      if (!datos.tipoComprobante || datos.tipoComprobante.trim() === "") {
+        toast.error("Debe seleccionar el tipo de comprobante");
+        setError("Debe seleccionar si desea boleta o factura");
+        return;
+      }
+
+      if (!datos.documento || datos.documento.trim() === "") {
+        const tipoDoc = datos.tipoComprobante === "boleta" ? "DNI" : "RUC";
+        toast.error(`Debe ingresar su ${tipoDoc}`);
+        setError(`Debe ingresar su ${tipoDoc} para el comprobante`);
+        return;
+      }
+
+      // 5. Validar formato del documento
+      if (datos.tipoComprobante === "boleta") {
+        if (datos.documento.length !== 8 || !/^\d{8}$/.test(datos.documento)) {
+          toast.error("El DNI debe tener 8 dígitos");
+          setError("El DNI debe tener exactamente 8 dígitos");
+          return;
+        }
+      } else if (datos.tipoComprobante === "factura") {
+        if (
+          datos.documento.length !== 11 ||
+          !/^\d{11}$/.test(datos.documento)
+        ) {
+          toast.error("El RUC debe tener 11 dígitos");
+          setError("El RUC debe tener exactamente 11 dígitos");
+          return;
+        }
+      }
+
+      // 6. Validar método de pago
+      if (!datos.metodoPago || datos.metodoPago.trim() === "") {
+        toast.error("Debe seleccionar un método de pago");
+        setError("Debe seleccionar un método de pago para continuar");
+        return;
+      }
+
+      // 7. Validar stock
+      toast.info("Verificando disponibilidad de productos...", {
         autoClose: 2000,
       });
 
@@ -161,20 +326,20 @@ const CheckoutSimple = () => {
 
         if (hasChanges) {
           toast.warning(
-            "⚠️ Tu carrito ha sido actualizado según la disponibilidad actual",
+            "Tu carrito ha sido actualizado según la disponibilidad actual",
             { autoClose: 4000 }
           );
         }
 
         setError(`Problemas de stock detectados:\n${stockErrors.join("\n")}`);
         toast.error(
-          "❌ No se puede procesar el pedido debido a problemas de stock",
+          "No se puede procesar el pedido debido a problemas de stock",
           { autoClose: 5000 }
         );
         return;
       }
 
-      // 4. Preparar datos del checkout
+      // 8. Preparar datos del checkout
       const checkoutData = {
         usuarioId: user.id,
         direccionEntrega: datos.direccion,
@@ -210,7 +375,7 @@ const CheckoutSimple = () => {
 
       console.log("Enviando checkout data:", checkoutData);
 
-      // 5. Procesar checkout
+      // 9. Procesar checkout
       const response = await checkoutService.procesarCheckout(checkoutData);
 
       if (response.exitoso) {
@@ -337,12 +502,20 @@ const CheckoutSimple = () => {
   const renderComprobanteSection = () => (
     <div className="checkout-section">
       <h3>📄 Comprobante de Pago</h3>
+      {!hasAddress && (
+        <div className="alert alert-info">
+          <small>
+            📍 Primero complete los datos de envío para seleccionar el
+            comprobante
+          </small>
+        </div>
+      )}
       <div className="form-row">
         <div
           className={`comprobante-option ${
             datos.tipoComprobante === "boleta" ? "active" : ""
-          }`}
-          onClick={() => handleComprobanteChange("boleta")}>
+          } ${!hasAddress ? "disabled" : ""}`}
+          onClick={() => hasAddress && handleComprobanteChange("boleta")}>
           <h5>📋 Boleta de Venta</h5>
           <p>Para consumo personal</p>
           <small>Requiere DNI</small>
@@ -350,8 +523,8 @@ const CheckoutSimple = () => {
         <div
           className={`comprobante-option ${
             datos.tipoComprobante === "factura" ? "active" : ""
-          }`}
-          onClick={() => handleComprobanteChange("factura")}>
+          } ${!hasAddress ? "disabled" : ""}`}
+          onClick={() => hasAddress && handleComprobanteChange("factura")}>
           <h5>🏢 Factura</h5>
           <p>Para empresas</p>
           <small>Requiere RUC</small>
@@ -360,16 +533,19 @@ const CheckoutSimple = () => {
 
       <div className="form-row">
         <input
-          type="text"
+          type="number"
           name="documento"
           placeholder={
-            datos.tipoComprobante === "boleta"
+            !hasAddress
+              ? "Complete primero los datos de envío"
+              : datos.tipoComprobante === "boleta"
               ? "Ingrese su DNI (8 dígitos)"
               : "Ingrese su RUC (11 dígitos)"
           }
           value={datos.documento}
           onChange={handleChange}
           maxLength={datos.tipoComprobante === "boleta" ? 8 : 11}
+          disabled={!hasAddress}
           required
         />
       </div>
@@ -379,9 +555,18 @@ const CheckoutSimple = () => {
   const renderPaymentSection = () => (
     <div className="checkout-section">
       <h3>💳 Métodos de Pago</h3>
+      {!hasValidDocument && (
+        <div className="alert alert-info">
+          <small>
+            📄 Complete los datos del comprobante para seleccionar el método de
+            pago
+          </small>
+        </div>
+      )}
+
       <div className="form-row">
         {[
-          { key: "tarjeta", icon: "💳", label: "Tarjeta de Crédito/Débito" },
+          { key: "paypal", icon: "🅿️", label: "PayPal" },
           { key: "yape", icon: "📱", label: "Yape" },
           { key: "plin", icon: "💰", label: "Plin" },
         ].map((metodo) => (
@@ -389,8 +574,10 @@ const CheckoutSimple = () => {
             key={metodo.key}
             className={`comprobante-option ${
               datos.metodoPago === metodo.key ? "active" : ""
-            }`}
-            onClick={() => handleMetodoPagoChange(metodo.key)}>
+            } ${!hasValidDocument ? "disabled" : ""}`}
+            onClick={() =>
+              hasValidDocument && handleMetodoPagoChange(metodo.key)
+            }>
             <h5>
               {metodo.icon} {metodo.label}
             </h5>
@@ -398,52 +585,26 @@ const CheckoutSimple = () => {
         ))}
       </div>
 
-      {datos.metodoPago === "tarjeta" && (
-        <div className="payment-details">
-          <div className="form-row">
-            <input
-              type="text"
-              name="tarjeta"
-              placeholder="Número de tarjeta (16 dígitos)"
-              value={datos.tarjeta}
-              onChange={handleChange}
-              maxLength="19"
-              required
-            />
-          </div>
-
-          <div className="form-row">
-            <input
-              type="text"
-              name="titular"
-              placeholder="Nombre del titular"
-              value={datos.titular}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="vencimiento"
-              placeholder="MM/YY"
-              value={datos.vencimiento}
-              onChange={handleChange}
-              maxLength="5"
-              required
-            />
-            <input
-              type="text"
-              name="cvv"
-              placeholder="CVV"
-              value={datos.cvv}
-              onChange={handleChange}
-              maxLength="4"
-              required
-            />
-          </div>
-        </div>
+      {/* 🅿️ Pago con PayPal */}
+      {datos.metodoPago === "paypal" && hasValidDocument && (
+        <PayPalCheckoutButton
+          total={total}
+          checkoutData={{
+            usuarioId: user.id,
+            direccionEntrega: datos.direccion,
+            distrito: datos.distrito,
+            referencia: datos.referencia,
+            tipoComprobante: datos.tipoComprobante,
+            documento: datos.documento,
+          }}
+          onSuccess={handlePayPalSuccess}
+          onError={handlePayPalError}
+          disabled={procesando || productos.length === 0 || !isFormValid}
+        />
       )}
 
-      {datos.metodoPago === "yape" && (
+      {/* 📱 Yape */}
+      {datos.metodoPago === "yape" && hasValidDocument && (
         <div className="payment-info-card">
           <h4>📱 Instrucciones para Yape</h4>
           <p>1. Abre tu app Yape</p>
@@ -454,20 +615,25 @@ const CheckoutSimple = () => {
             3. Monto: <strong>S/. {total.toFixed(2)}</strong>
           </p>
           <div className="qr-placeholder">
-            <div className="qr-code">📱 QR Yape</div>
+            <img src={YapeQR} alt="Código QR Yape" className="qr-code" />
           </div>
         </div>
       )}
 
-      {datos.metodoPago === "plin" && (
+      {/* 💰 Plin */}
+      {datos.metodoPago === "plin" && hasValidDocument && (
         <div className="payment-info-card">
           <h4>💰 Instrucciones para Plin</h4>
           <p>1. Abre tu app Plin</p>
-          <p>2. Envía el pago al número:</p>
-          <div className="numero-plin">987-654-321</div>
+          <p>
+            2. Escanea el código QR o envía a: <strong>123-456-789</strong>
+          </p>
           <p>
             3. Monto: <strong>S/. {total.toFixed(2)}</strong>
           </p>
+          <div className="qr-placeholder">
+            <img src={PlinQR} alt="Código QR PLIN" className="qr-code" />
+          </div>
         </div>
       )}
     </div>
@@ -536,9 +702,15 @@ const CheckoutSimple = () => {
 
           <button
             type="submit"
-            className={`finalizar-btn ${procesando ? "procesando" : ""}`}
-            disabled={procesando || productos.length === 0}>
-            {procesando ? "⏳ Procesando Pedido..." : "✅ Confirmar y Pagar"}
+            className={`finalizar-btn ${procesando ? "procesando" : ""} ${
+              !isFormValid ? "disabled" : ""
+            }`}
+            disabled={procesando || productos.length === 0 || !isFormValid}>
+            {procesando
+              ? "⏳ Procesando Pedido..."
+              : !isFormValid
+              ? "⚠️ Complete todos los datos"
+              : "✅ Confirmar y Pagar"}
           </button>
         </form>
       </div>

@@ -118,18 +118,10 @@ const Productos = () => {
           <div className="col-md-9">
             {/* Header con título y filtro de precio */}
             <div
-              className="products-header d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 p-3 rounded shadow-sm bg-white"
+              className="products-header d-flex flex-column flex-md-row align-items-md-center justify-content-between"
               style={{ gap: "1rem" }}>
               <div>
-                <h1
-                  className="mb-0"
-                  style={{
-                    color: "#d63384",
-                    fontWeight: "bold",
-                    fontSize: "2.2rem",
-                  }}>
-                  Nuestros Productos
-                </h1>
+                <h1 className="mb-0">Nuestros Productos</h1>
                 <span style={{ fontSize: "1rem", color: "#888" }}>
                   {filteredProducts.length} producto
                   {filteredProducts.length !== 1 && "s"} encontrado

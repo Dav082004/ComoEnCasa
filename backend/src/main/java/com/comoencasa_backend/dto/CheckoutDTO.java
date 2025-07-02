@@ -24,6 +24,11 @@ public class CheckoutDTO {
      private String metodoPago; // Yape, Plin, Tarjeta, Efectivo
      private BigDecimal montoPago;
 
+     // Datos de PayPal (opcional, se usan si metodoPago es PAYPAL)
+     private String paypalEmail;
+     private String paypalId;
+     private String payerId;
+     
      // Datos del comprobante
      private String tipoComprobante; // Boleta o Factura
      private String documento; // DNI o RUC

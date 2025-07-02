@@ -15,32 +15,28 @@ const checkoutService = {
           },
         }
       );
+
+      console.log("Respuesta del servidor:", response.data);
       return response.data;
+
     } catch (error) {
       console.error("Error en checkout:", error);
+
       if (error.response) {
-        // El servidor respondió con un código de estado de error
-        console.error("Respuesta del servidor:", error.response.data);
-        console.error("Status:", error.response.status);
-        throw (
-          error.response.data || {
-            mensaje: `Error del servidor: ${error.response.status}`,
-          }
-        );
+        const status = error.response.status;
+        const data = error.response.data;
+
+        console.error("Respuesta del servidor:", data);
+        console.error("Status:", status);
+
+        // ✅ Lanza el error con mensaje si lo hay
+        throw new Error(data?.mensaje || `Error del servidor: ${status}`);
       } else if (error.request) {
-        // La petición fue hecha pero no se recibió respuesta
         console.error("No se recibió respuesta:", error.request);
-        const connectionError = new Error("Error de conexión con el servidor");
-        connectionError.mensaje = "Error de conexión con el servidor";
-        throw connectionError;
+        throw new Error("Error de conexión con el servidor");
       } else {
-        // Algo pasó en la configuración de la petición
         console.error("Error en la configuración:", error.message);
-        const configError = new Error(
-          "Error de configuración: " + error.message
-        );
-        configError.mensaje = "Error de configuración: " + error.message;
-        throw configError;
+        throw new Error("Error de configuración: " + error.message);
       }
     }
   },
@@ -58,7 +54,9 @@ const checkoutService = {
       return response.data;
     } catch (error) {
       console.error("Error simulando pago:", error);
-      throw error.response?.data || false;
+      throw new Error(
+        error.response?.data?.mensaje || "Error al simular el pago"
+      );
     }
   },
 };

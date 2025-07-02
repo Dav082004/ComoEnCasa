@@ -232,6 +232,11 @@
   border: 1px solid #eab308;
 }
 
+.payment-method.paypal {
+  background-color: #fefce8;
+  color: #2c29cf;
+  border: 1px solid #423fe6;
+}
 /* Efectivo e Issug como texto plano - sin estilos de badge */
 .payment-method.efectivo {
   background-color: transparent !important;

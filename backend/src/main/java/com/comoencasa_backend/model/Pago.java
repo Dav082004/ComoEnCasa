@@ -1,55 +1,24 @@
 package com.comoencasa_backend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "pago")
+@Getter
+@Setter
 public class Pago {
-
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Long id;
-
-     @Column(name = "pedido_id", insertable = false, updatable = false)
-     private Long pedidoId;
-
-     @ManyToOne(fetch = FetchType.LAZY)
-     @JoinColumn(name = "pedido_id", nullable = false)
-     private Pedido pedido;
-
-     @Column(nullable = false)
-     private LocalDateTime fecha;
-
-     @Enumerated(EnumType.STRING)
-     @Column(nullable = false)
-     private MetodoPago metodo;
-
-     @Enumerated(EnumType.STRING)
-     @Column(nullable = false)
-     private EstadoPago estado;
-
-     @Column(nullable = false, precision = 10, scale = 2)
-     private BigDecimal monto;
-
-     @PrePersist
-     public void prePersist() {
-          if (this.fecha == null) {
-               this.fecha = LocalDateTime.now();
-          }
-          if (this.estado == null) {
-               this.estado = EstadoPago.Pendiente;
-          }
-     }
 
      public enum MetodoPago {
           Yape("Yape"),
           Plin("Plin"),
           Tarjeta("Tarjeta"),
-          Efectivo("Efectivo");
+          Efectivo("Efectivo"),
+          PayPal("PayPal");
 
           private final String displayName;
 
@@ -63,8 +32,8 @@ public class Pago {
      }
 
      public enum EstadoPago {
-          Pendiente("Pendiente"),
           Pagado("Pagado"),
+          Pendiente("Pendiente"),
           Rechazado("Rechazado");
 
           private final String displayName;
@@ -77,4 +46,36 @@ public class Pago {
                return displayName;
           }
      }
+
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
+
+     @ManyToOne(fetch = FetchType.LAZY)
+     @JoinColumn(name = "pedido_id", nullable = false)
+     private Pedido pedido;
+
+     @Column(nullable = false)
+     private LocalDateTime fecha;
+
+     @Enumerated(EnumType.STRING)
+     @Column(nullable = false)
+     private MetodoPago metodo;
+
+     @Enumerated(EnumType.STRING)
+     @Column(nullable = true)
+     private EstadoPago estado = EstadoPago.Pendiente;
+
+     @Column(nullable = false, precision = 10, scale = 2)
+     private BigDecimal monto;
+
+     // Campos opcionales para PayPal
+     @Column(name = "paypal_email")
+     private String paypalEmail;
+
+     @Column(name = "paypal_id")
+     private String paypalId;
+
+     @Column(name = "payer_id")
+     private String payerId;
 }

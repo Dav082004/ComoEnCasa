@@ -74,7 +74,7 @@ public class CheckoutServiceImpl implements CheckoutService {
                     }
                } catch (Exception e) {
                     log.error("Error procesando checkout: {}", e.getMessage(), e);
-                    throw new RuntimeException("Error procesando el pedido: " + e.getMessage());
+                    return construirRespuestaError("Error procesando el pedido: " + e.getMessage());
                }
           }
 
@@ -154,28 +154,61 @@ public class CheckoutServiceImpl implements CheckoutService {
      }
 
      private void validarCheckoutDTO(CheckoutDTO checkoutDTO) {
+          log.info("Validando checkoutDTO: usuarioId={}, items={}, direccionEntrega={}, metodoPago={}, tipoComprobante={}, documento={}",
+                    checkoutDTO.getUsuarioId(), checkoutDTO.getItems() != null ? checkoutDTO.getItems().size() : 0,
+                    checkoutDTO.getDireccionEntrega(), checkoutDTO.getMetodoPago(), checkoutDTO.getTipoComprobante(),
+                    checkoutDTO.getDocumento());
+
+          // Logs adicionales para PayPal
+          if ("paypal".equalsIgnoreCase(checkoutDTO.getMetodoPago())) {
+               log.info("Validando datos de PayPal: paypalId={}, paypalEmail={}, payerId={}",
+                         checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail(), checkoutDTO.getPayerId());
+          }
+
           if (checkoutDTO.getUsuarioId() == null) {
+               log.error("Validación fallida: usuarioId es null");
                throw new IllegalArgumentException("El ID de usuario es requerido");
           }
           if (checkoutDTO.getItems() == null || checkoutDTO.getItems().isEmpty()) {
+               log.error("Validación fallida: items vacío o null");
                throw new IllegalArgumentException("El carrito no puede estar vacío");
           }
           if (checkoutDTO.getDireccionEntrega() == null || checkoutDTO.getDireccionEntrega().trim().isEmpty()) {
+               log.error("Validación fallida: direccionEntrega es null o vacía");
                throw new IllegalArgumentException("La dirección de entrega es requerida");
           }
           if (checkoutDTO.getMetodoPago() == null || checkoutDTO.getMetodoPago().trim().isEmpty()) {
+               log.error("Validación fallida: metodoPago es null o vacío");
                throw new IllegalArgumentException("El método de pago es requerido");
           }
           if (checkoutDTO.getTipoComprobante() == null || checkoutDTO.getTipoComprobante().trim().isEmpty()) {
+               log.error("Validación fallida: tipoComprobante es null o vacío");
                throw new IllegalArgumentException("El tipo de comprobante es requerido");
           }
           if (checkoutDTO.getDocumento() == null || checkoutDTO.getDocumento().trim().isEmpty()) {
+               log.error("Validación fallida: documento es null o vacío");
                throw new IllegalArgumentException("El documento (DNI/RUC) es requerido");
           }
 
-          // Validar usuario existe
+          // Validaciones específicas para PayPal
+          if ("paypal".equalsIgnoreCase(checkoutDTO.getMetodoPago())) {
+               if (checkoutDTO.getPaypalId() == null || checkoutDTO.getPaypalId().trim().isEmpty()) {
+                    log.error("Validación fallida para PayPal: paypalId es null o vacío");
+                    throw new IllegalArgumentException("El ID de transacción de PayPal es requerido");
+               }
+               if (checkoutDTO.getPaypalEmail() == null || checkoutDTO.getPaypalEmail().trim().isEmpty()) {
+                    log.error("Validación fallida para PayPal: paypalEmail es null o vacío");
+                    throw new IllegalArgumentException("El email de PayPal es requerido");
+               }
+               if (checkoutDTO.getPayerId() == null || checkoutDTO.getPayerId().trim().isEmpty()) {
+                    log.error("Validación fallida para PayPal: payerId es null o vacío");
+                    throw new IllegalArgumentException("El ID del pagador de PayPal es requerido");
+               }
+          }
+
           Optional<Usuario> usuario = usuarioRepository.findById(checkoutDTO.getUsuarioId());
           if (usuario.isEmpty()) {
+               log.error("Validación fallida: usuario no encontrado para ID {}", checkoutDTO.getUsuarioId());
                throw new IllegalArgumentException("Usuario no encontrado");
           }
      }
@@ -256,15 +289,39 @@ public class CheckoutServiceImpl implements CheckoutService {
                case "efectivo":
                     metodoPago = Pago.MetodoPago.Efectivo;
                     break;
+               case "paypal":
+                    metodoPago = Pago.MetodoPago.PayPal;
+                    break;
+
                default:
                     throw new IllegalArgumentException("Método de pago no válido: " + checkoutDTO.getMetodoPago());
           }
 
           pago.setMetodo(metodoPago);
 
-          // Procesar pago
-          boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());
-          pago.setEstado(pagoExitoso ? Pago.EstadoPago.Pagado : Pago.EstadoPago.Rechazado);
+          // Para PayPal, si tenemos los datos de la transacción, consideramos el pago
+          // como exitoso
+          if (metodoPago == Pago.MetodoPago.PayPal) {
+               pago.setPaypalEmail(checkoutDTO.getPaypalEmail());
+               pago.setPaypalId(checkoutDTO.getPaypalId());
+               pago.setPayerId(checkoutDTO.getPayerId());
+
+               // Si tenemos paypalId, significa que PayPal ya aprobó la transacción
+               if (checkoutDTO.getPaypalId() != null && !checkoutDTO.getPaypalId().isEmpty()) {
+                    pago.setEstado(Pago.EstadoPago.Pagado);
+                    log.info("Pago de PayPal marcado como exitoso. PayPal ID: {}, PayPal Email: {}",
+                              checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail());
+               } else {
+                    pago.setEstado(Pago.EstadoPago.Rechazado);
+                    log.warn("Pago de PayPal rechazado: faltan datos de la transacción");
+               }
+          } else {
+               // Para otros métodos de pago, usar la simulación existente
+               boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());
+               pago.setEstado(pagoExitoso ? Pago.EstadoPago.Pagado : Pago.EstadoPago.Rechazado);
+               log.info("Pago con {} procesado. Estado: {}", metodoPago.getDisplayName(),
+                         pagoExitoso ? "Exitoso" : "Rechazado");
+          }
 
           return pagoRepository.save(pago);
      }

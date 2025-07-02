@@ -35,11 +35,7 @@ export const actualizarEstadoPedido = async (pedidoId, nuevoEstado) => {
   }
 };
 
-export const actualizarEstadoPedidoForzado = async (
-  pedidoId,
-  nuevoEstado,
-  password
-) => {
+export const actualizarEstadoPedidoForzado = async (pedidoId, nuevoEstado, password) => {
   try {
     const { data } = await axios.put(
       `${PEDIDOS_URL}/${pedidoId}/estado/forzado`,
@@ -54,6 +50,7 @@ export const actualizarEstadoPedidoForzado = async (
     throw error;
   }
 };
+
 
 export const getEstadosDisponibles = async () => {
   try {

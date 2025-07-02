@@ -5,14 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Layout from "../components/Layout";
 import AdminLayout from "../components/AdminLayout";
 import Home from "../pages/Home";
-import Pasteles from "../pages/Pasteles";
-import Postres from "../pages/Postres";
-import Eventos from "../pages/Eventos";
 import Nosotros from "../pages/Nosotros";
 import CrearCuenta from "../pages/CrearCuenta";
 import Login from "../pages/Login";
 import Productos from "../pages/Productos";
-import ProductDetail from "../pages/ProductDetail";
+import ProductDetail from "../components/products/ProductDetail";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
 import RecuperarCuenta from "../pages/RecuperarCuenta";
@@ -47,9 +44,7 @@ export const AppRouter = () => {
                 <Route index element={<Home />} />
                 <Route path="login" element={<Login />} />
                 <Route path="crear-cuenta" element={<CrearCuenta />} />
-                <Route path="pasteles" element={<Pasteles />} />
-                <Route path="postres" element={<Postres />} />
-                <Route path="eventos" element={<Eventos />} />
+
                 <Route path="nosotros" element={<Nosotros />} />
                 <Route path="productos" element={<Productos />} />
                 <Route path="productos/:id" element={<ProductDetail />} />

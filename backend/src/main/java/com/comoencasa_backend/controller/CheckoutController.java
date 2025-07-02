@@ -29,13 +29,10 @@ public class CheckoutController {
           try {
                CheckoutResponseDTO response = checkoutService.procesarCheckout(checkoutDTO);
 
-               if (response.isExitoso()) {
-                    log.info("Checkout procesado exitosamente. Pedido ID: {}", response.getPedidoId());
-                    return ResponseEntity.ok(response);
-               } else {
-                    log.warn("Error en checkout: {}", response.getMensaje());
-                    return ResponseEntity.badRequest().body(response);
-               }
+               log.info("Resultado del checkout: exitoso={}, mensaje={}", response.isExitoso(), response.getMensaje());
+
+               // Devuelve siempre 200, aunque sea con exitoso = false
+               return ResponseEntity.ok(response);
 
           } catch (IllegalArgumentException e) {
                log.error("Error de validación en checkout: {}", e.getMessage());
@@ -52,6 +49,7 @@ public class CheckoutController {
                return ResponseEntity.internalServerError().body(errorResponse);
           }
      }
+
 
      /**
       * Simula el procesamiento de pago para testing
@@ -70,4 +68,5 @@ public class CheckoutController {
                return ResponseEntity.badRequest().body(false);
           }
      }
+
 }

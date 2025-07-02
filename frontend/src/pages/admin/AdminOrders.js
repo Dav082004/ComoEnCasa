@@ -760,15 +760,6 @@ function AdminOrders() {
                       )}
                     </span>
                   </div>
-                  {orderDetails.estadoPago && (
-                    <div className="detail-item">
-                      <label>Estado del Pago:</label>
-                      <span
-                        className={`payment-status ${orderDetails.estadoPago?.toLowerCase()}`}>
-                        {orderDetails.estadoPago}
-                      </span>
-                    </div>
-                  )}
                 </div>
               </div>
 
