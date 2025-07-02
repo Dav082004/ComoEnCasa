@@ -158,6 +158,12 @@ public class CheckoutServiceImpl implements CheckoutService {
                   checkoutDTO.getUsuarioId(), checkoutDTO.getItems() != null ? checkoutDTO.getItems().size() : 0,
                   checkoutDTO.getDireccionEntrega(), checkoutDTO.getMetodoPago(), checkoutDTO.getTipoComprobante(), checkoutDTO.getDocumento());
 
+          // Logs adicionales para PayPal
+          if ("paypal".equalsIgnoreCase(checkoutDTO.getMetodoPago())) {
+               log.info("Validando datos de PayPal: paypalId={}, paypalEmail={}, payerId={}", 
+                        checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail(), checkoutDTO.getPayerId());
+          }
+
           if (checkoutDTO.getUsuarioId() == null) {
                log.error("Validación fallida: usuarioId es null");
                throw new IllegalArgumentException("El ID de usuario es requerido");
@@ -181,6 +187,22 @@ public class CheckoutServiceImpl implements CheckoutService {
           if (checkoutDTO.getDocumento() == null || checkoutDTO.getDocumento().trim().isEmpty()) {
                log.error("Validación fallida: documento es null o vacío");
                throw new IllegalArgumentException("El documento (DNI/RUC) es requerido");
+          }
+
+          // Validaciones específicas para PayPal
+          if ("paypal".equalsIgnoreCase(checkoutDTO.getMetodoPago())) {
+               if (checkoutDTO.getPaypalId() == null || checkoutDTO.getPaypalId().trim().isEmpty()) {
+                    log.error("Validación fallida para PayPal: paypalId es null o vacío");
+                    throw new IllegalArgumentException("El ID de transacción de PayPal es requerido");
+               }
+               if (checkoutDTO.getPaypalEmail() == null || checkoutDTO.getPaypalEmail().trim().isEmpty()) {
+                    log.error("Validación fallida para PayPal: paypalEmail es null o vacío");
+                    throw new IllegalArgumentException("El email de PayPal es requerido");
+               }
+               if (checkoutDTO.getPayerId() == null || checkoutDTO.getPayerId().trim().isEmpty()) {
+                    log.error("Validación fallida para PayPal: payerId es null o vacío");
+                    throw new IllegalArgumentException("El ID del pagador de PayPal es requerido");
+               }
           }
 
           Optional<Usuario> usuario = usuarioRepository.findById(checkoutDTO.getUsuarioId());
@@ -276,16 +298,29 @@ public class CheckoutServiceImpl implements CheckoutService {
           }
 
           pago.setMetodo(metodoPago);
+          
+          // Para PayPal, si tenemos los datos de la transacción, consideramos el pago como exitoso
           if (metodoPago == Pago.MetodoPago.PayPal) {
                pago.setPaypalEmail(checkoutDTO.getPaypalEmail());
                pago.setPaypalId(checkoutDTO.getPaypalId());
                pago.setPayerId(checkoutDTO.getPayerId());
-               pago.setEstado(Pago.EstadoPago.Pagado);
+               
+               // Si tenemos paypalId, significa que PayPal ya aprobó la transacción
+               if (checkoutDTO.getPaypalId() != null && !checkoutDTO.getPaypalId().isEmpty()) {
+                    pago.setEstado(Pago.EstadoPago.Pagado);
+                    log.info("Pago de PayPal marcado como exitoso. PayPal ID: {}, PayPal Email: {}", 
+                              checkoutDTO.getPaypalId(), checkoutDTO.getPaypalEmail());
+               } else {
+                    pago.setEstado(Pago.EstadoPago.Rechazado);
+                    log.warn("Pago de PayPal rechazado: faltan datos de la transacción");
+               }
+          } else {
+               // Para otros métodos de pago, usar la simulación existente
+               boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());
+               pago.setEstado(pagoExitoso ? Pago.EstadoPago.Pagado : Pago.EstadoPago.Rechazado);
+               log.info("Pago con {} procesado. Estado: {}", metodoPago.getDisplayName(), 
+                         pagoExitoso ? "Exitoso" : "Rechazado");
           }
-
-          // Procesar pago
-          boolean pagoExitoso = procesarPago(checkoutDTO.getMetodoPago(), checkoutDTO.getTotal());
-          pago.setEstado(pagoExitoso ? Pago.EstadoPago.Pagado : Pago.EstadoPago.Rechazado);
 
           return pagoRepository.save(pago);
      }

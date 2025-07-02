@@ -6,7 +6,8 @@ import checkoutService from "../services/checkoutService";
 import { toast } from "react-toastify";
 import AuthRequiredModal from "../components/AuthRequiredModal";
 import usePayPalScript from "../hooks/usePayPalScript";
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import PayPalCheckoutButton from "../components/PayPalCheckoutButton";
+import { getPayPalClientId } from "../config/paypal";
 import "../styles/Checkout.css";
 import PlinQR from "../assets/metodo_pago/PlinQR.jpeg";
 import YapeQR from "../assets/metodo_pago/YapeQR.jpeg";
@@ -56,9 +57,7 @@ const CheckoutSimple = () => {
     }
   }, [validateAuthForCheckout]);
 
-  usePayPalScript(
-    "Ad9hQoI_7QEPjeKHvmJpOwNbM3l7-svfCZKpU2BBaPuY9FngdUnpBcRoGx5izWeNdFpGrhQ-PPmmmXF9"
-  );
+  usePayPalScript(getPayPalClientId());
   // Constantes de datos
   const distritos = [
     "Ancón",
@@ -135,6 +134,77 @@ const CheckoutSimple = () => {
       ...prev,
       metodoPago: metodo,
     }));
+  };
+
+  // Función para manejar el éxito del pago de PayPal
+  const handlePayPalSuccess = async (paypalData) => {
+    try {
+      setProcesando(true);
+      
+      const checkoutData = {
+        usuarioId: user.id,
+        direccionEntrega: datos.direccion,
+        distrito: datos.distrito,
+        referencia: datos.referencia || "",
+        notas: "",
+        necesitaFactura: datos.tipoComprobante === "factura",
+        subtotal: subtotal,
+        costoEnvio: costoEnvio,
+        igv: igv,
+        total: total,
+        fechaEntrega: new Date(
+          Date.now() + 3 * 24 * 60 * 60 * 1000
+        ).toISOString(),
+
+        metodoPago: "paypal",
+        montoPago: total,
+        tipoComprobante: datos.tipoComprobante,
+        documento: datos.documento,
+
+        // Datos específicos de PayPal
+        paypalId: paypalData.paypalId,
+        paypalEmail: paypalData.paypalEmail,
+        payerId: paypalData.payerId,
+
+        items: productos.map((prod) => ({
+          productoId: prod.id,
+          nombre: prod.nombre,
+          cantidad: prod.quantity,
+          precioUnitario: prod.precioVenta || prod.precio,
+          personalizacion: prod.comentarios || "",
+        })),
+      };
+
+      console.log("✅ Enviando checkoutData con PayPal:", checkoutData);
+
+      const response = await checkoutService.procesarCheckout(checkoutData);
+      
+      if (response.exitoso) {
+        clearCart();
+        toast.success("¡Pago con PayPal completado exitosamente!");
+        navigate("/pago-exitoso", {
+          state: {
+            pedidoData: response,
+            metodoPago: "paypal",
+            paypalData: paypalData
+          },
+        });
+      } else {
+        throw new Error(response.mensaje || "Error al procesar el pedido con PayPal");
+      }
+    } catch (err) {
+      console.error("❌ Error en checkout con PayPal:", err);
+      setError("Error procesando el pago con PayPal: " + err.message);
+      throw err; // Re-lanzar para que PayPalCheckoutButton pueda manejar el estado
+    } finally {
+      setProcesando(false);
+    }
+  };
+
+  // Función para manejar errores de PayPal
+  const handlePayPalError = (error) => {
+    console.error("❌ Error de PayPal manejado:", error);
+    setError("Error de PayPal: " + (error.message || "Error desconocido"));
   };
 
   // Función principal de submit
@@ -408,88 +478,20 @@ const CheckoutSimple = () => {
 
       {/* 🅿️ Pago con PayPal */}
       {datos.metodoPago === "paypal" && (
-        <div className="paypal-container">
-          <PayPalButtons
-            style={{ layout: "vertical" }}
-            fundingSource="paypal"
-            createOrder={(data, actions) => {
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    amount: {
-                      value: total.toFixed(2),
-                      currency_code: "USD",
-                    },
-                  },
-                ],
-              });
-            }}
-            onApprove={async (data, actions) => {
-              const details = await actions.order.capture();
-              toast.success("¡Pago completado con PayPal!");
-
-              const checkoutData = {
-                usuarioId: user.id,
-                direccionEntrega: datos.direccion,
-                distrito: datos.distrito,
-                referencia: datos.referencia || "",
-                notas: "",
-                necesitaFactura: datos.tipoComprobante === "factura",
-                subtotal: subtotal,
-                costoEnvio: costoEnvio,
-                igv: igv,
-                total: total,
-                fechaEntrega: new Date(
-                  Date.now() + 3 * 24 * 60 * 60 * 1000
-                ).toISOString(),
-
-                metodoPago: "paypal",
-                montoPago: total,
-                tipoComprobante: datos.tipoComprobante,
-                documento: datos.documento,
-
-                paypalId: details.id,
-                paypalEmail: details.payer.email_address,
-                payerId: details.payer.payer_id,
-
-                items: productos.map((prod) => ({
-                  productoId: prod.id,
-                  nombre: prod.nombre,
-                  cantidad: prod.quantity,
-                  precioUnitario: prod.precioVenta || prod.precio,
-                  personalizacion: prod.comentarios || "",
-                })),
-              };
-
-              console.log("✅ Enviando checkoutData con PayPal:", checkoutData);
-
-              try {
-                const response = await checkoutService.procesarCheckout(
-                  checkoutData
-                );
-                if (response.exitoso) {
-                  clearCart();
-                  navigate("/pago-exitoso", {
-                    state: {
-                      pedidoData: response,
-                      metodoPago: "paypal",
-                    },
-                  });
-                } else {
-                  toast.error(
-                    response.mensaje ||
-                      "❌ Error al procesar el pedido con PayPal"
-                  );
-                }
-              } catch (err) {
-                console.error("❌ Error en checkout con PayPal:", err);
-                toast.error(
-                  "Error de conexión al procesar el pedido con PayPal"
-                );
-              }
-            }}
-          />
-        </div>
+        <PayPalCheckoutButton
+          total={total}
+          checkoutData={{
+            usuarioId: user.id,
+            direccionEntrega: datos.direccion,
+            distrito: datos.distrito,
+            referencia: datos.referencia,
+            tipoComprobante: datos.tipoComprobante,
+            documento: datos.documento,
+          }}
+          onSuccess={handlePayPalSuccess}
+          onError={handlePayPalError}
+          disabled={procesando || productos.length === 0}
+        />
       )}
 
       {/* 📱 Yape */}
