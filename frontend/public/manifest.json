@@ -1,6 +1,6 @@
 {
-  "short_name": "Como en Casa",
-  "name": "Como en Casa - Pastelería Artesanal",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#d63384",
-  "background_color": "#fff9fb"
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

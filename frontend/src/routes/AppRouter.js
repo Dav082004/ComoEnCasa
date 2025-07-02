@@ -9,7 +9,7 @@ import Nosotros from "../pages/Nosotros";
 import CrearCuenta from "../pages/CrearCuenta";
 import Login from "../pages/Login";
 import Productos from "../pages/Productos";
-import ProductDetail from "../pages/ProductDetail";
+import ProductDetail from "../components/products/ProductDetail";
 import Carrito from "../pages/Carrito";
 import Checkout from "../pages/Checkout";
 import RecuperarCuenta from "../pages/RecuperarCuenta";

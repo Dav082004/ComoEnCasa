@@ -6,7 +6,6 @@
   min-height: 80vh;
   background-color: #fdfdfd;
   padding: 2rem;
-  font-family: var(--font-primary);
 }
 
 .pago-exitoso-card {
@@ -24,14 +23,11 @@
   color: #28a745;
   font-size: 24px;
   margin-bottom: 20px;
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
 }
 
 .pago-exitoso-card p {
   font-size: 16px;
   color: #333;
-  font-family: var(--font-primary);
 }
 
 .pedido-detalles {

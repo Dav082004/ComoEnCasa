@@ -24,16 +24,14 @@ const Home = () => {
           Tortas y pasteles que recuerden al hogar
         </h1>
 
-        {/* Botón Compra Aquí */}
-        <div className="text-center my-4">
+        {/* Botón Compra Aquí debajo del slogan */}
+        <div className="text-center mt-4 mb-5">
           <Link
             to="/productos"
-            className="btn btn-primary btn-lg compra-aqui-btn">
+            className="btn btn-primary btn-lg compra-productos-btn">
             🛒 Compra Aquí
           </Link>
         </div>
-
-        <br />
       </div>
 
       {/* Blog Section */}

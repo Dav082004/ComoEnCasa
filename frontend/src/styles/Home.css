@@ -4,6 +4,9 @@
   transition: transform 0.2s ease;
 }
 
+.hero-image {
+  margin-bottom: 30px;
+}
 .card-category p {
   text-decoration: none;
   margin: 0;
@@ -114,40 +117,41 @@
   border-color: #f0b5c4;
 }
 
-/* Botón Compra Aquí */
-.compra-aqui-btn {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 15px 40px;
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
-  font-size: 1.2rem;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-md);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.compra-aqui-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+/* Botón Compra Aquí después de las imágenes */
+.compra-productos-btn {
   background: linear-gradient(
     135deg,
     var(--color-primary-dark) 0%,
     var(--color-primary) 100%
   );
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px 35px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.1rem;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 2rem 0;
+}
+
+.compra-productos-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
   color: white;
   text-decoration: none;
 }
 
-.compra-aqui-btn:focus {
+.compra-productos-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.3);
+  box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.3);
 }

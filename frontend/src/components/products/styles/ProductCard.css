@@ -1,115 +1,123 @@
-/* PRODUCT CARD STYLES */
+/* === PRODUCT CARD STYLES === */
 .cardLink {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
-.productImage {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(214, 51, 132, 0.1);
-  margin-bottom: 1.2rem;
-  background: #fff9fb;
-  display: block;
-}
-
+/* Grid de productos */
 .product-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 2rem;
+  margin-bottom: 3rem;
   justify-items: center;
-  padding: 0 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
 }
 
+/* Tarjeta de producto */
 .card {
   border: none;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   background: var(--color-bg-card);
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100%;
-  max-width: 280px;
-  height: 380px;
+  width: 290px;
+  height: 100%;
   margin: 0 auto;
   font-family: var(--font-primary);
   cursor: pointer;
+  border: 1px solid rgba(214, 51, 132, 0.1);
+  flex-shrink: 0;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
+  border-color: rgba(214, 51, 132, 0.2);
 }
 
+/* Contenedor de imagen */
 .image-container {
   width: 100%;
-  height: 200px; /* Altura más proporcionada para la imagen */
+  height: 200px;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, #ffeef8 0%, #f8f9fa 100%);
-  border-radius: 15px 15px 0 0;
+  background: white;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
+/* Imagen */
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background: white;
   transition: transform 0.3s ease;
+  padding: 10px;
+  margin-top: 9px;
 }
 
 .card:hover .image {
-  transform: scale(1.03);
+  transform: scale(1.07);
 }
 
+/* Información del producto */
 .info {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
   text-align: center;
-  height: 180px; /* Altura proporcionada para el contenido */
+  background: white;
 }
 
+/* Nombre del producto */
 .name {
-  color: #d63384;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: black;
   line-height: 1.3;
-  height: auto; /* Altura automática para mejor adaptación */
-  min-height: 2.4rem;
+  letter-spacing: 0.01em;
+  min-height: 2.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
   word-wrap: break-word;
+  font-family: var(--font-primary);
 }
 
+/* Precio */
 .price {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #c2185b;
-  margin: 0.5rem 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #2a5a3e;
+  margin: 0.2rem 0;
 }
 
+/* Texto "Incluye..." */
 .includes {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.85rem;
   color: #666;
-  font-size: 0.8rem;
-  line-height: 1.3;
-  margin: 0;
-  height: auto; /* Altura automática */
+  line-height: 1.5;
   min-height: 2rem;
   display: flex;
   align-items: center;
@@ -119,72 +127,7 @@
   word-wrap: break-word;
 }
 
-.image-container {
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
-  margin-bottom: 1rem;
-  background: #f8f8f8;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  padding: 15px;
-  background: white;
-  transition: transform 0.3s;
-}
-
-.card:hover .image {
-  transform: scale(1.07);
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.name {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: #d63384;
-  line-height: 1.4;
-  letter-spacing: 0.01em;
-}
-
-.price {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #2a5a3e;
-  margin: 0.5rem 0;
-}
-
-.includes {
-  margin-top: auto;
-  padding-top: 0.75rem;
-  border-top: 1px solid #f0f0f0;
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.5;
-}
-
-.cardLink {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* Mensaje de no productos y contador */
+/* === MENSAJE SIN PRODUCTOS === */
 .no-products {
   color: #d63384;
   font-size: 1.2rem;
@@ -196,59 +139,74 @@
   margin-top: 2rem;
 }
 
-/* RESPONSIVE CARD STYLES */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
   .product-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
   }
 
   .card {
-    max-width: 250px;
-    height: 350px;
+    width: 280px;
+    height: 380px;
   }
 
   .image-container {
-    height: 180px;
+    height: 200px;
   }
 
   .info {
-    height: 170px;
-    padding: 0.8rem;
+    padding: 1rem;
+    height: 180px;
   }
 
   .name {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     min-height: 2.2rem;
   }
 
   .price {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .includes {
+    font-size: 0.85rem;
+    min-height: 1.8rem;
   }
 }
 
 @media (max-width: 600px) {
   .product-list {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
   }
 
   .card {
-    max-width: 260px;
-    height: 340px;
+    width: 300px;
+    height: 380px;
   }
 
   .image-container {
-    height: 160px;
+    height: 200px;
   }
 
   .info {
     height: 180px;
-    padding: 0.8rem;
+  }
+
+  .name {
+    font-size: 1.1rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
   }
 
   .includes {
-    min-height: 1.8rem;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 }

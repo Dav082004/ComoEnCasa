@@ -1,53 +1,33 @@
 /* productos.css */
 
-/* ===== ESTILOS PARA PÁGINA DE PRODUCTOS ===== */
-
-/* Loading container */
-.loading-container {
-  min-height: 40vh;
-}
-
-.loading-spinner {
-  width: 4rem;
-  height: 4rem;
-}
-
-.loading-text {
-  color: #d63384;
-  font-weight: bold;
-}
-
-/* Products page */
-.products-page {
-  font-family: var(--font-primary);
-}
-
-/* Products header */
+/* Header de productos - Estilos personalizados */
 .products-header {
-  gap: 1rem;
+  padding: 2rem !important;
+  margin-bottom: 1.5rem !important;
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #f0f0f0;
+  font-family: var(--font-primary, "Comfortaa", sans-serif);
 }
 
-.products-title {
-  color: #d63384;
-  font-weight: bold;
-  font-size: 2.2rem;
-  margin-bottom: 0;
+.products-header h1 {
+  color: var(--color-primary-dark, #c2185b);
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem !important;
 }
 
-.products-count {
-  font-size: 1rem;
-  color: #888;
-}
-
-/* No products message */
-.no-products {
-  color: #d63384;
+.products-header span {
+  color: #6c757d !important;
+  font-size: 0.95rem !important;
+  font-weight: 500;
 }
 
 /* Estilos generales */
 .productos {
   padding: 20px;
-  font-family: var(--font-primary);
+  font-family: "Comfortaa", sans-serif;
 }
 
 .productos-title {
@@ -215,4 +195,17 @@
 
 .modal button:hover {
   background-color: #d14a4a;
+}
+
+/* Responsive para el header */
+@media (max-width: 768px) {
+  .products-header {
+    padding: 1.5rem !important;
+    text-align: center;
+  }
+
+  .products-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem !important;
+  }
 }

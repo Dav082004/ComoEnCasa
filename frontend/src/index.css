@@ -1,43 +1,10 @@
-/* ===== IMPORTAR ARCHIVOS DE CONFIGURACIÓN ===== */
-@import "./styles/Variables.css";
-@import "./styles/Fonts.css";
-
-/* ===== ESTILOS GLOBALES ===== */
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-regular);
-  line-height: 1.6;
-  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fff9fb;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary-dark);
-  line-height: 1.3;
-}
-
-p,
-span,
-div {
-  font-family: var(--font-primary);
-}
-
-button {
-  font-family: var(--font-primary);
 }
 
 code {

@@ -4,10 +4,10 @@ import { Cart, Truck, Shield, Clock } from "react-bootstrap-icons";
 import {
   getProductoById,
   getProductosByCategoria,
-} from "../services/productoService";
-import { useCart } from "../context/CartContext";
-import "../styles/ProductDetail.css";
-import RelatedProducts from "../components/products/RelatedProducts";
+} from "../../services/productoService";
+import { useCart } from "../../context/CartContext";
+import "./styles/ProductDetail.css";
+import RelatedProducts from "./RelatedProducts";
 
 const ProductDetail = () => {
   const { id } = useParams();

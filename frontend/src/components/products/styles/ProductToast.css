@@ -7,7 +7,7 @@
   gap: 12px;
   width: 100%;
   padding: 0;
-  font-family: var(--font-primary);
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 /* Header del toast con icono y título */
@@ -45,7 +45,7 @@
   font-weight: 700;
   color: #065f46;
   font-size: 15px;
-  font-family: var(--font-primary);
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 /* Detalles del producto */
@@ -96,7 +96,7 @@
   font-weight: 700;
   color: #1f2937;
   font-size: 15px;
-  font-family: var(--font-primary);
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 /* Comentarios del producto */

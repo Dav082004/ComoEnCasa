@@ -6,14 +6,11 @@
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: var(--font-primary);
 }
 
 .crearcuenta-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
 }
 
 .crearcuenta-container input {
@@ -22,7 +19,6 @@
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-family: var(--font-primary);
 }
 
 .crearcuenta-container button {
@@ -32,8 +28,7 @@
   color: white;
   border: none;
   border-radius: 4px;
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-bold);
+  cursor: pointer;
 }
 
 .crearcuenta-container p {

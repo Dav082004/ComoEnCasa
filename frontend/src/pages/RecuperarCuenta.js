@@ -37,8 +37,12 @@ const RecuperarCuenta = () => {
           required
         />
         <button type="submit">Recuperar contraseña</button>
-        {mensaje && <p className="recuperar-mensaje success">{mensaje}</p>}
-        {error && <p className="recuperar-mensaje error">{error}</p>}
+        {mensaje && <p className="recuperar-mensaje">{mensaje}</p>}
+        {error && (
+          <p className="recuperar-mensaje" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}
       </form>
     </div>
   );
