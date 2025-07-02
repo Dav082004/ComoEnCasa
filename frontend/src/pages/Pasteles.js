@@ -1,31 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getProductosByCategoria } from "../services/productoService";
 import "../styles/Layout.css";
-import Cumpleaños from "../assets/eventos/eventos_1.webp";
-import Graduacion from "../assets/eventos/eventos_3.webp";
-import SanValentin from "../assets/eventos/eventos_4.webp";
 
 const Pasteles = () => {
-  const pastelesEspeciales = [
-    {
-      img: Cumpleaños,
-      nombre: "Torta de Cumpleaños",
-      precio: "S/. 60.00",
-      precioAnterior: "S/. 82.00",
-      descuento: "-15%",
-    },
-    {
-      img: Graduacion,
-      nombre: "Torta de Graduación",
-      precio: "S/. 45.00",
-      precioAnterior: "S/. 60.00",
-      descuento: "-10%",
-    },
-    {
-      img: SanValentin,
-      nombre: "Torta de San Valentín",
-      precio: "S/. 60.00",
-    },
-  ];
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const cargarProductos = async () => {
+      try {
+        setLoading(true);
+        const productosPasteles = await getProductosByCategoria(1); // Categoría Pasteles
+        setProductos(productosPasteles);
+      } catch (error) {
+        console.error("Error cargando productos de pasteles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    cargarProductos();
+  }, []);
+
+  const handleProductClick = (producto) => {
+    navigate(`/productos/${producto.id}`, { state: { producto } });
+  };
+
+  if (loading) {
+    return (
+      <div className="container py-5 text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container py-5 pastel-bg">
@@ -37,38 +48,50 @@ const Pasteles = () => {
       </div>
 
       <div className="row g-4">
-        {pastelesEspeciales.map((pastel, index) => (
-          <div className="col-md-4 col-sm-6" key={index}>
-            <div className="card h-100 pastel-card">
-              <div className="position-relative">
+        {productos.map((producto) => (
+          <div className="col-lg-3 col-md-4 col-sm-6" key={producto.id}>
+            <div
+              className="card h-100 pastel-card"
+              onClick={() => handleProductClick(producto)}
+              style={{ cursor: "pointer" }}>
+              <div className="pastel-img-container">
                 <img
-                  src={pastel.img}
-                  alt={pastel.nombre}
-                  className="card-img-top pastel-img"
+                  src={producto.imagenUrl || "/placeholder-product.svg"}
+                  alt={producto.nombre}
+                  className="pastel-img"
+                  onError={(e) => {
+                    e.target.src = "/placeholder-product.svg";
+                  }}
                 />
-                {pastel.descuento && (
-                  <span className="badge bg-danger position-absolute top-0 end-0 m-2">
-                    {pastel.descuento}
-                  </span>
-                )}
               </div>
-              <div className="card-body text-center">
-                <h5 className="card-title pastel-product-title">
-                  {pastel.nombre}
-                </h5>
-                <p className="card-text pastel-price">
-                  {pastel.precio}{" "}
-                  {pastel.precioAnterior && (
-                    <span className="text-muted text-decoration-line-through ms-2">
-                      {pastel.precioAnterior}
-                    </span>
-                  )}
+              <div className="card-body">
+                <h5 className="pastel-product-title">{producto.nombre}</h5>
+                <p className="pastel-price">
+                  S/.{" "}
+                  {producto.precioVenta
+                    ? producto.precioVenta.toFixed(2)
+                    : producto.precio.toFixed(2)}
+                </p>
+                <p className="product-description">
+                  {producto.descripcion
+                    ? producto.descripcion.length > 80
+                      ? `${producto.descripcion.substring(0, 80)}...`
+                      : producto.descripcion
+                    : "Delicioso pastel especial para ti"}
                 </p>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {productos.length === 0 && (
+        <div className="text-center py-5">
+          <h3 className="text-muted">
+            No hay productos disponibles en esta categoría
+          </h3>
+        </div>
+      )}
     </div>
   );
 };

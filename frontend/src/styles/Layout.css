@@ -449,64 +449,126 @@ button {
   margin-bottom: 3rem;
 }
 
-/*  Media Productos -- 468px */
-@media (max-width: 468px) {
-  html {
-    font-size: 42.5%;
+/* Estilos para tarjetas de productos uniformes */
+.pastel-card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(248, 194, 212, 0.15);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.pastel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(248, 194, 212, 0.25);
+}
+
+/* Contenedor de imagen con altura fija */
+.pastel-img-container {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  background: #f8f9fa;
+  border-radius: 20px 20px 0 0;
+}
+
+.pastel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  border-radius: 20px 20px 0 0;
+}
+
+.pastel-card:hover .pastel-img {
+  transform: scale(1.05);
+}
+
+/* Card body con flex para ocupar espacio restante */
+.pastel-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Títulos uniformes */
+.pastel-product-title {
+  color: #d63384;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Precios destacados */
+.pastel-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #c2185b;
+  margin-bottom: 0.5rem;
+}
+
+/* Descripción con altura fija */
+.product-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .pastel-img-container {
+    height: 220px;
   }
 
-  .heading-1 {
-    font-size: 2.8rem;
+  .pastel-card .card-body {
+    padding: 1rem;
   }
 
-  .card-feature {
-    flex-direction: column;
-    border-radius: 2rem;
+  .pastel-product-title {
+    font-size: 1rem;
+    min-height: 2.4rem;
   }
 
-  .feature-content {
-    align-items: center;
+  .pastel-price {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pastel-img-container {
+    height: 180px;
   }
 
-  .feature-content p {
-    font-size: 1.4rem;
-    text-align: center;
+  .product-description {
+    min-height: 2.5rem;
+    font-size: 0.85rem;
   }
+}
 
-  .feature-content span {
-    font-size: 1.6rem;
-    text-align: center;
-  }
-  .container {
-    max-width: 1200px;
-    margin: auto;
-  }
-
-  .container-options span {
-    font-size: 1.8rem;
-    padding: 1rem 1.5rem;
-    font-weight: 500;
-  }
-
-  .container-products {
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    gap: 1rem;
-  }
-
-  .container-img .discount {
-    font-size: 2rem;
-  }
-
-  .content-card-product h3 {
-    font-size: 2.2rem;
-  }
-  .btn-read-more {
-    font-size: 1.8rem;
-  }
-
-  .content p {
-    font-size: 1.6rem;
-  }
+.container {
+  max-width: 1200px;
+  margin: auto;
 }
 
 .row-bordered {
@@ -540,8 +602,4 @@ button {
 .account-settings-form {
   flex: 1 1 75%;
   min-width: 300px;
-}
-.container {
-  max-width: 1200px;
-  margin: auto;
 }

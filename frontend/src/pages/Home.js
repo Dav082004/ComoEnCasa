@@ -53,11 +53,14 @@ const Home = () => {
           <div className="col-md-6">
             <div className="card-blog">
               <div className="blog-image-container">
-                <img src={TortaRosa} alt="Torta Rosa" className="blog-image" />
+                <img
+                  src={TortaRosa}
+                  alt="Torta Rosa"
+                  className="blog-image-rosa"
+                />
               </div>
               <div className="blog-content">
-                <h3>Torta Rosa</h3>
-                <span className="blog-date">02 Mayo 2025</span>
+                <h3>Torta Especiales</h3>
                 <p>
                   Torta de vainilla con relleno de crema de fresa y decorada con
                   rosas. Ideal para cualquier celebración.
@@ -71,12 +74,11 @@ const Home = () => {
                 <img
                   src={TortaSherk}
                   alt="Torta Sherk"
-                  className="blog-image"
+                  className="blog-image-sherk"
                 />
               </div>
               <div className="blog-content">
-                <h3>Torta Sherk</h3>
-                <span className="blog-date">25 Abril 2025</span>
+                <h3>Tortas Tematicas</h3>
                 <p>
                   Torta de chocolate con relleno de crema de avellanas y
                   decorada con el personaje Sherk. Perfecta para los más

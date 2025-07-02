@@ -1,10 +1,42 @@
-import React from "react";
-import postre1 from "../assets/postres/postre_1.webp";
-import postre2 from "../assets/postres/postre_2.webp";
-import postre3 from "../assets/postres/postre_3.webp";
-import postre4 from "../assets/postres/postre_4.webp";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getProductosByCategoria } from "../services/productoService";
 
 const Postres = () => {
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const cargarProductos = async () => {
+      try {
+        setLoading(true);
+        const productosPostres = await getProductosByCategoria(3); // Categoría Postres
+        setProductos(productosPostres);
+      } catch (error) {
+        console.error("Error cargando productos de postres:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    cargarProductos();
+  }, []);
+
+  const handleProductClick = (producto) => {
+    navigate(`/productos/${producto.id}`, { state: { producto } });
+  };
+
+  if (loading) {
+    return (
+      <div className="container py-5 text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container py-5 pastel-bg">
       <div className="text-center mb-5">
@@ -13,29 +45,50 @@ const Postres = () => {
       </div>
 
       <div className="row g-4">
-        {[
-          { img: postre1, nombre: "Pye de Manzana", precio: "S/. 50.00" },
-          { img: postre2, nombre: "Mousse de Lúcuma", precio: "S/. 43.00" },
-          { img: postre3, nombre: "Mousse de Maracuyá", precio: "S/. 50.00" },
-          { img: postre4, nombre: "Delirium", precio: "S/. 45.00" },
-        ].map((postre, index) => (
-          <div className="col-md-3 col-sm-6" key={index}>
-            <div className="card h-100 pastel-card">
-              <img
-                src={postre.img}
-                alt={postre.nombre}
-                className="card-img-top pastel-img"
-              />
-              <div className="card-body text-center">
-                <h5 className="card-title pastel-product-title">
-                  {postre.nombre}
-                </h5>
-                <p className="card-text pastel-price">{postre.precio}</p>
+        {productos.map((producto) => (
+          <div className="col-lg-3 col-md-4 col-sm-6" key={producto.id}>
+            <div
+              className="card h-100 pastel-card"
+              onClick={() => handleProductClick(producto)}
+              style={{ cursor: "pointer" }}>
+              <div className="pastel-img-container">
+                <img
+                  src={producto.imagenUrl || "/placeholder-product.svg"}
+                  alt={producto.nombre}
+                  className="pastel-img"
+                  onError={(e) => {
+                    e.target.src = "/placeholder-product.svg";
+                  }}
+                />
+              </div>
+              <div className="card-body">
+                <h5 className="pastel-product-title">{producto.nombre}</h5>
+                <p className="pastel-price">
+                  S/.{" "}
+                  {producto.precioVenta
+                    ? producto.precioVenta.toFixed(2)
+                    : producto.precio.toFixed(2)}
+                </p>
+                <p className="product-description">
+                  {producto.descripcion
+                    ? producto.descripcion.length > 80
+                      ? `${producto.descripcion.substring(0, 80)}...`
+                      : producto.descripcion
+                    : "Delicioso postre para endulzar tu día"}
+                </p>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {productos.length === 0 && (
+        <div className="text-center py-5">
+          <h3 className="text-muted">
+            No hay productos disponibles en esta categoría
+          </h3>
+        </div>
+      )}
     </div>
   );
 };

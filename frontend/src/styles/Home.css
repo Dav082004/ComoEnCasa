@@ -4,6 +4,14 @@
   transition: transform 0.2s ease;
 }
 
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantiene la proporción sin deformar */
+  object-position: center; /* Centra la imagen */
+  transition: transform 0.2s ease;
+  padding-bottom: 10px;
+}
 .card-category p {
   text-decoration: none;
   margin: 0;
@@ -23,6 +31,24 @@
 
 .container-blogs {
   margin-bottom: 160px; /* Aumenta la separación con la sección de productos */
+}
+
+.blog-image-sherk {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantiene la proporción sin deformar */
+  object-position: center; /* Centra la imagen */
+  transition: transform 0.3s ease;
+  border-radius: 15px;
+}
+
+.blog-image-rosa {
+  width: 91%;
+  height: 91%;
+  object-fit: cover; /* Mantiene la proporción sin deformar */
+  object-position: center; /* Centra la imagen */
+  transition: transform 0.3s ease;
+  border-radius: 15px;
 }
 
 /* Estilos para la sección de recomendación */

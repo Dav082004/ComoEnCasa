@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import AuthRequiredModal from "../components/AuthRequiredModal";
 import usePayPalScript from "../hooks/usePayPalScript";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import YapeQR from "../assets/metodo_pago/YapeQR.jpeg";
+import PlinQR from "../assets/metodo_pago/PlinQR.jpeg";
 import "../styles/Checkout.css";
 
 const CheckoutSimple = () => {
@@ -54,7 +56,9 @@ const CheckoutSimple = () => {
     }
   }, [validateAuthForCheckout]);
 
-usePayPalScript("Ad9hQoI_7QEPjeKHvmJpOwNbM3l7-svfCZKpU2BBaPuY9FngdUnpBcRoGx5izWeNdFpGrhQ-PPmmmXF9"); 
+  usePayPalScript(
+    "Ad9hQoI_7QEPjeKHvmJpOwNbM3l7-svfCZKpU2BBaPuY9FngdUnpBcRoGx5izWeNdFpGrhQ-PPmmmXF9"
+  );
   // Constantes de datos
   const distritos = [
     "Ancón",
@@ -379,180 +383,150 @@ usePayPalScript("Ad9hQoI_7QEPjeKHvmJpOwNbM3l7-svfCZKpU2BBaPuY9FngdUnpBcRoGx5izWe
     </div>
   );
 
-const renderPaymentSection = () => (
-  <div className="checkout-section">
-    <h3>💳 Métodos de Pago</h3>
+  const renderPaymentSection = () => (
+    <div className="checkout-section">
+      <h3>💳 Métodos de Pago</h3>
 
-    <div className="form-row">
-      {[
-        { key: "tarjeta", icon: "💳", label: "Tarjeta de Crédito/Débito" },
-        { key: "paypal", icon: "🅿️", label: "PayPal" },
-        { key: "yape", icon: "📱", label: "Yape" },
-        { key: "plin", icon: "💰", label: "Plin" },
-      ].map((metodo) => (
-        <div
-          key={metodo.key}
-          className={`comprobante-option ${
-            datos.metodoPago === metodo.key ? "active" : ""
-          }`}
-          onClick={() => handleMetodoPagoChange(metodo.key)}>
-          <h5>
-            {metodo.icon} {metodo.label}
-          </h5>
+      <div className="form-row">
+        {[
+          { key: "paypal", icon: "🅿️", label: "PayPal" },
+          { key: "yape", icon: "📱", label: "Yape" },
+          { key: "plin", icon: "💰", label: "Plin" },
+        ].map((metodo) => (
+          <div
+            key={metodo.key}
+            className={`comprobante-option ${
+              datos.metodoPago === metodo.key ? "active" : ""
+            }`}
+            onClick={() => handleMetodoPagoChange(metodo.key)}>
+            <h5>
+              {metodo.icon} {metodo.label}
+            </h5>
+          </div>
+        ))}
+      </div>
+
+      {/* 🅿️ Pago con PayPal */}
+      {datos.metodoPago === "paypal" && (
+        <div className="paypal-container">
+          <PayPalButtons
+            style={{ layout: "vertical" }}
+            fundingSource="paypal"
+            createOrder={(data, actions) => {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    amount: {
+                      value: total.toFixed(2),
+                      currency_code: "USD",
+                    },
+                  },
+                ],
+              });
+            }}
+            onApprove={async (data, actions) => {
+              const details = await actions.order.capture();
+              toast.success("¡Pago completado con PayPal!");
+
+              const checkoutData = {
+                usuarioId: user.id,
+                direccionEntrega: datos.direccion,
+                distrito: datos.distrito,
+                referencia: datos.referencia || "",
+                notas: "",
+                necesitaFactura: datos.tipoComprobante === "factura",
+                subtotal: subtotal,
+                costoEnvio: costoEnvio,
+                igv: igv,
+                total: total,
+                fechaEntrega: new Date(
+                  Date.now() + 3 * 24 * 60 * 60 * 1000
+                ).toISOString(),
+
+                metodoPago: "paypal",
+                montoPago: total,
+                tipoComprobante: datos.tipoComprobante,
+                documento: datos.documento,
+
+                paypalId: details.id,
+                paypalEmail: details.payer.email_address,
+                payerId: details.payer.payer_id,
+
+                items: productos.map((prod) => ({
+                  productoId: prod.id,
+                  nombre: prod.nombre,
+                  cantidad: prod.quantity,
+                  precioUnitario: prod.precioVenta || prod.precio,
+                  personalizacion: prod.comentarios || "",
+                })),
+              };
+
+              console.log("✅ Enviando checkoutData con PayPal:", checkoutData);
+
+              try {
+                const response = await checkoutService.procesarCheckout(
+                  checkoutData
+                );
+                if (response.exitoso) {
+                  clearCart();
+                  navigate("/pago-exitoso", {
+                    state: {
+                      pedidoData: response,
+                      metodoPago: "paypal",
+                    },
+                  });
+                } else {
+                  toast.error(
+                    response.mensaje ||
+                      "❌ Error al procesar el pedido con PayPal"
+                  );
+                }
+              } catch (err) {
+                console.error("❌ Error en checkout con PayPal:", err);
+                toast.error(
+                  "Error de conexión al procesar el pedido con PayPal"
+                );
+              }
+            }}
+          />
         </div>
-      ))}
+      )}
+
+      {/* 📱 Yape */}
+      {datos.metodoPago === "yape" && (
+        <div className="payment-info-card">
+          <h4>📱 Instrucciones para Yape</h4>
+          <p>1. Abre tu app Yape</p>
+          <p>
+            2. Escanea el código QR o envía a: <strong>123-456-789</strong>
+          </p>
+          <p>
+            3. Monto: <strong>S/. {total.toFixed(2)}</strong>
+          </p>
+          <div className="qr-placeholder">
+            <img src={YapeQR} alt="Código QR Yape" className="qr-code" />
+          </div>
+        </div>
+      )}
+
+      {/* 💰 Plin */}
+      {datos.metodoPago === "plin" && (
+        <div className="payment-info-card">
+          <h4>💰 Instrucciones para Plin</h4>
+          <p>1. Abre tu app Plin</p>
+          <p>
+            2. Escanea el código QR o envía a: <strong>123-456-789</strong>
+          </p>
+          <p>
+            3. Monto: <strong>S/. {total.toFixed(2)}</strong>
+          </p>
+          <div className="qr-placeholder">
+            <img src={PlinQR} alt="Código QR PLIN" className="qr-code" />
+          </div>
+        </div>
+      )}
     </div>
-
-    {/* 🔁 Pago con tarjeta (manual) */}
-    {datos.metodoPago === "tarjeta" && (
-      <div className="payment-details">
-        <div className="form-row">
-          <input
-            type="number"
-            name="tarjeta"
-            placeholder="Número de tarjeta (16 dígitos)"
-            value={datos.tarjeta}
-            onChange={handleChange}
-            maxLength="16"
-            required
-          />
-        </div>
-        <div className="form-row">
-          <input
-            type="text"
-            name="titular"
-            placeholder="Nombre del titular"
-            value={datos.titular}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="number"
-            name="vencimiento"
-            placeholder="MM/AA"
-            value={datos.vencimiento}
-            onChange={handleChange}
-            maxLength="5"
-            required
-          />
-          <input
-            type="number"
-            name="cvv"
-            placeholder="CVV"
-            value={datos.cvv}
-            onChange={handleChange}
-            maxLength="3"
-            required
-          />
-        </div>
-      </div>
-    )}
-
-    {/* 🅿️ Pago con PayPal */}
-{datos.metodoPago === "paypal" && (
-  <div className="paypal-container">
-    <PayPalButtons
-      style={{ layout: "vertical" }}
-      fundingSource="paypal"
-      createOrder={(data, actions) => {
-        return actions.order.create({
-          purchase_units: [
-            {
-              amount: {
-                value: total.toFixed(2),
-                currency_code: "USD",
-              },
-            },
-          ],
-        });
-      }}
-onApprove={async (data, actions) => {
-  const details = await actions.order.capture();
-  toast.success("¡Pago completado con PayPal!");
-
-  const checkoutData = {
-    usuarioId: user.id,
-    direccionEntrega: datos.direccion,
-    distrito: datos.distrito,
-    referencia: datos.referencia || "",
-    notas: "",
-    necesitaFactura: datos.tipoComprobante === "factura",
-    subtotal: subtotal,
-    costoEnvio: costoEnvio,
-    igv: igv,
-    total: total,
-    fechaEntrega: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
-
-    metodoPago: "paypal",
-    montoPago: total,
-    tipoComprobante: datos.tipoComprobante,
-    documento: datos.documento,
-
-    paypalId: details.id,
-    paypalEmail: details.payer.email_address,
-    payerId: details.payer.payer_id,
-
-    items: productos.map((prod) => ({
-      productoId: prod.id,
-      nombre: prod.nombre,
-      cantidad: prod.quantity,
-      precioUnitario: prod.precioVenta || prod.precio,
-      personalizacion: prod.comentarios || "",
-    })),
-  };
-
-  console.log("✅ Enviando checkoutData con PayPal:", checkoutData);
-
-  try {
-    const response = await checkoutService.procesarCheckout(checkoutData);
-    if (response.exitoso) {
-      clearCart();
-      navigate("/pago-exitoso", {
-        state: {
-          pedidoData: response,
-          metodoPago: "paypal",
-        },
-      });
-    } else {
-      toast.error(response.mensaje || "❌ Error al procesar el pedido con PayPal");
-    }
-  } catch (err) {
-    console.error("❌ Error en checkout con PayPal:", err);
-    toast.error("Error de conexión al procesar el pedido con PayPal");
-  }
-}}
-
-    />
-  </div>
-)}
-
-
-    {/* 📱 Yape */}
-    {datos.metodoPago === "yape" && (
-      <div className="payment-info-card">
-        <h4>📱 Instrucciones para Yape</h4>
-        <p>1. Abre tu app Yape</p>
-        <p>2. Escanea el código QR o envía a: <strong>123-456-789</strong></p>
-        <p>3. Monto: <strong>S/. {total.toFixed(2)}</strong></p>
-        <div className="qr-placeholder">
-          <div className="qr-code">📱 QR Yape</div>
-        </div>
-      </div>
-    )}
-
-    {/* 💰 Plin */}
-    {datos.metodoPago === "plin" && (
-      <div className="payment-info-card">
-        <h4>💰 Instrucciones para Plin</h4>
-        <p>1. Abre tu app Plin</p>
-        <p>2. Envía el pago al número:</p>
-        <div className="numero-plin">987-654-321</div>
-        <p>3. Monto: <strong>S/. {total.toFixed(2)}</strong></p>
-      </div>
-    )}
-  </div>
-);
-
+  );
 
   const renderOrderSummary = () => (
     <div className="checkout-summary">
