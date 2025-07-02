@@ -221,14 +221,14 @@ h3 {
 
 .payment-info-card h4 {
   color: #c94f7c;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1 rem;
   font-family: "Comfortaa", cursive;
   font-size: 1.2rem;
 }
 
 .payment-info-card p {
   color: #555;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
   font-size: 0.95rem;
 }
 
@@ -242,8 +242,8 @@ h3 {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border: 3px dashed #c94f7c;
   border-radius: 12px;
-  padding: 3rem;
-  margin: 1.5rem 0;
+  padding: 2rem;
+  margin: 1 rem 0;
   transition: all 0.3s ease;
 }
 
@@ -255,7 +255,10 @@ h3 {
 .qr-code {
   font-size: 3rem;
   color: #c94f7c;
-  margin-bottom: 0.5rem;
+
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
 }
 
 /* Mejorar número Plin */
@@ -476,11 +479,14 @@ h3 {
   }
 
   .qr-placeholder {
-    padding: 2rem;
+    width: 70%;
+    height: 70%;
   }
 
   .qr-code {
-    font-size: 2rem;
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
   }
 
   .numero-plin {

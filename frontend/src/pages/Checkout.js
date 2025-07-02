@@ -8,6 +8,8 @@ import AuthRequiredModal from "../components/AuthRequiredModal";
 import usePayPalScript from "../hooks/usePayPalScript";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import "../styles/Checkout.css";
+import PlinQR from "../assets/metodo_pago/PlinQR.jpeg";
+import YapeQR from "../assets/metodo_pago/YapeQR.jpeg";
 
 const CheckoutSimple = () => {
   const {
@@ -502,7 +504,7 @@ const CheckoutSimple = () => {
             3. Monto: <strong>S/. {total.toFixed(2)}</strong>
           </p>
           <div className="qr-placeholder">
-            <div className="qr-code"></div>
+            <img src={YapeQR} alt="Código QR Yape" className="qr-code" />
           </div>
         </div>
       )}
@@ -512,11 +514,15 @@ const CheckoutSimple = () => {
         <div className="payment-info-card">
           <h4>💰 Instrucciones para Plin</h4>
           <p>1. Abre tu app Plin</p>
-          <p>2. Envía el pago al número:</p>
-          <div className="numero-plin">987-654-321</div>
+          <p>
+            2. Escanea el código QR o envía a: <strong>123-456-789</strong>
+          </p>
           <p>
             3. Monto: <strong>S/. {total.toFixed(2)}</strong>
           </p>
+          <div className="qr-placeholder">
+            <img src={PlinQR} alt="Código QR PLIN" className="qr-code" />
+          </div>
         </div>
       )}
     </div>
