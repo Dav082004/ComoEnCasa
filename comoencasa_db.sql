@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2025 a las 06:08:54
+-- Tiempo de generación: 03-07-2025 a las 01:33:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -74,7 +74,12 @@ INSERT INTO `comprobante` (`id`, `pedido_id`, `tipo`, `fecha_emision`, `numero_s
 (18, 17, 'Boleta', '2025-06-25 15:41:59', '005', '00000005', 15.00, 25.00),
 (19, 18, 'Boleta', '2025-06-25 16:17:52', '006', '00000006', 10.00, 20.00),
 (22, 21, 'Boleta', '2025-06-25 23:18:53', '007', '00000007', 6.00, 16.00),
-(23, 22, 'Factura', '2025-06-25 23:19:55', '004', '00000004', 3.00, 13.00);
+(23, 22, 'Factura', '2025-06-25 23:19:55', '004', '00000004', 3.00, 13.00),
+(24, 26, 'Boleta', '2025-07-02 22:03:16', '008', '00000008', 170.00, 180.00),
+(25, 28, 'Boleta', '2025-07-02 22:45:29', '009', '00000009', 170.00, 180.00),
+(26, 29, 'Boleta', '2025-07-02 22:49:04', '010', '00000010', 85.00, 95.00),
+(27, 30, 'Boleta', '2025-07-02 22:56:48', '011', '00000011', 85.00, 85.00),
+(28, 31, 'Boleta', '2025-07-02 23:07:20', '012', '00000012', 85.00, 95.00);
 
 -- --------------------------------------------------------
 
@@ -108,7 +113,13 @@ INSERT INTO `detalle_pedido` (`id`, `pedido_id`, `producto_id`, `cantidad`, `pre
 (24, 21, 9, 2, 3.00, 2.00, 'asda'),
 (25, 22, 9, 1, 3.00, 2.00, 'jnas'),
 (27, 24, 7, 1, 5.00, 3.50, 'adas'),
-(28, 25, 7, 1, 5.00, 3.50, '');
+(28, 25, 7, 1, 5.00, 3.50, ''),
+(29, 26, 1, 2, 85.00, 40.00, ''),
+(30, 27, 2, 4, 85.00, 45.00, 'xzcxz'),
+(31, 28, 1, 2, 85.00, 40.00, 'hhjjh'),
+(32, 29, 2, 1, 85.00, 45.00, 'dfs'),
+(33, 30, 2, 1, 85.00, 45.00, 'sda'),
+(34, 31, 2, 1, 85.00, 45.00, 'asa');
 
 -- --------------------------------------------------------
 
@@ -146,7 +157,13 @@ INSERT INTO `pago` (`id`, `pedido_id`, `fecha`, `metodo`, `estado`, `monto`, `pa
 (22, 21, '2025-06-25 23:18:53', 'Yape', 'Pagado', 16.00, NULL, NULL, NULL),
 (23, 22, '2025-06-25 23:19:55', 'Yape', 'Pagado', 13.00, NULL, NULL, NULL),
 (24, 24, '2025-07-01 22:05:15', 'PayPal', 'Rechazado', 15.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '45A03638RU3316143'),
-(25, 25, '2025-07-02 03:39:07', 'PayPal', 'Rechazado', 15.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '1E7566416K920143T');
+(25, 25, '2025-07-02 03:39:07', 'PayPal', 'Rechazado', 15.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '1E7566416K920143T'),
+(26, 26, '2025-07-02 22:03:16', 'Plin', 'Pagado', 180.00, NULL, NULL, NULL),
+(27, 27, '2025-07-02 22:21:43', 'PayPal', 'Rechazado', 350.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '32J63304VB112941F'),
+(28, 28, '2025-07-02 22:45:29', 'PayPal', 'Pagado', 180.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '05Y17472RD9912229'),
+(29, 29, '2025-07-02 22:49:04', 'PayPal', 'Pagado', 95.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '9EF18868DS599272R'),
+(30, 30, '2025-07-02 22:56:48', 'PayPal', 'Pagado', 85.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '3FT287078B852081K'),
+(31, 31, '2025-07-02 23:07:20', 'PayPal', 'Pagado', 95.00, '5BTTTMTJ2F73E', 'sb-478b8h44302552@business.example.com', '61N330400Y774712E');
 
 -- --------------------------------------------------------
 
@@ -183,7 +200,13 @@ INSERT INTO `pedido` (`id`, `usuario_id`, `fecha_creacion`, `fecha_entrega`, `es
 (21, 5, '2025-06-25 23:18:53', '2025-06-29 04:18:53', 'Pendiente', 6.00, 16.00, 'as, Barranco (ads)', 0),
 (22, 8, '2025-06-25 23:19:55', '2025-06-29 04:19:55', 'Pendiente', 3.00, 13.00, 'dsadasd, Ate (as)', 1),
 (24, 5, '2025-07-01 22:05:15', '2025-07-05 03:05:15', 'Pendiente', 5.00, 15.00, 'asdasdas, Breña (asdas)', 0),
-(25, 8, '2025-07-02 03:39:07', '2025-07-05 08:39:07', 'Pendiente', 5.00, 15.00, 'xzc, Breña (wqewq)', 0);
+(25, 8, '2025-07-02 03:39:07', '2025-07-05 08:39:07', 'Pendiente', 5.00, 15.00, 'xzc, Breña (wqewq)', 0),
+(26, 8, '2025-07-02 22:03:16', '2025-07-02 22:17:24', 'Entregado', 170.00, 180.00, 'dsadasd, Barranco (ads)', 0),
+(27, 8, '2025-07-02 22:21:43', '2025-07-06 03:21:43', 'Pendiente', 340.00, 350.00, 'as, Ate (wqewq)', 0),
+(28, 8, '2025-07-02 22:45:29', '2025-07-02 23:08:22', 'Entregado', 170.00, 180.00, 'sa, Ate (ads)', 0),
+(29, 8, '2025-07-02 22:49:04', '2025-07-06 03:49:04', 'Pendiente', 85.00, 95.00, 'dsadasd, Ate (ads)', 0),
+(30, 8, '2025-07-02 22:56:48', '2025-07-06 03:56:48', 'Pendiente', 85.00, 85.00, 'dsadasd (ads)', 0),
+(31, 8, '2025-07-02 23:07:20', '2025-07-06 04:07:20', 'Pendiente', 85.00, 95.00, 'dsadasd, Ancón (ads)', 0);
 
 -- --------------------------------------------------------
 
@@ -208,13 +231,13 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio_venta`, `costo_produccion`, `disponible`, `imagen_url`, `cantidad`) VALUES
-(1, 1, 'Torta Corazon Selva Negra', 'Torta cora', 85, 40, 1, 'https://i.postimg.cc/gJGK5KK1/Torta-Corazon-Selva-Negra.jpg', 4),
-(2, 1, 'Torta Humeda Chocolate', 'Torta Humeda', 85, 45, 1, 'https://i.postimg.cc/ZRjLhy7n/Torta-Humeda-Chocolate.jpg', 4),
+(1, 1, 'Torta Corazon Selva Negra', 'Torta cora', 85, 40, 1, 'https://i.postimg.cc/gJGK5KK1/Torta-Corazon-Selva-Negra.jpg', 0),
+(2, 1, 'Torta Humeda Chocolate', 'Torta Humeda', 85, 45, 1, 'https://i.postimg.cc/ZRjLhy7n/Torta-Humeda-Chocolate.jpg', 1),
 (3, 1, 'Torta Sublime', 'Torta Sublime', 85, 45, 1, 'https://i.postimg.cc/9fdpJkyG/Torta-Sublime.jpg', 4),
 (4, 2, 'Torta Choco Real Madrid', 'Tematica Real Madrid', 180, 90, 1, 'https://i.postimg.cc/SN9z6M69/Torta-Dechocolate-Contematica-Real-Madrid.jpg', 3),
 (5, 2, 'Torta Frozen', 'Torta Frozen', 250, 125, 1, 'https://i.postimg.cc/KzYMBpfc/Torta-Frozen.jpg', 3),
-(6, 2, 'Torta Matrimonio', 'Torta Matri', 400, 200, 1, 'https://i.postimg.cc/bvpbNw2t/Torta-Matrimonio.jpg', 2),
-(7, 3, 'Suspiro a la lime&ntilde;a', 'Cl&aacute;sico postre peruano hecho con manjarblanco y merengue italiano, espolvoreado con canela.', 5, 3.5, 1, 'https://portal.andina.pe/EDPfotografia2/Thumbnail/2008/05/17/000062608W.jpg', 3),
+(6, 2, 'Torta Matrimonio', 'Torta Matri', 400, 200, 1, 'https://i.postimg.cc/CMJzjp6j/Torta-Matrimonio.jpg', 2),
+(7, 3, 'Suspiro a la lime&ntilde;a', 'Clasico postre peruano hecho con manjarblanco y merengue italiano, espolvoreado con canela.', 5, 3.5, 1, 'https://portal.andina.pe/EDPfotografia2/Thumbnail/2008/05/17/000062608W.jpg', 3),
 (8, 3, 'Leche Asada', 'Tradicional postre peruano similar al flan.', 3, 1.5, 1, 'https://i.postimg.cc/vZqMDP4t/Leche-Asada.jpg', 3),
 (9, 3, 'Tartaleta Fresa', 'Tartaleta fresa', 5, 2.5, 1, 'https://i.postimg.cc/mg2BLxgr/Tartaleta-De-Fresa.jpg', 2),
 (14, 2, 'Torta Univesitario Deportes', 'Torta U', 180, 90, 1, 'https://i.postimg.cc/fbCd3Qxg/Torta-Tematica-Dela-U.jpg', 2),
@@ -322,25 +345,25 @@ ALTER TABLE `categoria_producto`
 -- AUTO_INCREMENT de la tabla `comprobante`
 --
 ALTER TABLE `comprobante`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
