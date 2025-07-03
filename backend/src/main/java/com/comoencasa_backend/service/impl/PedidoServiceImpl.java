@@ -9,6 +9,7 @@ import com.comoencasa_backend.repository.PedidoRepository;
 import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.repository.PagoRepository;
 import com.comoencasa_backend.service.PedidoService;
+import com.comoencasa_backend.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -36,12 +37,14 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;
     private final PagoRepository pagoRepository;
+    private final EmailService emailService;
 
     public PedidoServiceImpl(PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository,
-            PagoRepository pagoRepository) {
+            PagoRepository pagoRepository, EmailService emailService) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioRepository = usuarioRepository;
         this.pagoRepository = pagoRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -168,6 +171,16 @@ public class PedidoServiceImpl implements PedidoService {
         log.info("Estado de pedido actualizado: ID={}, estado anterior={}, nuevo estado={}",
                 pedidoId, estadoActual, nuevoEstado);
 
+        // 🔔 Enviar notificación por email del cambio de estado
+        try {
+            emailService.enviarNotificacionCambioEstado(pedidoActualizado, estadoActual, nuevoEstado);
+            log.info("Notificación de cambio de estado enviada por email para pedido ID={}", pedidoId);
+        } catch (Exception e) {
+            log.error("Error al enviar notificación de cambio de estado por email para pedido ID={}: {}",
+                    pedidoId, e.getMessage());
+            // No lanzar excepción para no afectar la actualización del estado
+        }
+
         return toDTO(pedidoActualizado);
     }
 
@@ -222,6 +235,17 @@ public class PedidoServiceImpl implements PedidoService {
 
         log.warn("Estado de pedido actualizado FORZADAMENTE: ID={}, estado anterior={}, nuevo estado={}",
                 pedidoId, estadoActual, nuevoEstado);
+
+        // 🔔 Enviar notificación por email del cambio de estado (también para cambios
+        // forzados)
+        try {
+            emailService.enviarNotificacionCambioEstado(pedidoActualizado, estadoActual, nuevoEstado);
+            log.info("Notificación de cambio de estado forzado enviada por email para pedido ID={}", pedidoId);
+        } catch (Exception e) {
+            log.error("Error al enviar notificación de cambio de estado forzado por email para pedido ID={}: {}",
+                    pedidoId, e.getMessage());
+            // No lanzar excepción para no afectar la actualización del estado
+        }
 
         return toDTO(pedidoActualizado);
     }
