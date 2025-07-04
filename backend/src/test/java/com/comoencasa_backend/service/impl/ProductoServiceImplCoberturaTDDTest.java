@@ -1,7 +1,9 @@
 package com.comoencasa_backend.service.impl;
 
+import com.comoencasa_backend.model.Categoria;
 import com.comoencasa_backend.model.Producto;
 import com.comoencasa_backend.repository.ProductoRepository;
+import com.comoencasa_backend.repository.CategoriaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
@@ -30,6 +32,9 @@ class ProductoServiceImplCoberturaTDDTest {
 
      @Mock
      private ProductoRepository productoRepository;
+
+     @Mock
+     private CategoriaRepository categoriaRepository;
 
      @InjectMocks
      private ProductoServiceImpl productoService;
@@ -432,6 +437,8 @@ class ProductoServiceImplCoberturaTDDTest {
                          .conImagenUrl("/imagen.jpg")
                          .build();
 
+               // Mock the categoriaRepository.existsById call
+               when(categoriaRepository.existsById(any())).thenReturn(true);
                when(productoRepository.save(any(Producto.class))).thenReturn(productoGuardado);
 
                // When
@@ -525,6 +532,7 @@ class ProductoServiceImplCoberturaTDDTest {
                          .build();
 
                when(productoRepository.findById(productoId)).thenReturn(Optional.of(productoExistente));
+               when(categoriaRepository.existsById(1L)).thenReturn(true);
                when(productoRepository.save(any(Producto.class))).thenReturn(productoActualizado);
 
                // When
@@ -538,6 +546,7 @@ class ProductoServiceImplCoberturaTDDTest {
                assertThat(resultado.getDisponible()).isTrue();
 
                verify(productoRepository).findById(productoId);
+               verify(categoriaRepository).existsById(1L);
                verify(productoRepository).save(any(Producto.class));
           }
 
@@ -562,6 +571,7 @@ class ProductoServiceImplCoberturaTDDTest {
                          .build();
 
                when(productoRepository.findById(productoId)).thenReturn(Optional.of(productoExistente));
+               when(categoriaRepository.existsById(1L)).thenReturn(true);
                when(productoRepository.save(any(Producto.class))).thenReturn(productoActualizado);
 
                // When
@@ -592,6 +602,7 @@ class ProductoServiceImplCoberturaTDDTest {
                          .build();
 
                when(productoRepository.findById(productoId)).thenReturn(Optional.of(productoExistente));
+               when(categoriaRepository.existsById(1L)).thenReturn(true);
                when(productoRepository.save(any(Producto.class))).thenReturn(productoExistente);
 
                // When
@@ -652,6 +663,7 @@ class ProductoServiceImplCoberturaTDDTest {
                          .conPrecio(Double.MAX_VALUE)
                          .build();
 
+               when(categoriaRepository.existsById(any())).thenReturn(true);
                when(productoRepository.save(any(Producto.class))).thenReturn(productoConValoresLimite);
 
                // When

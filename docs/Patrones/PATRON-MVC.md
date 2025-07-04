@@ -1,22 +1,93 @@
-# 🏗️ Patrón MVC (Model-View-Controller) - Como en Casa - ANÁLISIS ACTUALIZADO
+# 🏗️ Patrón MVC (Model-View-Controller) - Como en Casa
 
-## 📖 Introducción
+## 📋 Diagrama de Flujo de Información
 
-El patrón **MVC (Model-View-Controller)** es un patrón arquitectural que separa una aplicación en tres componentes interconectados pero distintos, permitiendo una separación clara de responsabilidades y una mejor organización del código.
+```mermaid
+graph TB
+    subgraph "Frontend (React - View)"
+        A[Usuario] --> B[React Components]
+        B --> C[React Router]
+        C --> D[Service Layer]
+        D --> E[Axios HTTP Client]
+    end
 
-**🔍 ANÁLISIS ACTUALIZADO**: Este documento refleja la implementación real del patrón MVC en el proyecto "Como en Casa", basado en el análisis exhaustivo del código fuente actual, incluyendo controladores REST, servicios, modelos JPA, y componentes React del frontend.
+    subgraph "Backend (Spring Boot - Controller + Model)"
+        F[REST Controllers] --> G[Service Layer]
+        G --> H[Repository Layer]
+        H --> I[Database Models]
+        J[DTO Layer] --> G
+    end
 
----
+    subgraph "Database (MySQL)"
+        K[MySQL Database]
+        H --> K
+    end
 
-## 🎯 Implementación en el Proyecto
+    E --> F
+    G --> J
+    I --> H
+
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style F fill:#e8f5e8
+    style G fill:#fff3e0
+    style I fill:#ffebee
+    style K fill:#f1f8e9
+```
+
+## 🎯 ¿Qué es el Patrón MVC?
+
+El patrón **MVC (Model-View-Controller)** es un patrón de arquitectura de software que separa la aplicación en tres componentes principales:
+
+- **Model (Modelo)**: Representa los datos y la lógica de negocio
+- **View (Vista)**: Representa la interfaz de usuario
+- **Controller (Controlador)**: Maneja las interacciones entre el Model y la View
+
+## 🔧 Implementación en el Proyecto
 
 ### 📊 **Model (Modelo)**
 
-El modelo representa los datos y la lógica de negocio de la aplicación.
+#### **🔹 Entities (Modelos de Base de Datos)**
 
-#### **📍 Ubicación:** `backend/src/main/java/com/comoencasa_backend/model/`
+**Usuario.java**
 
-#### **🔹 Entidades JPA:**
+```java
+@Entity
+@Table(name = "usuarios")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String apellido;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private TipoDocumento tipoDocumento;
+
+    private String numeroDocumento;
+    private String telefono;
+    private String direccion;
+    private Boolean activo = true;
+    private LocalDateTime fechaCreacion;
+
+    // Relaciones
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Pedido> pedidos = new ArrayList<>();
+}
+```
 
 **Usuario.java**
 
@@ -72,23 +143,25 @@ public class Producto {
     @Column(nullable = false)
     private String nombre;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 500)
     private String descripcion;
 
-    @Column(name = "precio_venta", nullable = false)
-    private Double precioVenta;
+    @Column(nullable = false)
+    private BigDecimal precioVenta;
 
-    @Column(name = "costo_produccion")
+    @Column(nullable = false)
     private Double costoProduccion;
 
-    @Column(name = "imagen_url")
-    private String imagenUrl;
-
+    @Column(nullable = false)
     private Integer cantidad;
 
     @Column(nullable = false)
     private Boolean disponible = true;
 
+    private String imagenUrl;
+    private LocalDateTime fechaCreacion;
+
+    // Relaciones
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
@@ -118,7 +191,7 @@ public class Categoria {
 }
 ```
 
-#### **🔹 DTOs (Data Transfer Objects):**
+#### **🔹 DTOs (Data Transfer Objects)**
 
 **CarritoDTO.java**
 
@@ -145,18 +218,23 @@ public class CarritoDTO {
         this.totalItems = 0;
     }
 
-    // Calcular totales automáticamente
+    // Métodos de negocio
     public void calcularTotales() {
         this.subtotal = items.stream()
-            .mapToDouble(CarritoItemDTO::getSubtotal)
+            .mapToDouble(item -> item.getPrecioVenta() * item.getCantidad())
             .sum();
-
-        this.igv = this.subtotal * 0.18; // IGV 18%
-        this.total = this.subtotal + this.igv;
-
+        this.igv = subtotal * 0.18;
+        this.total = subtotal + igv;
         this.totalItems = items.stream()
             .mapToInt(CarritoItemDTO::getCantidad)
             .sum();
+    }
+
+    public void addItem(CarritoItemDTO item) {
+        if (this.items == null) {
+            this.items = new ArrayList<>();
+        }
+        this.items.add(item);
     }
 }
 ```
@@ -500,11 +578,7 @@ public class CarritoController {
             Long productoId = Long.valueOf(request.get("productoId").toString());
             Integer cantidad = Integer.valueOf(request.get("cantidad").toString());
             String comentarios = request.get("comentarios") != null
-                ? request.get("comentarios").toString()
-                : "";
-
-            log.info("Request agregar producto: sessionId={}, productoId={}, cantidad={}",
-                sessionId, productoId, cantidad);
+                ? request.get("comentarios").toString() : "";
 
             CarritoDTO carrito = carritoService.agregarProducto(
                 sessionId, productoId, cantidad, comentarios);
@@ -512,10 +586,10 @@ public class CarritoController {
             return ResponseEntity.ok(carrito);
 
         } catch (IllegalArgumentException e) {
-            log.error("Error de validación al agregar producto: {}", e.getMessage());
+            log.error("Error de validación: {}", e.getMessage());
             return ResponseEntity.badRequest().body(null);
         } catch (Exception e) {
-            log.error("Error interno al agregar producto: {}", e.getMessage(), e);
+            log.error("Error interno: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -529,41 +603,6 @@ public class CarritoController {
 
         } catch (Exception e) {
             log.error("Error al obtener carrito: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
-    @PutMapping("/actualizar/{productoId}")
-    public ResponseEntity<CarritoDTO> actualizarCantidad(
-            @PathVariable Long productoId,
-            @RequestBody Map<String, Integer> request,
-            HttpSession session) {
-        try {
-            String sessionId = session.getId();
-            Integer nuevaCantidad = request.get("cantidad");
-
-            CarritoDTO carrito = carritoService.actualizarCantidad(
-                sessionId, productoId, nuevaCantidad);
-
-            return ResponseEntity.ok(carrito);
-
-        } catch (Exception e) {
-            log.error("Error al actualizar cantidad: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
-    @DeleteMapping("/eliminar/{productoId}")
-    public ResponseEntity<CarritoDTO> eliminarProducto(
-            @PathVariable Long productoId,
-            HttpSession session) {
-        try {
-            String sessionId = session.getId();
-            CarritoDTO carrito = carritoService.eliminarProducto(sessionId, productoId);
-            return ResponseEntity.ok(carrito);
-
-        } catch (Exception e) {
-            log.error("Error al eliminar producto: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError().build();
         }
     }
