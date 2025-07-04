@@ -28,7 +28,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -164,7 +163,7 @@ public class ComprobanteServiceImpl implements ComprobanteService {
                         String[] headers = {
                                         "Cliente", "Documento", "Correo",
                                         "Fecha Emisión", "Tipo", "Serie",
-                                        "Número", "Subtotal", "Total"
+                                        "Número", "Subtotal", "Envío", "Total"
                         };
                         Row headerRow = sheet.createRow(2);
                         for (int i = 0; i < headers.length; i++) {
@@ -198,7 +197,13 @@ public class ComprobanteServiceImpl implements ComprobanteService {
                         scell.setCellValue(c.getSubtotal().doubleValue());
                         scell.setCellStyle(moneyStyle);
 
-                        Cell tcell = dataRow.createCell(8);
+                        // Costo de envío
+                        Cell ecell = dataRow.createCell(8);
+                        BigDecimal costoEnvio = c.getTotal().subtract(c.getSubtotal());
+                        ecell.setCellValue(costoEnvio.doubleValue());
+                        ecell.setCellStyle(moneyStyle);
+
+                        Cell tcell = dataRow.createCell(9);
                         tcell.setCellValue(c.getTotal().doubleValue());
                         tcell.setCellStyle(moneyStyle);
 
@@ -236,69 +241,76 @@ public class ComprobanteServiceImpl implements ComprobanteService {
                         BaseColor pinkBg = new BaseColor(255, 107, 166);
                         BaseColor lightBg = new BaseColor(255, 228, 240);
 
-                        // Encabezado
+                        // Encabezado con logo y datos de empresa
                         PdfPTable headerTable = new PdfPTable(2);
                         headerTable.setWidths(new float[] { 1, 2 });
                         headerTable.setWidthPercentage(100);
+                        headerTable.setSpacingAfter(10f);
+
+                        // Celda del logo y datos de empresa
+                        PdfPCell logoAndCompanyCell = new PdfPCell();
+                        logoAndCompanyCell.setBorder(PdfPCell.NO_BORDER);
+                        logoAndCompanyCell.setPadding(5);
 
                         // Intentar cargar logo, si falla usar texto
-                        PdfPCell logoCell;
                         try {
-                                Image logo = Image.getInstance("./frontend/src/assets/logo.png");
-                                logo.scaleToFit(120, 60);
-                                logo.setAlignment(Element.ALIGN_LEFT);
-                                logoCell = new PdfPCell(logo, false);
+                                // Cargar logo desde recursos del classpath
+                                java.io.InputStream logoStream = getClass().getClassLoader()
+                                                .getResourceAsStream("static/logo.png");
+                                if (logoStream != null) {
+                                        Image logo = Image.getInstance(logoStream.readAllBytes());
+                                        logo.scaleToFit(80, 40);
+                                        logo.setAlignment(Element.ALIGN_LEFT);
+                                        logoAndCompanyCell.addElement(logo);
+                                        logoStream.close();
+                                        log.info("Logo cargado exitosamente desde recursos");
+                                } else {
+                                        throw new Exception("Logo no encontrado en recursos");
+                                }
                         } catch (Exception e) {
                                 // Si no se puede cargar el logo, usar texto
-                                logoCell = new PdfPCell(new Phrase("COMO EN CASA", titleFont));
-                                logoCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-                                logoCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                                log.warn("No se pudo cargar el logo, usando texto: {}", e.getMessage());
+                                Paragraph logoText = new Paragraph("COMO EN CASA", titleFont);
+                                logoText.setAlignment(Element.ALIGN_LEFT);
+                                logoAndCompanyCell.addElement(logoText);
                         }
-                        logoCell.setBorder(PdfPCell.NO_BORDER);
 
-                        PdfPCell titleCell = new PdfPCell(new Phrase("COMPROBANTE DE PAGO", titleFont));
-                        titleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                        titleCell.setVerticalAlignment(Element.ALIGN_BOTTOM);
-                        titleCell.setBorder(PdfPCell.NO_BORDER);
-
-                        headerTable.addCell(logoCell);
-                        headerTable.addCell(titleCell);
-                        document.add(headerTable);
-
-                        document.add(Chunk.NEWLINE);
-
-                        // Datos de la empresa
+                        // Agregar datos de la empresa
                         Paragraph empresa = new Paragraph(
-                                        "Como En Casa\nAv. Universitaria 123, Lima\nTel: (51) 972-166-643   Email: comoencasa@gmail.com",
+                                        "Pastelería Como En Casa\nAv. Universitaria 123, Lima\nTel: (51) 972-166-643\nEmail: comoencasa@gmail.com",
                                         normalFont);
                         empresa.setAlignment(Element.ALIGN_LEFT);
-                        document.add(empresa);
+                        empresa.setSpacingBefore(5f);
+                        logoAndCompanyCell.addElement(empresa);
 
-                        document.add(Chunk.NEWLINE);
+                        // Celda del título del comprobante
+                        PdfPCell titleCell = new PdfPCell();
+                        titleCell.setBorder(PdfPCell.NO_BORDER);
+                        titleCell.setPadding(5);
+                        titleCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                        titleCell.setVerticalAlignment(Element.ALIGN_TOP);
 
-                        // Datos del comprobante y fecha
-                        PdfPTable infoComp = new PdfPTable(2);
-                        infoComp.setWidths(new float[] { 1, 1 });
-                        infoComp.setWidthPercentage(100);
+                        Paragraph title = new Paragraph("COMPROBANTE DE PAGO", titleFont);
+                        title.setAlignment(Element.ALIGN_RIGHT);
+                        titleCell.addElement(title);
 
-                        PdfPCell cell1 = new PdfPCell(new Phrase("N° Serie: " + c.getNumeroSerie(), boldFont));
-                        PdfPCell cell2 = new PdfPCell(new Phrase(
-                                        "Fecha: " + c.getFechaEmision()
-                                                        .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
-                                        boldFont));
-                        PdfPCell cell3 = new PdfPCell(
-                                        new Phrase("N° Comprobante: " + c.getNumeroComprobante(), boldFont));
-                        PdfPCell cell4 = new PdfPCell(new Phrase("Tipo: " + c.getTipo().name(), boldFont));
+                        // Agregar información del comprobante
+                        Paragraph comprobanteInfo = new Paragraph(
+                                        "N° Serie: " + c.getNumeroSerie() + "\n" +
+                                                        "N° Comprobante: " + c.getNumeroComprobante() + "\n" +
+                                                        "Tipo: " + c.getTipo().name() + "\n" +
+                                                        "Fecha: "
+                                                        + c.getFechaEmision()
+                                                                        .format(DateTimeFormatter
+                                                                                        .ofPattern("dd/MM/yyyy HH:mm")),
+                                        normalFont);
+                        comprobanteInfo.setAlignment(Element.ALIGN_RIGHT);
+                        comprobanteInfo.setSpacingBefore(10f);
+                        titleCell.addElement(comprobanteInfo);
 
-                        for (PdfPCell cell : Arrays.asList(cell1, cell2, cell3, cell4)) {
-                                cell.setPadding(6);
-                                cell.setBorder(PdfPCell.NO_BORDER);
-                        }
-                        infoComp.addCell(cell1);
-                        infoComp.addCell(cell2);
-                        infoComp.addCell(cell3);
-                        infoComp.addCell(cell4);
-                        document.add(infoComp);
+                        headerTable.addCell(logoAndCompanyCell);
+                        headerTable.addCell(titleCell);
+                        document.add(headerTable);
 
                         document.add(Chunk.NEWLINE);
 
@@ -353,11 +365,30 @@ public class ComprobanteServiceImpl implements ComprobanteService {
                                 tbl.addCell(alignedCell("S/ " + sub, normalFont, Element.ALIGN_RIGHT));
                         }
 
-                        // Totales
-                        PdfPCell span = new PdfPCell(new Phrase(""));
-                        span.setColspan(2);
-                        span.setBorder(PdfPCell.NO_BORDER);
-                        tbl.addCell(span);
+                        // Subtotal de productos
+                        PdfPCell span1 = new PdfPCell(new Phrase(""));
+                        span1.setColspan(2);
+                        span1.setBorder(PdfPCell.NO_BORDER);
+                        tbl.addCell(span1);
+
+                        tbl.addCell(alignedCell("SUBTOTAL:", normalFont, Element.ALIGN_RIGHT));
+                        tbl.addCell(alignedCell("S/ " + c.getSubtotal(), normalFont, Element.ALIGN_RIGHT));
+
+                        // Costo de envío
+                        PdfPCell span2 = new PdfPCell(new Phrase(""));
+                        span2.setColspan(2);
+                        span2.setBorder(PdfPCell.NO_BORDER);
+                        tbl.addCell(span2);
+
+                        BigDecimal costoEnvio = c.getTotal().subtract(c.getSubtotal());
+                        tbl.addCell(alignedCell("ENVÍO:", normalFont, Element.ALIGN_RIGHT));
+                        tbl.addCell(alignedCell("S/ " + costoEnvio, normalFont, Element.ALIGN_RIGHT));
+
+                        // Total final
+                        PdfPCell span3 = new PdfPCell(new Phrase(""));
+                        span3.setColspan(2);
+                        span3.setBorder(PdfPCell.NO_BORDER);
+                        tbl.addCell(span3);
 
                         tbl.addCell(alignedCell("TOTAL:", boldFont, Element.ALIGN_RIGHT));
                         tbl.addCell(alignedCell("S/ " + c.getTotal(), boldFont, Element.ALIGN_RIGHT));
@@ -778,7 +809,7 @@ public class ComprobanteServiceImpl implements ComprobanteService {
                         String[] columnas = {
                                         "🆔 ID", "📄 Serie", "🔢 Número", "👤 Cliente",
                                         "📋 Documento", "📧 Email", "📅 Fecha",
-                                        "💰 Subtotal", "💵 Total"
+                                        "💰 Subtotal", "� Envío", "�💵 Total"
                         };
 
                         for (int i = 0; i < columnas.length; i++) {
