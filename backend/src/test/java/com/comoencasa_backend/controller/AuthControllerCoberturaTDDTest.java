@@ -7,19 +7,24 @@ import com.comoencasa_backend.repository.UsuarioRepository;
 import com.comoencasa_backend.service.EmailService;
 import com.comoencasa_backend.service.VerificationTokenService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -30,27 +35,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Enfocados en aumentar cobertura del 6% al máximo posible
  * Patrón Red-Green-Refactor aplicado estrictamente
  */
-@WebMvcTest(AuthController.class)
+@ExtendWith(MockitoExtension.class)
 @DisplayName("AuthController TDD Tests")
 class AuthControllerCoberturaTDDTest {
 
-     @Autowired
      private MockMvc mockMvc;
 
-     @MockBean
+     @Mock
      private UsuarioRepository usuarioRepository;
 
-     @MockBean
+     @Mock
      private BCryptPasswordEncoder passwordEncoder;
 
-     @MockBean
+     @Mock
      private EmailService emailService;
 
-     @MockBean
+     @Mock
      private VerificationTokenService verificationTokenService;
 
-     @Autowired
-     private ObjectMapper objectMapper;
+     @InjectMocks
+     private AuthController authController;
+
+     @BeforeEach
+     void setUp() {
+          mockMvc = MockMvcBuilders.standaloneSetup(authController).build();
+     }
+
+     private ObjectMapper objectMapper = new ObjectMapper();
 
      @Nested
      @DisplayName("Tests TDD para POST /api/auth/login")

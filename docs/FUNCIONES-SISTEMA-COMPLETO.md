@@ -316,5 +316,3 @@ El sistema "Como en Casa" es una plataforma web completa para la gestión de una
 - **Responsivo**: Funciona en dispositivos móviles y desktop
 
 ---
-
-_Este documento describe la funcionalidad completa del sistema "Como en Casa" al momento de la última actualización. Para detalles técnicos específicos, consultar la documentación de patrones y arquitectura en la carpeta `/docs`._
