@@ -9,38 +9,36 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { login: authLogin } = useAuth();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  setIsLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
-  try {
-    const data = await login(email, password);
+    try {
+      const data = await login(email, password);
 
-  
-    localStorage.setItem("userId", data.usuario.id);
-    localStorage.setItem("nombre", data.usuario.nombreCompleto);
-    localStorage.setItem("email", data.usuario.email);
-    localStorage.setItem("rol", data.usuario.rol);
+      localStorage.setItem("userId", data.usuario.id);
+      localStorage.setItem("nombre", data.usuario.nombreCompleto);
+      localStorage.setItem("email", data.usuario.email);
+      localStorage.setItem("rol", data.usuario.rol);
 
-   
-    authLogin(data.usuario);
+      authLogin(data.usuario);
 
-    navigate("/");
-  } catch (err) {
-    console.error("Error completo:", {
-      message: err.message,
-      stack: err.stack,
-    });
-    setError(err.message);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
+      navigate("/");
+    } catch (err) {
+      console.error("Error completo:", {
+        message: err.message,
+        stack: err.stack,
+      });
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="login-container">
@@ -57,15 +55,27 @@ const handleSubmit = async (e) => {
           required
         />
 
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div className="input-group mb-3">
+          <input
+            type={showPassword ? "text" : "password"}
+            className="form-control"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="button"
+            className="btn btn-outline-secondary"
+            onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? "Ocultar" : "Mostrar"}
+          </button>
+        </div>
 
-        <button type="submit" disabled={isLoading}>
+        <button
+          type="submit"
+          className="btn btn-primary w-100"
+          disabled={isLoading}>
           {isLoading ? "Cargando..." : "Iniciar sesión"}
         </button>
       </form>
