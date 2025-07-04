@@ -1,27 +1,56 @@
-# 🔧 Patrones de Configuración y Seguridad - Como en Casa
+# Patrones de Configuración y Seguridad
 
-## 📖 Introducción
+## Descripción General
 
-Los patrones de **Configuración** y **Seguridad** son fundamentales para crear aplicaciones robustas y mantenibles. En el proyecto "Como en Casa" se implementan varios patrones para manejar la configuración de la aplicación, seguridad, CORS, y perfiles de entorno.
+Los patrones de Configuración y Seguridad son fundamentales para crear aplicaciones robustas y mantenibles. En el sistema "Como en Casa" se implementan varios patrones para manejar la configuración de la aplicación, seguridad, CORS, y perfiles de entorno usando Spring Boot y Spring Security.
 
-**🔍 ANÁLISIS ACTUALIZADO**: Este documento ha sido actualizado basándose en la revisión exhaustiva del código fuente actual, incluyendo la implementación real de SecurityConfig.java, configuraciones de perfiles, y patrones de interceptors en el frontend.
+## Diagrama de Implementación
 
-### **🎯 Objetivos:**
+```mermaid
+graph TD
+    A[Patrones de Configuración y Seguridad] --> B[Configuration Pattern]
+    A --> C[Security Pattern]
+    A --> D[CORS Pattern]
+    A --> E[Profile Pattern]
 
-- **Configuration Pattern**: Centralizar configuraciones de la aplicación ✅ IMPLEMENTADO
-- **Security Pattern**: Implementar autenticación y autorización ✅ IMPLEMENTADO
-- **CORS Pattern**: Manejar peticiones cross-origin ✅ IMPLEMENTADO
-- **Profile Pattern**: Configuraciones específicas por entorno ✅ IMPLEMENTADO
+    B --> B1[SecurityConfig]
+    B --> B2[DatabaseConfig]
+    B --> B3[ApplicationConfig]
 
----
+    C --> C1[Authentication]
+    C --> C2[Authorization]
+    C --> C3[JWT Tokens]
 
-## 🎯 Implementación en el Proyecto
+    D --> D1[CORS Configuration]
+    D --> D2[Cross-Origin Requests]
+    D --> D3[Headers Management]
 
-### 🔹 **1. Configuration Pattern**
+    E --> E1[Development Profile]
+    E --> E2[Production Profile]
+    E --> E3[Test Profile]
 
-#### **📍 Ubicación:** `config/SecurityConfig.java`
+    B1 --> F1[SecurityFilterChain]
+    B1 --> F2[Password Encoder]
+    B1 --> F3[Authentication Manager]
 
-**Configuración de Seguridad con Spring Security:**
+    C1 --> G1[Login Endpoint]
+    C1 --> G2[Register Endpoint]
+    C1 --> G3[Token Validation]
+
+    style A fill:#ff9999
+    style B fill:#99ccff
+    style C fill:#99ff99
+    style D fill:#ffff99
+    style E fill:#ff99ff
+```
+
+## Implementación de Patrones
+
+### 1. Configuration Pattern
+
+El patrón Configuration centraliza la configuración de la aplicación en clases específicas.
+
+**Ejemplo: SecurityConfig**
 
 ```java
 @Configuration
@@ -56,28 +85,540 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        // Configuración de orígenes permitidos
-        configuration.setAllowedOrigins(List.of(
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://localhost:3002"
-        ));
-
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+}
+```
+
+**Ejemplo: DatabaseConfig**
+
+```java
+@Configuration
+@EnableJpaRepositories(basePackages = "com.comoencasa_backend.repository")
+@EnableTransactionManagement
+public class DatabaseConfig {
+
+    @Value("${spring.datasource.url}")
+    private String datasourceUrl;
+
+    @Value("${spring.datasource.username}")
+    private String datasourceUsername;
+
+    @Value("${spring.datasource.password}")
+    private String datasourcePassword;
+
+    @Bean
+    @Primary
+    public DataSource dataSource() {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(datasourceUrl);
+        config.setUsername(datasourceUsername);
+        config.setPassword(datasourcePassword);
+        config.setMaximumPoolSize(20);
+        config.setMinimumIdle(5);
+        config.setConnectionTimeout(30000);
+        config.setIdleTimeout(600000);
+        config.setMaxLifetime(1800000);
+
+        return new HikariDataSource(config);
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource);
+        em.setPackagesToScan("com.comoencasa_backend.entity");
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+        properties.setProperty("hibernate.show_sql", "false");
+        properties.setProperty("hibernate.format_sql", "true");
+        em.setJpaProperties(properties);
+
+        return em;
+    }
+}
+```
+
+### 2. Security Pattern
+
+El patrón Security implementa autenticación y autorización en la aplicación.
+
+**Ejemplo: AuthController**
+
+```java
+@RestController
+@RequestMapping("/api/auth")
+@Slf4j
+public class AuthController {
+
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
+
+    public AuthController(AuthenticationManager authenticationManager,
+                         UserService userService,
+                         JwtService jwtService,
+                         PasswordEncoder passwordEncoder) {
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.jwtService = jwtService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+        try {
+            // Autenticación
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+
+            // Generación de JWT
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String jwt = jwtService.generateToken(userDetails);
+
+            // Respuesta exitosa
+            AuthResponse response = AuthResponse.builder()
+                    .token(jwt)
+                    .type("Bearer")
+                    .email(userDetails.getUsername())
+                    .message("Login exitoso")
+                    .build();
+
+            log.info("Usuario autenticado exitosamente: {}", request.getEmail());
+            return ResponseEntity.ok(response);
+
+        } catch (BadCredentialsException e) {
+            log.warn("Intento de login fallido para: {}", request.getEmail());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(AuthResponse.builder()
+                            .message("Credenciales inválidas")
+                            .build());
+        }
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+        try {
+            // Verificar si el usuario ya existe
+            if (userService.existsByEmail(request.getEmail())) {
+                return ResponseEntity.badRequest()
+                        .body(AuthResponse.builder()
+                                .message("El email ya está registrado")
+                                .build());
+            }
+
+            // Crear usuario
+            User user = User.builder()
+                    .firstName(request.getFirstName())
+                    .lastName(request.getLastName())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(UserRole.CUSTOMER)
+                    .enabled(true)
+                    .build();
+
+            User savedUser = userService.save(user);
+
+            // Generar JWT
+            String jwt = jwtService.generateToken(buildUserDetails(savedUser));
+
+            AuthResponse response = AuthResponse.builder()
+                    .token(jwt)
+                    .type("Bearer")
+                    .email(savedUser.getEmail())
+                    .message("Registro exitoso")
+                    .build();
+
+            log.info("Usuario registrado exitosamente: {}", request.getEmail());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (Exception e) {
+            log.error("Error en registro de usuario: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(AuthResponse.builder()
+                            .message("Error interno del servidor")
+                            .build());
+        }
+    }
+}
+```
+
+### 3. JWT Service Pattern
+
+**Ejemplo: JwtService**
+
+```java
+@Service
+@Slf4j
+public class JwtService {
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
+    @Value("${jwt.expiration}")
+    private int jwtExpirationMs;
+
+    public String generateToken(UserDetails userDetails) {
+        return createToken(new HashMap<>(), userDetails.getUsername());
+    }
+
+    public String createToken(Map<String, Object> claims, String subject) {
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    private Boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+}
+```
+
+### 4. CORS Pattern
+
+El patrón CORS maneja las peticiones cross-origin.
+
+**Ejemplo: CORS Configuration**
+
+```java
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOriginPatterns("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3600);
+    }
+}
+```
+
+### 5. Profile Pattern
+
+El patrón Profile permite configuraciones específicas por entorno.
+
+**Ejemplo: application.properties**
+
+```properties
+# Perfil por defecto
+spring.profiles.active=development
+
+# Configuración común
+spring.application.name=Como en Casa Backend
+server.port=8080
+
+# JWT Configuration
+jwt.secret=comoencasa-secret-key-2024
+jwt.expiration=86400000
+```
+
+**Ejemplo: application-development.properties**
+
+```properties
+# Configuración de desarrollo
+spring.datasource.url=jdbc:mysql://localhost:3306/comoencasa_dev
+spring.datasource.username=dev_user
+spring.datasource.password=dev_password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Logging
+logging.level.com.comoencasa_backend=DEBUG
+logging.level.org.springframework.security=DEBUG
+```
+
+**Ejemplo: application-production.properties**
+
+```properties
+# Configuración de producción
+spring.datasource.url=jdbc:mysql://localhost:3306/comoencasa_prod
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=false
+
+# Logging
+logging.level.com.comoencasa_backend=INFO
+logging.level.org.springframework.security=WARN
+
+# Security
+server.ssl.enabled=true
+server.ssl.key-store=${SSL_KEYSTORE_PATH}
+server.ssl.key-store-password=${SSL_KEYSTORE_PASSWORD}
+```
+
+### 6. Configuration Management Pattern
+
+**Ejemplo: ConfigurationProperties**
+
+```java
+@ConfigurationProperties(prefix = "app")
+@Data
+@Component
+public class AppProperties {
+
+    private final Security security = new Security();
+    private final Email email = new Email();
+    private final PayPal paypal = new PayPal();
+
+    @Data
+    public static class Security {
+        private String jwtSecret;
+        private int jwtExpirationMs;
+        private boolean corsEnabled = true;
+        private List<String> allowedOrigins = new ArrayList<>();
+    }
+
+    @Data
+    public static class Email {
+        private String host;
+        private int port;
+        private String username;
+        private String password;
+        private boolean smtpAuth = true;
+        private boolean starttlsEnable = true;
+    }
+
+    @Data
+    public static class PayPal {
+        private String clientId;
+        private String clientSecret;
+        private String mode; // sandbox or live
+        private String baseUrl;
+    }
+}
+```
+
+### 7. Frontend Security Pattern
+
+**Ejemplo: Auth Service (React)**
+
+```javascript
+// services/authService.js
+class AuthService {
+  constructor() {
+    this.API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+    this.TOKEN_KEY = "auth_token";
+  }
+
+  async login(email, password) {
+    try {
+      const response = await axios.post(`${this.API_URL}/auth/login`, {
+        email,
+        password,
+      });
+
+      if (response.data.token) {
+        localStorage.setItem(this.TOKEN_KEY, response.data.token);
+        this.setAuthHeader(response.data.token);
+      }
+
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Error en login");
+    }
+  }
+
+  async register(userData) {
+    try {
+      const response = await axios.post(
+        `${this.API_URL}/auth/register`,
+        userData
+      );
+
+      if (response.data.token) {
+        localStorage.setItem(this.TOKEN_KEY, response.data.token);
+        this.setAuthHeader(response.data.token);
+      }
+
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || "Error en registro");
+    }
+  }
+
+  logout() {
+    localStorage.removeItem(this.TOKEN_KEY);
+    delete axios.defaults.headers.common["Authorization"];
+  }
+
+  getCurrentUser() {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        return payload.sub;
+      } catch (error) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  setAuthHeader(token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
+
+  initializeAuth() {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (token) {
+      this.setAuthHeader(token);
+    }
+  }
+}
+
+export default new AuthService();
+```
+
+**Ejemplo: Protected Route Component**
+
+```javascript
+// components/ProtectedRoute.js
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
+export default ProtectedRoute;
+```
+
+## Ventajas de la Implementación
+
+### 🔧 **Configuration Pattern**
+
+- **Centralización**: Todas las configuraciones en un lugar
+- **Flexibilidad**: Fácil modificación sin cambiar código
+- **Perfiles**: Configuraciones específicas por entorno
+- **Inyección**: Automática con Spring Boot
+
+### 🔐 **Security Pattern**
+
+- **Autenticación**: JWT tokens seguros
+- **Autorización**: Control de acceso basado en roles
+- **Encriptación**: Passwords encriptados con BCrypt
+- **Stateless**: Sessions sin estado
+
+### 🌐 **CORS Pattern**
+
+- **Cross-Origin**: Soporte para peticiones desde diferentes dominios
+- **Configuración**: Flexible y granular
+- **Seguridad**: Control de headers y métodos
+- **Preflight**: Manejo automático de peticiones OPTIONS
+
+### 📊 **Profile Pattern**
+
+- **Entornos**: Configuraciones específicas por ambiente
+- **Flexibilidad**: Cambio fácil entre perfiles
+- **Seguridad**: Configuraciones sensibles externalizadas
+- **Mantenimiento**: Separación clara de configuraciones
+
+## Integración con Spring Boot
+
+El framework Spring Boot facilita la implementación de estos patrones:
+
+- **Auto-Configuration**: Configuración automática basada en dependencias
+- **Property Management**: Gestión centralizada de propiedades
+- **Profile Support**: Soporte nativo para perfiles
+- **Security Integration**: Integración fluida con Spring Security
+
+## Patrones Complementarios
+
+Estos patrones se complementan con:
+
+- **SOLID Principles**: Especialmente Dependency Inversion
+- **MVC Pattern**: Para la separación de concerns
+- **DAO Pattern**: Para el acceso seguro a datos
+- **Builder Pattern**: Para la construcción de objetos de configuración
+
+Esta implementación asegura que el sistema "Como en Casa" mantiene un alto nivel de seguridad, flexibilidad y mantenibilidad en su configuración.
 
         // Logging para desarrollo
         System.out.println("✅ CORS habilitado para: " + configuration.getAllowedOrigins());
 
         return source;
     }
+
 }
-```
+
+````
 
 #### **📍 Ubicación:** `config/CorsConfig.java`
 
@@ -101,7 +642,7 @@ public class CorsConfig {
         };
     }
 }
-```
+````
 
 ---
 

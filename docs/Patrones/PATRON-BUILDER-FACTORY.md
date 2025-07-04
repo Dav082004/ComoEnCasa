@@ -1,25 +1,51 @@
-# 🏗️ Patrones Builder y Factory - Como en Casa
+# Patrones Builder y Factory - Creación de Objetos
 
-## 📖 Introducción
+## Descripción General
 
-Los patrones **Builder** y **Factory** son patrones creacionales que facilitan la construcción de objetos complejos de manera flexible y mantenible. En el proyecto "Como en Casa" se implementan estos patrones principalmente para la creación de datos de prueba y objetos de transferencia.
+Los patrones Builder y Factory son patrones creacionales que facilitan la construcción de objetos complejos de manera flexible y mantenible. En el sistema "Como en Casa", estos patrones se implementan principalmente a través de Lombok para DTOs y para la creación de objetos de prueba y configuración.
 
-### **🎯 Objetivos:**
+## Diagrama de Implementación
 
-- **Builder Pattern**: Construir objetos complejos paso a paso
-- **Factory Pattern**: Centralizar la creación de objetos de test
-- **Facilitar testing**: Crear datos de prueba consistentes y flexibles
-- **Mejorar legibilidad**: Código más expresivo y fácil de entender
+```mermaid
+graph TD
+    A[Patrones Creacionales] --> B[Builder Pattern]
+    A --> C[Factory Pattern]
 
----
+    B --> B1[Lombok @Builder]
+    B --> B2[DTO Construction]
+    B --> B3[Test Data Creation]
 
-## 🎯 Implementación en el Proyecto
+    C --> C1[Service Factory]
+    C --> C2[Configuration Factory]
+    C --> C3[Payment Factory]
 
-### 🔹 **1. Builder Pattern para DTOs**
+    B1 --> D1[CarritoItemDTO]
+    B1 --> D2[ProductDTO]
+    B1 --> D3[OrderDTO]
 
-#### **📍 Ubicación:** `dto/CarritoItemDTO.java`
+    B2 --> E1[Fluent Interface]
+    B2 --> E2[Method Chaining]
+    B2 --> E3[Validation]
 
-**CarritoItemDTO con @Builder de Lombok**
+    C1 --> F1[PaymentServiceFactory]
+    C1 --> F2[NotificationServiceFactory]
+    C1 --> F3[ReportServiceFactory]
+
+    style A fill:#ff9999
+    style B fill:#99ccff
+    style C fill:#99ff99
+    style D1 fill:#ffff99
+    style D2 fill:#ffff99
+    style D3 fill:#ffff99
+```
+
+## Implementación de Patrones Builder y Factory
+
+### 1. Builder Pattern con Lombok
+
+El patrón Builder facilita la creación de objetos complejos paso a paso.
+
+**Ejemplo: CarritoItemDTO**
 
 ```java
 @Data
@@ -51,28 +77,353 @@ public class CarritoItemDTO {
 
 ```java
 @Service
-public class CarritoServiceImpl implements CarritoService {
+@Slf4j
+public class CarritoService {
 
-    @Override
-    public CarritoDTO agregarProducto(String sessionId, Long productoId, Integer cantidad, String comentarios) {
-        // ... validaciones ...
+    private final ProductRepository productRepository;
+    private final Cache<String, List<CarritoItemDTO>> carritoCache;
 
-        // Uso del Builder Pattern para crear CarritoItemDTO
+    public CarritoItemDTO agregarProducto(String carritoId, Long productoId, Integer cantidad) {
+        Product producto = productRepository.findById(productoId)
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
+
+        // Uso del Builder Pattern para crear el DTO
         CarritoItemDTO item = CarritoItemDTO.builder()
-                .productoId(productoId)
-                .nombre(producto.getNombre())
-                .descripcion(producto.getDescripcion())
-                .precioVenta(producto.getPrecioVenta())
-                .imagenUrl(producto.getImagenUrl())
+                .productoId(producto.getId())
+                .nombre(producto.getName())
+                .descripcion(producto.getDescription())
+                .precioVenta(producto.getPrice().doubleValue())
+                .imagenUrl(producto.getImageUrl())
                 .cantidad(cantidad)
-                .comentarios(comentarios)
+                .comentarios("")
+                .subtotal(producto.getPrice().doubleValue() * cantidad)
                 .build();
 
-        carrito.addItem(item);
-        return carrito;
+        actualizarCarrito(carritoId, item);
+        return item;
     }
 }
 ```
+
+**Ejemplo: ProductDTO con Builder**
+
+```java
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProductDTO {
+    private Long id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private Integer stock;
+    private String imageUrl;
+    private String category;
+    private Boolean available;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    // Builder personalizado con validaciones
+    public static class ProductDTOBuilder {
+        public ProductDTOBuilder priceWithValidation(BigDecimal price) {
+            if (price != null && price.compareTo(BigDecimal.ZERO) < 0) {
+                throw new IllegalArgumentException("El precio no puede ser negativo");
+            }
+            this.price = price;
+            return this;
+        }
+
+        public ProductDTOBuilder stockWithValidation(Integer stock) {
+            if (stock != null && stock < 0) {
+                throw new IllegalArgumentException("El stock no puede ser negativo");
+            }
+            this.stock = stock;
+            return this;
+        }
+    }
+}
+```
+
+### 2. Factory Pattern para Servicios
+
+El patrón Factory centraliza la creación de objetos y permite seleccionar implementaciones específicas.
+
+**Ejemplo: PaymentServiceFactory**
+
+```java
+@Component
+@Slf4j
+public class PaymentServiceFactory {
+
+    private final PayPalPaymentService payPalPaymentService;
+    private final CreditCardPaymentService creditCardPaymentService;
+    private final Map<PaymentType, PaymentService> paymentServices;
+
+    public PaymentServiceFactory(
+            PayPalPaymentService payPalPaymentService,
+            CreditCardPaymentService creditCardPaymentService) {
+        this.payPalPaymentService = payPalPaymentService;
+        this.creditCardPaymentService = creditCardPaymentService;
+
+        // Inicializar el mapa de servicios
+        this.paymentServices = Map.of(
+            PaymentType.PAYPAL, payPalPaymentService,
+            PaymentType.CREDIT_CARD, creditCardPaymentService
+        );
+    }
+
+    public PaymentService getPaymentService(PaymentType paymentType) {
+        PaymentService service = paymentServices.get(paymentType);
+        if (service == null) {
+            throw new UnsupportedPaymentMethodException(
+                "Método de pago no soportado: " + paymentType);
+        }
+
+        log.info("Servicio de pago seleccionado: {}", paymentType);
+        return service;
+    }
+
+    public List<PaymentType> getAvailablePaymentMethods() {
+        return new ArrayList<>(paymentServices.keySet());
+    }
+}
+```
+
+**Uso del Factory en OrderService:**
+
+```java
+@Service
+@Slf4j
+public class OrderService {
+
+    private final PaymentServiceFactory paymentServiceFactory;
+    private final OrderRepository orderRepository;
+
+    public OrderService(PaymentServiceFactory paymentServiceFactory,
+                       OrderRepository orderRepository) {
+        this.paymentServiceFactory = paymentServiceFactory;
+        this.orderRepository = orderRepository;
+    }
+
+    @Transactional
+    public OrderDTO processOrder(OrderDTO orderDTO) {
+        // Usar el factory para obtener el servicio de pago apropiado
+        PaymentService paymentService = paymentServiceFactory
+                .getPaymentService(orderDTO.getPaymentType());
+
+        // Procesar pago
+        PaymentResponse response = paymentService.processPayment(
+                createPaymentRequest(orderDTO));
+
+        if (!response.isSuccess()) {
+            throw new PaymentProcessingException("Error en el pago: " + response.getMessage());
+        }
+
+        // Continuar con el procesamiento de la orden
+        Order order = mapToEntity(orderDTO);
+        order.setPaymentStatus(PaymentStatus.COMPLETED);
+        order.setTransactionId(response.getTransactionId());
+
+        Order savedOrder = orderRepository.save(order);
+        return mapToDTO(savedOrder);
+    }
+}
+```
+
+### 3. Builder Pattern para Objetos de Prueba
+
+**Ejemplo: TestDataBuilder**
+
+```java
+@Component
+public class TestDataBuilder {
+
+    // Builder para crear productos de prueba
+    public static Product.ProductBuilder defaultProductBuilder() {
+        return Product.builder()
+                .name("Producto de Prueba")
+                .description("Descripción del producto de prueba")
+                .price(BigDecimal.valueOf(10.99))
+                .stock(100)
+                .imageUrl("https://example.com/image.jpg")
+                .category("Categoría Test")
+                .available(true);
+    }
+
+    // Builder para crear usuarios de prueba
+    public static User.UserBuilder defaultUserBuilder() {
+        return User.builder()
+                .firstName("Juan")
+                .lastName("Pérez")
+                .email("juan.perez@test.com")
+                .password("password123")
+                .role(UserRole.CUSTOMER)
+                .enabled(true)
+                .verified(true);
+    }
+
+    // Builder para crear órdenes de prueba
+    public static Order.OrderBuilder defaultOrderBuilder() {
+        return Order.builder()
+                .orderDate(LocalDateTime.now())
+                .status(OrderStatus.PENDING)
+                .total(BigDecimal.valueOf(29.99))
+                .paymentType(PaymentType.PAYPAL)
+                .paymentStatus(PaymentStatus.PENDING)
+                .items(new ArrayList<>());
+    }
+}
+```
+
+**Uso en Tests:**
+
+```java
+@Test
+public void testCreateProduct() {
+    // Usar el builder para crear datos de prueba
+    Product product = TestDataBuilder.defaultProductBuilder()
+            .name("Pastel de Chocolate")
+            .price(BigDecimal.valueOf(25.99))
+            .stock(50)
+            .build();
+
+    ProductDTO result = productService.createProduct(mapToDTO(product));
+
+    assertThat(result.getName()).isEqualTo("Pastel de Chocolate");
+    assertThat(result.getPrice()).isEqualByComparingTo(BigDecimal.valueOf(25.99));
+    assertThat(result.getStock()).isEqualTo(50);
+}
+```
+
+### 4. Factory Pattern para Configuración
+
+**Ejemplo: ConfigurationFactory**
+
+```java
+@Component
+@Slf4j
+public class ConfigurationFactory {
+
+    @Value("${app.environment:development}")
+    private String environment;
+
+    @Bean
+    public DataSource dataSource() {
+        if ("production".equals(environment)) {
+            return createProductionDataSource();
+        } else if ("test".equals(environment)) {
+            return createTestDataSource();
+        } else {
+            return createDevelopmentDataSource();
+        }
+    }
+
+    private DataSource createProductionDataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/comoencasa_prod");
+        dataSource.setUsername("prod_user");
+        dataSource.setPassword("prod_password");
+        dataSource.setMaximumPoolSize(20);
+        return dataSource;
+    }
+
+    private DataSource createTestDataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:h2:mem:testdb");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+        dataSource.setMaximumPoolSize(5);
+        return dataSource;
+    }
+
+    private DataSource createDevelopmentDataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/comoencasa_dev");
+        dataSource.setUsername("dev_user");
+        dataSource.setPassword("dev_password");
+        dataSource.setMaximumPoolSize(10);
+        return dataSource;
+    }
+}
+```
+
+## Ventajas de la Implementación
+
+### 🏗️ **Builder Pattern**
+
+- **Flexibilidad**: Creación de objetos paso a paso
+- **Legibilidad**: Código más expresivo y fácil de entender
+- **Immutabilidad**: Objetos inmutables una vez creados
+- **Validación**: Validaciones durante la construcción
+
+### 🏭 **Factory Pattern**
+
+- **Encapsulación**: Lógica de creación centralizada
+- **Extensibilidad**: Fácil adición de nuevos tipos
+- **Configuración**: Selección basada en parámetros
+- **Testabilidad**: Fácil mockeo y sustitución
+
+## Integración con Spring Boot
+
+### Lombok Integration
+
+```java
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private Integer stock;
+
+    // Lombok genera automáticamente:
+    // - ProductBuilder class
+    // - builder() method
+    // - Getters y setters
+    // - Constructor con todos los argumentos
+    // - Constructor sin argumentos
+}
+```
+
+### Spring Factory Beans
+
+```java
+@Configuration
+public class FactoryConfiguration {
+
+    @Bean
+    @ConditionalOnProperty(name = "payment.provider", havingValue = "paypal")
+    public PaymentService paypalPaymentService() {
+        return new PayPalPaymentService();
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "payment.provider", havingValue = "stripe")
+    public PaymentService stripePaymentService() {
+        return new StripePaymentService();
+    }
+}
+```
+
+## Patrones Complementarios
+
+Los patrones Builder y Factory se complementan con:
+
+- **SOLID Principles**: Especialmente Open/Closed y Single Responsibility
+- **DAO Pattern**: Para la creación de repositorios
+- **MVC Pattern**: Para la creación de DTOs y respuestas
+- **Strategy Pattern**: Para la selección de implementaciones
+
+Esta implementación garantiza que el sistema "Como en Casa" mantiene un código limpio, flexible y fácil de mantener en la creación de objetos complejos.
 
 ---
 

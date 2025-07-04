@@ -1,55 +1,438 @@
-# 💎 Principios SOLID - Como en Casa
+# Patrón SOLID - Principios de Diseño Orientado a Objetos
 
-## 📖 Introducción
+## Descripción General
 
-Los **principios SOLID** son cinco principios de diseño orientado a objetos que ayudan a crear software más mantenible, flexible y escalable. Estos principios fueron introducidos por Robert C. Martin y son fundamentales para escribir código limpio y bien estructurado.
+Los principios SOLID son un conjunto de cinco principios fundamentales para el diseño de software orientado a objetos que promueven la creación de código más mantenible, extensible y comprensible. En el sistema "Como en Casa", estos principios se implementan de forma integral para garantizar una arquitectura robusta y escalable.
 
-### **🎯 Los 5 Principios:**
+## Diagrama de Implementación
 
-- **S** - Single Responsibility Principle (SRP)
-- **O** - Open/Closed Principle (OCP)
-- **L** - Liskov Substitution Principle (LSP)
-- **I** - Interface Segregation Principle (ISP)
-- **D** - Dependency Inversion Principle (DIP)
+```mermaid
+graph TD
+    A[Principios SOLID] --> B[S - Single Responsibility]
+    A --> C[O - Open/Closed]
+    A --> D[L - Liskov Substitution]
+    A --> E[I - Interface Segregation]
+    A --> F[D - Dependency Inversion]
 
----
+    B --> B1[ProductController]
+    B --> B2[ProductService]
+    B --> B3[ProductRepository]
 
-## 🎯 Implementación de SOLID en el Proyecto
+    C --> C1[PaymentService Interface]
+    C --> C2[PayPalPaymentService]
+    C --> C3[CreditCardPaymentService]
 
-### 🔹 **1. Single Responsibility Principle (SRP)**
+    D --> D1[BaseEntity]
+    D --> D2[Product extends BaseEntity]
+    D --> D3[User extends BaseEntity]
 
-> _"Una clase debe tener una sola razón para cambiar"_
+    E --> E1[UserService Interface]
+    E --> E2[AuthService Interface]
+    E --> E3[EmailService Interface]
 
-#### **📍 Implementación:**
+    F --> F1[Spring IoC Container]
+    F --> F2[Dependency Injection]
+    F --> F3[Configuration Classes]
 
-**✅ EmailServiceImpl - Responsabilidad única: Envío de emails**
+    style A fill:#ff9999
+    style B fill:#99ccff
+    style C fill:#99ff99
+    style D fill:#ffff99
+    style E fill:#ff99ff
+    style F fill:#99ffff
+```
+
+## Implementación de Principios SOLID
+
+### 1. Single Responsibility Principle (SRP)
+
+Cada clase tiene una única responsabilidad y una única razón para cambiar.
+
+**Ejemplo: ProductController**
+
+```java
+@RestController
+@RequestMapping("/api/products")
+@Slf4j
+public class ProductController {
+
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        // Solo se encarga de manejar la petición HTTP
+        List<ProductDTO> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
+        // Delegación de la lógica de negocio al servicio
+        ProductDTO createdProduct = productService.createProduct(productDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+    }
+}
+```
+
+**Ejemplo: ProductService**
 
 ```java
 @Service
-public class EmailServiceImpl implements EmailService {
+@Slf4j
+public class ProductService {
 
-    private final JavaMailSender mailSender;
+    private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
-    // ÚNICA RESPONSABILIDAD: Enviar emails
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+        this.productRepository = productRepository;
+        this.productMapper = productMapper;
+    }
+
+    public List<ProductDTO> getAllProducts() {
+        // Solo se encarga de la lógica de negocio
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(productMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public ProductDTO createProduct(ProductDTO productDTO) {
+        // Lógica de negocio y validaciones
+        Product product = productMapper.toEntity(productDTO);
+        Product savedProduct = productRepository.save(product);
+        return productMapper.toDTO(savedProduct);
+    }
+}
+```
+
+### 2. Open/Closed Principle (OCP)
+
+Las clases están abiertas para extensión pero cerradas para modificación.
+
+**Ejemplo: Sistema de Pagos**
+
+```java
+// Interfaz base - cerrada para modificación
+public interface PaymentService {
+    PaymentResponse processPayment(PaymentRequest request);
+    boolean validatePayment(PaymentRequest request);
+}
+
+// Implementación PayPal - extensión sin modificar la interfaz
+@Service
+@Slf4j
+public class PayPalPaymentService implements PaymentService {
+
     @Override
-    public void enviarNuevaContrasena(String destinoEmail, String nuevaContrasena) {
-        // Validaciones específicas de email
-        if (!esEmailValido(destinoEmail.trim())) {
-            throw new IllegalArgumentException("Formato de email inválido");
+    public PaymentResponse processPayment(PaymentRequest request) {
+        log.info("Processing PayPal payment for amount: {}", request.getAmount());
+        // Lógica específica de PayPal
+        return PaymentResponse.builder()
+                .success(true)
+                .transactionId(generatePayPalTransactionId())
+                .build();
+    }
+
+    @Override
+    public boolean validatePayment(PaymentRequest request) {
+        // Validaciones específicas de PayPal
+        return request.getAmount() > 0 && request.getPayPalToken() != null;
+    }
+}
+
+// Nueva implementación - extensión sin modificar código existente
+@Service
+@Slf4j
+public class CreditCardPaymentService implements PaymentService {
+
+    @Override
+    public PaymentResponse processPayment(PaymentRequest request) {
+        log.info("Processing credit card payment for amount: {}", request.getAmount());
+        // Lógica específica de tarjeta de crédito
+        return PaymentResponse.builder()
+                .success(true)
+                .transactionId(generateCreditCardTransactionId())
+                .build();
+    }
+
+    @Override
+    public boolean validatePayment(PaymentRequest request) {
+        // Validaciones específicas de tarjeta de crédito
+        return request.getAmount() > 0 &&
+               request.getCreditCardNumber() != null &&
+               request.getCvv() != null;
+    }
+}
+```
+
+### 3. Liskov Substitution Principle (LSP)
+
+Los objetos de una clase derivada deben poder reemplazar objetos de la clase base sin alterar la funcionalidad.
+
+**Ejemplo: Jerarquía de Entidades**
+
+```java
+// Clase base
+@MappedSuperclass
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+}
+
+// Clase derivada que mantiene el comportamiento de la base
+@Entity
+@Table(name = "products")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Product extends BaseEntity {
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+
+    @Column(name = "stock", nullable = false)
+    private Integer stock;
+
+    // Mantiene el comportamiento de la clase base
+    // Puede ser usado en cualquier lugar donde se espere BaseEntity
+}
+```
+
+### 4. Interface Segregation Principle (ISP)
+
+Los clientes no deben depender de interfaces que no usan.
+
+**Ejemplo: Segregación de Interfaces de Servicio**
+
+```java
+// Interfaz específica para operaciones de lectura
+public interface UserReadService {
+    Optional<UserDTO> findById(Long id);
+    List<UserDTO> findAll();
+    Optional<UserDTO> findByEmail(String email);
+}
+
+// Interfaz específica para operaciones de escritura
+public interface UserWriteService {
+    UserDTO create(UserDTO userDTO);
+    UserDTO update(Long id, UserDTO userDTO);
+    void delete(Long id);
+}
+
+// Interfaz específica para autenticación
+public interface AuthService {
+    AuthResponse login(LoginRequest request);
+    AuthResponse register(RegisterRequest request);
+    void logout(String token);
+}
+
+// Implementación que puede implementar solo las interfaces necesarias
+@Service
+@Slf4j
+public class UserService implements UserReadService, UserWriteService {
+
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
+
+    @Override
+    public Optional<UserDTO> findById(Long id) {
+        return userRepository.findById(id)
+                .map(userMapper::toDTO);
+    }
+
+    @Override
+    public UserDTO create(UserDTO userDTO) {
+        User user = userMapper.toEntity(userDTO);
+        User savedUser = userRepository.save(user);
+        return userMapper.toDTO(savedUser);
+    }
+
+    // Implementación de otros métodos...
+}
+```
+
+### 5. Dependency Inversion Principle (DIP)
+
+Los módulos de alto nivel no deben depender de módulos de bajo nivel. Ambos deben depender de abstracciones.
+
+**Ejemplo: Inyección de Dependencias con Spring**
+
+```java
+// Abstracción de alto nivel
+public interface OrderService {
+    OrderDTO createOrder(OrderDTO orderDTO);
+    void processOrder(Long orderId);
+}
+
+// Implementación que depende de abstracciones, no de concreciones
+@Service
+@Slf4j
+public class OrderServiceImpl implements OrderService {
+
+    // Dependencias de abstracciones, no de implementaciones concretas
+    private final OrderRepository orderRepository;
+    private final PaymentService paymentService;
+    private final EmailService emailService;
+    private final InventoryService inventoryService;
+
+    // Inyección de dependencias a través del constructor
+    public OrderServiceImpl(
+            OrderRepository orderRepository,
+            PaymentService paymentService,
+            EmailService emailService,
+            InventoryService inventoryService) {
+        this.orderRepository = orderRepository;
+        this.paymentService = paymentService;
+        this.emailService = emailService;
+        this.inventoryService = inventoryService;
+    }
+
+    @Override
+    @Transactional
+    public OrderDTO createOrder(OrderDTO orderDTO) {
+        // Uso de abstracciones - no sabemos las implementaciones concretas
+        Order order = mapToEntity(orderDTO);
+
+        // Validar inventario
+        if (!inventoryService.validateStock(order.getItems())) {
+            throw new InsufficientStockException("Stock insuficiente");
         }
 
-        SimpleMailMessage mensaje = new SimpleMailMessage();
-        mensaje.setFrom(remitente);
-        mensaje.setTo(destinoEmail.trim());
-        mensaje.setSubject("Recuperación de cuenta - Como En Casa");
-        mensaje.setText("Tu nueva contraseña es: " + nuevaContrasena);
-        mailSender.send(mensaje);
+        // Procesar pago
+        PaymentResponse paymentResponse = paymentService.processPayment(
+                createPaymentRequest(order));
+
+        if (!paymentResponse.isSuccess()) {
+            throw new PaymentProcessingException("Error al procesar el pago");
+        }
+
+        // Guardar orden
+        Order savedOrder = orderRepository.save(order);
+
+        // Enviar confirmación por email
+        emailService.sendOrderConfirmation(savedOrder);
+
+        return mapToDTO(savedOrder);
+    }
+}
+```
+
+## Configuración Spring Boot
+
+**Ejemplo: Configuración de Beans**
+
+```java
+@Configuration
+@EnableJpaRepositories(basePackages = "com.comoencasa_backend.repository")
+@ComponentScan(basePackages = "com.comoencasa_backend")
+public class ApplicationConfig {
+
+    @Bean
+    @Primary
+    public PaymentService paymentService() {
+        // Configuración flexible basada en propiedades
+        return new PayPalPaymentService();
     }
 
-    @Override
-    public void enviarTokenVerificacion(String destinoEmail, String token) {
-        // Lógica específica para tokens de verificación
+    @Bean
+    @Conditional(CreditCardCondition.class)
+    public PaymentService creditCardPaymentService() {
+        return new CreditCardPaymentService();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+```
+
+## Ventajas de la Implementación SOLID
+
+### 🎯 **Mantenibilidad**
+
+- Cada clase tiene una responsabilidad clara
+- Los cambios son localizados y predecibles
+- Fácil identificación de errores
+
+### 🔧 **Extensibilidad**
+
+- Nuevas funcionalidades sin modificar código existente
+- Sistema de plugins y extensiones
+- Fácil adición de nuevos tipos de pago
+
+### 🧪 **Testabilidad**
+
+- Dependencias fácilmente mockeable
+- Pruebas unitarias aisladas
+- Cobertura de código mejorada
+
+### 📈 **Escalabilidad**
+
+- Arquitectura modular y flexible
+- Fácil paralelización de desarrollo
+- Reutilización de componentes
+
+## Integración con Spring Boot
+
+El framework Spring Boot facilita la implementación de principios SOLID a través de:
+
+- **Inyección de Dependencias**: Automática a través de anotaciones
+- **Configuración por Convención**: Reducción de código boilerplate
+- **Aspect-Oriented Programming**: Separación de concerns transversales
+- **Perfiles de Configuración**: Flexibilidad en diferentes entornos
+
+## Patrones Complementarios
+
+Los principios SOLID se complementan con otros patrones implementados:
+
+- **MVC**: Separación clara de responsabilidades
+- **DAO**: Inversión de dependencias en acceso a datos
+- **Builder**: Creación de objetos complejos respetando SRP
+- **Factory**: Extensibilidad siguiendo OCP
+
+Esta implementación asegura que el sistema "Como en Casa" mantiene un diseño robusto, escalable y mantenible siguiendo las mejores prácticas de la ingeniería de software.
+// Lógica específica para tokens de verificación
+}
 
     // Método auxiliar - relacionado con la responsabilidad principal
     public boolean esEmailValido(String email) {
@@ -57,8 +440,10 @@ public class EmailServiceImpl implements EmailService {
         int atIndex = email.indexOf('@');
         return atIndex > 0 && atIndex < email.length() - 1;
     }
+
 }
-```
+
+````
 
 **✅ ProductoServiceImpl - Responsabilidad única: Gestión de productos**
 
@@ -109,7 +494,7 @@ public class ProductoServiceImpl implements ProductoService {
         p.setDescripcion(StringEscapeUtils.escapeHtml4(StringUtils.trimToEmpty(p.getDescripcion())));
     }
 }
-```
+````
 
 ### 🔹 **2. Open/Closed Principle (OCP)**
 

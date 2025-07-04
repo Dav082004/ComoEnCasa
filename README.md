@@ -1,4 +1,5 @@
 # 🍰 Web System for Order and Customer Management - Como en Casa
+
 ---
 
 ## 📖 Project Description
@@ -13,45 +14,69 @@ This project consists of developing a **web system** to improve order and custom
 
 - **React** ⚛️ - Modern UI library for building interactive user interfaces
 - **Bootstrap** 🎨 - CSS framework for responsive design
+- **React Bootstrap** 🎨 - Bootstrap components for React
+- **React Bootstrap Icons** 🎨 - Icon library for React Bootstrap
 - **Axios** 📡 - HTTP client for API communication
-- **React Router** 🚦 - Navigation and routing for single-page applications
+- **React Router DOM** 🚦 - Navigation and routing for single-page applications
+- **React Icons** 🎨 - Popular icon library for React
+- **React Toastify** 🔔 - Notification library for React
+- **PayPal React SDK** 💳 - PayPal integration for React applications
+- **Recharts** 📊 - Charting library for React (reports and analytics)
+- **Date-fns** 📅 - Modern JavaScript date utility library
+- **File-saver** 💾 - Library for saving files on the client-side
 
 ### Backend
 
 - **Spring Boot** 🍃 - Java framework for rapid application development
 - **Spring Boot JPA** 🗄️ - Data persistence and ORM
 - **Spring Security** 🔐 - Authentication and authorization
+- **Spring Boot Mail** 📧 - Email service integration
+- **Lombok** 🔧 - Java annotation library for reducing boilerplate code
+- **iText PDF** 📄 - PDF generation library for Java
+- **Apache POI** 📊 - Library for Microsoft Office documents (Excel generation)
+- **Apache Commons Validator** ✅ - Input validation library
+- **Apache Commons Lang3** 🔧 - Java utility library for common operations
+- **Apache Commons Text** 📝 - Text processing utilities
+- **Google Guava** 🗂️ - Core libraries for Java (caching and data structures)
 
 ### Database
 
 - **MySQL** 🐬 - Relational database management system
 - **XAMPP** 🔧 - Local development environment
 
+### Testing & Quality Assurance
+
+- **JUnit 5** 🧪 - Framework for unit testing
+- **Mockito** 🎭 - Mocking framework for unit tests
+- **Spring Boot Test** 🔬 - Testing utilities for Spring Boot applications
+- **H2 Database** 💾 - In-memory database for testing
+- **AssertJ** ✅ - Fluent assertions for testing
+- **Testcontainers** 🐳 - Integration testing with Docker containers
+- **WireMock** 🔌 - Mock HTTP services for testing
+- **JaCoCo** 📈 - Code coverage analysis tool
+
 ### Architecture & Design Patterns
 
 - **MVC (Model-View-Controller)** 🏗️ - Architectural pattern for separation of concerns
-  - 📖 **[Implementación de MVC](docs/PATRON-MVC.md)** - Documentación detallada de implementación
-- **TDD (Test-Driven Development)** 🧪 - Development methodology with **47 tests implemented**
-  - 📖 **[Guía Completa de TDD](docs/PATRON-TDD.md)** - Documentación detallada de implementación
-  - ✅ **100% tests passing** - Cobertura de código con JaCoCo
-  - 🚀 **Scripts automatizados** - Ejecución de tests con un comando
-- **DAO (Data Access Object)** 📊 - Data access pattern
-  - 📖 **[Implementación de DAO](docs/PATRON-DAO.md)** - Documentación detallada de implementación
+  - 📖 **[MVC Implementation](docs//Patrones/PATRON-MVC.md)** - Complete implementation documentation
+  - 🎯 **Frontend-Backend separation** - React frontend consuming REST API
+  - 📊 **Clear layer definition** - Models, Views, Controllers, Services, Repositories
+- **DAO (Data Access Object)** 📊 - Data access abstraction pattern
+  - 📖 **[DAO Implementation](docs/Patrones/PATRON-DAO.md)** - Detailed implementation documentation
+  - 🗂️ **Google Guava Cache** - High-performance caching for cart operations
+  - 💾 **Repository pattern** - Spring Data JPA integration
 - **SOLID Principles** 💎 - Object-oriented design principles
-  - 📖 **[Implementación de SOLID](docs/PATRON-SOLID.md)** - Documentación detallada de implementación
+  - 📖 **[SOLID Implementation](docs//Patrones/PATRON-SOLID.md)** - Detailed implementation documentation
+  - 🎯 **Single Responsibility** - Each class has one clear purpose
+  - 🔧 **Dependency Injection** - Spring Boot IoC container
 - **Builder & Factory Patterns** 🏭 - Creational design patterns
-  - 📖 **[Implementación de Builder/Factory](docs/PATRON-BUILDER-FACTORY.md)** - Documentación detallada de implementación
+  - 📖 **[Builder/Factory Implementation](docs//Patrones/PATRON-BUILDER-FACTORY.md)** - Detailed implementation documentation
+  - 🛠️ **Lombok Integration** - Automatic builder generation
+  - 🏗️ **DTO Construction** - Clean object creation patterns
 - **Configuration & Security Patterns** ⚙️ - Configuration and security design patterns
-  - 📖 **[Patrones de Configuración y Seguridad](docs/PATRON-CONFIGURACION-SEGURIDAD.md)** - Documentación detallada de implementación
-
-### Testing & Quality Assurance 🧪
-
-- **JUnit 5** - Framework principal de testing
-- **Mockito** - Mocking y stubbing para tests unitarios
-- **Spring Boot Test** - Testing para aplicaciones Spring
-- **JaCoCo** - Análisis de cobertura de código
-- **H2 Database** - Base de datos en memoria para tests
-- **AssertJ** - Assertions fluidas y legibles
+  - 📖 **[Configuration & Security Patterns](docs//Patrones/PATRON-CONFIGURACION-SEGURIDAD.md)** - Detailed implementation documentation
+  - 🔐 **Spring Security** - Authentication and authorization
+  - ⚙️ **Environment-based configuration** - Properties management
 
 ### Support Libraries
 
@@ -92,7 +117,7 @@ This project consists of developing a **web system** to improve order and custom
 
 ## ⚠️ Problem Identified
 
-Currently, order management is manual (via social media and WhatsApp), which generates errors, delays, and limits business growth. There is no efficient or automated digital channel.
+Currently, order management is manual (via WhatsApp), which generates errors, delays, and limits business growth. There is no efficient or automated digital channel.
 
 ---
 
@@ -158,16 +183,6 @@ Visual designs of the proposed system created in Balsamiq:
 
 ---
 
-## 👥 Development Team
-
-- Correa Acosta, Benjamin Emanuel
-- Contreras Palacios, David Angel
-- Barboza Ataco, Mijhael Hamed
-- Meléndez Torre, José Martín
-- Llacctas Pereyra, Marco A.
-
----
-
 ## 🧪 Development & Testing
 
 ### Quick Start para Desarrollo TDD
@@ -202,22 +217,6 @@ start target\site\jacoco\index.html
 # Test específico
 mvn test -Dtest="ProductoServiceTDDTest"
 ```
-
-### Documentación TDD
-
-Para una guía completa sobre la implementación TDD del proyecto:
-
-📖 **[Ver Guía Completa de TDD](docs/TDD-GUIDE-ES.md)**
-
-La guía incluye:
-
-- 🔄 Ciclo Red-Green-Refactor explicado con ejemplos
-- 🏗️ Arquitectura de tests en capas
-- 🛠️ Configuración de herramientas (JaCoCo, JUnit 5, Mockito)
-- 🚀 Scripts de automatización
-- 📊 Análisis de cobertura de código
-- 🎯 Mejores prácticas y convenciones
-- 🔧 Troubleshooting para problemas comunes
 
 ---
 
