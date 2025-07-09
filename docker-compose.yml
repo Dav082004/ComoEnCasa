@@ -1,0 +1,12 @@
+version: '3.8'  # puedes quitar esta línea si quieres, como dice el warning
+
+services:
+  # backend:
+  #   build: ./backend
+  #   ports:
+  #     - "8081:8081"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
