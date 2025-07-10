@@ -1,12 +1,41 @@
-version: '3.8'  # puedes quitar esta línea si quieres, como dice el warning
+version: "3.9"
 
 services:
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "8081:8081"
+  mysql:
+    image: mysql:8.0
+    container_name: comoencasa-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: comoencasa_db
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: comoencasa-backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/comoencasa_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_MAIL_USERNAME: comoencasabakerype@gmail.com
+      SPRING_MAIL_PASSWORD: tgtg wfpz ycdy lioh
+      FRONTEND_URL: http://localhost:3000
+      PAYPAL_CLIENT_ID: Ad9hQoI_7QEPjeKHvmJpOwNbM3l7-svfCZKpU2BBaPuY9FngdUnpBcRoGx5izWeNdFpGrhQ-PPmmmXF9
+      PAYPAL_CLIENT_SECRET:
 
   frontend:
     build: ./frontend
+    container_name: comoencasa-frontend
     ports:
       - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
