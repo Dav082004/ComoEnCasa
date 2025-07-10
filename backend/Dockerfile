@@ -1,14 +1,17 @@
-# Usa una imagen oficial de Java
-FROM openjdk:21-jdk-slim
+# Usa una imagen oficial con Java 21
+FROM eclipse-temurin:21-jdk
 
-# Crea el directorio de la app dentro del contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo jar ya compilado (debes haber hecho `mvn package`)
-COPY target/*.jar app.jar
+# Copia el contenido del backend
+COPY . .
 
-# Expone el puerto 8081 (ajústalo si usas otro)
+# Da permisos de ejecución al wrapper de Maven y construye sin tests
+RUN chmod +x ./mvnw && ./mvnw clean package -DskipTests
+
+# Expone el puerto por el que se ejecuta Spring Boot
 EXPOSE 8081
 
-# Comando para correr el .jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Ejecuta el .jar generado
+CMD ["java", "-jar", "target/comoencasa-backend-0.0.1-SNAPSHOT.jar"]
