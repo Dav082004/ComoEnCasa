@@ -1084,16 +1084,6 @@ La implementación de TDD en el proyecto "Como en Casa" ha sido un **éxito rotu
 
 ---
 
-## 🎉 Agradecimientos
-
-Un agradecimiento especial a todo el equipo de desarrollo de "Como en Casa" por su dedicación y compromiso con la implementación de TDD:
-
-- **Benjamin Emanuel Correa Acosta** - Líder técnico y arquitecto TDD
-- **David Angel Contreras Palacios** - Especialista en testing de servicios
-- **Mijhael Hamed Barboza Ataco** - Experto en testing de controladores
-- **José Martín Meléndez Torre** - Desarrollador TDD y documentación
-- **Marco A. Llacctas Pereyra** - Análisis de cobertura y métricas
-
 ### 🏆 Reconocimiento Especial
 
 Este proyecto representa un ejemplo excepcional de implementación TDD en un entorno real, demostrando que es posible lograr alta calidad y productividad siguiendo metodologías ágiles y mejores prácticas de desarrollo.
