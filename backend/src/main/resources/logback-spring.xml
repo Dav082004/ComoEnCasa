@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Configuración de Logback solo para consola (sin archivos) -->
+
+    <!-- Appender para consola con colores -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger específico para eventos de autenticación -->
+    <logger name="com.comoencasa_backend.controller.AuthController" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="com.comoencasa_backend.service.impl.UsuarioServiceImpl" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="com.comoencasa_backend.controller.RecuperarCuentaController" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <!-- Logger para el paquete principal -->
+    <logger name="com.comoencasa_backend" level="DEBUG" />
+
+    <!-- Logger para Spring Security -->
+    <logger name="org.springframework.security" level="WARN" />
+
+    <!-- Logger para SQL (opcional, puedes cambiar a WARN si no quieres ver SQL) -->
+    <logger name="org.hibernate.SQL" level="WARN" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" />
+
+    <!-- Configuración del root logger - SOLO CONSOLA -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

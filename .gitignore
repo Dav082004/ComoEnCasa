@@ -1,0 +1,39 @@
+# Ignorar node_modules en cualquier subcarpeta
+**/node_modules/
+
+# Ignorar archivos de entorno
+.env
+.env.local
+
+# Ignorar builds y carpetas de IDE
+build/
+dist/
+.vscode/
+.idea/
+
+# Ignorar logs y archivos temporales
+logs/
+*.log
+backend/logs/
+frontend/build/
+
+# Ignorar carpetas de compilación Java
+target/
+*.class
+
+# Ignorar archivos de configuración de IDE
+*.iml
+*.iws
+*.ipr
+.settings/
+.project
+.classpath
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de backup
+*.bak
+*.tmp
+*~

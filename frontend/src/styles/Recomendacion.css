@@ -1,0 +1,327 @@
+/* Estilos para la página de recomendación */
+.recomendacion-container {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #ffeef8 0%, #fff0f5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recomendacion-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(255, 107, 166, 0.15);
+  padding: 2.5rem;
+  max-width: 800px;
+  width: 100%;
+  border: 1px solid rgba(255, 107, 166, 0.1);
+}
+
+.recomendacion-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recomendacion-header h2 {
+  color: #6b4c57;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.recomendacion-subtitle {
+  color: #8b6c7a;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.recomendacion-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  color: #6b4c57;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #f0d6e2;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 150px;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #ff6ba6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 107, 166, 0.1);
+}
+
+.character-count {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #8b6c7a;
+  margin-top: 0.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.875rem 1.75rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff6ba6 0%, #ff8cc8 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 166, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff5a9a 0%, #ff7bbc 100%);
+  box-shadow: 0 6px 20px rgba(255, 107, 166, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-secondary {
+  background: #f8f9fa;
+  color: #6b4c57;
+  border: 2px solid #ddd;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #e9ecef;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+}
+
+.btn-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.recomendacion-info {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.recomendacion-info h4 {
+  color: #6b4c57;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recomendacion-info ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #8b6c7a;
+  line-height: 1.6;
+}
+
+.recomendacion-info li {
+  margin-bottom: 0.5rem;
+}
+
+.loading-content {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #ff6ba6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+/* Estilos para la sección de recomendación en Home */
+.recommendation-section {
+  padding: 3rem 0;
+}
+
+.recommendation-card {
+  background: linear-gradient(135deg, #faf7f9 0%, #f8f4f7 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(139, 108, 122, 0.08);
+  background: #f5e0ee;
+  border: 1px solid #f0eaed;
+  color: #6b5b6f;
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendation-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  height: 4px;
+  background: linear-gradient(90deg, #e8c4d0 0%, #f2d7e0 50%, #e8c4d0 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.recommendation-content {
+  position: relative;
+  z-index: 1;
+}
+
+.recommendation-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #8b6c7a;
+  letter-spacing: 0.5px;
+}
+
+.recommendation-subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #000000;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.btn-recommendation {
+  background: white;
+  color: #8b6c7a;
+  border: 2px solid #e8c4d0;
+  padding: 0.875rem 1.75rem;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(139, 108, 122, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-recommendation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 108, 122, 0.15);
+  background: #fefefe;
+  border-color: #d4b3c0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .recomendacion-container {
+    padding: 1rem;
+  }
+
+  .recomendacion-card {
+    padding: 1.5rem;
+  }
+
+  .recomendacion-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .recommendation-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .recommendation-title {
+    font-size: 1.5rem;
+  }
+
+  .recommendation-subtitle {
+    font-size: 1rem;
+  }
+}

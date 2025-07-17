@@ -1,0 +1,461 @@
+/* Estilo minimalista y elegante para pastelería con rosado pastel */
+.login-container {
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(244, 162, 179, 0.15);
+  border: 1px solid #f4a2b3;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #d64570;
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.login-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(135deg, #f4a2b3, #e8759b);
+}
+
+/* Estilos para inputs normales */
+.login-container input:not(.form-control) {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 2px solid #f4a2b3;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fef7f9;
+  color: #5a2c3a;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-container input:not(.form-control):focus {
+  outline: none;
+  border-color: #d64570;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(244, 162, 179, 0.2);
+}
+
+/* Botones de Bootstrap personalizados */
+.btn-primary {
+  background: linear-gradient(135deg, #d64570, #e8759b);
+  border: none;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(244, 162, 179, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #d64570, #e8759b);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary:disabled {
+  background: #f4a2b3;
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-outline-secondary {
+  border: 2px solid #f4a2b3;
+  color: #d64570;
+  background: transparent;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background: #f4a2b3;
+  color: black;
+}
+
+/* Form groups de Bootstrap */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  padding: 14px 16px;
+  border: 2px solid #f4a2b3;
+  border-radius: 8px 0 0 8px;
+  font-size: 16px;
+  background: #fef7f9;
+  color: #5a2c3a;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #d64570;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(244, 162, 179, 0.2);
+}
+
+.input-group .btn {
+  border-radius: 0 8px 8px 0;
+  padding: 14px 20px;
+  font-size: 14px;
+}
+
+.login-container p {
+  margin-top: 15px;
+  text-align: center;
+  color: #8a5a6b;
+}
+
+/* Enlaces */
+.register-link {
+  margin-top: 10px;
+  text-align: center;
+  padding: 5px;
+  background: transparent;
+  border-radius: 8px;
+  border: none;
+}
+
+.register-link a {
+  color: #d64570;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #8a5a6b;
+  text-decoration: underline;
+}
+
+/* Mensajes de error */
+.error-message {
+  background: linear-gradient(135deg, #fdeaea, #fce4e4);
+  color: #721c24;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Estilos para la sección de recuperar contraseña */
+.olvide-contrasena {
+  margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fef7f9, #fce8ed);
+  border: 1px solid #f4a2b3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(244, 162, 179, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.olvide-contrasena:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 162, 179, 0.2);
+}
+
+.olvide-contrasena p {
+  color: #d64570;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  font-size: 16px;
+}
+
+.link-recuperar {
+  display: inline-block;
+  background: transparent;
+  color: #d64570 !important;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+.link-recuperar:hover {
+  color: #8a5a6b !important;
+  text-decoration: underline;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .login-container {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+
+  .login-container h2 {
+    font-size: 24px;
+  }
+
+  .input-group .btn {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .olvide-contrasena {
+    padding: 16px;
+  }
+}
+
+/* Animaciones sutiles */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Clase personalizada para resaltar datos importantes */
+.highlight-text {
+  font-weight: 600;
+  background: rgba(244, 162, 179, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.login-container input:not(.form-control) {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.login-container input:not(.form-control):focus {
+  outline: none;
+  border-color: #e8b4a6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(232, 180, 166, 0.1);
+}
+
+/* Estilos para input-group de Bootstrap */
+.input-group .form-control {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px 0 0 8px;
+  padding: 16px;
+  font-size: 16px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.input-group .form-control:focus {
+  border-color: #e8b4a6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(232, 180, 166, 0.1);
+}
+
+.input-group .btn {
+  border-radius: 0 8px 8px 0;
+  border: 1px solid #e8e8e8;
+  border-left: none;
+  background: #f8f8f8;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+}
+
+.input-group .btn:hover {
+  background: #e8b4a6;
+  color: #ffffff;
+  border-color: #e8b4a6;
+}
+
+/* Botón principal */
+.btn-primary {
+  background: linear-gradient(135deg, #e8b4a6 0%, #d4a574 100%);
+  border: none;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(212, 165, 116, 0.3);
+}
+
+.btn-primary:disabled {
+  background: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.login-container p {
+  margin-top: 30px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #f4a2b3;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #f4a2b3;
+  text-decoration: underline;
+}
+
+/* Error messages */
+.error-message {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  color: #8b6914;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #f39c12;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Estilos para la sección de recuperar contraseña */
+.olvide-contrasena {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #ffe4e9 0%, #fff0f2 100%);
+  border: 1px solid #d63384;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.olvide-contrasena:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.12);
+  border-color: #e91e63;
+}
+
+.olvide-contrasena p {
+  margin: 0 0 8px 0;
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.link-recuperar {
+  display: inline-block;
+  color: #d63384;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  background: rgba(214, 51, 132, 0.1);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.link-recuperar:hover {
+  color: #fff;
+  text-decoration: none;
+  transform: scale(1.02);
+  border-color: #d63384;
+  box-shadow: 0 2px 6px rgba(214, 51, 132, 0.25);
+}
+
+/* Estilos para el grupo de input de contraseña en Login */
+.password-input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-input-group input {
+  width: 100%;
+  padding: 12px 45px 12px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 0;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle-btn:hover {
+  color: #333;
+}
+
+/* Error messages */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.login-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

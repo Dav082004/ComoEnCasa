@@ -1,0 +1,67 @@
+/* Estructura básica */
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 220px;
+  background: #fff0f6;
+  border-right: 1px solid #f0d6e2;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.admin-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  color: #ff6ba6;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Navegación */
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-item .nav-icon {
+  font-size: 1.25rem;
+  color: #ff6ba6;
+}
+
+.nav-item:hover {
+  background-color: #ffe4f0;
+}
+
+.nav-item[aria-current="page"] {
+  background-color: #ff6ba6;
+  color: white;
+}
+
+.nav-item[aria-current="page"] .nav-icon {
+  color: white;
+}
+
+/* Main content */
+.admin-main {
+  flex: 1;
+  background-color: #fff;
+  padding: 2rem;
+}
