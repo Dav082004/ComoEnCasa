@@ -1,33 +1,69 @@
 version: "3.8"
 
 services:
+  # Aplicación Backend
   backend:
     build:
       context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/comoencasa_db
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/comoencasa_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - FRONTEND_URL=http://localhost:3000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    restart: unless-stopped
 
+  # Aplicación Frontend
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
 
+  # Base de Datos MySQL
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: comoencasa_db
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+      interval: 30s
+    networks:
+      - app-network
+    restart: unless-stopped
 
 volumes:
   db_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,23 +1,129 @@
-# Ignorar node_modules en cualquier subcarpeta
-**/node_modules/
+# =============================================================================
+# COMO EN CASA - GITIGNORE PORTFOLIO
+# =============================================================================
 
-# Ignorar archivos de entorno
-.env
-.env.local
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Ignorar builds y carpetas de IDE
-build/
-dist/
+# IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# Ignorar logs y archivos temporales
-logs/
+# =============================================================================
+# BACKEND (Java/Spring Boot)
+# =============================================================================
+
+# Compiled class files
+*.class
+
+# Log files
 *.log
+logs/
+/logs
 backend/logs/
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+backend/target/
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# =============================================================================
+# FRONTEND (React/Node.js)
+# =============================================================================
+
+# Dependencies
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production build
+build/
+dist/
 frontend/build/
 
-# Ignorar carpetas de compilación Java
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ESLint cache
+.eslintcache
+
+# =============================================================================
+# DATABASE
+# =============================================================================
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# MySQL dumps
+*.sql.bak
+backup_*.sql
+
+# =============================================================================
+# DOCUMENTOS Y RESPALDOS
+# =============================================================================
+
+# Backups
+/backups
+/backup
+*.backup
+*.bak
+
+# Reportes temporales
+test_reporte.*
+reporte_*.xlsx
+factura_*.pdf
+
+# Archivos de mantenimiento
+maintenance-*.bat
+backup-*.bat
+restore-*.bat
+run-dev.bat
+run-tdd-*.bat
+check-*.bat
+
+# =============================================================================
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLE
+# =============================================================================
+
+# Credenciales
+credentials.properties
+secrets.properties
+.secrets
+
+# Keys y certificados
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
 target/
 *.class
 
