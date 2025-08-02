@@ -260,17 +260,6 @@ mvn test -Dtest="*TDDTest"
 | Models       | 78%      | 20    | ✅     |
 
 ---
-
-## 👥 Development Team
-
-- Correa Acosta, Benjamin Emanuel
-- Contreras Palacios, David Angel
-- Barboza Ataco, Mijhael Hamed
-- Meléndez Torre, José Martín
-- Llacctas Pereyra, Marco A.
-
----
-
 ## 🐳 Uso de Docker
 
 ### Requisitos
